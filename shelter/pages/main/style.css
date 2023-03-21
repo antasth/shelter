@@ -7,6 +7,8 @@
   max-width: 100%;
   background-color: #e5e5e5;
 }
+
+/* HEADER */
 .header {
   height: 908px;
   background: url(../../assets/img/noise_lines_transparent@2X.png),
@@ -17,13 +19,11 @@
   height: 100%;
   margin: 0 auto;
   padding: 30px 40px 0;
-  border: 1px solid white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .header__content-top {
-  border: 1px solid rgb(82, 231, 84);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -68,13 +68,13 @@
   line-height: 160%;
   color: #cdcdcd;
   margin-left: 35px;
+  cursor: pointer;
 }
 .header__nav li:first-of-type {
   margin-left: 0;
   border-bottom: 3px solid #f1cdb3;
 }
 .header__content-bottom {
-  border: 1px solid rgb(27, 198, 24);
   display: flex;
 }
 .header__bottom__description {
@@ -82,7 +82,7 @@
   flex-direction: column;
   max-width: 460px;
   margin-top: 163px;
-  margin-right: 42px;
+  margin-right: 2.6rem;
 }
 .description__title {
   font-family: 'Georgia';
@@ -92,6 +92,7 @@
   line-height: 130%;
   display: flex;
   align-items: center;
+  margin-bottom: 42px;
   color: #ffffff;
 }
 .description__subtitle {
@@ -102,19 +103,62 @@
   line-height: 160%;
   display: flex;
   align-items: center;
+  margin-bottom: 42px;
   color: #cdcdcd;
 }
 .header__bottom__img {
   display: flex;
 }
+
+/* CONTENT */
 .content {
   max-width: 1280px;
   margin: 0 auto;
 }
 section {
-  height: 200px;
   border: 1px solid rgb(1, 1, 1);
 }
+
+.about {
+  background-color: #ffffff;
+}
+.section__about__wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 80px 40px 100px;
+}
+.about__img {
+  margin-right: 120px;
+}
+.about__description {
+  max-width: 430px;
+}
+.about__description__title {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.06em;
+  margin-bottom: 25px;
+  margin-top: 14px;
+  color: #545454;
+}
+.about__description p {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+  color: #4c4c4c;
+  margin-bottom: 25px;
+}
+.about__description p:last-child {
+  margin-bottom: 0;
+}
+/* FOOTER */
 .footer {
   height: 350px;
   background: url(../../assets/img/noise_lines_transparent@2X.png),
@@ -128,6 +172,7 @@ section {
   border: 1px solid white;
 }
 
+/* BUTTON */
 .button {
   display: inline-block;
   align-self: start;
