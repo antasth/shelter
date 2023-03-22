@@ -17,7 +17,20 @@ h3 {
   /* color-dark-l */
   color: #545454;
 }
-
+h4 {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  /* identical to box height, or 23px */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.06em;
+  /* color-dark-l */
+  color: #545454;
+}
 .wrapper {
   max-width: 100%;
   background-color: #e5e5e5;
@@ -178,7 +191,6 @@ section {
   align-items: center;
   padding: 80px 40px 100px;
 }
-
 .slider__content {
   width: 100%;
   width: 1200px;
@@ -252,6 +264,45 @@ section {
   border-color: #fddcc4;
   cursor: pointer;
 }
+
+/* OPTIONS SECTION */
+.options {
+  background-color: #ffffff;
+}
+.options__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 40px 100px;
+}
+.options__title {
+  margin-bottom: 60px;
+}
+.options__content {
+  width: 100%;
+  max-width: 1200px;
+  flex-grow: 1;
+}
+.options__content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.options__content-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 60px;
+  margin-bottom: 55px;
+}
+.options__content-item img {
+  margin-bottom: 30px;
+}
+.options__content-item h4 {
+  white-space: nowrap;
+}
+
+
 
 /* FOOTER */
 .footer {
