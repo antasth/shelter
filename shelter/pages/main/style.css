@@ -31,6 +31,20 @@ h4 {
   /* color-dark-l */
   color: #545454;
 }
+h5 {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+  /* identical to box height, or 17px */
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.06em;
+  /* color-dark-l */
+  color: #545454;
+}
+
 .wrapper {
   max-width: 100%;
   background-color: #e5e5e5;
@@ -273,7 +287,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 80px 40px 100px;
+  padding: 80px 40px 45px;
 }
 .options__title {
   margin-bottom: 60px;
@@ -302,7 +316,64 @@ section {
   white-space: nowrap;
 }
 
-
+/* DONATION */
+.donation {
+  background-color: #f6f6f6;
+}
+.donation__wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 80px 0 100px;
+}
+.donation__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 915px;
+}
+.donation__content-img {
+  margin-right: 30px;
+}
+.donation__content-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.description__title {
+  margin: 0;
+}
+.description__subtitle {
+  margin: 20px 0;
+}
+.description__title h3 {
+  text-align: left;
+}
+.description__card {
+  padding: 10px 15px;
+  background: #f1cdb3;
+  border-radius: 9px;
+  max-width: 350px;
+  margin-bottom: 20px;
+}
+.description__card-content {
+  display: flex;
+}
+.description__card-content img {
+  margin-right: 15px;
+}
+.description__text {
+  font-family: 'Arial';
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  /* or 150% */
+  display: flex;
+  align-items: center;
+  /* color-dark-m */
+  color: #b2b2b2;
+}
 
 /* FOOTER */
 .footer {
