@@ -2,6 +2,17 @@
   box-sizing: border-box;
   margin: 0;
 }
+html {
+  scroll-behavior: smooth;
+}
+h1 {
+  font-family: 'Georgia';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+}
 h2 {
   font-family: 'Georgia';
   font-style: normal;
@@ -64,6 +75,16 @@ p {
   display: flex;
   align-items: center;
 }
+a,
+a:link,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
 
 .wrapper {
   max-width: 100%;
@@ -96,13 +117,7 @@ p {
   flex-direction: column;
 }
 .header__logo-title {
-  font-family: 'Georgia';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 110%;
-  letter-spacing: 0.06em;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   color: #f1cdb3;
 }
 .header__logo-subtitle {
@@ -117,19 +132,43 @@ p {
   letter-spacing: 0.1em;
   color: #ffffff;
 }
-
 .header__nav {
   list-style: none;
   display: flex;
 }
-.header__nav li {
+.neader__nav__item {
+  position: relative;
   color: #cdcdcd;
   margin-left: 35px;
   cursor: pointer;
 }
-.header__nav li:first-of-type {
+.neader__nav__item:hover {
+  color: #fafafa;
+}
+.neader__nav__item:after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f1cdb3;
+  transition: all 0.6s;
+}
+.neader__nav__item:hover::after {
+  width: 100%;
+}
+
+.neader__nav__item:first-of-type {
+  color: #fafafa;
+}
+.neader__nav__item:first-of-type:hover {
+  color: #fafafa;
+}
+.neader__nav__item:first-of-type::after {
   margin-left: 0;
-  border-bottom: 3px solid #f1cdb3;
+  width: 100%;
 }
 .header__content-bottom {
   display: flex;
@@ -237,9 +276,12 @@ section {
   height: 435px;
   background: #fafafa;
   border-radius: 9px;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
 }
 .slider__card-img {
   max-height: 270px;
+  transition: all 0.8s ease-in-out;
 }
 .slider__card-name {
   font-family: 'Georgia';
@@ -255,6 +297,17 @@ section {
   letter-spacing: 0.06em;
   /* color-dark-l */
   color: #545454;
+}
+.slider__card:hover {
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+}
+.slider__card:hover .slider__card-button {
+  background: #fddcc4;
+  border-color: #fddcc4;
+  cursor: pointer;
+}
+.slider__card:hover .slider__card-img {
+  transform: scale(1.2);
 }
 .slider__card-button {
   display: flex;
@@ -335,29 +388,35 @@ section {
   flex-direction: column;
   justify-content: space-around;
 }
-.description__title {
+.donation__title {
   margin: 0;
 }
-.description__subtitle {
+.donation__subtitle {
   margin: 20px 0;
 }
-.description__title h3 {
+.donation__title h3 {
   text-align: left;
 }
-.description__card {
+.donation__card {
   padding: 10px 15px;
   background: #f1cdb3;
   border-radius: 9px;
   max-width: 350px;
   margin-bottom: 20px;
+  transition: all 0.3s ease-in-out;
 }
-.description__card-content {
+.donation__card:hover {
+  color: #292929;
+  background: #fddcc4;
+  cursor: pointer;
+}
+.donation__card-content {
   display: flex;
 }
-.description__card-content img {
+.donation__card-content img {
   margin-right: 15px;
 }
-.description__text {
+.donation__text {
   font-family: 'Arial';
   font-style: italic;
   font-weight: 400;
@@ -372,7 +431,6 @@ section {
 
 /* FOOTER */
 .footer {
-  height: 350px;
   background: url(../../assets/img/noise_lines_transparent@2X.png),
     radial-gradient(110.67% 538.64% at 5.73% 50%, #513d2f 0%, #1a1a1c 100%),
     #211f20;
@@ -407,6 +465,13 @@ section {
 .footer__item {
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+.footer__item h4 {
+  transition: all 0.3s ease-in-out;
+}
+.footer__item:hover h4 {
+  color: #fafafa;
 }
 .footer__contacts__item {
   margin: 40px 0;

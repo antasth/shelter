@@ -1,9 +1,28 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/img/favicon/favicon-16x16.png"
+    />
+
     <link rel="stylesheet" href="./assets/styles/normalize.css" />
     <link rel="stylesheet" href="./pages/main/style.css" />
     <title>Shelter</title>
@@ -14,15 +33,23 @@
         <div class="header__content">
           <div class="header__content-top">
             <div class="header__logo">
-              <p class="header__logo-title">Cozy House</p>
+              <h1 class="header__logo-title">Cozy House</h1>
               <p class="header__logo-subtitle">Shelter for pets in Boston</p>
             </div>
             <nav>
               <ul class="header__nav">
-                <li><p>About the shelter</p></li>
-                <li><p>Our pets</p></li>
-                <li><p>Help the shelter</p></li>
-                <li><p>Contacts</p></li>
+                <li class="neader__nav__item">
+                  <a href="#about"><p>About the shelter</p></a>
+                </li>
+                <li class="neader__nav__item">
+                  <a href="#slider"><p>Our pets</p></a>
+                </li>
+                <li class="neader__nav__item">
+                  <a href="#options"><p>Help the shelter</p></a>
+                </li>
+                <li class="neader__nav__item">
+                  <a href="#contacts"><p>Contacts</p></a>
+                </li>
               </ul>
             </nav>
           </div>
@@ -50,7 +77,7 @@
       </div>
       <div class="content">
         <!-- ABOUT SECTION -->
-        <section class="about">
+        <section class="about" id="about">
           <div class="about__wrapper">
             <div class="about__img">
               <img src="./assets/img/about-pets.png" alt="about-pets" />
@@ -79,7 +106,7 @@
         </section>
 
         <!-- SLIDER SECTION -->
-        <section class="slider">
+        <section class="slider" id="slider">
           <div class="slider__wrapper">
             <div class="slider__title">
               <h3>
@@ -125,7 +152,7 @@
           </div>
         </section>
         <!-- OPTIONS SECTION -->
-        <section class="options">
+        <section class="options" id="options">
           <div class="options__wrapper">
             <div class="options__title">
               <h3>
@@ -203,22 +230,24 @@
                 <img src="./assets/img/donation-dog.png" alt="donation_dog" />
               </div>
               <div class="donation__content-description">
-                <div class="description__title">
+                <div class="donation__title">
                   <h3>
                     You can also <br />
                     make a donation
                   </h3>
                 </div>
-                <div class="description__subtitle">
+                <div class="donation__subtitle">
                   <h5>Name of the bank / Type of bank account</h5>
                 </div>
-                <div class="description__card">
-                  <div class="description__card-content">
-                    <img src="./assets/img/credit-card.svg" alt="card" />
-                    <h4>8380 2880 8028 8791 7435</h4>
-                  </div>
+                <div class="donation__card">
+                  <a href="#">
+                    <div class="donation__card-content">
+                      <img src="./assets/img/credit-card.svg" alt="card" />
+                      <h4>8380 2880 8028 8791 7435</h4>
+                    </div>
+                  </a>
                 </div>
-                <div class="description__text">
+                <div class="donation__text">
                   Legal information and lorem ipsum dolor sit amet, consectetur
                   adipiscing elit. Maecenas a ipsum at libero sagittis dignissim
                   sed ac diam. Praesent ultrices maximus tortor et vulputate.
@@ -229,18 +258,18 @@
           </div>
         </section>
       </div>
-      <div class="footer">
+      <div class="footer" id="contacts">
         <div class="footer__content">
           <div class="footer__description">
             <div class="footer__contacts">
               <h3>For questions and suggestions</h3>
               <div class="footer__item footer__contacts__item">
                 <img src="./assets/img/contacts/icon-email.svg" alt="email" />
-                <h4>email@shelter.com</h4>
+                <a href="#"><h4>email@shelter.com</h4></a>
               </div>
               <div class="footer__item footer__contacts__item">
                 <img src="./assets/img/contacts/icon-phone.svg" alt="phone" />
-                <h4>+13 674 567 75 54</h4>
+                <a href="#"><h4>+13 674 567 75 54</h4></a>
               </div>
             </div>
 
@@ -251,14 +280,18 @@
                   src="./assets/img/contacts/icon-marker.svg"
                   alt="location"
                 />
-                <h4>1 Central Street, Boston (entrance from the store)</h4>
+                <a href="#"
+                  ><h4>
+                    1 Central Street, Boston (entrance from the store)
+                  </h4></a
+                >
               </div>
               <div class="footer__item footer__location__item">
                 <img
                   src="./assets/img/contacts/icon-marker.svg"
                   alt="location"
                 />
-                <h4>18 South Park, London</h4>
+                <a href="#"><h4>18 South Park, London</h4></a>
               </div>
             </div>
           </div>
