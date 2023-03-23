@@ -130,7 +130,7 @@ p {
   cursor: pointer;
 }
 .neader__nav__item:hover {
-  color: #f8f8f8;
+  color: #fafafa;
 }
 .neader__nav__item:after {
   position: absolute;
@@ -146,8 +146,12 @@ p {
 .neader__nav__item:hover::after {
   width: 100%;
 }
+
+.neader__nav__item:first-of-type {
+  color: #fafafa;
+}
 .neader__nav__item:first-of-type:hover {
-  color: #cdcdcd;
+  color: #fafafa;
 }
 .neader__nav__item:first-of-type::after {
   margin-left: 0;
