@@ -386,7 +386,41 @@ section {
   max-width: 1280px;
   margin: 0 auto;
   height: 100%;
-  border: 1px solid white;
+  padding: 40px 40px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.footer__content h3 {
+  color: #ffffff;
+  text-align: left;
+}
+.footer__content h4 {
+  text-align: left;
+}
+.footer__description {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.footer__contacts {
+  max-width: 280px;
+  margin-right: 160px;
+}
+.footer__location {
+  max-width: 300px;
+}
+.footer__item {
+  display: flex;
+  align-items: center;
+}
+.footer__contacts__item {
+  margin: 40px 0;
+}
+.footer__location__item {
+  margin: 33px 0;
+}
+.footer__item img {
+  margin-right: 20px;
 }
 
 /* BUTTON */
