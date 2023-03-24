@@ -161,11 +161,12 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 23px 19px;
+  padding: 22px 18px;
   border: 2px solid #f1cdb3;
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
 }
+
 .slider__arrow:hover {
   background: #fddcc4;
   border-color: #fddcc4;
