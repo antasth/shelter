@@ -191,7 +191,7 @@ section {
 }
 .slider__card-img {
   max-height: 270px;
-  transition: all 0.8s ease-in-out;
+  overflow: hidden;
 }
 .slider__card-name {
   font-family: 'Georgia';
@@ -216,8 +216,11 @@ section {
   border-color: #fddcc4;
   cursor: pointer;
 }
-.slider__card:hover .slider__card-img {
-  transform: scale(1.2);
+.slider__card-img img {
+  transition: all 0.8s ease-in-out;
+}
+.slider__card:hover .slider__card-img img{
+  transform: scale(1.1);
 }
 .slider__card-button {
   display: flex;
