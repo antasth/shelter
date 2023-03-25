@@ -101,6 +101,7 @@
   width: 100%;
   width: 1200px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
@@ -182,4 +183,33 @@
   background: #fddcc4;
   border-color: #fddcc4;
   cursor: pointer;
+}
+/* PAGINATION */
+.pets__pagination {
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+}
+.pagination__button {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #292929;
+  border: 2px solid #f1cdb3;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.inactive {
+  background-color: #f6f6f6;
+  border: 2px solid #cdcdcd;
+}
+.inactive h4 {
+  color: #cdcdcd;
+}
+.active {
+  border: none;
+  background-color: #fddcc4;
 }

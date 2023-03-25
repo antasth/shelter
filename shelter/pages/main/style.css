@@ -48,6 +48,7 @@
   color: #cdcdcd;
   margin-left: 35px;
   cursor: pointer;
+  padding-bottom: 3px;
 }
 .header__nav__item p {
   transition: all 0.2s;
