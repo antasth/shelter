@@ -200,15 +200,34 @@
   border: 2px solid #f1cdb3;
   border-radius: 100px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
-.inactive {
-  background-color: #f6f6f6;
+.pagination__button:hover {
+  background: #fddcc4;
+  border-color: #fddcc4;
+}
+.pagination__button:hover h4{
+  color: #292929;
+}
+.pagination__button-inactive {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #292929;
   border: 2px solid #cdcdcd;
+  background-color: #f6f6f6;
+  border-radius: 100px;
+  cursor: pointer;
 }
-.inactive h4 {
+.pagination__button-inactive h4 {
   color: #cdcdcd;
 }
 .active {
-  border: none;
   background-color: #fddcc4;
+  border-color: #fddcc4;
+}
+.active h4 {
+  color: #292929;
 }
