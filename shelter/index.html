@@ -24,7 +24,7 @@
     />
 
     <link rel="stylesheet" href="./assets/styles/normalize.css" />
-    <link rel="stylesheet" href="template.css">
+    <link rel="stylesheet" href="template.css" />
     <link rel="stylesheet" href="./pages/main/style.css" />
 
     <title>Shelter</title>
@@ -34,17 +34,19 @@
       <div class="header">
         <div class="header__content">
           <div class="header__content-top">
-            <div class="header__logo">
-              <h1 class="header__logo-title">Cozy House</h1>
-              <p class="header__logo-subtitle">Shelter for pets in Boston</p>
-            </div>
+            <a href="#">
+              <div class="header__logo">
+                <h1 class="header__logo-title">Cozy House</h1>
+                <p class="header__logo-subtitle">Shelter for pets in Boston</p>
+              </div>
+            </a>
             <nav>
               <ul class="header__nav">
                 <li class="header__nav__item">
                   <a href="#about"><p>About the shelter</p></a>
                 </li>
                 <li class="header__nav__item">
-                  <a href="#slider"><p>Our pets</p></a>
+                  <a href="pets.html"><p>Our pets</p></a>
                 </li>
                 <li class="header__nav__item">
                   <a href="#options"><p>Help the shelter</p></a>
@@ -66,7 +68,9 @@
                 extremely wide and open heart. He or she will love you more than
                 anybody else in the world, you will see!
               </p>
-              <div class="button">Make a friend</div>
+              <a href="#slider">
+                <div class="button">Make a friend</div>
+              </a>
             </div>
             <div class="header__bottom__img">
               <img
@@ -149,7 +153,9 @@
             </div>
 
             <div class="slider__button">
-              <div class="button">Get to know the rest</div>
+              <div class="button">
+                <a href="pets.html"> Get to know the rest</a>
+              </div>
             </div>
           </div>
         </section>
@@ -265,36 +271,40 @@
           <div class="footer__description">
             <div class="footer__contacts">
               <h3>For questions and suggestions</h3>
-              <div class="footer__item footer__contacts__item">
-                <img src="./assets/img/contacts/icon-email.svg" alt="email" />
-                <a href="#"><h4>email@shelter.com</h4></a>
-              </div>
-              <div class="footer__item footer__contacts__item">
-                <img src="./assets/img/contacts/icon-phone.svg" alt="phone" />
-                <a href="#"><h4>+13 674 567 75 54</h4></a>
-              </div>
+              <a href="mailto:email@shelter.com">
+                <div class="footer__item footer__contacts__item">
+                  <img src="./assets/img/contacts/icon-email.svg" alt="email" />
+                  <h4>email@shelter.com</h4>
+                </div>
+              </a>
+              <a href="tel:+13 674 567 75 54">
+                <div class="footer__item footer__contacts__item">
+                  <img src="./assets/img/contacts/icon-phone.svg" alt="phone" />
+                  <h4>+13 674 567 75 54</h4>
+                </div>
+              </a>
             </div>
 
             <div class="footer__location">
               <h3>We are waiting for your visit</h3>
-              <div class="footer__item footer__location__item">
-                <img
-                  src="./assets/img/contacts/icon-marker.svg"
-                  alt="location"
-                />
-                <a href="#"
-                  ><h4>
-                    1 Central Street, Boston (entrance from the store)
-                  </h4></a
-                >
-              </div>
-              <div class="footer__item footer__location__item">
-                <img
-                  src="./assets/img/contacts/icon-marker.svg"
-                  alt="location"
-                />
-                <a href="#"><h4>18 South Park, London</h4></a>
-              </div>
+              <a href="https://goo.gl/maps/mUWuXb7c4zMshJ7GA" target="_blank">
+                <div class="footer__item footer__location__item">
+                  <img
+                    src="./assets/img/contacts/icon-marker.svg"
+                    alt="location"
+                  />
+                  <h4>1 Central Street, Boston (entrance from the store)</h4>
+                </div>
+              </a>
+              <a href="https://goo.gl/maps/mUWuXb7c4zMshJ7GA" target="_blank">
+                <div class="footer__item footer__location__item">
+                  <img
+                    src="./assets/img/contacts/icon-marker.svg"
+                    alt="location"
+                  />
+                  <h4>18 South Park, London</h4>
+                </div>
+              </a>
             </div>
           </div>
 
