@@ -104,11 +104,12 @@
 
 /* CONTENT */
 .content {
-  max-width: 1280px;
-  margin: 0 auto;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
 }
 section {
   height: 100%;
+  width: 100%;
 }
 /* ABOUT SECTION */
 .about {
