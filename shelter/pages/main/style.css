@@ -354,3 +354,31 @@ section {
   /* color-dark-m */
   color: #b2b2b2;
 }
+
+
+
+
+
+/* inactive nav */
+.header__nav__item-inactive {
+  position: relative;
+  color: #cdcdcd;
+  margin-left: 36px;
+  padding-bottom: 3px;
+  cursor: default;
+}
+.header__nav__item-inactive:after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #F1CDB3;
+  transition: all 0.6s;
+}
+.header__nav__item-inactive:first-of-type::after {
+  margin-left: 0;
+  width: 100%;
+}

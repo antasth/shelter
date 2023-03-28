@@ -220,7 +220,7 @@
   border: 2px solid #cdcdcd;
   background-color: #f6f6f6;
   border-radius: 100px;
-  cursor: pointer;
+  cursor: default;
 }
 .pagination__button-inactive h4 {
   color: #cdcdcd;
@@ -231,4 +231,28 @@
 }
 .active h4 {
   color: #292929;
+}
+
+/* inactive nav */
+.header__nav__item-inactive {
+  position: relative;
+  color: #292929;
+  margin-left: 36px;
+  padding-bottom: 3px;
+  cursor: default;
+}
+.header__nav__item-inactive:after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #F1CDB3;
+  transition: all 0.6s;
+}
+.header__nav__item-inactive::after {
+  margin-left: 0;
+  width: 100%;
 }

@@ -179,6 +179,10 @@ a:hover {
   margin-right: 20px;
 }
 
+.footer__text {
+  color: #F1CDB3;
+}
+
 /* BUTTON */
 .button {
   display: inline-block;
@@ -200,3 +204,5 @@ a:hover {
 .button:hover {
   background-color: #fddcc4;
 }
+
+
