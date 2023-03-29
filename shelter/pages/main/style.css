@@ -4,10 +4,10 @@
     radial-gradient(100% 215.42% at 0% 0%, #5b483a 0%, #262425 100%), #211f20;
 }
 .header__content {
-  max-width: 1200px;
+  max-width: 1260px;
   height: 100%;
   margin: 0 auto;
-  padding-top: 30px;
+  padding: 30px 30px 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -64,7 +64,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: #F1CDB3;
+  background: #f1cdb3;
   transition: all 0.6s;
 }
 .header__nav__item:hover::after {
@@ -100,6 +100,49 @@
 }
 .header__bottom__img {
   display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.header__bottom__img img {
+  width: 100%;
+}
+
+@media (max-width: 1199.98px) {
+  .header__content-top {
+    margin-bottom: 60px;
+  }
+  .header__nav {
+    padding-inline-start: 0;
+  }
+  .header__content-bottom {
+    align-items: center;
+  }
+  .header__bottom__description {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .header__content-bottom {
+    flex-direction: column;
+  }
+  .header__bottom__description {
+    margin: 0 auto;
+    margin-bottom: 100px;
+    max-width: 80%;
+  }
+  .header__description__button {
+    align-self: center;
+  }
+  .header__bottom__img {
+    margin-left: 140px;
+  }
+}
+
+@media (max-width: 768.98px) {
+  .header__bottom__description {
+    max-width: 460px;
+  }
 }
 
 /* CONTENT */
@@ -222,7 +265,7 @@ section {
 .slider__card-img img {
   transition: all 0.8s ease-in-out;
 }
-.slider__card:hover .slider__card-img img{
+.slider__card:hover .slider__card-img img {
   transform: scale(1.1);
 }
 .slider__card-button {
@@ -286,7 +329,7 @@ section {
 .options__content-item h4 {
   white-space: nowrap;
 }
-.options__content-item:hover{
+.options__content-item:hover {
   transform: scale(1.2);
   cursor: pointer;
 }
@@ -356,10 +399,6 @@ section {
   color: #b2b2b2;
 }
 
-
-
-
-
 /* inactive nav */
 .header__nav__item-inactive {
   position: relative;
@@ -376,7 +415,7 @@ section {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #F1CDB3;
+  background: #f1cdb3;
   transition: all 0.6s;
 }
 .header__nav__item-inactive:first-of-type::after {
