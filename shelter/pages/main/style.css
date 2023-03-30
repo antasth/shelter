@@ -258,6 +258,32 @@ section {
   margin-bottom: 0;
 }
 
+@media (max-width: 1199.98px) {
+  .about__wrapper {
+    align-items: center;
+    padding: 80px 100px 100px;
+  }
+  .about__img {
+    margin-right: 2rem;
+  }
+}
+@media (max-width: 768.98px) {
+  .about__wrapper {
+   display: flex;
+   flex-direction: column-reverse;
+   align-items: center;
+   padding: 80px 165px 0;
+  }
+  .about__description {
+    margin-bottom: 80px;
+  }
+  .about__img {
+    margin: 0 auto;
+  }
+}
+
+
+
 /* SLIDER SECTION */
 .slider {
   background-color: #f6f6f6;
