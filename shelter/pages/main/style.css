@@ -197,7 +197,7 @@
     align-items: center;
     margin-bottom: 105px;
   }
-  .header__description__subtitle{
+  .header__description__subtitle {
     text-align: center;
   }
   .header__description__title {
@@ -269,10 +269,10 @@ section {
 }
 @media (max-width: 768.98px) {
   .about__wrapper {
-   display: flex;
-   flex-direction: column-reverse;
-   align-items: center;
-   padding: 80px 165px 0;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding: 80px 165px 0;
   }
   .about__description {
     margin-bottom: 80px;
@@ -283,7 +283,7 @@ section {
   .about__img {
     margin: 0 auto;
   }
-  .about__img img{
+  .about__img img {
     width: 100%;
   }
 }
@@ -305,14 +305,13 @@ section {
     text-align: justify;
   }
 }
-@media (max-width: 575.98px) { 
+@media (max-width: 575.98px) {
   .about__wrapper {
     padding: 42px 10px 0;
   }
   .about__description {
     padding: 0 15px;
     margin: 0;
-    
   }
   .about__description__title {
     font-size: 25px;
@@ -321,14 +320,13 @@ section {
   .about__description p {
     margin-bottom: 22px;
     font-size: 15px;
-    color: #4C4C4C;
+    color: #4c4c4c;
   }
   .about__img {
     margin: 42px 0;
     padding: 0 20px;
   }
 }
-
 
 /* SLIDER SECTION */
 .slider {
@@ -374,7 +372,7 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 270px;
+  min-width: 270px;
   height: 435px;
   background: #fafafa;
   border-radius: 9px;
@@ -438,6 +436,49 @@ section {
   background: #fddcc4;
   border-color: #fddcc4;
   cursor: pointer;
+}
+
+@media (max-width: 1278.98px) {
+  .slider__content {
+    width: 100%;
+  }
+  .slider__cards {
+    margin: 0;
+    padding: 0 12px;
+  }
+  .slider__card {
+    margin: 0 10px;
+    max-width: 100%;
+  }
+  .slider__card-img img {
+    max-width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+  }
+}
+@media (max-width: 1099.98px) {
+  .slider__wrapper {
+    padding: 80px 30px 100px;
+  }
+  .slider__content {
+    padding: 0;
+  }
+  .slider__cards {
+    justify-content: space-around;
+  }
+  .slider__card:last-child {
+    display: none;
+  }
+}
+@media (max-width: 991.98px) {
+  .slider__card {
+    margin: 0;
+  }
+}
+@media (max-width: 771.98px) {
+  .slider__cards {
+    justify-content: space-between;
+  }
 }
 
 /* OPTIONS SECTION */
