@@ -565,6 +565,41 @@ section {
   cursor: pointer;
 }
 
+@media (max-width: 1278.98px) { 
+  .options__wrapper {
+    padding: 80px 69px 100px;
+  }
+  .options__content {
+    justify-content: space-between;
+  }
+  .options__content-item { 
+    width: 15%;
+    margin: 0 30px 55px;
+  }
+}
+@media (max-width: 789.98px) {
+  .options__content-item { 
+    width: 170px;
+    margin: 0 0 55px;
+  }
+  .options__title h3 {
+    font-size: 34px;
+    letter-spacing: 0.075em;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* DONATION */
 .donation {
   background-color: #f6f6f6;
