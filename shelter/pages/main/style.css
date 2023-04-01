@@ -599,6 +599,9 @@ section {
   .options__wrapper {
     padding: 42px 15px;
   }
+  .options__content-item:last-child {
+    margin-bottom: 0;
+  }
 }
 @media (max-width: 545.98px) {
   .options__title {
