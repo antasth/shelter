@@ -730,7 +730,12 @@ section {
   }
   .donation__content-description {
     width: 380px;
+    width: 90%;
+    align-items: center;
     margin-bottom: 60px;
+  }
+  .donation__text {
+    text-align: center;
   }
   .donation__content-img {
     display: flex;
@@ -740,8 +745,29 @@ section {
     margin: 0 auto;
   }
  }
-@media (max-width: 767.98px) {  }
-@media (max-width: 575.98px) {  }
+ @media (max-width: 799.98px) { 
+  .donation__content-description {
+    align-items: start;
+    width: 380px;
+  }
+  .donation__text {
+    text-align: start;
+  }
+ }
+@media (max-width: 767.98px) { 
+  .donation__content {
+    margin: 0 50px;
+  }
+  .donation__content-description {
+    /* align-items: center; */
+    
+  }
+ }
+@media (max-width: 575.98px) { 
+  .donation__content-description {
+    align-items: center;
+  }
+ }
 
 
 
