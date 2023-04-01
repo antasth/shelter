@@ -659,7 +659,7 @@ section {
   width: 100%;
   max-width: 915px;
 }
-.donation__content-img img{
+.donation__content-img img {
   width: 100%;
   max-width: 505px;
 }
@@ -677,7 +677,7 @@ section {
   margin: 0;
 }
 .donation__subtitle {
-  margin: 20px 0;
+  margin: 19px 0 20px;
 }
 .donation__title h3 {
   text-align: left;
@@ -690,7 +690,7 @@ section {
   margin-bottom: 20px;
   transition: all 0.3s ease-in-out;
 }
-.donation__card h4{ 
+.donation__card h4 {
   white-space: nowrap;
 }
 .donation__card:hover {
@@ -716,15 +716,14 @@ section {
   /* color-dark-m */
   color: #b2b2b2;
 }
-@media (max-width: 1279.98px) { 
+@media (max-width: 1279.98px) {
   .donation__content {
     margin: 0 131px;
   }
 }
-@media (max-width: 1199.98px) { 
-
- }
-@media (max-width: 991.98px) { 
+@media (max-width: 1199.98px) {
+}
+@media (max-width: 991.98px) {
   .donation__content {
     flex-direction: column-reverse;
   }
@@ -741,39 +740,76 @@ section {
     display: flex;
     margin: 0;
   }
-  .donation__content-img img{
+  .donation__content-img img {
     margin: 0 auto;
   }
- }
- @media (max-width: 799.98px) { 
+}
+@media (max-width: 799.98px) {
   .donation__content-description {
     align-items: start;
-    width: 380px;
+    max-width: 380px;
   }
   .donation__text {
     text-align: start;
   }
- }
-@media (max-width: 767.98px) { 
+}
+@media (max-width: 767.98px) {
   .donation__content {
     margin: 0 50px;
   }
-  .donation__content-description {
-    /* align-items: center; */
-    
+}
+@media (max-width: 575.98px) {
+  .donation__wrapper {
+    padding: 42px 0;
   }
- }
-@media (max-width: 575.98px) { 
+  .donation__content {
+    margin: 0 10px;
+  }
+
+  .donation__content-img {
+    padding: 0 20px;
+    width: 100%;
+    min-width: 260px;
+  }
+  .donation__text {
+    font-size: 12px;
+    line-height: 18px;
+    text-align: justify;
+    color: #b2b2b2;
+  }
+}
+@media (max-width: 475.98px) {
   .donation__content-description {
     align-items: center;
+    min-width: 300px;
+    margin-bottom: 42px;
   }
- }
-
-
-
-
-
-
+  .donation__card-content h4 {
+    font-size: 15px;
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: #545454;
+    margin: 0;
+  }
+  .donation__title h3 {
+    text-align: center;
+    font-size: 25px;
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: #545454;
+  }
+  .donation__subtitle h5 {
+    width: 100%;
+    letter-spacing: 0;
+    margin: 0;
+    font-size: 15px;
+    line-height: 160%;
+    color: #545454;
+  }
+  .donation__text {
+    padding: 0 10px;
+  }
+}
 
 /* inactive nav */
 .header__nav__item-inactive {
