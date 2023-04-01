@@ -506,7 +506,7 @@ section {
     font-size: 25px;
   }
   .slider__content {
-    padding: 42px 0;
+    padding: 41px 0;
     margin: 0;
   }
 }
@@ -597,7 +597,7 @@ section {
 }
 @media (max-width: 697.98px) {
   .options__wrapper {
-    padding: 80px 15px 100px;
+    padding: 42px 15px;
   }
 }
 @media (max-width: 545.98px) {
@@ -608,7 +608,7 @@ section {
     font-size: 25px;
     line-height: 130%;
     letter-spacing: 0.06em;
-    margin: 42px 0;
+    margin-bottom: 42px;
   }
   .options__content {
     justify-content: space-between;
