@@ -272,7 +272,7 @@ section {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    padding: 80px 165px 0;
+    padding: 80px 165px 100px;
   }
   .about__description {
     margin-bottom: 80px;
@@ -281,9 +281,11 @@ section {
     margin: 0 0 25px;
   }
   .about__img {
+    display: flex;
     margin: 0 auto;
   }
   .about__img img {
+    align-self: end;
     width: 100%;
   }
 }
@@ -315,6 +317,11 @@ section {
   }
   .about__description__title {
     font-size: 25px;
+    line-height: 130%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.06em;
     color: #545454;
   }
   .about__description p {
@@ -323,7 +330,7 @@ section {
     color: #4c4c4c;
   }
   .about__img {
-    margin: 42px 0;
+    margin: 40px 0 42px;
     padding: 0 20px;
   }
 }
@@ -622,15 +629,15 @@ section {
 }
 @media (max-width: 419.98px) {
   .options__content {
-    justify-content: space-around;
+    padding: 0 25px;
   }
 }
 @media (max-width: 360.98px) {
   .options__content {
-    justify-content: space-between;
+    padding: 0;
   }
 }
-@media (max-width: 319.98px) {
+@media (max-width: 289.98px) {
   .options__content {
     justify-content: center;
   }
