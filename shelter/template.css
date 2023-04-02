@@ -181,7 +181,7 @@ a:hover {
   margin-right: 20px;
 }
 .footer__text {
-  color: #F1CDB3;
+  color: #f1cdb3;
 }
 .footer__img {
   display: flex;
@@ -215,8 +215,46 @@ a:hover {
     justify-content: center;
   }
 }
-
-
+@media (max-width: 739.98px) {
+  .footer__content {
+    padding: 30px 10px 0;
+  }
+  h3 {
+    font-size: clamp(25px, 5vw, 35px);
+    line-height: 130%;
+  }
+  .footer__content h3 {
+    text-align: center;
+  }
+  .footer__location h3 {
+    text-align: center;
+    padding: 0 15px; 
+  }
+  .footer__description {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  .footer__contacts,
+  .footer__location {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .footer__location {
+    display: flex;
+    align-items: start;
+  }
+  .footer__location__item {
+    margin: 38px 0;
+  }
+  .footer__img img{ 
+    min-width: 260px;
+    padding: 0 20px;
+  }
+}
 
 /* BUTTON */
 .button {
@@ -239,5 +277,3 @@ a:hover {
 .button:hover {
   background-color: #fddcc4;
 }
-
-
