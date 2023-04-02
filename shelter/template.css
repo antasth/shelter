@@ -125,6 +125,13 @@ a:hover {
   font-display: swap;
 }
 
+@media (max-width: 739.98px) {
+  h3 {
+    font-size: clamp(25px, 5vw, 35px);
+  }
+}
+
+
 /* FOOTER */
 .footer {
   background: url(./assets/img/noise_lines_transparent@2X.png),
@@ -218,10 +225,6 @@ a:hover {
 @media (max-width: 739.98px) {
   .footer__content {
     padding: 30px 10px 0;
-  }
-  h3 {
-    font-size: clamp(25px, 5vw, 35px);
-    line-height: 130%;
   }
   .footer__content h3 {
     text-align: center;
