@@ -526,7 +526,7 @@ section {
   padding: 80px 40px 45px;
 }
 .options__title {
-  margin-bottom: 60px;
+  margin-bottom: 59px;
 }
 .options__content {
   width: 100%;
@@ -573,10 +573,6 @@ section {
     width: 170px;
     margin: 0 0 55px;
   }
-  .options__title h3 {
-    font-size: 34px;
-    letter-spacing: 0.075em;
-  }
 }
 @media (max-width: 697.98px) {
   .options__wrapper {
@@ -591,7 +587,6 @@ section {
     margin-bottom: 0;
   }
   .options__title h3 {
-    font-size: 25px;
     line-height: 130%;
     letter-spacing: 0.06em;
     margin-bottom: 42px;
