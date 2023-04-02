@@ -576,7 +576,7 @@ section {
 
 @media (max-width: 1278.98px) {
   .options__wrapper {
-    padding: 80px 69px 100px;
+    padding: 80px 69px 45px;
   }
   .options__content {
     justify-content: space-between;
