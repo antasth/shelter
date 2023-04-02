@@ -70,7 +70,6 @@
 .header__nav__item:hover::after {
   width: 100%;
 }
-
 .header__nav__item:first-of-type {
   color: #fafafa;
 }
@@ -201,17 +200,9 @@
     text-align: center;
   }
   .header__description__title {
-    /* h3-mobile */
-    font-family: 'Georgia';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 25px;
     line-height: 130%;
-    display: flex;
-    align-items: center;
     text-align: center;
     letter-spacing: 0.06em;
-    /* color-light-xl */
     color: #ffffff;
   }
   .header__bottom__img {

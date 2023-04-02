@@ -126,11 +126,13 @@ a:hover {
 }
 
 @media (max-width: 739.98px) {
+  h2 {
+    font-size: clamp(25px, 7vw, 44px);
+  }
   h3 {
     font-size: clamp(25px, 5vw, 35px);
   }
 }
-
 
 /* FOOTER */
 .footer {
@@ -231,7 +233,7 @@ a:hover {
   }
   .footer__location h3 {
     text-align: center;
-    padding: 0 15px; 
+    padding: 0 15px;
   }
   .footer__description {
     flex-direction: column;
@@ -253,7 +255,7 @@ a:hover {
   .footer__location__item {
     margin: 38px 0;
   }
-  .footer__img img{ 
+  .footer__img img {
     min-width: 260px;
     padding: 0 20px;
   }
