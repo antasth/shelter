@@ -181,10 +181,10 @@ a:hover {
   color: #fafafa;
 }
 .footer__contacts__item {
-  margin: 40px 0;
+  margin: 39px 0;
 }
 .footer__location__item {
-  margin: 33px 0;
+  margin: 32px 0;
 }
 .footer__item img {
   margin-right: 20px;
@@ -209,6 +209,7 @@ a:hover {
     flex-direction: column;
     align-items: center;
     padding: 30px 30px 0;
+    max-width: 850px;
   }
   .footer__description {
     max-width: 100%;
@@ -253,7 +254,7 @@ a:hover {
     align-items: start;
   }
   .footer__location__item {
-    margin: 38px 0;
+    margin: 40px 0;
   }
   .footer__img img {
     min-width: 260px;
