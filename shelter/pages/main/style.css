@@ -285,7 +285,6 @@ section {
   .about__description__title {
     align-self: center;
     text-align: center;
-    font-size: 30px;
   }
   .about__description p {
     text-align: justify;
@@ -303,7 +302,6 @@ section {
     margin: 0;
   }
   .about__description__title {
-    font-size: 25px;
     line-height: 130%;
     display: flex;
     align-items: center;
@@ -313,7 +311,6 @@ section {
   }
   .about__description p {
     margin-bottom: 22px;
-    font-size: 15px;
     color: #4c4c4c;
   }
   .about__img {
