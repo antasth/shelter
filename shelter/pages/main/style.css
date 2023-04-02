@@ -724,8 +724,6 @@ section {
     margin: 0 131px;
   }
 }
-@media (max-width: 1199.98px) {
-}
 @media (max-width: 991.98px) {
   .donation__content {
     flex-direction: column-reverse;

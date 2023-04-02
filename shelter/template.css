@@ -147,6 +147,8 @@ a:hover {
   text-align: left;
 }
 .footer__description {
+  max-width: 740px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 16px;
@@ -182,6 +184,37 @@ a:hover {
 .footer__text {
   color: #F1CDB3;
 }
+
+@media (max-width: 1199.98px) {
+  .footer__description {
+    margin-right: 15px;
+  }
+  .footer__contacts {
+    margin-right: 0;
+  }
+}
+@media (max-width: 991.98px) {
+  .footer__content {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 30px 0;
+  }
+  .footer__description {
+    max-width: 100%;
+    padding: 0 34px;
+    margin: 0 0 65px;
+  }
+  .footer__item:last-child {
+    margin-bottom: 0;
+  }
+  .footer__img {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+
 
 /* BUTTON */
 .button {
