@@ -287,7 +287,6 @@ section {
   .about__img img {
     align-self: end;
     width: 100%;
-    
   }
 }
 @media (max-width: 767.98px) {
@@ -308,7 +307,7 @@ section {
     text-align: justify;
   }
   .about__img {
-  margin: 40px 0 42px;
+    margin: 40px 0 42px;
   }
 }
 @media (max-width: 575.98px) {
@@ -666,11 +665,9 @@ section {
   max-width: 915px;
 }
 .donation__content-img img {
-  width: 100%;
   max-width: 505px;
 }
 .donation__content-img {
-  width: 100%;
   margin-right: 30px;
 }
 .donation__content-description {
@@ -726,6 +723,7 @@ section {
   .donation__content {
     margin: 0 131px;
   }
+
 }
 @media (max-width: 991.98px) {
   .donation__content {
@@ -739,6 +737,10 @@ section {
   }
   .donation__text {
     text-align: center;
+  }
+  .donation__content-img,
+  .donation__content-img img {
+    width: 100%;
   }
   .donation__content-img {
     display: flex;
