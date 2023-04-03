@@ -82,6 +82,11 @@
 }
 
 /* BURGER */
+@media (max-width: 1199.98px) {
+  .header__content {
+    padding: 30px;
+  }
+}
 @media (max-width: 767.98px) {
   .header__content {
     padding: 30px 20px 0;
