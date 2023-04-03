@@ -151,7 +151,7 @@
   align-items: center;
 }
 .pets__title {
-  margin-bottom: 45px;
+  margin-bottom: 44px;
 }
 .pets__cards {
   flex-grow: 1;
@@ -160,6 +160,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  margin: 15px 0;
   column-gap: 40px;
   row-gap: 30px;
 }
@@ -241,13 +242,14 @@
 }
 @media (max-width: 1199.98px) {
   .pets__title {
-    margin-bottom: 30px;
+    margin-bottom: 29px;
   }
 
 }
 @media (max-width: 991.98px) {
   .pets__cards {
     justify-content: center;
+    margin: 0;
   }
 }
 
