@@ -250,11 +250,27 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 659.98px) {
+  .pets__card:nth-last-child(-n+5) {
+    display: none;
+  }
+}
+@media (max-width: 575.98px) {
+  .pets {
+    padding: 42px 10px;
+  }
+  .pets__title {
+    margin-bottom: 42px;
+  }
+}
+
 /* PAGINATION */
 .pets__pagination {
   display: flex;
   justify-content: space-between;
-  width: 340px;
+  max-width: 340px;
+  width: 100%;
   margin: 45px 0 100px;
 }
 .pagination__button {
@@ -304,7 +320,11 @@
     margin: 40px 0 76px;
   }
 }
-
+@media (max-width: 575.98px) {
+  .pets__pagination {
+    margin: 42px 0 0;
+  }
+}
 
 
 /* inactive nav */
