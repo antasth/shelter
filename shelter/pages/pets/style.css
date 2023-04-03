@@ -249,12 +249,15 @@
 }
 @media (max-width: 991.98px) {
   .pets__cards {
-    justify-content: center;
-    margin: 0;
+    justify-content: space-around;
+    margin: 0 54px;
   }
 }
 
 @media (max-width: 659.98px) {
+  .pets__cards {
+    margin: 0;
+  }
   .pets__card:nth-last-child(-n+5) {
     display: none;
   }
