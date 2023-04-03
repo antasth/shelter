@@ -89,7 +89,7 @@
 }
 @media (max-width: 767.98px) {
   .header__content {
-    padding: 30px 20px 0;
+    padding: 30px 20px;
   }
   .header__nav {
     display: none;
@@ -261,7 +261,7 @@
     padding: 42px 10px;
   }
   .pets__title {
-    margin-bottom: 42px;
+    margin-bottom: 41px;
   }
 }
 
