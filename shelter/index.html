@@ -21,7 +21,6 @@
       sizes="16x16"
       href="./assets/img/favicon/favicon-16x16.png"
     />
-    <script src="index.js"></script>
     <link rel="stylesheet" href="./assets/styles/normalize.css" />
     <link rel="stylesheet" href="template.css" />
     <link rel="stylesheet" href="./pages/main/style.css" />
@@ -30,7 +29,6 @@
   </head>
   <body>
     <div class="wrapper">
-      
       <div class="header">
         <div class="header__content">
           <div class="header__content-top">
@@ -60,6 +58,27 @@
               </div>
             </nav>
           </div>
+
+          <div class="burger">
+            <div class="burger__wrapper">
+              <div class="burger__header">
+                <div class="burger__icon burger__icon-active">
+                  <span></span>
+                </div>
+              </div>
+              <div class="burger__menu">
+                <ul class="burger__list">
+                  <li class="burger__list-item active__burger-item">
+                    About the shelter
+                  </li>
+                  <li class="burger__list-item">Our pets</li>
+                  <li class="burger__list-item">Help the shelter</li>
+                  <li class="burger__list-item">Contacts</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div class="header__content-bottom">
             <div class="header__bottom__description">
               <h2 class="header__description__title">
@@ -85,7 +104,6 @@
         </div>
       </div>
       <div class="content">
-
         <section class="about" id="about">
           <div class="about__wrapper">
             <div class="about__img">
@@ -295,7 +313,9 @@
                     src="./assets/img/contacts/icon-marker.svg"
                     alt="location"
                   />
-                  <h4 class="footer__text">1 Central Street, Boston (entrance from the store)</h4>
+                  <h4 class="footer__text">
+                    1 Central Street, Boston (entrance from the store)
+                  </h4>
                 </div>
               </a>
               <a href="https://goo.gl/maps/mUWuXb7c4zMshJ7GA" target="_blank">
@@ -305,8 +325,7 @@
                     alt="location"
                   />
 
-                    <h4 class="footer__text">18 South Park, London</h4>
-
+                  <h4 class="footer__text">18 South Park, London</h4>
                 </div>
               </a>
             </div>
@@ -315,9 +334,9 @@
           <div class="footer__img">
             <img src="./assets/img/footer-puppy.png" alt="puppy" />
           </div>
-
         </div>
       </div>
     </div>
   </body>
+  <script src="index.js"></script>
 </html>
