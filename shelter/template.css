@@ -142,10 +142,6 @@ a:hover {
 .burger__icon-active {
   transform: rotate(90deg);
 }
-.burger__icon-active ~ span
-{
-  background-color: #f1cdb3;
-}
 
 @media (max-width: 767.98px) {
   .header__content {
@@ -183,7 +179,6 @@ a:hover {
   .burger__icon-black::before {
     background-color: #000000;
   }
-
   .burger__icon::after,
   .burger__icon::before {
     content: '';
@@ -216,12 +211,6 @@ a:hover {
   align-items: center;
   justify-content: center;
 }
-/* .burger__icon {
-  transition: all 0.5s ease-in-out;
-}
-.burger__icon-active {
-  transform: rotate(90deg);
-} */
 .burger__menu {
 }
 .burger__list {
@@ -239,10 +228,38 @@ a:hover {
   font-size: 32px;
   line-height: 160%;
   color: #cdcdcd;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 .active__burger-item {
   color: #fafafa;
+  padding-bottom: 3px;
+  cursor: default;
 }
+.burger__list-item:after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f1cdb3;
+  transition: all 0.6s;
+}
+.active__burger-item:after {
+  width: 100%;
+}
+.burger__list-item:hover::after {
+  width: 100%;
+}
+.burger__list-item:hover {
+  color: #fafafa;
+
+}
+
+
 .burger__active {
   right: 0;
 }

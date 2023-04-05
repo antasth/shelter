@@ -83,9 +83,6 @@
 .header__content-bottom {
   display: flex;
 }
-/* .burger__icon {
-  display: none;
-} */
 .header__bottom__description {
   display: flex;
   flex-direction: column;
