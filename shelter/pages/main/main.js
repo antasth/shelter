@@ -21,3 +21,11 @@ burgerMenuItem.forEach((item) => {
     burgerBackground.classList.remove('burger__background-active')
   })
 })
+
+// if click on burger background => hide burger menu
+burgerBackground.addEventListener('click', ()=> {
+  burgerIcon.classList.toggle('burger__icon-active')
+  burgerMenu.classList.toggle('burger__active')
+  body.classList.toggle('locked')
+  burgerBackground.classList.toggle('burger__background-active')
+})

@@ -30,3 +30,11 @@ burgerMenuItem.forEach((item) => {
 
   })
 })
+// if click on burger background => hide burger menu
+burgerBackground.addEventListener('click', ()=> {
+  burgerIconBlack.classList.toggle('burger__icon-active')
+  burgerMenu.classList.toggle('burger__active')
+  body.classList.toggle('locked')
+  burgerBackground.classList.toggle('burger__background-active')
+  burgerIconBlack.classList.toggle('burger__icon-black')
+})
