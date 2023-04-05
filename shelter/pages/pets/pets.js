@@ -2,11 +2,13 @@ const burgerIcon = document.querySelector('.burger__icon')
 const burgerIconBlack = document.querySelector('.burger__icon-black')
 const burgerMenu = document.querySelector('.burger')
 const burgerMenuItem = document.querySelectorAll('.burger__list-item')
+const body = document.querySelector('body')
 
 // show or hide burger menu and rotate icon
 burgerIconBlack.addEventListener('click', () => {
   burgerIconBlack.classList.toggle('burger__icon-active')
   burgerMenu.classList.toggle('burger__active')
+  body.classList.toggle('locked')
 })
 // change icon color
 burgerIconBlack.addEventListener('click', () => {
@@ -19,5 +21,6 @@ burgerMenuItem.forEach((item) => {
     burgerMenu.classList.remove('burger__active')
     burgerIcon.classList.remove('burger__icon-active')
     burgerIconBlack.classList.toggle('burger__icon-black')
+    body.classList.remove('locked')
   })
 })
