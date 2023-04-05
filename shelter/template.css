@@ -142,6 +142,10 @@ a:hover {
 .burger__icon-active {
   transform: rotate(90deg);
 }
+.burger__icon-active ~ span
+{
+  background-color: #f1cdb3;
+}
 
 @media (max-width: 767.98px) {
   .header__content {

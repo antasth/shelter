@@ -1,11 +1,16 @@
-const burgerIcon = document.querySelectorAll('.burger__icon')
+const burgerIcon = document.querySelector('.burger__icon')
+const burgerIconBlack = document.querySelector('.burger__icon-black')
+
 const burgerMenu = document.querySelector('.burger')
 
-burgerIcon.forEach((icon) => {
-  icon.addEventListener('click', () => {
-    icon.classList.toggle('burger__icon-active')
-    !burgerMenu.classList.contains('burger__active')
-      ? burgerMenu.classList.add('burger__active')
-      : burgerMenu.classList.remove('burger__active')
-  })
+burgerIcon.addEventListener('click', () => {
+  burgerIcon.classList.toggle('burger__icon-active')
+
+  !burgerMenu.classList.contains('burger__active')
+    ? burgerMenu.classList.add('burger__active')
+    : burgerMenu.classList.remove('burger__active')
+})
+
+burgerIconBlack.addEventListener('click', ()=> {
+  burgerIconBlack.classList.toggle('burger__icon-black')
 })
