@@ -38,3 +38,13 @@ burgerBackground.addEventListener('click', ()=> {
   burgerBackground.classList.toggle('burger__background-active')
   burgerIconBlack.classList.toggle('burger__icon-black')
 })
+
+window.addEventListener('resize', ()=> {
+  if(window.screen.availWidth > 767) {
+    burgerMenu.classList.remove('burger__active')
+    burgerIcon.classList.remove('burger__icon-active')
+    burgerIconBlack.classList.add('burger__icon-black')
+    body.classList.remove('locked')
+    burgerBackground.classList.remove('burger__background-active')
+  }
+})

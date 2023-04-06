@@ -29,3 +29,12 @@ burgerBackground.addEventListener('click', ()=> {
   body.classList.toggle('locked')
   burgerBackground.classList.toggle('burger__background-active')
 })
+
+window.addEventListener('resize', ()=> {
+  if(window.screen.availWidth > 767) {
+    burgerMenu.classList.remove('burger__active')
+    burgerIcon.classList.remove('burger__icon-active')
+    body.classList.remove('locked')
+    burgerBackground.classList.remove('burger__background-active')
+  }
+})
