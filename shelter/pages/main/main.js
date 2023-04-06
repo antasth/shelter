@@ -54,7 +54,8 @@ const sliderArrows = document.querySelectorAll('.slider__arrow')
 const sliderCards = document.querySelector('.slider__cards')
 console.log(pets)
 
-let initArray = []
+let initArray,
+  removedCards = []
 let slidesOnPage =
   document.body.clientWidth > 1100 ? 3 : document.body.clientWidth < 768 ? 1 : 2
 
@@ -62,8 +63,16 @@ let slidesOnPage =
 window.addEventListener('resize', () => {
   let windowWidth = document.body.clientWidth
   slidesOnPage = windowWidth > 1100 ? 3 : windowWidth < 768 ? 1 : 2
-})
 
+  if (sliderCards.children.length > slidesOnPage) {
+    removedCards.push(sliderCards.lastChild)
+    sliderCards.removeChild(sliderCards.lastChild)
+  }
+   if (sliderCards.children.length < slidesOnPage) {
+    sliderCards.appendChild(removedCards.pop())
+  }
+})
+// generate init numbers of cards
 const randomInitCards = (slidesCount) => {
   const cards = []
   while (cards.length < slidesCount) {
@@ -72,10 +81,10 @@ const randomInitCards = (slidesCount) => {
       cards.push(rand)
     }
   }
-  console.log(cards)
+  console.log('InitCards', cards)
   return cards
 }
-
+// generate next numbers of cards that not used in prev slide
 const randomNextCards = (prevCards, slidesCount) => {
   const cards = []
   while (cards.length < slidesCount) {
@@ -84,10 +93,10 @@ const randomNextCards = (prevCards, slidesCount) => {
       cards.push(rand)
     }
   }
-  console.log(cards)
+  console.log('NextCards', cards)
   return cards
 }
-
+// create one card
 const createCard = ({ img, name }) => {
   let card = document.createElement('div')
   card.classList.add('slider__card')
@@ -100,7 +109,7 @@ const createCard = ({ img, name }) => {
   `
   sliderCards.appendChild(card)
 }
-
+// create cards when page is reload
 const createInitCards = () => {
   initArray = randomInitCards(slidesOnPage)
   for (let i = 0; i < slidesOnPage; i++) {
@@ -109,7 +118,9 @@ const createInitCards = () => {
 }
 createInitCards()
 
+// create new cards that not used in prev slide
 const createNextCards = () => {
+  console.log(slidesOnPage)
   const nextArray = randomNextCards(initArray, slidesOnPage)
   sliderCards.replaceChildren()
   for (let i = 0; i < slidesOnPage; i++) {
@@ -117,7 +128,7 @@ const createNextCards = () => {
   }
   initArray = nextArray
 }
-
+// create next cards onClick on arrows
 sliderArrows.forEach((arrow) => {
   arrow.addEventListener('click', () => {
     createNextCards()
