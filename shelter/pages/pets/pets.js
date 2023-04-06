@@ -48,7 +48,7 @@ burgerBackground.addEventListener('click', () => {
 })
 
 window.addEventListener('resize', () => {
-  if (window.screen.availWidth > 767) {
+  if (document.body.clientWidth > 767) {
     body.classList.remove('locked')
     burgerMenu.classList.remove('burger__active')
     burgerIcon.classList.remove('burger__icon-active')

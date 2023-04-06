@@ -34,7 +34,7 @@ burgerBackground.addEventListener('click', () => {
 })
 
 window.addEventListener('resize', () => {
-  if (window.screen.availWidth > 767) {
+  if (document.body.clientWidth > 767) {
     hideBurger()
   }
 })
