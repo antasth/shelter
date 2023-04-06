@@ -50,10 +50,12 @@ function hideBurger() {
 }
 
 // SLIDER
-
+const sliderArrows = document.querySelectorAll('.slider__arrow')
+const sliderCards = document.querySelector('.slider__cards')
 console.log(pets)
 
-const slidesOnPage =
+let initArray = []
+let slidesOnPage =
   document.body.clientWidth > 1100 ? 3 : document.body.clientWidth < 768 ? 1 : 2
 
 // get count of slides on page
@@ -62,16 +64,28 @@ window.addEventListener('resize', () => {
   slidesOnPage = windowWidth > 1100 ? 3 : windowWidth < 768 ? 1 : 2
 })
 
-const randomPetsCards = (count) => {
-  const randomSlides = []
-  while (randomSlides.length < count) {
+const randomInitCards = (slidesCount) => {
+  const cards = []
+  while (cards.length < slidesCount) {
     let rand = Math.floor(Math.random() * 8)
-    if (!randomSlides.includes(rand)) {
-      randomSlides.push(rand)
+    if (!cards.includes(rand)) {
+      cards.push(rand)
     }
   }
-  console.log(randomSlides)
-  return randomSlides
+  console.log(cards)
+  return cards
+}
+
+const randomNextCards = (prevCards, slidesCount) => {
+  const cards = []
+  while (cards.length < slidesCount) {
+    let rand = Math.floor(Math.random() * 8)
+    if (!prevCards.includes(rand) && !cards.includes(rand)) {
+      cards.push(rand)
+    }
+  }
+  console.log(cards)
+  return cards
 }
 
 const createCard = ({ img, name }) => {
@@ -84,10 +98,28 @@ const createCard = ({ img, name }) => {
   <div class="slider__card-name">${name}</div> 
   <div class="slider__card-button">Learn more</div>
   `
-  document.querySelector('.slider__cards').appendChild(card)
+  sliderCards.appendChild(card)
 }
 
-const initArray = randomPetsCards(slidesOnPage)
-for (let i = 0; i < slidesOnPage; i++) {
-  createCard(pets[initArray[i]])
+const createInitCards = () => {
+  initArray = randomInitCards(slidesOnPage)
+  for (let i = 0; i < slidesOnPage; i++) {
+    createCard(pets[initArray[i]])
+  }
 }
+createInitCards()
+
+const createNextCards = () => {
+  const nextArray = randomNextCards(initArray, slidesOnPage)
+  sliderCards.replaceChildren()
+  for (let i = 0; i < slidesOnPage; i++) {
+    createCard(pets[nextArray[i]])
+  }
+  initArray = nextArray
+}
+
+sliderArrows.forEach((arrow) => {
+  arrow.addEventListener('click', () => {
+    createNextCards()
+  })
+})
