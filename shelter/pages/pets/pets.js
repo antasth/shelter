@@ -1,3 +1,4 @@
+// BURGER
 const burgerBackground = document.querySelector('.burger__background')
 const burgerIconBlack = document.querySelector('.burger__icon-black')
 const burgerMenuItem = document.querySelectorAll('.burger__list-item')
