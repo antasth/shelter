@@ -64,9 +64,13 @@ window.addEventListener('resize', () => {
 
 const randomPetsCards = (count) => {
   const randomSlides = []
-  for (let i = 0; i < count; i++) {
-    randomSlides.push(Math.floor(Math.random() * 8))
+  while (randomSlides.length < count) {
+    let rand = Math.floor(Math.random() * 8)
+    if (!randomSlides.includes(rand)) {
+      randomSlides.push(rand)
+    }
   }
+  console.log(randomSlides)
   return randomSlides
 }
 
@@ -83,7 +87,7 @@ const createCard = ({ img, name }) => {
   document.querySelector('.slider__cards').appendChild(card)
 }
 
-const slideArray = randomPetsCards(slidesOnPage)
+const initArray = randomPetsCards(slidesOnPage)
 for (let i = 0; i < slidesOnPage; i++) {
-  createCard(pets[slideArray[i]])
+  createCard(pets[initArray[i]])
 }
