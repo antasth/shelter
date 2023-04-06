@@ -6,6 +6,15 @@ const burgerBackground = document.querySelector('.burger__background')
 
 // show or hide burger menu and rotate icon
 burgerIcon.addEventListener('click', () => {
+
+  // if scroll is hidden => add margin right
+  let marginSize = window.innerWidth - document.documentElement.clientWidth;
+  if (marginSize) {
+     document.documentElement.style.marginRight = marginSize + "px";
+  } else {
+    document.documentElement.style.marginRight = 0;
+  }
+
   burgerIcon.classList.toggle('burger__icon-active')
   burgerMenu.classList.toggle('burger__active')
   body.classList.toggle('locked')
@@ -19,6 +28,7 @@ burgerMenuItem.forEach((item) => {
     burgerIcon.classList.remove('burger__icon-active')
     body.classList.remove('locked')
     burgerBackground.classList.remove('burger__background-active')
+    document.documentElement.style.marginRight = 0;
   })
 })
 
@@ -28,6 +38,7 @@ burgerBackground.addEventListener('click', ()=> {
   burgerMenu.classList.toggle('burger__active')
   body.classList.toggle('locked')
   burgerBackground.classList.toggle('burger__background-active')
+  document.documentElement.style.marginRight = 0;
 })
 
 window.addEventListener('resize', ()=> {
@@ -36,5 +47,16 @@ window.addEventListener('resize', ()=> {
     burgerIcon.classList.remove('burger__icon-active')
     body.classList.remove('locked')
     burgerBackground.classList.remove('burger__background-active')
+    document.documentElement.style.marginRight = 0;
   }
 })
+
+// Чтобы окно не дергалось при скрытии скролла
+function showBurger() {
+
+  let marginSize = window.innerWidth - document.documentElement.clientWidth;
+  if (marginSize) {
+     document.documentElement.style.marginRight = marginSize + "px";
+  }
+}
+
