@@ -53,23 +53,37 @@ function hideBurger() {
 
 console.log(pets)
 
+const slidesOnPage =
+  document.body.clientWidth > 1100 ? 3 : document.body.clientWidth < 768 ? 1 : 2
+
 // get count of slides on page
 window.addEventListener('resize', () => {
   let windowWidth = document.body.clientWidth
-  const slidesOnPage = windowWidth > 1100 ? 3 : windowWidth < 768 ? 1 : 2
+  slidesOnPage = windowWidth > 1100 ? 3 : windowWidth < 768 ? 1 : 2
 })
 
-
-const createCard = () => {
-  let card = document.createElement('div')
-  card.classList.add('slider__card')
-
-  card.innerHTML = `
-  <div class="slider__card-img">
-    <img src=${src} alt="pet" />
-  </div>
-  <div class="slider__card-name">${name}</div>
-  <div class="slider__card-button">Learn more</div>
-  `
+const randomPetsCards = (count) => {
+  const randomSlides = []
+  for (let i = 0; i < count; i++) {
+    randomSlides.push(Math.floor(Math.random() * 8))
+  }
+  return randomSlides
 }
 
+const createCard = ({ img, name }) => {
+  let card = document.createElement('div')
+  card.classList.add('slider__card')
+  card.innerHTML = `
+  <div class="slider__card-img">
+   <img src= '${img}' alt="pet" />
+  </div>
+  <div class="slider__card-name">${name}</div> 
+  <div class="slider__card-button">Learn more</div>
+  `
+  document.querySelector('.slider__cards').appendChild(card)
+}
+
+const slideArray = randomPetsCards(slidesOnPage)
+for (let i = 0; i < slidesOnPage; i++) {
+  createCard(pets[slideArray[i]])
+}
