@@ -50,11 +50,12 @@ function hideBurger() {
 }
 
 // SLIDER
-const sliderArrows = document.querySelectorAll('.slider__arrow')
 const sliderCards = document.querySelector('.slider__cards')
-console.log(pets)
+const backArrow = document.querySelector('.back__arrow')
+const forwardArrow = document.querySelector('.forward__arrow')
 
-let initArray,
+let currArray,
+  prevArray,
   removedCards = []
 let slidesOnPage =
   document.body.clientWidth > 1100 ? 3 : document.body.clientWidth < 768 ? 1 : 2
@@ -68,10 +69,24 @@ window.addEventListener('resize', () => {
     removedCards.push(sliderCards.lastChild)
     sliderCards.removeChild(sliderCards.lastChild)
   }
-   if (sliderCards.children.length < slidesOnPage) {
+  if (sliderCards.children.length < slidesOnPage) {
     sliderCards.appendChild(removedCards.pop())
   }
 })
+
+// create one card
+const createCard = ({ img, name }) => {
+  let card = document.createElement('div')
+  card.classList.add('slider__card')
+  card.innerHTML = `
+  <div class="slider__card-img">
+   <img src= '${img}' alt="pet" />
+  </div>
+  <div class="slider__card-name">${name}</div> 
+  <div class="slider__card-button">Learn more</div>
+  `
+  sliderCards.appendChild(card)
+}
 // generate init numbers of cards
 const randomInitCards = (slidesCount) => {
   const cards = []
@@ -96,41 +111,56 @@ const randomNextCards = (prevCards, slidesCount) => {
   console.log('NextCards', cards)
   return cards
 }
-// create one card
-const createCard = ({ img, name }) => {
-  let card = document.createElement('div')
-  card.classList.add('slider__card')
-  card.innerHTML = `
-  <div class="slider__card-img">
-   <img src= '${img}' alt="pet" />
-  </div>
-  <div class="slider__card-name">${name}</div> 
-  <div class="slider__card-button">Learn more</div>
-  `
-  sliderCards.appendChild(card)
-}
-// create cards when page is reload
+
 const createInitCards = () => {
-  initArray = randomInitCards(slidesOnPage)
+  currArray = randomInitCards(slidesOnPage)
   for (let i = 0; i < slidesOnPage; i++) {
-    createCard(pets[initArray[i]])
+    createCard(pets[currArray[i]])
   }
 }
 createInitCards()
-
 // create new cards that not used in prev slide
-const createNextCards = () => {
-  console.log(slidesOnPage)
-  const nextArray = randomNextCards(initArray, slidesOnPage)
+const createNextCards = (nextArr) => {
   sliderCards.replaceChildren()
   for (let i = 0; i < slidesOnPage; i++) {
-    createCard(pets[nextArray[i]])
+    createCard(pets[nextArr[i]])
   }
-  initArray = nextArray
 }
-// create next cards onClick on arrows
-sliderArrows.forEach((arrow) => {
-  arrow.addEventListener('click', () => {
-    createNextCards()
-  })
+// f = flag that shows slider direction
+// if f = 1 direction is forward
+// if f = -1 direction is back
+let f = 0
+const forward = () => {
+  if (f === 1 || f === 0) {
+    // forward
+    prevArray = currArray
+    currArray = randomNextCards(prevArray, slidesOnPage)
+    createNextCards(currArray)
+  } else {
+    //change from back to forward
+    ;[currArray, prevArray] = [prevArray, currArray]
+    createNextCards(currArray)
+  }
+  f = 1
+}
+const back = () => {
+  if (f === -1 || f === 0) {
+    // back
+    prevArray = currArray
+    currArray = randomNextCards(prevArray, slidesOnPage)
+    createNextCards(currArray)
+  } else {
+    //change from forward to back
+    ;[currArray, prevArray] = [prevArray, currArray]
+    createNextCards(currArray)
+  }
+  f = -1
+}
+
+forwardArrow.addEventListener('click', () => {
+  forward()
+})
+
+backArrow.addEventListener('click', () => {
+  back()
 })
