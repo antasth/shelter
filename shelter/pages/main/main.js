@@ -68,9 +68,15 @@ window.addEventListener('resize', () => {
   if (sliderCards.children.length > slidesOnPage) {
     removedCards.push(sliderCards.lastChild)
     sliderCards.removeChild(sliderCards.lastChild)
+    prevArray = currArray
+    currArray = randomNextCards(prevArray, slidesOnPage)
+    createNextCards(currArray)
   }
   if (sliderCards.children.length < slidesOnPage) {
-    sliderCards.appendChild(removedCards.pop())
+    // sliderCards.appendChild(removedCards.pop())
+    prevArray = currArray
+    currArray = randomNextCards(prevArray, slidesOnPage)
+    createNextCards(currArray)
   }
 })
 
@@ -120,10 +126,10 @@ const createInitCards = () => {
 }
 createInitCards()
 // create new cards that not used in prev slide
-const createNextCards = (nextArr) => {
+const createNextCards = (arr) => {
   sliderCards.replaceChildren()
   for (let i = 0; i < slidesOnPage; i++) {
-    createCard(pets[nextArr[i]])
+    createCard(pets[arr[i]])
   }
 }
 // f = flag that shows slider direction
