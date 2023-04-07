@@ -55,8 +55,7 @@ const backArrow = document.querySelector('.back__arrow')
 const forwardArrow = document.querySelector('.forward__arrow')
 
 let currArray,
-  prevArray,
-  removedCards = []
+  prevArray = []
 let slidesOnPage =
   document.body.clientWidth > 1100 ? 3 : document.body.clientWidth < 768 ? 1 : 2
 
@@ -127,30 +126,28 @@ const createSliderCards = () => {
   currArray = randomNextCards(prevArray, slidesOnPage)
   createNextCards(currArray)
 }
+const restorePrevCards = () => {
+  ;[currArray, prevArray] = [prevArray, currArray]
+  createNextCards(currArray)
+}
 // f = flag that shows slider direction
 // if f = 1 direction is forward
 // if f = -1 direction is back
 let f = 0
 const forward = () => {
-  if (f === 1 || f === 0) {
-    // forward
-    createSliderCards()
-  } else {
-    //change from back to forward
-    ;[currArray, prevArray] = [prevArray, currArray]
-    createNextCards(currArray)
-  }
+  f === 1 || f === 0
+    ? // forward
+      createSliderCards()
+    : //change from back to forward
+      restorePrevCards()
   f = 1
 }
 const back = () => {
-  if (f === -1 || f === 0) {
-    // back
-    createSliderCards()
-  } else {
-    //change from forward to back
-    ;[currArray, prevArray] = [prevArray, currArray]
-    createNextCards(currArray)
-  }
+  f === -1 || f === 0
+    ? // back
+      createSliderCards()
+    : //change from forward to back
+      restorePrevCards()
   f = -1
 }
 
