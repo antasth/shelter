@@ -65,18 +65,8 @@ window.addEventListener('resize', () => {
   let windowWidth = document.body.clientWidth
   slidesOnPage = windowWidth > 1100 ? 3 : windowWidth < 768 ? 1 : 2
 
-  if (sliderCards.children.length > slidesOnPage) {
-    removedCards.push(sliderCards.lastChild)
-    sliderCards.removeChild(sliderCards.lastChild)
-    prevArray = currArray
-    currArray = randomNextCards(prevArray, slidesOnPage)
-    createNextCards(currArray)
-  }
-  if (sliderCards.children.length < slidesOnPage) {
-    // sliderCards.appendChild(removedCards.pop())
-    prevArray = currArray
-    currArray = randomNextCards(prevArray, slidesOnPage)
-    createNextCards(currArray)
+  if (sliderCards.children.length !== slidesOnPage) {
+    createSliderCards()
   }
 })
 
@@ -132,6 +122,11 @@ const createNextCards = (arr) => {
     createCard(pets[arr[i]])
   }
 }
+const createSliderCards = () => {
+  prevArray = currArray
+  currArray = randomNextCards(prevArray, slidesOnPage)
+  createNextCards(currArray)
+}
 // f = flag that shows slider direction
 // if f = 1 direction is forward
 // if f = -1 direction is back
@@ -139,9 +134,7 @@ let f = 0
 const forward = () => {
   if (f === 1 || f === 0) {
     // forward
-    prevArray = currArray
-    currArray = randomNextCards(prevArray, slidesOnPage)
-    createNextCards(currArray)
+    createSliderCards()
   } else {
     //change from back to forward
     ;[currArray, prevArray] = [prevArray, currArray]
@@ -152,9 +145,7 @@ const forward = () => {
 const back = () => {
   if (f === -1 || f === 0) {
     // back
-    prevArray = currArray
-    currArray = randomNextCards(prevArray, slidesOnPage)
-    createNextCards(currArray)
+    createSliderCards()
   } else {
     //change from forward to back
     ;[currArray, prevArray] = [prevArray, currArray]
