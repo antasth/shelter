@@ -69,7 +69,7 @@ window.addEventListener('resize', () => {
   }
 })
 
-// create one card
+// create card
 const createCard = ({ img, name }) => {
   let card = document.createElement('div')
   card.classList.add('slider__card')
@@ -91,7 +91,6 @@ const randomInitCards = (slidesCount) => {
       cards.push(rand)
     }
   }
-  console.log('InitCards', cards)
   return cards
 }
 // generate next numbers of cards that not used in prev slide
@@ -103,7 +102,6 @@ const randomNextCards = (prevCards, slidesCount) => {
       cards.push(rand)
     }
   }
-  console.log('NextCards', cards)
   return cards
 }
 
@@ -127,8 +125,12 @@ const createSliderCards = () => {
   createNextCards(currArray)
 }
 const restorePrevCards = () => {
-  ;[currArray, prevArray] = [prevArray, currArray]
-  createNextCards(currArray)
+  if (currArray.length === prevArray.length) {
+    ;[currArray, prevArray] = [prevArray, currArray]
+    createNextCards(currArray)
+  } else {
+    createSliderCards()
+  }
 }
 // f = flag that shows slider direction
 // if f = 1 direction is forward

@@ -419,9 +419,6 @@ section {
   .slider__cards {
     justify-content: space-around;
   }
-  /* .slider__card:last-child {
-    display: none;
-  } */
 }
 @media (max-width: 991.98px) {
   .slider__card {
@@ -440,9 +437,6 @@ section {
   .slider__cards {
     justify-content: center;
   }
-  /* .slider__card:nth-child(2) {
-    display: none;
-  } */
 }
 @media (max-width: 575.98px) {
   .slider__wrapper {
