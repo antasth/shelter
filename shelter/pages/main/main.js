@@ -55,7 +55,8 @@ const backArrow = document.querySelector('.back__arrow')
 const forwardArrow = document.querySelector('.forward__arrow')
 
 let currArray,
-  prevArray = []
+  prevArray,
+  nextArray = []
 let slidesOnPage =
   document.body.clientWidth > 1100 ? 3 : document.body.clientWidth < 768 ? 1 : 2
 
@@ -64,9 +65,9 @@ window.addEventListener('resize', () => {
   let windowWidth = document.body.clientWidth
   slidesOnPage = windowWidth > 1100 ? 3 : windowWidth < 768 ? 1 : 2
 
-  if (sliderCards.children.length !== slidesOnPage) {
-    createSliderCards()
-  }
+  // if (sliderCards.children.length !== slidesOnPage) {
+  //   createSliderCards()
+  // }
 })
 
 // create card
@@ -80,8 +81,9 @@ const createCard = ({ img, name }) => {
   <div class="slider__card-name">${name}</div> 
   <div class="slider__card-button">Learn more</div>
   `
-  sliderCards.appendChild(card)
+  return card
 }
+
 // generate init numbers of cards
 const randomInitCards = (slidesCount) => {
   const cards = []
@@ -107,51 +109,94 @@ const randomNextCards = (prevCards, slidesCount) => {
 
 const createInitCards = () => {
   currArray = randomInitCards(slidesOnPage)
+  let cardItem = document.createElement('div')
+  cardItem.classList.add('slider__item')
   for (let i = 0; i < slidesOnPage; i++) {
-    createCard(pets[currArray[i]])
+    cardItem.appendChild(createCard(pets[currArray[i]]))
   }
+  sliderCards.appendChild(cardItem)
 }
-createInitCards()
 // create new cards that not used in prev slide
 const createNextCards = (arr) => {
-  sliderCards.replaceChildren()
+  // sliderCards.replaceChildren()
+  nextArray = randomNextCards(arr, slidesOnPage)
+  let cardItem = document.createElement('div')
+  cardItem.classList.add('slider__item')
   for (let i = 0; i < slidesOnPage; i++) {
-    createCard(pets[arr[i]])
+    cardItem.appendChild(createCard(pets[nextArray[i]]))
   }
+  sliderCards.appendChild(cardItem)
 }
-const createSliderCards = () => {
-  prevArray = currArray
-  currArray = randomNextCards(prevArray, slidesOnPage)
-  createNextCards(currArray)
-}
-const restorePrevCards = () => {
-  if (currArray.length === prevArray.length) {
-    ;[currArray, prevArray] = [prevArray, currArray]
-    createNextCards(currArray)
-  } else {
-    createSliderCards()
+const createPrevCards = (arr) => {
+  // sliderCards.replaceChildren()
+  prevArray = randomNextCards(arr, slidesOnPage)
+  let cardItem = document.createElement('div')
+  cardItem.classList.add('slider__item')
+  for (let i = 0; i < slidesOnPage; i++) {
+    cardItem.appendChild(createCard(pets[prevArray[i]]))
   }
+  sliderCards.prepend(cardItem)
 }
+createInitCards()
+createNextCards(currArray)
+createPrevCards(currArray)
+
 // f = flag that shows slider direction
 // if f = 1 direction is forward
 // if f = -1 direction is back
+
 let f = 0
 const forward = () => {
-  f === 1 || f === 0
-    ? // forward
-      createSliderCards()
-    : //change from back to forward
-      restorePrevCards()
+  if (f === 1 || f === 0) {
+    sliderCards.classList.add('transition-left')
+    // forward
+  } else {
+    //change from back to forward
+    // restorePrevCards()
+  }
+
   f = 1
 }
 const back = () => {
-  f === -1 || f === 0
-    ? // back
-      createSliderCards()
-    : //change from forward to back
-      restorePrevCards()
+  if (f === -1 || f === 0) {
+    // back
+    sliderCards.classList.add('transition-right')
+  } else {
+    //change from forward to back
+    // restorePrevCards()
+  }
+
   f = -1
 }
+
+sliderCards.addEventListener('animationend', (animationEvent) => {
+  if (animationEvent.animationName === 'move-left') {
+    sliderCards.classList.remove('transition-left')
+    nextArray = currArray
+    currArray = prevArray
+    prevArray = randomNextCards(currArray, slidesOnPage)
+    let cardItem = document.createElement('div')
+    cardItem.classList.add('slider__item')
+    for (let i = 0; i < slidesOnPage; i++) {
+      cardItem.appendChild(createCard(pets[prevArray[i]]))
+    }
+    sliderCards.prepend(cardItem)
+    sliderCards.lastChild.remove()
+  } else {
+    sliderCards.classList.remove('transition-right')
+    prevArray = currArray
+    currArray = nextArray
+    nextArray = randomNextCards(currArray, slidesOnPage)
+    let cardItem = document.createElement('div')
+    cardItem.classList.add('slider__item')
+    for (let i = 0; i < slidesOnPage; i++) {
+      cardItem.appendChild(createCard(pets[nextArray[i]]))
+    }
+    sliderCards.append(cardItem)
+
+    sliderCards.firstChild.remove()
+  }
+})
 
 forwardArrow.addEventListener('click', () => {
   forward()

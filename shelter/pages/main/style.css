@@ -292,11 +292,11 @@ section {
   padding: 80px 40px 100px;
 }
 .slider__content {
-  width: 100%;
-  width: 1200px;
+  /* width: 100%; */
+  max-width: 1200px;
   margin: 58px 0 60px;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 }
 .slider__arrow {
@@ -314,12 +314,28 @@ section {
   border-color: #fddcc4;
   cursor: pointer;
 }
-.slider__cards {
+.slider__inner {
   flex-grow: 1;
+  max-width: 1080px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 53px;
+  overflow: hidden;
+}
+.slider__cards {
+  position: relative;
+  flex-grow: 1;
+  /* max-width: 99999px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  left: -1080px;
+}
+.slider__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 .slider__card {
   display: flex;
@@ -331,6 +347,7 @@ section {
   border-radius: 9px;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
+  margin: 0 45px;
 }
 .slider__card-img {
   max-height: 270px;
@@ -470,6 +487,26 @@ section {
     order: 3;
     margin-right: 0;
   }
+}
+
+
+/* slider animation */
+@keyframes move-left {
+  from {left: -1080px;}
+  to {left: 0px;}
+}
+@keyframes move-right {
+  from {left: -1080px;}
+  to {left: -2160px;}
+}
+
+.transition-right {
+  animation-name: move-right;
+  animation-duration: 2s;
+}
+.transition-left {
+  animation-name: move-left;
+  animation-duration: 2s;
 }
 
 /* OPTIONS SECTION */
