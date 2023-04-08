@@ -51,7 +51,6 @@ function hideBurger() {
 
 // SLIDER
 const sliderCards = document.querySelector('.slider__cards')
-const sliderItem = document.querySelector('.slider__item')
 const backArrow = document.querySelector('.back__arrow')
 const forwardArrow = document.querySelector('.forward__arrow')
 
@@ -61,15 +60,43 @@ let currArray,
 let slidesOnPage =
   document.body.clientWidth > 1100 ? 3 : document.body.clientWidth < 768 ? 1 : 2
 
-const mediaQuery = window.matchMedia('(max-width: 1279px)')
+const mediaQueries = [
+  window.matchMedia('(min-width: 0px) and (max-width: 768px)'),
+  window.matchMedia('(min-width: 768px) and (max-width: 1279px)'),
+  window.matchMedia('(min-width: 1280px)'),
+]
 
-mediaQuery.addEventListener('change', ()=> {
-  console.log('Media Query Matched!')
-  slidesOnPage = 2
-  sliderCards.replaceChildren()
-  createInitCards()
-createNextCards(currArray)
-createPrevCards(currArray)
+function screenMatches() {
+  if (mediaQueries[0].matches) {
+    console.log('mobile')
+    slidesOnPage = 1
+    sliderCards.replaceChildren()
+    createInitCards()
+    createNextCards(currArray)
+    createPrevCards(currArray)
+  }
+
+  if (mediaQueries[1].matches) {
+    console.log('tablet')
+    slidesOnPage = 2
+    sliderCards.replaceChildren()
+    createInitCards()
+    createNextCards(currArray)
+    createPrevCards(currArray)
+  }
+
+  if (mediaQueries[2].matches) {
+    console.log('desktop')
+    slidesOnPage = 3
+    sliderCards.replaceChildren()
+    createInitCards()
+    createNextCards(currArray)
+    createPrevCards(currArray)
+  }
+}
+
+mediaQueries.forEach((item) => {
+  item.addEventListener('change', screenMatches)
 })
 
 
@@ -121,7 +148,6 @@ const createInitCards = () => {
 }
 // create new cards that not used in prev slide
 const createNextCards = (arr) => {
-  // sliderCards.replaceChildren()
   nextArray = randomNextCards(arr, slidesOnPage)
   let cardItem = document.createElement('div')
   cardItem.classList.add('slider__item')
@@ -131,7 +157,6 @@ const createNextCards = (arr) => {
   sliderCards.appendChild(cardItem)
 }
 const createPrevCards = (arr) => {
-  // sliderCards.replaceChildren()
   prevArray = randomNextCards(arr, slidesOnPage)
   let cardItem = document.createElement('div')
   cardItem.classList.add('slider__item')
@@ -145,18 +170,21 @@ createNextCards(currArray)
 createPrevCards(currArray)
 
 const forward = () => {
- slidesOnPage === 3 ?
-  sliderCards.classList.add('transition-left-three') :
-  sliderCards.classList.add('transition-left-two')
+  slidesOnPage === 3
+    ? sliderCards.classList.add('transition-left-three')
+    : sliderCards.classList.add('transition-left-two')
 }
 const back = () => {
-  slidesOnPage === 3 ?
-  sliderCards.classList.add('transition-right-three') :
-  sliderCards.classList.add('transition-right-two')
+  slidesOnPage === 3
+    ? sliderCards.classList.add('transition-right-three')
+    : sliderCards.classList.add('transition-right-two')
 }
 
 sliderCards.addEventListener('animationend', (animationEvent) => {
-  if (animationEvent.animationName === 'move-left-three' || animationEvent.animationName === 'move-left-two') {
+  if (
+    animationEvent.animationName === 'move-left-three' ||
+    animationEvent.animationName === 'move-left-two'
+  ) {
     sliderCards.classList.remove('transition-left-three')
     sliderCards.classList.remove('transition-left-two')
     nextArray = currArray
@@ -170,8 +198,8 @@ sliderCards.addEventListener('animationend', (animationEvent) => {
     sliderCards.prepend(cardItem)
     sliderCards.lastChild.remove()
   } else {
-      sliderCards.classList.remove('transition-right-three')
-      sliderCards.classList.remove('transition-right-two')
+    sliderCards.classList.remove('transition-right-three')
+    sliderCards.classList.remove('transition-right-two')
     prevArray = currArray
     currArray = nextArray
     nextArray = randomNextCards(currArray, slidesOnPage)
