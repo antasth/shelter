@@ -66,39 +66,33 @@ const mediaQueries = [
   window.matchMedia('(min-width: 1280px)'),
 ]
 
+const createNewCards = () => {
+  sliderCards.replaceChildren()
+  createInitCards()
+  createNextCards(currArray)
+  createPrevCards(currArray)
+}
+
 function screenMatches() {
   if (mediaQueries[0].matches) {
-    console.log('mobile')
     slidesOnPage = 1
-    sliderCards.replaceChildren()
-    createInitCards()
-    createNextCards(currArray)
-    createPrevCards(currArray)
+    createNewCards()
   }
 
   if (mediaQueries[1].matches) {
-    console.log('tablet')
     slidesOnPage = 2
-    sliderCards.replaceChildren()
-    createInitCards()
-    createNextCards(currArray)
-    createPrevCards(currArray)
+    createNewCards()
   }
 
   if (mediaQueries[2].matches) {
-    console.log('desktop')
     slidesOnPage = 3
-    sliderCards.replaceChildren()
-    createInitCards()
-    createNextCards(currArray)
-    createPrevCards(currArray)
+    createNewCards()
   }
 }
 
 mediaQueries.forEach((item) => {
   item.addEventListener('change', screenMatches)
 })
-
 
 // create card
 const createCard = ({ img, name }) => {
@@ -165,9 +159,6 @@ const createPrevCards = (arr) => {
   }
   sliderCards.prepend(cardItem)
 }
-createInitCards()
-createNextCards(currArray)
-createPrevCards(currArray)
 
 const forward = () => {
   slidesOnPage === 3
@@ -220,3 +211,5 @@ forwardArrow.addEventListener('click', () => {
 backArrow.addEventListener('click', () => {
   back()
 })
+
+createNewCards()
