@@ -570,19 +570,19 @@ section {
 }
 .transition-right-two {
   animation-name: move-right-two;
-  animation-duration: 2.5s;
+  animation-duration: 2s;
 }
 .transition-left-two {
   animation-name: move-left-two;
-  animation-duration: 2.5s;
+  animation-duration: 2s;
 }
 .transition-right-one {
   animation-name: move-right-one;
-  animation-duration: 2.5s;
+  animation-duration: 1.5s;
 }
 .transition-left-one {
   animation-name: move-left-one;
-  animation-duration: 2.5s;
+  animation-duration: 1.5s;
 }
 
 /* OPTIONS SECTION */
