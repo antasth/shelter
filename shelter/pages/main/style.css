@@ -425,8 +425,7 @@ section {
     width: 604px;
     column-gap: 40px;
     justify-content: center;
-    padding:0 20px;
-    
+    padding: 0 20px;
   }
   .slider__card {
     max-width: 100%;
@@ -462,8 +461,19 @@ section {
   .slider__content {
     padding: 0 50px;
   }
+  .slider__inner {
+    max-width: 300px;
+  }
   .slider__cards {
+    margin: 0;
     justify-content: center;
+    left: -300px;
+  }
+  .slider__item {
+    width: 100%;
+    width: 300px;
+    justify-content: center;
+    padding: 0 20px;
   }
 }
 @media (max-width: 575.98px) {
@@ -500,23 +510,54 @@ section {
   }
 }
 
-
 /* slider animation */
 @keyframes move-left-three {
-  from {left: -1080px;}
-  to {left: 0px;}
+  from {
+    left: -1080px;
+  }
+  to {
+    left: 0px;
+  }
 }
 @keyframes move-right-three {
-  from {left: -1080px;}
-  to {left: -2160px;}
+  from {
+    left: -1080px;
+  }
+  to {
+    left: -2160px;
+  }
 }
 @keyframes move-left-two {
-  from {left: -604px;}
-  to {left: 0px;}
+  from {
+    left: -604px;
+  }
+  to {
+    left: 0px;
+  }
 }
 @keyframes move-right-two {
-  from {left: -604px;}
-  to {left: -1208px;}
+  from {
+    left: -604px;
+  }
+  to {
+    left: -1208px;
+  }
+}
+@keyframes move-left-one {
+  from {
+    left: -300px;
+  }
+  to {
+    left: 0px;
+  }
+}
+@keyframes move-right-one {
+  from {
+    left: -300px;
+  }
+  to {
+    left: -600px;
+  }
 }
 
 .transition-right-three {
@@ -533,6 +574,14 @@ section {
 }
 .transition-left-two {
   animation-name: move-left-two;
+  animation-duration: 2.5s;
+}
+.transition-right-one {
+  animation-name: move-right-one;
+  animation-duration: 2.5s;
+}
+.transition-left-one {
+  animation-name: move-left-one;
   animation-duration: 2.5s;
 }
 

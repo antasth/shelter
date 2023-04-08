@@ -163,21 +163,27 @@ const createPrevCards = (arr) => {
 const forward = () => {
   slidesOnPage === 3
     ? sliderCards.classList.add('transition-left-three')
-    : sliderCards.classList.add('transition-left-two')
+    : slidesOnPage === 2
+    ? sliderCards.classList.add('transition-left-two')
+    : sliderCards.classList.add('transition-left-one')
 }
 const back = () => {
   slidesOnPage === 3
     ? sliderCards.classList.add('transition-right-three')
-    : sliderCards.classList.add('transition-right-two')
+    : slidesOnPage === 2
+    ? sliderCards.classList.add('transition-right-two')
+    : sliderCards.classList.add('transition-right-one')
 }
 
 sliderCards.addEventListener('animationend', (animationEvent) => {
   if (
     animationEvent.animationName === 'move-left-three' ||
-    animationEvent.animationName === 'move-left-two'
+    animationEvent.animationName === 'move-left-two' ||
+    animationEvent.animationName === 'move-left-one' 
   ) {
     sliderCards.classList.remove('transition-left-three')
     sliderCards.classList.remove('transition-left-two')
+    sliderCards.classList.remove('transition-left-one')
     nextArray = currArray
     currArray = prevArray
     prevArray = randomNextCards(currArray, slidesOnPage)
@@ -191,6 +197,7 @@ sliderCards.addEventListener('animationend', (animationEvent) => {
   } else {
     sliderCards.classList.remove('transition-right-three')
     sliderCards.classList.remove('transition-right-two')
+    sliderCards.classList.remove('transition-right-one')
     prevArray = currArray
     currArray = nextArray
     nextArray = randomNextCards(currArray, slidesOnPage)
