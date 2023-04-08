@@ -292,11 +292,11 @@ section {
   padding: 80px 40px 100px;
 }
 .slider__content {
-  /* width: 100%; */
+  width: 100%;
   max-width: 1200px;
   margin: 58px 0 60px;
   display: flex;
-  /* justify-content: space-between; */
+  justify-content: center;
   align-items: center;
 }
 .slider__arrow {
@@ -325,17 +325,19 @@ section {
 .slider__cards {
   position: relative;
   flex-grow: 1;
-  /* max-width: 99999px; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   left: -1080px;
 }
 .slider__item {
+  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  column-gap: 90px;
+  padding: 0 45px;
 }
 .slider__card {
   display: flex;
@@ -347,7 +349,6 @@ section {
   border-radius: 9px;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
-  margin: 0 45px;
 }
 .slider__card-img {
   max-height: 270px;
@@ -412,12 +413,22 @@ section {
   .slider__content {
     width: 100%;
   }
+  .slider__inner {
+    max-width: 604px;
+  }
   .slider__cards {
     margin: 0;
-    padding: 0 12px;
+    left: -604px;
+  }
+  .slider__item {
+    width: 100%;
+    width: 604px;
+    column-gap: 40px;
+    justify-content: center;
+    padding:0 20px;
+    
   }
   .slider__card {
-    margin: 0 10px;
     max-width: 100%;
   }
   .slider__card-img img {
@@ -491,22 +502,38 @@ section {
 
 
 /* slider animation */
-@keyframes move-left {
+@keyframes move-left-three {
   from {left: -1080px;}
   to {left: 0px;}
 }
-@keyframes move-right {
+@keyframes move-right-three {
   from {left: -1080px;}
   to {left: -2160px;}
 }
-
-.transition-right {
-  animation-name: move-right;
-  animation-duration: 2s;
+@keyframes move-left-two {
+  from {left: -604px;}
+  to {left: 0px;}
 }
-.transition-left {
-  animation-name: move-left;
-  animation-duration: 2s;
+@keyframes move-right-two {
+  from {left: -604px;}
+  to {left: -1208px;}
+}
+
+.transition-right-three {
+  animation-name: move-right-three;
+  animation-duration: 2.5s;
+}
+.transition-left-three {
+  animation-name: move-left-three;
+  animation-duration: 2.5s;
+}
+.transition-right-two {
+  animation-name: move-right-two;
+  animation-duration: 2.5s;
+}
+.transition-left-two {
+  animation-name: move-left-two;
+  animation-duration: 2.5s;
 }
 
 /* OPTIONS SECTION */

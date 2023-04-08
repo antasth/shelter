@@ -51,6 +51,7 @@ function hideBurger() {
 
 // SLIDER
 const sliderCards = document.querySelector('.slider__cards')
+const sliderItem = document.querySelector('.slider__item')
 const backArrow = document.querySelector('.back__arrow')
 const forwardArrow = document.querySelector('.forward__arrow')
 
@@ -60,15 +61,17 @@ let currArray,
 let slidesOnPage =
   document.body.clientWidth > 1100 ? 3 : document.body.clientWidth < 768 ? 1 : 2
 
-// get count of slides on page
-window.addEventListener('resize', () => {
-  let windowWidth = document.body.clientWidth
-  slidesOnPage = windowWidth > 1100 ? 3 : windowWidth < 768 ? 1 : 2
+const mediaQuery = window.matchMedia('(max-width: 1279px)')
 
-  // if (sliderCards.children.length !== slidesOnPage) {
-  //   createSliderCards()
-  // }
+mediaQuery.addEventListener('change', ()=> {
+  console.log('Media Query Matched!')
+  slidesOnPage = 2
+  sliderCards.replaceChildren()
+  createInitCards()
+createNextCards(currArray)
+createPrevCards(currArray)
 })
+
 
 // create card
 const createCard = ({ img, name }) => {
@@ -141,37 +144,21 @@ createInitCards()
 createNextCards(currArray)
 createPrevCards(currArray)
 
-// f = flag that shows slider direction
-// if f = 1 direction is forward
-// if f = -1 direction is back
-
-let f = 0
 const forward = () => {
-  if (f === 1 || f === 0) {
-    sliderCards.classList.add('transition-left')
-    // forward
-  } else {
-    //change from back to forward
-    // restorePrevCards()
-  }
-
-  f = 1
+ slidesOnPage === 3 ?
+  sliderCards.classList.add('transition-left-three') :
+  sliderCards.classList.add('transition-left-two')
 }
 const back = () => {
-  if (f === -1 || f === 0) {
-    // back
-    sliderCards.classList.add('transition-right')
-  } else {
-    //change from forward to back
-    // restorePrevCards()
-  }
-
-  f = -1
+  slidesOnPage === 3 ?
+  sliderCards.classList.add('transition-right-three') :
+  sliderCards.classList.add('transition-right-two')
 }
 
 sliderCards.addEventListener('animationend', (animationEvent) => {
-  if (animationEvent.animationName === 'move-left') {
-    sliderCards.classList.remove('transition-left')
+  if (animationEvent.animationName === 'move-left-three' || animationEvent.animationName === 'move-left-two') {
+    sliderCards.classList.remove('transition-left-three')
+    sliderCards.classList.remove('transition-left-two')
     nextArray = currArray
     currArray = prevArray
     prevArray = randomNextCards(currArray, slidesOnPage)
@@ -183,7 +170,8 @@ sliderCards.addEventListener('animationend', (animationEvent) => {
     sliderCards.prepend(cardItem)
     sliderCards.lastChild.remove()
   } else {
-    sliderCards.classList.remove('transition-right')
+      sliderCards.classList.remove('transition-right-three')
+      sliderCards.classList.remove('transition-right-two')
     prevArray = currArray
     currArray = nextArray
     nextArray = randomNextCards(currArray, slidesOnPage)
@@ -193,7 +181,6 @@ sliderCards.addEventListener('animationend', (animationEvent) => {
       cardItem.appendChild(createCard(pets[nextArray[i]]))
     }
     sliderCards.append(cardItem)
-
     sliderCards.firstChild.remove()
   }
 })
