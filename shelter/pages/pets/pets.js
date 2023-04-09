@@ -183,11 +183,25 @@ const forward = () => {
   page !== countOfPages ? (page += 1) : page
   setPage(page)
   createCards(cardsOnPage, page)
+  if (page > 1 ) {
+    backButton.classList.remove('inactive')
+    doubleBackButton.classList.remove('inactive')
+  }
+  if(page === countOfPages) {
+    forwardButton.classList.add('inactive')
+    doubleForwardButton.classList.add('inactive')
+  }
 }
 const forwardDouble = () => {
   page = countOfPages
   setPage(page)
   createCards(cardsOnPage, page)
+  if(page === countOfPages) {
+    forwardButton.classList.add('inactive')
+    doubleForwardButton.classList.add('inactive')
+    backButton.classList.remove('inactive')
+    doubleBackButton.classList.remove('inactive')
+  }
 }
 
 forwardButton.addEventListener('click', () => {
@@ -202,16 +216,32 @@ const back = () => {
   page > 1 ? (page -= 1) : page
   setPage(page)
   createCards(cardsOnPage, page)
+  if (page === 1) {
+    backButton.classList.add('inactive')
+    doubleBackButton.classList.add('inactive')
+  }
+  if(page < countOfPages) {
+    forwardButton.classList.remove('inactive')
+    doubleForwardButton.classList.remove('inactive')
+  }
 }
-const doubleBack = () => {
+const backDouble = () => {
   page = 1
   setPage(page)
   createCards(cardsOnPage, page)
+  if (page === 1) {
+    backButton.classList.add('inactive')
+    doubleBackButton.classList.add('inactive')
+  }
+  if(page < countOfPages) {
+    forwardButton.classList.remove('inactive')
+    doubleForwardButton.classList.remove('inactive')
+  }
 }
 
 backButton.addEventListener('click', () => {
   back()
 })
 doubleBackButton.addEventListener('click', () => {
-  doubleBack()
+  backDouble()
 })
