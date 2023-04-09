@@ -153,32 +153,38 @@ const createCard = ({ img, name }) => {
 }
 
 const createCards = (cardsCount, pageNumber) => {
-  cardsArray.slice(
+  let cardsOnCurrentPage = cardsArray.slice(
     pageNumber * cardsCount - cardsCount,
     pageNumber * cardsCount
   )
+
   for (let i = 0; i < cardsCount; i++) {
-    cards.append(createCard(pets[cardsArray[i]]))
+    cards.append(createCard(pets[cardsOnCurrentPage[i]]))
   }
 }
-
+// create cards on page load
 createCards(cardsOnPage, 1)
+
 const pageNumber = document.querySelector('.page-number')
 const forwardButton = document.querySelector('.forward-button')
 const doubleForwardButton = document.querySelector('.double-forward-button')
 
 const forward = () => {
- page !== countOfPages ? page += 1 : page
+  page !== countOfPages ? (page += 1) : page
   pageNumber.innerHTML = `${page}`
+  cards.replaceChildren()
+  createCards(cardsOnPage, page)
 }
 const forwardDouble = () => {
   page = countOfPages
   pageNumber.innerHTML = `${page}`
+  cards.replaceChildren()
+  createCards(cardsOnPage, page)
 }
 
 forwardButton.addEventListener('click', () => {
   forward()
 })
-doubleForwardButton.addEventListener('click', ()=> {
+doubleForwardButton.addEventListener('click', () => {
   forwardDouble()
 })
