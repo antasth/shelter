@@ -1,3 +1,5 @@
+import pets from '../../data/pets.json' assert { type: 'json' }
+
 // BURGER
 const burgerBackground = document.querySelector('.burger__background')
 const burgerIconBlack = document.querySelector('.burger__icon-black')
@@ -83,7 +85,7 @@ const getRandomBaseArray = () => {
   return fullArr
 }
 const fullArray = getRandomBaseArray()
-console.log(fullArray)
+// console.log(fullArray)
 
 const getCardsArray = (arr) => {
   let cardsArray = []
@@ -100,23 +102,14 @@ const getCardsArray = (arr) => {
   return cardsArray
 }
 
-console.log(getCardsArray(fullArray))
+// console.log(getCardsArray(fullArray))
 
-const createCard = ({ img, name }) => {
-  const card = document.createElement('div')
-  card.classList.add('.pets__card')
-  card.innerHTML = `
-  <div class="pets__card-img">
-    <img src="${img}" alt="pet" />
-  </div>
-  <div class="pets__card-name">${name}</div>
-  <div class="pets__card-button">Learn more</div>
-  `
-  return card
-}
+const cards = document.querySelector('.pets__cards')
 
+const cardsArray = getCardsArray(fullArray)
 let cardsOnPage =
   document.body.clientWidth > 1279 ? 8 : document.body.clientWidth < 768 ? 3 : 6
+let countOfPages = 48 / cardsOnPage
 
 const mediaQueries = [
   window.matchMedia('(min-width: 0px) and (max-width: 768px)'),
@@ -127,20 +120,47 @@ const mediaQueries = [
 function screenMatches() {
   if (mediaQueries[0].matches) {
     cardsOnPage = 3
-    console.log(cardsOnPage);
+    console.log(cardsOnPage)
   }
 
   if (mediaQueries[1].matches) {
     cardsOnPage = 6
-    console.log(cardsOnPage);
+    console.log(cardsOnPage)
   }
 
   if (mediaQueries[2].matches) {
     cardsOnPage = 8
-    console.log(cardsOnPage);
+    console.log(cardsOnPage)
   }
 }
 
 mediaQueries.forEach((item) => {
   item.addEventListener('change', screenMatches)
 })
+
+const createCard = ({ img, name }) => {
+  const card = document.createElement('div')
+  card.classList.add('pets__card')
+  card.innerHTML = `
+  <div class="pets__card-img">
+    <img src="${img}" alt="pet" />
+  </div>
+  <div class="pets__card-name">${name}</div>
+  <div class="pets__card-button">Learn more</div>
+  `
+  return card
+}
+
+const createCards = (cardsCount, pageNumber) => {
+  cardsArray.slice(
+    pageNumber * cardsCount - cardsCount,
+    pageNumber * cardsCount
+  )
+  for (let i = 0; i < cardsCount; i++) {
+    cards.append(createCard(pets[cardsArray[i]]))
+  }
+}
+
+createCards(cardsOnPage, 1)
+
+
