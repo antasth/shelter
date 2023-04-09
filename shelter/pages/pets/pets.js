@@ -114,3 +114,33 @@ const createCard = ({ img, name }) => {
   `
   return card
 }
+
+let cardsOnPage =
+  document.body.clientWidth > 1279 ? 8 : document.body.clientWidth < 768 ? 3 : 6
+
+const mediaQueries = [
+  window.matchMedia('(min-width: 0px) and (max-width: 768px)'),
+  window.matchMedia('(min-width: 768px) and (max-width: 1279px)'),
+  window.matchMedia('(min-width: 1280px)'),
+]
+
+function screenMatches() {
+  if (mediaQueries[0].matches) {
+    cardsOnPage = 3
+    console.log(cardsOnPage);
+  }
+
+  if (mediaQueries[1].matches) {
+    cardsOnPage = 6
+    console.log(cardsOnPage);
+  }
+
+  if (mediaQueries[2].matches) {
+    cardsOnPage = 8
+    console.log(cardsOnPage);
+  }
+}
+
+mediaQueries.forEach((item) => {
+  item.addEventListener('change', screenMatches)
+})
