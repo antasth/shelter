@@ -121,20 +121,21 @@ const mediaQueries = [
 function screenMatches() {
   if (mediaQueries[0].matches) {
     cardsOnPage = 3
-    createCards(cardsOnPage, page)
-    console.log(cardsOnPage)
+    countOfPages = 16
+    setPage(1)
+    createCards(3, 1)
   }
-
   if (mediaQueries[1].matches) {
     cardsOnPage = 6
-    console.log(cardsOnPage)
-    createCards(cardsOnPage, page)
+    countOfPages = 8
+    setPage(1)
+    createCards(6, 1)
   }
-
   if (mediaQueries[2].matches) {
     cardsOnPage = 8
-    console.log(cardsOnPage)
-    createCards(cardsOnPage, page)
+    countOfPages = 6
+    setPage(1)
+    createCards(8, 1)
   }
 }
 
@@ -172,10 +173,16 @@ const pageNumber = document.querySelector('.page-number')
 const forwardButton = document.querySelector('.forward-button')
 const doubleForwardButton = document.querySelector('.double-forward-button')
 
+function setPage(pageNum) {
+  pageNumber.innerHTML = `${pageNum}`
+}
+function setCountOfPages(count) {
+  countOfPages = count
+}
 const forward = () => {
   page !== countOfPages ? (page += 1) : page
   pageNumber.innerHTML = `${page}`
-  
+
   createCards(cardsOnPage, page)
 }
 const forwardDouble = () => {
