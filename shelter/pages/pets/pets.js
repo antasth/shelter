@@ -59,13 +59,14 @@ function hideBurger() {
 
 // PAGINATION
 
-console.log(pets)
+// console.log(pets)
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1))
     ;[array[i], array[j]] = [array[j], array[i]]
   }
+  return array
 }
 
 // get random array from 0 to 7
@@ -92,7 +93,21 @@ const fillArray = (baseArr) => {
 const baseArr = getRandomBaseArray()
 const fullArray = fillArray(baseArr)
 
-console.log(baseArr)
 console.log(fullArray)
 
+const getCardsArray = (arr) => {
+  let cardsArray = []
+  let shortArr = []
 
+  for (let i = 0; i < 6; i++) {
+    shortArr = arr.splice(0, 3)
+    cardsArray = [...cardsArray, ...shuffleArray(shortArr)]
+    shortArr = arr.splice(0, 3)
+    cardsArray = [...cardsArray, ...shuffleArray(shortArr)]
+    shortArr = arr.splice(0, 2)
+    cardsArray = [...cardsArray, ...shuffleArray(shortArr)]
+  }
+  return cardsArray
+}
+
+console.log(getCardsArray(fullArray))
