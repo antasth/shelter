@@ -199,7 +199,7 @@ doubleForwardButton.addEventListener('click', () => {
 
 const back = () => {
   console.log(page);
-  page > 0 ? (page -= 1) : page
+  page > 1 ? (page -= 1) : page
   setPage(page)
   createCards(cardsOnPage, page)
 }
