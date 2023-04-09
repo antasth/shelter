@@ -172,23 +172,21 @@ createCards(cardsOnPage, 1)
 const pageNumber = document.querySelector('.page-number')
 const forwardButton = document.querySelector('.forward-button')
 const doubleForwardButton = document.querySelector('.double-forward-button')
+const backButton = document.querySelector('.back-button')
+const doubleBackButton = document.querySelector('.double-back-button')
 
 function setPage(pageNum) {
   pageNumber.innerHTML = `${pageNum}`
 }
-function setCountOfPages(count) {
-  countOfPages = count
-}
+
 const forward = () => {
   page !== countOfPages ? (page += 1) : page
-  pageNumber.innerHTML = `${page}`
-
+  setPage(page)
   createCards(cardsOnPage, page)
 }
 const forwardDouble = () => {
   page = countOfPages
-  pageNumber.innerHTML = `${page}`
-
+  setPage(page)
   createCards(cardsOnPage, page)
 }
 
@@ -197,4 +195,22 @@ forwardButton.addEventListener('click', () => {
 })
 doubleForwardButton.addEventListener('click', () => {
   forwardDouble()
+})
+
+const back = () => {
+  page > 0 ? (page -= 1) : page
+  setPage(page)
+  createCards(cardsOnPage, page)
+}
+const doubleBack = () => {
+  page = 1
+  setPage(page)
+  createCards(cardsOnPage, page)
+}
+
+backButton.addEventListener('click', ()=> {
+  back()
+})
+doubleBackButton.addEventListener('click', ()=> {
+  doubleBack()
 })
