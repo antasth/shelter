@@ -59,8 +59,6 @@ function hideBurger() {
 
 // PAGINATION
 
-// console.log(pets)
-
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1))
@@ -85,7 +83,6 @@ const getRandomBaseArray = () => {
   return fullArr
 }
 const fullArray = getRandomBaseArray()
-// console.log(fullArray)
 
 const getCardsArray = (arr) => {
   let cardsArray = []
@@ -102,9 +99,12 @@ const getCardsArray = (arr) => {
   return cardsArray
 }
 
-// console.log(getCardsArray(fullArray))
-
 const cards = document.querySelector('.pets__cards')
+const pageNumber = document.getElementById('page-number')
+const forwardButton = document.getElementById('forward-button')
+const doubleForwardButton = document.getElementById('double-forward-button')
+const backButton = document.getElementById('back-button')
+const doubleBackButton = document.getElementById('double-back-button')
 
 const cardsArray = getCardsArray(fullArray)
 let cardsOnPage =
@@ -122,20 +122,36 @@ function screenMatches() {
   if (mediaQueries[0].matches) {
     cardsOnPage = 3
     countOfPages = 16
-    setPage(1)
-    createCards(3, 1)
+    if(page < countOfPages) {
+      forwardButton.classList.remove('inactive')
+      doubleForwardButton.classList.remove('inactive')
+    }
+    createCards(cardsOnPage, page)
   }
   if (mediaQueries[1].matches) {
     cardsOnPage = 6
     countOfPages = 8
-    setPage(1)
-    createCards(6, 1)
+    if(page >= countOfPages) {
+      page = countOfPages
+      forwardButton.classList.add('inactive')
+      doubleForwardButton.classList.add('inactive')
+    } else {
+      forwardButton.classList.remove('inactive')
+      doubleForwardButton.classList.remove('inactive')
+    }
+    setPage(page)
+    createCards(cardsOnPage, page)
   }
   if (mediaQueries[2].matches) {
     cardsOnPage = 8
     countOfPages = 6
-    setPage(1)
-    createCards(8, 1)
+    if(page >= countOfPages) {
+      page = countOfPages
+       forwardButton.classList.add('inactive')
+      doubleForwardButton.classList.add('inactive')
+    }
+    setPage(page)
+    createCards(cardsOnPage, page)
   }
 }
 
@@ -167,13 +183,9 @@ const createCards = (cardsCount, pageNumber) => {
   }
 }
 // create cards on page load
-createCards(cardsOnPage, 1)
+createCards(cardsOnPage, page)
 
-const pageNumber = document.getElementById('page-number')
-const forwardButton = document.getElementById('forward-button')
-const doubleForwardButton = document.getElementById('double-forward-button')
-const backButton = document.getElementById('back-button')
-const doubleBackButton = document.getElementById('double-back-button')
+
 
 function setPage(pageNum) {
   pageNumber.innerHTML = `${pageNum}`
@@ -183,11 +195,11 @@ const forward = () => {
   page !== countOfPages ? (page += 1) : page
   setPage(page)
   createCards(cardsOnPage, page)
-  if (page > 1 ) {
+  if (page > 1) {
     backButton.classList.remove('inactive')
     doubleBackButton.classList.remove('inactive')
   }
-  if(page === countOfPages) {
+  if (page === countOfPages) {
     forwardButton.classList.add('inactive')
     doubleForwardButton.classList.add('inactive')
   }
@@ -196,7 +208,7 @@ const forwardDouble = () => {
   page = countOfPages
   setPage(page)
   createCards(cardsOnPage, page)
-  if(page === countOfPages) {
+  if (page === countOfPages) {
     forwardButton.classList.add('inactive')
     doubleForwardButton.classList.add('inactive')
     backButton.classList.remove('inactive')
@@ -212,7 +224,6 @@ doubleForwardButton.addEventListener('click', () => {
 })
 
 const back = () => {
-  console.log(page);
   page > 1 ? (page -= 1) : page
   setPage(page)
   createCards(cardsOnPage, page)
@@ -220,7 +231,7 @@ const back = () => {
     backButton.classList.add('inactive')
     doubleBackButton.classList.add('inactive')
   }
-  if(page < countOfPages) {
+  if (page < countOfPages) {
     forwardButton.classList.remove('inactive')
     doubleForwardButton.classList.remove('inactive')
   }
@@ -233,7 +244,7 @@ const backDouble = () => {
     backButton.classList.add('inactive')
     doubleBackButton.classList.add('inactive')
   }
-  if(page < countOfPages) {
+  if (page < countOfPages) {
     forwardButton.classList.remove('inactive')
     doubleForwardButton.classList.remove('inactive')
   }
