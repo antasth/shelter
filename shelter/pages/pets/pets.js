@@ -1,3 +1,5 @@
+import pets from '../../data/pets.json' assert { type: 'json' }
+
 // BURGER
 const burgerBackground = document.querySelector('.burger__background')
 const burgerIconBlack = document.querySelector('.burger__icon-black')
@@ -54,3 +56,43 @@ function hideBurger() {
   burgerIconBlack.classList.add('burger__icon-black')
   document.documentElement.style.marginRight = 0
 }
+
+// PAGINATION
+
+console.log(pets)
+
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1))
+    ;[array[i], array[j]] = [array[j], array[i]]
+  }
+}
+
+// get random array from 0 to 7
+const getRandomBaseArray = () => {
+  const arr = []
+  while (arr.length !== 8) {
+    const rand = Math.floor(Math.random() * 8)
+    if (!arr.includes(rand)) {
+      arr.push(rand)
+    }
+  }
+  return arr
+}
+
+// fill array to 48 cards
+const fillArray = (baseArr) => {
+  let arr = []
+  for (let i = 0; i < 6; i++) {
+    arr = [...arr, ...baseArr]
+  }
+  return arr
+}
+
+const baseArr = getRandomBaseArray()
+const fullArray = fillArray(baseArr)
+
+console.log(baseArr)
+console.log(fullArray)
+
+
