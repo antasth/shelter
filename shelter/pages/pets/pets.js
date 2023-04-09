@@ -69,30 +69,22 @@ const shuffleArray = (array) => {
   return array
 }
 
-// get random array from 0 to 7
+// get base array from 0 to 48
 const getRandomBaseArray = () => {
-  const arr = []
-  while (arr.length !== 8) {
+  const baseArr = []
+  let fullArr = []
+  while (baseArr.length !== 8) {
     const rand = Math.floor(Math.random() * 8)
-    if (!arr.includes(rand)) {
-      arr.push(rand)
+    if (!baseArr.includes(rand)) {
+      baseArr.push(rand)
     }
   }
-  return arr
-}
-
-// fill array to 48 cards
-const fillArray = (baseArr) => {
-  let arr = []
   for (let i = 0; i < 6; i++) {
-    arr = [...arr, ...baseArr]
+    fullArr = [...fullArr, ...baseArr]
   }
-  return arr
+  return fullArr
 }
-
-const baseArr = getRandomBaseArray()
-const fullArray = fillArray(baseArr)
-
+const fullArray = getRandomBaseArray()
 console.log(fullArray)
 
 const getCardsArray = (arr) => {
