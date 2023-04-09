@@ -169,11 +169,11 @@ const createCards = (cardsCount, pageNumber) => {
 // create cards on page load
 createCards(cardsOnPage, 1)
 
-const pageNumber = document.querySelector('.page-number')
-const forwardButton = document.querySelector('.forward-button')
-const doubleForwardButton = document.querySelector('.double-forward-button')
-const backButton = document.querySelector('.back-button')
-const doubleBackButton = document.querySelector('.double-back-button')
+const pageNumber = document.getElementById('page-number')
+const forwardButton = document.getElementById('forward-button')
+const doubleForwardButton = document.getElementById('double-forward-button')
+const backButton = document.getElementById('back-button')
+const doubleBackButton = document.getElementById('double-back-button')
 
 function setPage(pageNum) {
   pageNumber.innerHTML = `${pageNum}`
@@ -198,6 +198,7 @@ doubleForwardButton.addEventListener('click', () => {
 })
 
 const back = () => {
+  console.log(page);
   page > 0 ? (page -= 1) : page
   setPage(page)
   createCards(cardsOnPage, page)
@@ -208,9 +209,9 @@ const doubleBack = () => {
   createCards(cardsOnPage, page)
 }
 
-backButton.addEventListener('click', ()=> {
+backButton.addEventListener('click', () => {
   back()
 })
-doubleBackButton.addEventListener('click', ()=> {
+doubleBackButton.addEventListener('click', () => {
   doubleBack()
 })
