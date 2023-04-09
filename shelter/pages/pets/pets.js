@@ -1,5 +1,3 @@
-import pets from '../../data/pets.json' assert { type: 'json' }
-
 // BURGER
 const burgerBackground = document.querySelector('.burger__background')
 const burgerIconBlack = document.querySelector('.burger__icon-black')
@@ -103,3 +101,16 @@ const getCardsArray = (arr) => {
 }
 
 console.log(getCardsArray(fullArray))
+
+const createCard = ({ img, name }) => {
+  const card = document.createElement('div')
+  card.classList.add('.pets__card')
+  card.innerHTML = `
+  <div class="pets__card-img">
+    <img src="${img}" alt="pet" />
+  </div>
+  <div class="pets__card-name">${name}</div>
+  <div class="pets__card-button">Learn more</div>
+  `
+  return card
+}
