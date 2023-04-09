@@ -110,6 +110,7 @@ const cardsArray = getCardsArray(fullArray)
 let cardsOnPage =
   document.body.clientWidth > 1279 ? 8 : document.body.clientWidth < 768 ? 3 : 6
 let countOfPages = 48 / cardsOnPage
+let page = 1
 
 const mediaQueries = [
   window.matchMedia('(min-width: 0px) and (max-width: 768px)'),
@@ -162,5 +163,22 @@ const createCards = (cardsCount, pageNumber) => {
 }
 
 createCards(cardsOnPage, 1)
+const pageNumber = document.querySelector('.page-number')
+const forwardButton = document.querySelector('.forward-button')
+const doubleForwardButton = document.querySelector('.double-forward-button')
 
+const forward = () => {
+ page !== countOfPages ? page += 1 : page
+  pageNumber.innerHTML = `${page}`
+}
+const forwardDouble = () => {
+  page = countOfPages
+  pageNumber.innerHTML = `${page}`
+}
 
+forwardButton.addEventListener('click', () => {
+  forward()
+})
+doubleForwardButton.addEventListener('click', ()=> {
+  forwardDouble()
+})
