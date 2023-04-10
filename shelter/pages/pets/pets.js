@@ -259,14 +259,36 @@ doubleBackButton.addEventListener('click', () => {
 
 const bindModal = (triggerSelector, modalSelector, closeSelector) => {
   const trigger = document.querySelectorAll(triggerSelector),
-  modal = document.querySelector(modalSelector),
-  close = document.querySelector(closeSelector)
+    modal = document.querySelector(modalSelector),
+    close = document.querySelector(closeSelector)
 
-  trigger.forEach(item=> {
-    item.addEventListener('click', ()=> {
+  trigger.forEach((item) => {
+    item.addEventListener('click', () => {
       showModal(modal)
     })
   })
+  close.addEventListener('click', () => {
+    hideModal(modal)
+  })
+
+  modal.addEventListener('click', (e) => {
+    if (e.target == modal) {
+      hideModal(modal)
+    }
+  })
+}
+
+function showModal(modal) {
+  modal.classList.add('show')
+  modal.classList.remove('hide')
+  document.body.classList.add('locked')
+  // isModalOpen = true
+}
+
+function hideModal(modal) {
+  modal.classList.remove('show')
+  modal.classList.add('hide')
+  document.body.classList.remove('locked')
 }
 
 bindModal('.pets__card', '.popup-overlay', '.popup-close')
