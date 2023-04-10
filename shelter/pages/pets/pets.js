@@ -182,7 +182,7 @@ const createCards = (cardsCount, pageNumber) => {
   for (let i = 0; i < cardsCount; i++) {
     cards.append(createCard(pets[cardsOnCurrentPage[i]]))
   }
-  bindModal('.pets__card', '.popup-overlay', '.popup-close')
+  // bindModal('.pets__card', '.popup-overlay', '.popup-close')
 }
 // create cards on page load
 createCards(cardsOnPage, page)
@@ -259,44 +259,22 @@ doubleBackButton.addEventListener('click', () => {
 
 // MODAL
 
-function bindModal(triggerSelector, modalSelector, closeSelector) {
-  const trigger = document.querySelectorAll(triggerSelector),
-    modal = document.querySelector(modalSelector),
-    close = document.querySelector(closeSelector)
+function showModal() {
+  const modal = document.querySelector('.popup-overlay')
 
-  trigger.forEach((item) => {
-    item.addEventListener('click', (e) => {
-      const pet = pets.find((item) => item.id == e.currentTarget.id)
-      const popupContainer = document.querySelector('.popup_container')
-      popupContainer.replaceChildren()
-      popupContainer.append(createPetPopupCard(pet))
-      showModal(modal)
-    })
-  })
-  close.addEventListener('click', () => {
-    hideModal(modal)
-  })
-
-  modal.addEventListener('click', (e) => {
-    if (e.target == modal) {
-      hideModal(modal)
-    }
-  })
-}
-
-function showModal(modal) {
   // if scroll is hidden => add margin right
   let marginSize = window.innerWidth - document.documentElement.clientWidth
   if (marginSize) {
     document.documentElement.style.marginRight = marginSize + 'px'
   }
-
   modal.classList.add('show')
   modal.classList.remove('hide')
   document.body.classList.add('locked')
 }
 
-function hideModal(modal) {
+function hideModal() {
+  const modal = document.querySelector('.popup-overlay')
+
   modal.classList.remove('show')
   modal.classList.add('hide')
   document.body.classList.remove('locked')
@@ -333,3 +311,32 @@ function createPetPopupCard({ img, name, type, breed, description, age }) {
 `
   return petCard
 }
+
+const petsCards = document.querySelector('.pets__cards')
+
+petsCards.addEventListener('click', (event) => {
+  let target = event.target
+  let card = event.target.closest('.pets__card')
+  if (!card) return
+
+  if (target && card) {
+    const pet = pets.find((item) => item.id == card.id)
+    const popupContainer = document.querySelector('.popup_container')
+    popupContainer.replaceChildren()
+    popupContainer.append(createPetPopupCard(pet))
+    showModal()
+
+    const modal = document.querySelector('.popup-overlay')
+    const close = document.querySelector('.popup-close')
+
+    close.addEventListener('click', () => {
+      hideModal(modal)
+    })
+
+    modal.addEventListener('click', (e) => {
+      if (e.target == modal) {
+        hideModal(modal)
+      }
+    })
+  }
+})
