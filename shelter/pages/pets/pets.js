@@ -312,7 +312,7 @@ function createPetPopupCard({
     </h5>
 
     <ul class="pet__info">
-      <li><span>Age:</span>${age}</li>
+      <li><span>Age:</span> ${age}</li>
       <li><span>Inoculations:</span> ${inoculations.join(', ')}</li>
       <li><span>Diseases:</span> ${diseases.join(', ')}</li>
       <li><span>Parasites:</span> ${parasites.join(', ')}</li>
