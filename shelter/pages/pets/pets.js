@@ -281,7 +281,17 @@ function hideModal() {
   document.documentElement.style.marginRight = 0
 }
 
-function createPetPopupCard({ modalImg, name, type, breed, description, age }) {
+function createPetPopupCard({
+  modalImg,
+  name,
+  type,
+  breed,
+  description,
+  age,
+  inoculations,
+  diseases,
+  parasites,
+}) {
   const petCard = document.createElement('div')
   petCard.classList.add('pet')
   petCard.innerHTML = `
@@ -303,9 +313,9 @@ function createPetPopupCard({ modalImg, name, type, breed, description, age }) {
 
     <ul class="pet__info">
       <li><span>Age:</span>${age}</li>
-      <li><span>Inoculations:</span> sdfsrs</li>
-      <li><span>Diseases:</span> 242sgrs</li>
-      <li><span>Parasites:</span> 34ars</li>
+      <li><span>Inoculations:</span> ${inoculations.join(', ')}</li>
+      <li><span>Diseases:</span> ${diseases.join(', ')}</li>
+      <li><span>Parasites:</span> ${parasites.join(', ')}</li>
     </ul>
   </div>
 `
