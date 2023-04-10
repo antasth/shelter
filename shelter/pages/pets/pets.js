@@ -122,7 +122,7 @@ function screenMatches() {
   if (mediaQueries[0].matches) {
     cardsOnPage = 3
     countOfPages = 16
-    if(page < countOfPages) {
+    if (page < countOfPages) {
       forwardButton.classList.remove('inactive')
       doubleForwardButton.classList.remove('inactive')
     }
@@ -131,7 +131,7 @@ function screenMatches() {
   if (mediaQueries[1].matches) {
     cardsOnPage = 6
     countOfPages = 8
-    if(page >= countOfPages) {
+    if (page >= countOfPages) {
       page = countOfPages
       forwardButton.classList.add('inactive')
       doubleForwardButton.classList.add('inactive')
@@ -145,9 +145,9 @@ function screenMatches() {
   if (mediaQueries[2].matches) {
     cardsOnPage = 8
     countOfPages = 6
-    if(page >= countOfPages) {
+    if (page >= countOfPages) {
       page = countOfPages
-       forwardButton.classList.add('inactive')
+      forwardButton.classList.add('inactive')
       doubleForwardButton.classList.add('inactive')
     }
     setPage(page)
@@ -184,8 +184,6 @@ const createCards = (cardsCount, pageNumber) => {
 }
 // create cards on page load
 createCards(cardsOnPage, page)
-
-
 
 function setPage(pageNum) {
   pageNumber.innerHTML = `${pageNum}`
@@ -256,3 +254,19 @@ backButton.addEventListener('click', () => {
 doubleBackButton.addEventListener('click', () => {
   backDouble()
 })
+
+// MODAL
+
+const bindModal = (triggerSelector, modalSelector, closeSelector) => {
+  const trigger = document.querySelectorAll(triggerSelector),
+  modal = document.querySelector(modalSelector),
+  close = document.querySelector(closeSelector)
+
+  trigger.forEach(item=> {
+    item.addEventListener('click', ()=> {
+      showModal(modal)
+    })
+  })
+}
+
+bindModal('.pets__card', '.popup-overlay', '.popup-close')
