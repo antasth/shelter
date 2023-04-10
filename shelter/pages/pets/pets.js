@@ -181,6 +181,7 @@ const createCards = (cardsCount, pageNumber) => {
   for (let i = 0; i < cardsCount; i++) {
     cards.append(createCard(pets[cardsOnCurrentPage[i]]))
   }
+  bindModal('.pets__card', '.popup-overlay', '.popup-close')
 }
 // create cards on page load
 createCards(cardsOnPage, page)
@@ -257,7 +258,7 @@ doubleBackButton.addEventListener('click', () => {
 
 // MODAL
 
-const bindModal = (triggerSelector, modalSelector, closeSelector) => {
+function bindModal(triggerSelector, modalSelector, closeSelector) {
   const trigger = document.querySelectorAll(triggerSelector),
     modal = document.querySelector(modalSelector),
     close = document.querySelector(closeSelector)
@@ -279,19 +280,15 @@ const bindModal = (triggerSelector, modalSelector, closeSelector) => {
 }
 
 function showModal(modal) {
+  // if scroll is hidden => add margin right
+  let marginSize = window.innerWidth - document.documentElement.clientWidth
+  if (marginSize) {
+    document.documentElement.style.marginRight = marginSize + 'px'
+  }
 
-    // if scroll is hidden => add margin right
-    let marginSize = window.innerWidth - document.documentElement.clientWidth
-    if (marginSize) {
-      document.documentElement.style.marginRight = marginSize + 'px'
-    }
-    
   modal.classList.add('show')
   modal.classList.remove('hide')
   document.body.classList.add('locked')
-  // isModalOpen = true
-
-
 }
 
 function hideModal(modal) {
