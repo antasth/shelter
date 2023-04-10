@@ -322,7 +322,7 @@ section {
   justify-content: space-between;
   overflow: hidden;
 }
-.slider__cards {
+.pets__cards {
   position: relative;
   flex-grow: 1;
   display: flex;
@@ -339,7 +339,7 @@ section {
   column-gap: 90px;
   padding: 0 45px;
 }
-.slider__card {
+.pets__card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -350,11 +350,11 @@ section {
   overflow: hidden;
   transition: all 0.2s ease-in-out;
 }
-.slider__card-img {
+.pets__card-img {
   max-height: 270px;
   overflow: hidden;
 }
-.slider__card-name {
+.pets__card-name {
   font-family: 'Georgia';
   font-style: normal;
   font-weight: 400;
@@ -369,21 +369,21 @@ section {
   /* color-dark-l */
   color: #545454;
 }
-.slider__card:hover {
+.pets__card:hover {
   box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
 }
-.slider__card:hover .slider__card-button {
+.pets__card:hover .pets__card-button {
   background: #fddcc4;
   border-color: #fddcc4;
   cursor: pointer;
 }
-.slider__card-img img {
+.pets__card-img img {
   transition: all 0.8s ease-in-out;
 }
-.slider__card:hover .slider__card-img img {
+.pets__card:hover .pets__card-img img {
   transform: scale(1.1);
 }
-.slider__card-button {
+.pets__card-button {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -403,7 +403,7 @@ section {
   border-radius: 100px;
   transition: all 0.2s ease-in-out;
 }
-.slider__card-button:hover {
+.pets__card-button:hover {
   background: #fddcc4;
   border-color: #fddcc4;
   cursor: pointer;
@@ -416,7 +416,7 @@ section {
   .slider__inner {
     max-width: 604px;
   }
-  .slider__cards {
+  .pets__cards {
     margin: 0;
     left: -604px;
   }
@@ -427,10 +427,10 @@ section {
     justify-content: center;
     padding: 0 20px;
   }
-  .slider__card {
+  .pets__card {
     max-width: 100%;
   }
-  .slider__card-img img {
+  .pets__card-img img {
     max-width: 100%;
     max-height: 100%;
     overflow: hidden;
@@ -443,17 +443,17 @@ section {
   .slider__content {
     padding: 0;
   }
-  .slider__cards {
+  .pets__cards {
     justify-content: space-around;
   }
 }
 @media (max-width: 991.98px) {
-  .slider__card {
+  .pets__card {
     margin: 0;
   }
 }
 @media (max-width: 771.98px) {
-  .slider__cards {
+  .pets__cards {
     justify-content: space-between;
   }
 }
@@ -464,7 +464,7 @@ section {
   .slider__inner {
     max-width: 300px;
   }
-  .slider__cards {
+  .pets__cards {
     margin: 0;
     justify-content: center;
     left: -300px;
@@ -493,10 +493,10 @@ section {
     flex-wrap: wrap;
     justify-content: center;
   }
-  .slider__cards {
+  .pets__cards {
     order: 0;
   }
-  .slider__card {
+  .pets__card {
     margin-bottom: 20px;
   }
   .slider__arrow:first-child {
