@@ -1,7 +1,6 @@
 import pets from '../data/pets.json' assert { type: 'json' }
 
 // MODAL
-
 function showModal() {
   const modal = document.querySelector('.popup-overlay')
 
