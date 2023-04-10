@@ -281,14 +281,14 @@ function hideModal() {
   document.documentElement.style.marginRight = 0
 }
 
-function createPetPopupCard({ img, name, type, breed, description, age }) {
+function createPetPopupCard({ modalImg, name, type, breed, description, age }) {
   const petCard = document.createElement('div')
   petCard.classList.add('pet')
   petCard.innerHTML = `
   <button class="popup-close">&times;</button>
   <div class="pet__img">
     <img
-      src=${img}
+      src=${modalImg}
       alt="pet-img"
     />
   </div>
