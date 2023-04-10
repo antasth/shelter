@@ -88,78 +88,21 @@
             are looking for a house
           </h3>
           <div class="pets__content">
-            <div class="pets__cards">
-              <div class="pets__card">
-                <div class="pets__card-img">
-                  <img src="./assets/img/pets/katrine.png" alt="pet" />
-                </div>
-                <div class="pets__card-name">Katrine</div>
-                <div class="pets__card-button">Learn more</div>
-              </div>
-              <div class="pets__card">
-                <div class="pets__card-img">
-                  <img src="./assets/img/pets/jennifer.png" alt="pet" />
-                </div>
-                <div class="pets__card-name">Jennifer</div>
-                <div class="pets__card-button">Learn more</div>
-              </div>
-              <div class="pets__card">
-                <div class="pets__card-img">
-                  <img src="./assets/img/pets/woody.png" alt="pet" />
-                </div>
-                <div class="pets__card-name">Woody</div>
-                <div class="pets__card-button">Learn more</div>
-              </div>
-              <div class="pets__card">
-                <div class="pets__card-img">
-                  <img src="./assets/img/pets/sophia.png" alt="pet" />
-                </div>
-                <div class="pets__card-name">Sophia</div>
-                <div class="pets__card-button">Learn more</div>
-              </div>
-              <div class="pets__card">
-                <div class="pets__card-img">
-                  <img src="./assets/img/pets/timmy.png" alt="pet" />
-                </div>
-                <div class="pets__card-name">Timmy</div>
-                <div class="pets__card-button">Learn more</div>
-              </div>
-              <div class="pets__card">
-                <div class="pets__card-img">
-                  <img src="./assets/img/pets/charly.png" alt="pet" />
-                </div>
-                <div class="pets__card-name">Charly</div>
-                <div class="pets__card-button">Learn more</div>
-              </div>
-              <div class="pets__card">
-                <div class="pets__card-img">
-                  <img src="./assets/img/pets/scarlett.png" alt="pet" />
-                </div>
-                <div class="pets__card-name">Scarlett</div>
-                <div class="pets__card-button">Learn more</div>
-              </div>
-              <div class="pets__card">
-                <div class="pets__card-img">
-                  <img src="./assets/img/pets/freddie.png" alt="pet" />
-                </div>
-                <div class="pets__card-name">Freddie</div>
-                <div class="pets__card-button">Learn more</div>
-              </div>
-            </div>
+            <div class="pets__cards"></div>
             <div class="pets__pagination">
-              <div class="pagination__button-inactive">
+              <div id="double-back-button" class="pagination__button inactive">
                 <h4>&lt;&lt;</h4>
               </div>
-              <div class="pagination__button-inactive">
+              <div id="back-button" class="pagination__button inactive">
                 <h4>&lt;</h4>
               </div>
-              <div class="pagination__button active">
+              <div id="page-number" class="pagination__button active">
                 <h4>1</h4>
               </div>
-              <div class="pagination__button">
+              <div id="forward-button" class="pagination__button">
                 <h4>&gt;</h4>
               </div>
-              <div class="pagination__button">
+              <div id="double-forward-button" class="pagination__button">
                 <h4>&gt;&gt;</h4>
               </div>
             </div>
@@ -217,6 +160,14 @@
         </div>
       </div>
     </div>
+
+    <div class="popup-overlay popup-overlay__modal hide">
+      <div class="popup">
+        <div class="popup_container"></div>
+      </div>
+    </div>
+    <script type="module" src="./pages/pets/pets.js"></script>
+    <script type="module" src="./modules/popup.js"></script>
+
   </body>
-  <script src="./pages/pets/pets.js"></script>
 </html>
