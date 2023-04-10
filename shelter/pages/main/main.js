@@ -50,7 +50,7 @@ function hideBurger() {
 }
 
 // SLIDER
-const sliderCards = document.querySelector('.slider__cards')
+const sliderCards = document.querySelector('.pets__cards')
 const backArrow = document.querySelector('.back__arrow')
 const forwardArrow = document.querySelector('.forward__arrow')
 
@@ -95,15 +95,16 @@ mediaQueries.forEach((item) => {
 })
 
 // create card
-const createCard = ({ img, name }) => {
+const createCard = ({id, img, name }) => {
   let card = document.createElement('div')
-  card.classList.add('slider__card')
+  card.classList.add('pets__card')
+  card.id = id
   card.innerHTML = `
-  <div class="slider__card-img">
+  <div class="pets__card-img">
    <img src= '${img}' alt="pet" />
   </div>
-  <div class="slider__card-name">${name}</div> 
-  <div class="slider__card-button">Learn more</div>
+  <div class="pets__card-name">${name}</div> 
+  <div class="pets__card-button">Learn more</div>
   `
   return card
 }
