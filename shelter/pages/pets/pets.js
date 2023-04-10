@@ -159,9 +159,10 @@ mediaQueries.forEach((item) => {
   item.addEventListener('change', screenMatches)
 })
 
-const createCard = ({ img, name }) => {
+const createCard = ({ id, img, name }) => {
   const card = document.createElement('div')
   card.classList.add('pets__card')
+  card.id = id
   card.innerHTML = `
   <div class="pets__card-img">
     <img src="${img}" alt="pet" />
@@ -264,7 +265,11 @@ function bindModal(triggerSelector, modalSelector, closeSelector) {
     close = document.querySelector(closeSelector)
 
   trigger.forEach((item) => {
-    item.addEventListener('click', () => {
+    item.addEventListener('click', (e) => {
+      const pet = pets.find((item) => item.id == e.currentTarget.id)
+      const popupContainer = document.querySelector('.popup_container')
+      popupContainer.replaceChildren()
+      popupContainer.append(createPetPopupCard(pet))
       showModal(modal)
     })
   })
@@ -298,4 +303,33 @@ function hideModal(modal) {
   document.documentElement.style.marginRight = 0
 }
 
-bindModal('.pets__card', '.popup-overlay', '.popup-close')
+function createPetPopupCard({ img, name, type, breed, description, age }) {
+  const petCard = document.createElement('div')
+  petCard.classList.add('pet')
+  petCard.innerHTML = `
+  <button class="popup-close">&times;</button>
+  <div class="pet__img">
+    <img
+      src=${img}
+      alt="pet-img"
+    />
+  </div>
+  <div class="pet__description">
+    <div class="description__header">
+      <h3 class="title">${name}</h3>
+      <h4 class="subtitle">${type}-${breed}</h4>
+    </div>
+    <h5 class="description__text">
+      ${description}
+    </h5>
+
+    <ul class="pet__info">
+      <li><span>Age:</span>${age}</li>
+      <li><span>Inoculations:</span> sdfsrs</li>
+      <li><span>Diseases:</span> 242sgrs</li>
+      <li><span>Parasites:</span> 34ars</li>
+    </ul>
+  </div>
+`
+  return petCard
+}
