@@ -463,7 +463,6 @@ a:hover {
 .popup {
   display: inline-block;
   vertical-align: middle;
-  
 }
 
 .popup_container {
@@ -485,6 +484,7 @@ a:hover {
   width: 52px;
   height: 52px;
   font-size: 2rem;
+  font-weight: bold;
   text-align: center;
   display: flex;
   align-items: center;
@@ -496,7 +496,11 @@ a:hover {
   transition: all 0.2s ease-in-out;
   cursor: pointer;
 }
-
+.popup-close:hover {
+  background: #fddcc4;
+  border-color: #fddcc4;
+  color: #000000;
+}
 .pet {
   display: flex;
   justify-content: space-between;
@@ -536,5 +540,5 @@ h5 {
   row-gap: 10px;
 }
 .pet__info li::marker {
-  color: #F1CDB3;
+  color: #f1cdb3;
 }
