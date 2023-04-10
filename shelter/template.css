@@ -502,7 +502,7 @@ a:hover {
   border-radius: 9px;
   height: 100%;
   width: 100%;
-  background: #FAFAFA;
+  background: #fafafa;
   color: #000000;
 }
 .pet h3,
@@ -562,5 +562,36 @@ h5 {
   }
   .pet__info {
     row-gap: 5px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .popup_container {
+    width: 240px;
+    height: 100%;
+  }
+  .pet__img {
+    display: none;
+  }
+  .pet {
+    column-gap: 0;
+  }
+  .pet__description {
+    margin: 0;
+    padding: 10px;
+    align-items: center;
+  }
+  .description__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .description__text {
+    margin-bottom: 24px;
+    text-align: justify;
+  }
+  .pet__info {
+    align-self: start;
   }
 }
