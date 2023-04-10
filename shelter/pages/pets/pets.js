@@ -279,16 +279,26 @@ const bindModal = (triggerSelector, modalSelector, closeSelector) => {
 }
 
 function showModal(modal) {
+
+    // if scroll is hidden => add margin right
+    let marginSize = window.innerWidth - document.documentElement.clientWidth
+    if (marginSize) {
+      document.documentElement.style.marginRight = marginSize + 'px'
+    }
+    
   modal.classList.add('show')
   modal.classList.remove('hide')
   document.body.classList.add('locked')
   // isModalOpen = true
+
+
 }
 
 function hideModal(modal) {
   modal.classList.remove('show')
   modal.classList.add('hide')
   document.body.classList.remove('locked')
+  document.documentElement.style.marginRight = 0
 }
 
 bindModal('.pets__card', '.popup-overlay', '.popup-close')
