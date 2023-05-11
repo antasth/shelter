@@ -40,14 +40,50 @@ board.addEventListener('click', (e) => {
   }
 })
 const getBombs = (cellId) => {
-  const aroundId = [1, width - 1, width, width + 1]
-  const aroundCellsId = []
-  aroundId.forEach((id) => {
-    aroundCellsId.push(cellId + id)
-    aroundCellsId.push(cellId - id)
-  })
-  console.log(aroundCellsId)
-  const aroundBombs = aroundCellsId.filter((id) => bombs.includes(id))
-
-  return aroundBombs.length
+  console.log(cellId)
+  const column = cellId % width !== 0 ? cellId % width : width
+  const row = Math.ceil(cellId / width)
+  let count = 0
+  if (row !== 1 && row !== width && column !== 1 && column !== width) {
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        if (bombs.includes((row + i - 1) * width + column + j)) {
+          count++
+        }
+      }
+    }
+  } else if (column === 1) {
+    for (let i = -1; i <= 1; i++) {
+      for (let j = 0; j <= 1; j++) {
+        if (bombs.includes((row + i - 1) * width + column + j)) {
+          count++
+        }
+      }
+    }
+  } else if (column === width) {
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 0; j++) {
+        if (bombs.includes((row + i - 1) * width + column + j)) {
+          count++
+        }
+      }
+    }
+  } else if (row === 1) {
+    for (let i = 0; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        if (bombs.includes((row + i - 1) * width + column + j)) {
+          count++
+        }
+      }
+    }
+  } else if (row === width) {
+    for (let i = -1; i <= 0; i++) {
+      for (let j = -1; j <= 1; j++) {
+        if (bombs.includes((row + i - 1) * width + column + j)) {
+          count++
+        }
+      }
+    }
+  }
+  return count
 }

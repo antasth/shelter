@@ -31,16 +31,16 @@ body {
   align-items: center;
   border-radius: 0.3rem;
   cursor: pointer;
-  background: linear-gradient(to right, #e73827, #f85032);
+  background: linear-gradient(to right, #50aff8, #91cffe);
 }
 .button:hover {
-  background: #33cb10;
+  /* background: #2c7ebc; */
 }
 .board {
   display: grid;
   grid-template-columns: repeat(15, 1.5rem);
   justify-items: center;
-  padding: 1rem;
+  padding: 2rem;
   border-radius: 1rem;
   background: #3a6186;
   background: linear-gradient(to right, #89253e, #3a6186);
