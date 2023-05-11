@@ -1,6 +1,6 @@
 const width = 15
 const height = 15
-const bombsCount = 10
+const bombsCount = 50
 let boardSize = width * height
 
 function createBoard(size) {
@@ -34,15 +34,20 @@ board.addEventListener('click', (e) => {
       e.target.innerHTML = 'B'
       e.target.classList.add('disabled')
     } else {
-      e.target.innerHTML = e.target.id
-      getBombs(e.target.id)
+      const bombsCount = getBombs(Number(e.target.id))
+      e.target.innerHTML = bombsCount
     }
   }
 })
-
 const getBombs = (cellId) => {
-  const column = cellId % width !== 0 ? cellId % width : width
-  const row = Math.ceil(cellId / width)
-  console.log('row', row)
-  console.log('column', column)
+  const aroundId = [1, width - 1, width, width + 1]
+  const aroundCellsId = []
+  aroundId.forEach((id) => {
+    aroundCellsId.push(cellId + id)
+    aroundCellsId.push(cellId - id)
+  })
+  console.log(aroundCellsId)
+  const aroundBombs = aroundCellsId.filter((id) => bombs.includes(id))
+
+  return aroundBombs.length
 }
