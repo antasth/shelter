@@ -1,6 +1,6 @@
-const width = 15
-const height = 15
-const bombsCount = 50
+const width = 45
+const height = 25
+const bombsCount = 200
 let boardSize = width * height
 const zeroCells = []
 
@@ -25,7 +25,6 @@ const createBombs = (size, count) => {
 }
 const board = createBoard(boardSize)
 const bombs = createBombs(boardSize, bombsCount)
-console.log(bombs)
 const body = document.querySelector('body')
 body.append(board)
 
@@ -34,15 +33,39 @@ board.addEventListener('click', (e) => {
     if (bombs.includes(Number(e.target.id))) {
       e.target.innerHTML = 'B'
       e.target.classList.add('disabled')
+      console.log('game over')
     } else {
       getBombs(Number(e.target.id))
-      // const bombsCount = getBombs(Number(e.target.id))
-      // e.target.innerHTML = bombsCount
     }
   }
 })
+
+const markCellAsBomb = (cell) => {
+  cell.classList.toggle('bomb')
+  if (cell.firstElementChild) {
+    cell.replaceChildren()
+  } else {
+    const flag = document.createElement('img')
+    flag.classList.add('flag')
+    flag.src = './assets/icons/flag.png'
+    cell.append(flag)
+  }
+}
+board.addEventListener('contextmenu', (e) => {
+  console.log(e.target)
+  e.preventDefault()
+  if (
+    e.target.classList.contains('button') &&
+    !e.target.classList.contains('opened') &&
+    !e.target.classList.contains('disabled')
+  ) {
+    markCellAsBomb(e.target)
+  }
+  if (e.target.classList.contains('flag')) {
+    markCellAsBomb(e.target.parentNode)
+  }
+})
 const getBombs = (cellId) => {
-  console.log(cellId)
   const column = cellId % width !== 0 ? cellId % width : width
   const row = Math.ceil(cellId / width)
   let count = 0
@@ -107,7 +130,6 @@ const getBombs = (cellId) => {
   if (count === 0) {
     zeroCells.push(cellId)
     aroundCells = aroundCells.filter((cell) => cell !== cellId)
-    console.log(aroundCells)
     aroundCells.forEach((cell) => {
       if (!zeroCells.includes(cell) && cell > 0 && cell < boardSize) {
         getBombs(cell)
