@@ -39,7 +39,7 @@ body {
 }
 .board {
   display: grid;
-  grid-template-columns: repeat(45, 1.5rem);
+  grid-template-columns: repeat(15, 1.5rem);
   justify-items: center;
   padding: 2rem;
   border-radius: 1rem;

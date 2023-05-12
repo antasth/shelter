@@ -1,6 +1,6 @@
-const width = 45
-const height = 25
-const bombsCount = 200
+const width = 15
+const height = 15
+const bombsCount = 50
 let boardSize = width * height
 const zeroCells = []
 
@@ -28,6 +28,23 @@ const bombs = createBombs(boardSize, bombsCount)
 const body = document.querySelector('body')
 body.append(board)
 
+const openBoard = (board) => {
+  board.childNodes.forEach((cell) => {
+    if (bombs.includes(Number(cell.id))) {
+      const bombImg = document.createElement('img')
+      bombImg.classList.add('bomb-img')
+      bombImg.src = './assets/icons/mine.png'
+      if (cell.firstElementChild) {
+        cell.replaceChildren()
+      }
+      cell.append(bombImg)
+      cell.classList.add('disabled')
+    } else {
+      getBombs(Number(cell.id))
+    }
+  })
+}
+
 board.addEventListener('click', (e) => {
   if (e.target.classList.contains('button')) {
     if (bombs.includes(Number(e.target.id))) {
@@ -37,6 +54,7 @@ board.addEventListener('click', (e) => {
       e.target.append(bombImg)
       e.target.classList.add('disabled')
       console.log('game over')
+      openBoard(board)
     } else {
       getBombs(Number(e.target.id))
     }
