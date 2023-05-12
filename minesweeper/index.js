@@ -31,7 +31,10 @@ body.append(board)
 board.addEventListener('click', (e) => {
   if (e.target.classList.contains('button')) {
     if (bombs.includes(Number(e.target.id))) {
-      e.target.innerHTML = 'B'
+      const bombImg = document.createElement('img')
+      bombImg.classList.add('bomb-img')
+      bombImg.src = './assets/icons/mine.png'
+      e.target.append(bombImg)
       e.target.classList.add('disabled')
       console.log('game over')
     } else {
@@ -46,13 +49,12 @@ const markCellAsBomb = (cell) => {
     cell.replaceChildren()
   } else {
     const flag = document.createElement('img')
-    flag.classList.add('flag')
+    flag.classList.add('flag-img')
     flag.src = './assets/icons/flag.png'
     cell.append(flag)
   }
 }
 board.addEventListener('contextmenu', (e) => {
-  console.log(e.target)
   e.preventDefault()
   if (
     e.target.classList.contains('button') &&
@@ -61,7 +63,7 @@ board.addEventListener('contextmenu', (e) => {
   ) {
     markCellAsBomb(e.target)
   }
-  if (e.target.classList.contains('flag')) {
+  if (e.target.classList.contains('flag-img')) {
     markCellAsBomb(e.target.parentNode)
   }
 })
