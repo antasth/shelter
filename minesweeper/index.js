@@ -3,6 +3,7 @@ const height = 15
 const bombsCount = 50
 let boardSize = width * height
 const zeroCells = []
+let clickCount = 0
 
 function createBoard(size) {
   const board = document.createElement('div')
@@ -24,7 +25,7 @@ const createBombs = (size, count) => {
   return bombs
 }
 const board = createBoard(boardSize)
-const bombs = createBombs(boardSize, bombsCount)
+let bombs = createBombs(boardSize, bombsCount)
 const body = document.querySelector('body')
 body.append(board)
 
@@ -48,15 +49,25 @@ const openBoard = (board) => {
 board.addEventListener('click', (e) => {
   if (e.target.classList.contains('button')) {
     if (bombs.includes(Number(e.target.id))) {
-      const bombImg = document.createElement('img')
-      bombImg.classList.add('bomb-img')
-      bombImg.src = './assets/icons/mine.png'
-      e.target.append(bombImg)
-      e.target.classList.add('disabled')
-      console.log('game over')
-      openBoard(board)
+      if (clickCount === 0) {
+        const cellNumber = Number(e.target.id)
+        bombs = createBombs(boardSize, bombsCount)
+        document.getElementById(cellNumber).click()
+        clickCount++
+      } else {
+        clickCount++
+        console.log(clickCount)
+        const bombImg = document.createElement('img')
+        bombImg.classList.add('bomb-img')
+        bombImg.src = './assets/icons/mine.png'
+        e.target.append(bombImg)
+        e.target.classList.add('disabled')
+        console.log('game over')
+        openBoard(board)
+      }
     } else {
       getBombs(Number(e.target.id))
+      clickCount++
     }
   }
 })
