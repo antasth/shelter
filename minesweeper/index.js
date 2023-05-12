@@ -176,7 +176,7 @@ const getBombs = (cellId) => {
     zeroCells.push(cellId)
     aroundCells = aroundCells.filter((cell) => cell !== cellId)
     aroundCells.forEach((cell) => {
-      if (!zeroCells.includes(cell) && cell > 0 && cell < boardSize) {
+      if (!zeroCells.includes(cell) && cell > 0 && cell <= boardSize) {
         getBombs(cell)
       }
     })
