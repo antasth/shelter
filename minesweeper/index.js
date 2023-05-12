@@ -1,8 +1,8 @@
 const width = 15
 const height = 15
-const bombsCount = 50
+const bombsCount = 20
 let boardSize = width * height
-const zeroCells = []
+let zeroCells = []
 let clickCount = 0
 
 function createBoard(size) {
@@ -24,11 +24,26 @@ const createBombs = (size, count) => {
   }
   return bombs
 }
-const board = createBoard(boardSize)
+let board = createBoard(boardSize)
 let bombs = createBombs(boardSize, bombsCount)
+const startGameButton = document.createElement('button')
+startGameButton.classList.add('start-button')
+startGameButton.innerText = 'New Game'
 const body = document.querySelector('body')
-body.append(board)
+body.append(startGameButton, board)
 
+// restart game
+startGameButton.addEventListener('click', () => {
+  document.querySelectorAll('.button').forEach((button) => {
+    button.className = 'button'
+    button.innerHTML = ''
+  })
+  clickCount = 0
+  zeroCells = []
+  bombs = createBombs(boardSize, bombsCount)
+})
+
+// show all cells on gameover
 const openBoard = (board) => {
   board.childNodes.forEach((cell) => {
     if (bombs.includes(Number(cell.id))) {
@@ -56,7 +71,6 @@ board.addEventListener('click', (e) => {
         clickCount++
       } else {
         clickCount++
-        console.log(clickCount)
         const bombImg = document.createElement('img')
         bombImg.classList.add('bomb-img')
         bombImg.src = './assets/icons/mine.png'
