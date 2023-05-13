@@ -11,9 +11,16 @@ html {
     rgba(250, 249, 63, 1) 0%,
     rgba(252, 153, 56, 1) 90%
   );
-  background-image: radial-gradient( circle farthest-corner at 50.7% 54%,  rgba(204,254,152,1) 0%, rgba(229,253,190,1) 92.4% );
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% );
-  
+  background-image: radial-gradient(
+    circle farthest-corner at 50.7% 54%,
+    rgba(204, 254, 152, 1) 0%,
+    rgba(229, 253, 190, 1) 92.4%
+  );
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(97, 186, 255, 1) 0%,
+    rgba(166, 239, 253, 1) 90.1%
+  );
 }
 html {
   width: 100%;
@@ -67,7 +74,8 @@ body {
   align-items: center;
   border-radius: 0.2rem;
   cursor: pointer;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   background: linear-gradient(to right, #50aff8, #91cffe);
 }
 .button:hover {
@@ -82,7 +90,12 @@ body {
   padding: 2rem;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  background-image: linear-gradient( 103.3deg,  rgba(252,225,208,1) 30%, rgba(255,173,214,1) 55.7%, rgba(162,186,245,1) 81.8% );
+  background-image: linear-gradient(
+    103.3deg,
+    rgba(252, 225, 208, 1) 30%,
+    rgba(255, 173, 214, 1) 55.7%,
+    rgba(162, 186, 245, 1) 81.8%
+  );
 }
 
 .disabled {
@@ -101,24 +114,25 @@ body {
 .bomb {
   background: #fef29e;
 }
-.flag-img, .bomb-img {
+.flag-img,
+.bomb-img {
   width: 100%;
   height: 100%;
 }
 
 /* menu */
- .menu *{
+.menu * {
   margin: 0;
   padding: 0;
- }
- .menu ul{
+}
+.menu ul {
   list-style: none;
- }
- .menu > ul{
+}
+.menu > ul {
   display: flex;
   justify-content: center;
- }
- .menu > ul li{
+}
+.menu > ul li {
   position: relative;
   border-right: 1px solid #11027c;
   display: flex;
@@ -127,60 +141,57 @@ body {
   column-gap: 5px;
   padding: 0 15px;
   cursor: pointer;
- }
- .menu > ul li:last-child {
+}
+.menu > ul li:last-child {
   border-right: none;
- }
- .menu > ul li img{
-  transition: all 0.2s ease-in-out;
- }
- .menu > ul li:hover img{
-  transform: scale(1.1);
- }
- .menu > ul li a{
-
+}
+.menu > ul li img {
+  transition: all 0.4s ease-in-out;
+}
+.menu > ul li:hover img {
+  transform: rotate(360deg);
+}
+.menu > ul li a {
   display: block;
   color: #454547;
   text-decoration: none;
-  text-transform:uppercase;
+  text-transform: uppercase;
   transition: all 0.3s ease;
- }
- .menu li a:hover{
- 
+}
+.menu li a:hover {
   color: #df5003;
   transition: all 0.3s ease;
- }
- 
- /*sub menu*/
- .menu li ul{
+}
+
+/*sub menu*/
+.menu li ul {
   position: absolute;
   width: 100%;
   display: none;
-  top: 30px;
+  top: 25px;
   left: 0;
- }
- .menu li > ul li{
+}
+.menu li > ul li {
   border-right: none;
- }
- .menu li > ul li
- {
+}
+.menu li > ul li {
   display: flex;
   justify-content: center;
   width: 100%;
   padding: 10px 0;
   text-transform: none;
   background: #fbd83c;
- }
- .menu li > ul li ul{
+}
+.menu li > ul li ul {
   position: absolute;
   right: -150px;
   top: 0;
- }
- .menu li:hover > ul{
+}
+.menu li:hover > ul {
   display: block;
- }
+}
 
- /* POPUP */
+/* POPUP */
 .popup-overlay {
   position: fixed;
   overflow: auto;
@@ -188,7 +199,7 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .popup-overlay__modal {
   text-align: center;
@@ -207,12 +218,22 @@ body {
 }
 .popup_container {
   position: relative;
-  width: 500px;
-  height: 500px;
-  text-align: left;
+  /* min-width: 200px;
+  min-height: 100px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 66px;
+  font-weight: bold;
+  color: rgb(255, 0, 0);
   white-space: normal;
-  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(97,186,255,1) 0%, rgba(166,239,253,1) 90.1% );
-  color: #000;
+  background-image: radial-gradient(
+    circle farthest-corner at 10% 20%,
+    rgba(97, 186, 255, 1) 0%,
+    rgba(166, 239, 253, 1) 90.1%
+  );
+  /* color: #000; */
+  background: transparent;
   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   border-radius: 9px;
 }
@@ -233,5 +254,6 @@ body {
   cursor: pointer;
 }
 .popup-close:hover {
-  transform: rotate(180deg);
+  color: #50aff8;
 }
+

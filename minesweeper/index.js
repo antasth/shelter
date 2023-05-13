@@ -152,9 +152,9 @@ board.addEventListener('click', (e) => {
         bombImg.src = './assets/icons/mine.png'
         e.target.append(bombImg)
         e.target.classList.add('disabled')
-        console.log('game over')
         clearInterval(setTimer)
         openBoard(board)
+        showModal('BOOM', false)
       }
     } else {
       getBombs(Number(e.target.id))
@@ -276,26 +276,11 @@ const getBombs = (cellId) => {
 
 const settings = document.querySelector('.settings')
 settings.addEventListener('click', () => {
-  const popupContainer = document.querySelector('.popup_container')
-  popupContainer.replaceChildren()
-  popupContainer.append(createPetPopupCard())
-  showModal()
-
-  const modal = document.querySelector('.popup-overlay')
-  const close = document.querySelector('.popup-close')
-  close.addEventListener('click', () => {
-    hideModal(modal)
-  })
-
-  modal.addEventListener('click', (e) => {
-    if (e.target == modal) {
-      hideModal(modal)
-    }
-  })
+  showModal('', true)
 })
 
 // MODAL
-function showModal() {
+function showModal(content, close) {
   const modal = document.querySelector('.popup-overlay')
 
   // if scroll is hidden => add margin right
@@ -306,6 +291,23 @@ function showModal() {
   modal.classList.add('show')
   modal.classList.remove('hide')
   document.body.classList.add('locked')
+
+  const popupContainer = document.querySelector('.popup_container')
+  popupContainer.replaceChildren()
+  popupContainer.append(createPopupCard(content, close))
+
+  if (close) {
+    const close = document.querySelector('.popup-close')
+    close.addEventListener('click', () => {
+      hideModal(modal)
+    })
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target == modal) {
+      hideModal(modal)
+    }
+  })
 }
 
 function hideModal() {
@@ -317,11 +319,16 @@ function hideModal() {
   document.documentElement.style.marginRight = 0
 }
 
-function createPetPopupCard() {
+function createPopupCard(content = '', close) {
   const modalCard = document.createElement('div')
   modalCard.classList.add('modal')
-  modalCard.innerHTML = `
-  <button class="popup-close">&times;</button>
-`
+  if (close) {
+    modalCard.innerHTML =
+      `
+    <button class="popup-close">&times;</button>
+  ` + content
+  } else {
+    modalCard.innerHTML = content
+  }
   return modalCard
 }
