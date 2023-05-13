@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body,
 html {
   padding: 0;
@@ -17,12 +20,24 @@ html {
 
 body {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 1rem;
 }
-
+.content {
+  width: 100%;
+  height: 100%;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 2rem;
+}
+.control-panel {
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 20px;
+}
 .button {
   width: 1.5rem;
   height: 1.5rem;
@@ -40,9 +55,11 @@ body {
   /* background: #2c7ebc; */
 }
 .board {
+  width: 100%;
+  /* max-width: 500px; */
   display: grid;
   grid-template-columns: repeat(15, 1.5rem);
-  justify-items: center;
+  justify-content: center;
   padding: 2rem;
   border-radius: 1rem;
   background: #3a6186;
@@ -69,18 +86,60 @@ body {
   width: 100%;
   height: 100%;
 }
-.start-button {
-  width: 7rem;
-  height: 2rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  color: #ffffff;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background-image: radial-gradient( circle 815px at 23.4% -21.8%,  rgba(9,29,85,1) 0.2%, rgba(0,0,0,1) 100.2% );
-}
-.start-button:hover {
-  background-image: radial-gradient( circle 815px at 23.4% -21.8%,  rgb(6, 38, 137) 0.2%, rgba(0,0,0,1) 100.2% );
-}
+
+ .menu *{
+  margin: 0;
+  padding: 0;
+ }
+ .menu ul{
+  list-style: none;
+ }
+ .menu > ul{
+  display: flex;
+  justify-content: center;
+ }
+ .menu > ul li{
+  position: relative;
+  border-right: 1px solid #ec7310;
+ }
+ .menu > ul li:last-child {
+  border-right: none;
+ }
+ .menu > ul li a{
+
+  display: block;
+  padding: 10px 15px;
+  /* font-size: 14px; */
+  color: #454547;
+  text-decoration: none;
+  text-transform:uppercase;
+  transition: all 0.3s ease;
+ }
+ .menu li a:hover{
+ 
+  color: #df5003;
+  transition: all 0.3s ease;
+ }
+ 
+ /*sub menu*/
+ .menu li ul{
+  position: absolute;
+  min-width: 115px;
+  display: none;
+ }
+ .menu li > ul li{
+  border: 1px solid #f17618;
+ }
+ .menu li > ul li a{
+  padding: 10px;
+  text-transform: none;
+  background: #f17618;
+ }
+ .menu li > ul li ul{
+  position: absolute;
+  right: -150px;
+  top: 0;
+ }
+ .menu li:hover > ul{
+  display: block;
+ }

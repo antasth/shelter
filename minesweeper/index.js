@@ -1,18 +1,18 @@
 const width = 15
 const height = 15
-const bombsCount = 100
+const bombsCount = 150
 let boardSize = width * height
 let zeroCells = []
 let clickCount = 0
 const colors = {
-  1 : '#508AA8',
-  2 : '#20BF55',
-  3 : '#FFBC0A',
-  4 : '#F15025',
-  5 : '#BA1200',
-  6 : '#1B3B6F',
-  7 : '#C200FB',
-  8 : '#FC9938',
+  1: '#508AA8',
+  2: '#20BF55',
+  3: '#FFBC0A',
+  4: '#F15025',
+  5: '#BA1200',
+  6: '#1B3B6F',
+  7: '#C200FB',
+  8: '#FF007F',
 }
 
 function createBoard(size) {
@@ -36,11 +36,34 @@ const createBombs = (size, count) => {
 }
 let board = createBoard(boardSize)
 let bombs = createBombs(boardSize, bombsCount)
-const startGameButton = document.createElement('button')
-startGameButton.classList.add('start-button')
-startGameButton.innerText = 'New Game'
+const controlPanel = document.createElement('div')
+controlPanel.classList.add('control-panel')
+controlPanel.innerHTML = `  
+<div class="menu">
+<ul>
+  <li class='start-button'><a href="#" >NEW GAME</a></li>
+  <li><a href="#">Easy 10 x 10</a>
+    <ul>
+      <li><a href="#">EASY</a></li>
+      <li><a href="#">MEDIUM</a></li>
+      <li><a href="#">HARD</a></li>
+      <li><a href="#">NIGHTMARE</a></li>
+      <li><a href="#">HELL</a></li>
+    </ul>
+  </li>
+  <li><a href="#">Таймер</a></li>
+  <li><a href="#">Метки</a></li>
+  <li><a href="#">Звук</a></li>
+</ul>
+</div>
+`
+const content = document.createElement('section')
+content.classList.add('content')
+content.append(controlPanel, board)
 const body = document.querySelector('body')
-body.append(startGameButton, board)
+body.append(content)
+
+const startGameButton = document.querySelector('.start-button')
 
 // restart game
 startGameButton.addEventListener('click', () => {
