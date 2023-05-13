@@ -66,21 +66,28 @@ controlPanel.innerHTML = `
   <img class='menu-img' src="./assets/icons/menu-mine.png" alt="bomb">
   <span class='menu-span bombs'>0</span>
   </li>
-  <li>
+  <li class='settings'>
   <img class='menu-img' src="./assets/icons/settings.png" alt="settings">
   </li>
 </ul>
 </div>
 `
+const popup = document.createElement('div')
+popup.classList.add('popup-overlay', 'popup-overlay__modal', 'hide')
+popup.innerHTML = `
+<div class="popup">
+  <div class="popup_container"></div>
+</div>`
+
 const content = document.createElement('section')
 content.classList.add('content')
 content.append(controlPanel, board)
 const body = document.querySelector('body')
-body.append(content)
+body.append(content, popup)
 
 const startGameButton = document.querySelector('.start-button')
 const bombsMenuCount = document.querySelector('.bombs')
-bombsMenuCount.innerText = bombsLeftCount;
+bombsMenuCount.innerText = bombsLeftCount
 
 // timer
 const timer = document.querySelector('.timer')
@@ -102,7 +109,7 @@ startGameButton.addEventListener('click', () => {
   flagCount = 0
   flagsMenuCount.innerText = flagCount
   bombsLeftCount = bombsCount
-  bombsMenuCount.innerText = bombsLeftCount;
+  bombsMenuCount.innerText = bombsLeftCount
   time = 0
   timer.innerText = '0'
   clearInterval(setTimer)
@@ -163,8 +170,8 @@ const markCellAsBomb = (cell) => {
     cell.replaceChildren()
     flagCount--
     flagsMenuCount.innerText = flagCount
-     bombsLeftCount++
-    bombsMenuCount.innerText = bombsLeftCount;
+    bombsLeftCount++
+    bombsMenuCount.innerText = bombsLeftCount
   } else {
     const flag = document.createElement('img')
     flag.classList.add('flag-img')
@@ -173,7 +180,7 @@ const markCellAsBomb = (cell) => {
     flagCount++
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
-    bombsMenuCount.innerText = bombsLeftCount;
+    bombsMenuCount.innerText = bombsLeftCount
   }
 }
 board.addEventListener('contextmenu', (e) => {
@@ -265,4 +272,56 @@ const getBombs = (cellId) => {
   cell.style.color = colors[count]
   cell.classList.add('opened')
   return count
+}
+
+const settings = document.querySelector('.settings')
+settings.addEventListener('click', () => {
+  const popupContainer = document.querySelector('.popup_container')
+  popupContainer.replaceChildren()
+  popupContainer.append(createPetPopupCard())
+  showModal()
+
+  const modal = document.querySelector('.popup-overlay')
+  const close = document.querySelector('.popup-close')
+  close.addEventListener('click', () => {
+    hideModal(modal)
+  })
+
+  modal.addEventListener('click', (e) => {
+    if (e.target == modal) {
+      hideModal(modal)
+    }
+  })
+})
+
+// MODAL
+function showModal() {
+  const modal = document.querySelector('.popup-overlay')
+
+  // if scroll is hidden => add margin right
+  let marginSize = window.innerWidth - document.documentElement.clientWidth
+  if (marginSize) {
+    document.documentElement.style.marginRight = marginSize + 'px'
+  }
+  modal.classList.add('show')
+  modal.classList.remove('hide')
+  document.body.classList.add('locked')
+}
+
+function hideModal() {
+  const modal = document.querySelector('.popup-overlay')
+
+  modal.classList.remove('show')
+  modal.classList.add('hide')
+  document.body.classList.remove('locked')
+  document.documentElement.style.marginRight = 0
+}
+
+function createPetPopupCard() {
+  const modalCard = document.createElement('div')
+  modalCard.classList.add('modal')
+  modalCard.innerHTML = `
+  <button class="popup-close">&times;</button>
+`
+  return modalCard
 }
