@@ -1,9 +1,10 @@
 const width = 15
 const height = 15
-const bombsCount = 150
+const bombsCount = 50
 let boardSize = width * height
 let zeroCells = []
 let clickCount = 0
+let time = 0
 const colors = {
   1: '#508AA8',
   2: '#20BF55',
@@ -41,7 +42,7 @@ controlPanel.classList.add('control-panel')
 controlPanel.innerHTML = `  
 <div class="menu">
 <ul>
-  <li class='start-button'><a href="#" >NEW GAME</a></li>
+  <li class='start-button'><a href="#" >new game</a></li>
   <li><a href="#">Easy 10 x 10</a>
     <ul>
       <li><a href="#">EASY</a></li>
@@ -51,7 +52,10 @@ controlPanel.innerHTML = `
       <li><a href="#">HELL</a></li>
     </ul>
   </li>
-  <li><a href="#">Таймер</a></li>
+  <li>
+  <img class='timer-img' src="./assets/icons/timer.png" alt="timer">
+  <span class='timer'>0</span>
+  </li>
   <li><a href="#">Метки</a></li>
   <li><a href="#">Звук</a></li>
 </ul>
@@ -65,6 +69,13 @@ body.append(content)
 
 const startGameButton = document.querySelector('.start-button')
 
+// timer
+const timer = document.querySelector('.timer')
+let setTimer = setInterval(function () {
+  time++
+  timer.innerText = time
+}, 1000)
+
 // restart game
 startGameButton.addEventListener('click', () => {
   document.querySelectorAll('.button').forEach((button) => {
@@ -75,6 +86,13 @@ startGameButton.addEventListener('click', () => {
   clickCount = 0
   zeroCells = []
   bombs = createBombs(boardSize, bombsCount)
+  time = 0
+  timer.innerText = '0'
+  clearInterval(setTimer)
+  setTimer = setInterval(function () {
+    time++
+    timer.innerText = time
+  }, 1000)
 })
 
 // show all cells on gameover
@@ -111,6 +129,7 @@ board.addEventListener('click', (e) => {
         e.target.append(bombImg)
         e.target.classList.add('disabled')
         console.log('game over')
+        clearInterval(setTimer)
         openBoard(board)
       }
     } else {
