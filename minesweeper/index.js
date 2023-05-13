@@ -4,7 +4,7 @@ const bombsCount = 100
 let boardSize = width * height
 let zeroCells = []
 let clickCount = 0
-let colors = {
+const colors = {
   1 : '#508AA8',
   2 : '#20BF55',
   3 : '#FFBC0A',
@@ -47,6 +47,7 @@ startGameButton.addEventListener('click', () => {
   document.querySelectorAll('.button').forEach((button) => {
     button.className = 'button'
     button.innerHTML = ''
+    button.style = ''
   })
   clickCount = 0
   zeroCells = []
