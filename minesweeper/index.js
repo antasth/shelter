@@ -5,6 +5,7 @@ let boardSize = width * height
 let zeroCells = []
 let clickCount = 0
 let flagCount = 0
+let bombsLeftCount = bombsCount
 let time = 0
 const colors = {
   1: '#508AA8',
@@ -60,7 +61,14 @@ controlPanel.innerHTML = `
   <li>
   <img class='menu-img' src="./assets/icons/menu-flag.png" alt="flag">
   <span class='menu-span flags'>0</span>
-  <li><a href="#">Звук</a></li>
+  </li>
+  <li>
+  <img class='menu-img' src="./assets/icons/menu-mine.png" alt="bomb">
+  <span class='menu-span bombs'>0</span>
+  </li>
+  <li>
+  <img class='menu-img' src="./assets/icons/settings.png" alt="settings">
+  </li>
 </ul>
 </div>
 `
@@ -71,6 +79,8 @@ const body = document.querySelector('body')
 body.append(content)
 
 const startGameButton = document.querySelector('.start-button')
+const bombsMenuCount = document.querySelector('.bombs')
+bombsMenuCount.innerText = bombsLeftCount;
 
 // timer
 const timer = document.querySelector('.timer')
@@ -91,6 +101,8 @@ startGameButton.addEventListener('click', () => {
   bombs = createBombs(boardSize, bombsCount)
   flagCount = 0
   flagsMenuCount.innerText = flagCount
+  bombsLeftCount = bombsCount
+  bombsMenuCount.innerText = bombsLeftCount;
   time = 0
   timer.innerText = '0'
   clearInterval(setTimer)
@@ -151,6 +163,8 @@ const markCellAsBomb = (cell) => {
     cell.replaceChildren()
     flagCount--
     flagsMenuCount.innerText = flagCount
+     bombsLeftCount++
+    bombsMenuCount.innerText = bombsLeftCount;
   } else {
     const flag = document.createElement('img')
     flag.classList.add('flag-img')
@@ -158,6 +172,8 @@ const markCellAsBomb = (cell) => {
     cell.append(flag)
     flagCount++
     flagsMenuCount.innerText = flagCount
+    bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
+    bombsMenuCount.innerText = bombsLeftCount;
   }
 }
 board.addEventListener('contextmenu', (e) => {
