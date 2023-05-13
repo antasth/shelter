@@ -41,11 +41,11 @@ body {
   font-size: 1rem;
   margin-top: 20px;
 }
-.timer-img {
+.menu-img {
   width: 30px;
   height: 30px;
 }
-.timer {
+.menu-span {
   font-size: 1.2rem;
   color: #454547;
 }
