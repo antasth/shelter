@@ -1,9 +1,19 @@
 const width = 15
 const height = 15
-const bombsCount = 20
+const bombsCount = 100
 let boardSize = width * height
 let zeroCells = []
 let clickCount = 0
+let colors = {
+  1 : '#508AA8',
+  2 : '#20BF55',
+  3 : '#FFBC0A',
+  4 : '#F15025',
+  5 : '#BA1200',
+  6 : '#1B3B6F',
+  7 : '#C200FB',
+  8 : '#FC9938',
+}
 
 function createBoard(size) {
   const board = document.createElement('div')
@@ -183,6 +193,7 @@ const getBombs = (cellId) => {
   }
   const cell = document.getElementById(`${cellId}`)
   cell.innerHTML = count === 0 ? '' : count
+  cell.style.color = colors[count]
   cell.classList.add('opened')
   return count
 }
