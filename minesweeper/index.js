@@ -1,6 +1,6 @@
 const width = 15
 const height = 15
-const bombsCount = 50
+const bombsCount = 150
 let boardSize = width * height
 let zeroCells = []
 let clickCount = 0
@@ -17,6 +17,17 @@ const colors = {
   7: '#C200FB',
   8: '#FF007F',
 }
+let audioGameOver = new Audio();
+audioGameOver.preload = 'auto';
+audioGameOver.src = './assets/sounds/game-over.mp3';
+let audioOpenCell = new Audio();
+audioOpenCell.preload = 'auto';
+audioOpenCell.src = './assets/sounds/open-cell.wav';
+let audioOpenCells = new Audio();
+audioOpenCells.preload = 'auto';
+audioOpenCells.src = './assets/sounds/open-cells.wav';
+
+
 
 function createBoard(size) {
   const board = document.createElement('div')
@@ -30,15 +41,15 @@ function createBoard(size) {
   return board
 }
 
-const createBombs = (size, count) => {
+const  createBombs =  (size, count) => {
   const bombs = []
-  for (let i = 0; i < count; i++) {
+   for (let i = 0; i < count; i++) {
     bombs.push(Math.round(0.5 + Math.random() * size))
   }
   return bombs
 }
 let board = createBoard(boardSize)
-let bombs = createBombs(boardSize, bombsCount)
+let bombs =  createBombs(boardSize, bombsCount)
 const controlPanel = document.createElement('div')
 controlPanel.classList.add('control-panel')
 controlPanel.innerHTML = `  
@@ -82,8 +93,7 @@ popup.innerHTML = `
 const content = document.createElement('section')
 content.classList.add('content')
 content.append(controlPanel, board)
-const body = document.querySelector('body')
-body.append(content, popup)
+document.body.append(content, popup)
 
 const startGameButton = document.querySelector('.start-button')
 const bombsMenuCount = document.querySelector('.bombs')
@@ -140,10 +150,10 @@ const openBoard = (board) => {
 board.addEventListener('click', (e) => {
   if (e.target.classList.contains('button')) {
     if (bombs.includes(Number(e.target.id))) {
+      audioOpenCell.play()
       if (clickCount === 0) {
-        const cellNumber = Number(e.target.id)
         bombs = createBombs(boardSize, bombsCount)
-        document.getElementById(cellNumber).click()
+        getBombs(Number(e.target.id))
         clickCount++
       } else {
         clickCount++
@@ -155,9 +165,11 @@ board.addEventListener('click', (e) => {
         clearInterval(setTimer)
         openBoard(board)
         showModal('BOOM', false)
+        // audio.play();
       }
     } else {
       getBombs(Number(e.target.id))
+      audioOpenCell.play()
       clickCount++
     }
   }
