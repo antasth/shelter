@@ -208,7 +208,7 @@ const markCellAsBomb = (cell) => {
         [...new Set(openedCells)].length === boardSize - bombsCount &&
         markedCells.length === 0
       ) {
-        console.log('win')
+        showModal('YOU WIN', false)
       }
     } else markedCells.push(Number(cell.id))
     flagsMenuCount.innerText = flagCount
@@ -310,7 +310,7 @@ const getBombs = (cellId) => {
     [...new Set(openedCells)].length === boardSize - bombsCount &&
     markedCells.length === 0
   ) {
-    console.log('win')
+    showModal('YOU WIN', false)
   }
   // audioOpenCell.play()
   return count
