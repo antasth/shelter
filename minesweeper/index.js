@@ -1,8 +1,9 @@
-const width = 15
-const height = 15
-const bombsCount = 50
+const width = 10
+const height = 10
+const bombsCount = 10
 let boardSize = width * height
 let zeroCells = []
+let openedCells = []
 let clickCount = 0
 let flagCount = 0
 let bombsLeftCount = bombsCount
@@ -118,6 +119,7 @@ startGameButton.addEventListener('click', () => {
   })
   clickCount = 0
   zeroCells = []
+  openedCells = []
   bombs = createBombs(boardSize, bombsCount)
   flagCount = 0
   flagsMenuCount.innerText = flagCount
@@ -167,7 +169,7 @@ board.addEventListener('click', (e) => {
         clearInterval(setTimer)
         openBoard(board)
         showModal('BOOM', false)
-        audioGameOver.play();
+        // audioGameOver.play();
       }
     } else {
       getBombs(Number(e.target.id))
@@ -189,7 +191,7 @@ const markCellAsBomb = (cell) => {
     const flag = document.createElement('img')
     flag.classList.add('flag-img')
     flag.src = './assets/icons/flag.png'
-    audioSetFlag.play()
+    // audioSetFlag.play()
     cell.append(flag)
     flagCount++
     flagsMenuCount.innerText = flagCount
@@ -285,7 +287,13 @@ const getBombs = (cellId) => {
   cell.innerHTML = count === 0 ? '' : count
   cell.style.color = colors[count]
   cell.classList.add('opened')
-  audioOpenCell.play()
+
+  openedCells.push(cellId)
+  // console.log([...new Set(openedCells)]);
+  if (([...new Set(openedCells)].length === boardSize - bombsCount)) {
+    console.log('win')
+  }
+  // audioOpenCell.play()
   return count
 }
 
