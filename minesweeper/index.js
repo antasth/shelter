@@ -49,8 +49,11 @@ function createBoard(size) {
 
 const createBombs = (size, count) => {
   const bombs = []
-  for (let i = 0; i < count; i++) {
-    bombs.push(Math.round(0.5 + Math.random() * size))
+  while(bombs.length < count) {
+    let random = Math.round(0.5 + Math.random() * size)
+    if (!bombs.includes(random)) {
+      bombs.push(random)
+    }
   }
   return bombs
 }
@@ -189,7 +192,6 @@ const markCellAsBomb = (cell) => {
     cell.replaceChildren()
     flagCount--
     markedCells.push(Number(cell.id))
-    console.log(markedCells)
     flagsMenuCount.innerText = flagCount
     bombsLeftCount++
     bombsMenuCount.innerText = bombsLeftCount
@@ -209,8 +211,6 @@ const markCellAsBomb = (cell) => {
         console.log('win')
       }
     } else markedCells.push(Number(cell.id))
-    console.log('markedCells', markedCells)
-    console.log('bombs', bombs)
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
     bombsMenuCount.innerText = bombsLeftCount
