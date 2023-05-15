@@ -1,9 +1,10 @@
 const width = 10
 const height = 10
-const bombsCount = 10
+const bombsCount = 5
 let boardSize = width * height
 let zeroCells = []
 let openedCells = []
+let markedCells = []
 let clickCount = 0
 let flagCount = 0
 let bombsLeftCount = bombsCount
@@ -120,7 +121,9 @@ startGameButton.addEventListener('click', () => {
   clickCount = 0
   zeroCells = []
   openedCells = []
+  markedCells = []
   bombs = createBombs(boardSize, bombsCount)
+  markedCells = [...bombs]
   flagCount = 0
   flagsMenuCount.innerText = flagCount
   bombsLeftCount = bombsCount
@@ -178,12 +181,15 @@ board.addEventListener('click', (e) => {
   }
 })
 
+markedCells = [...bombs]
 const flagsMenuCount = document.querySelector('.flags')
 const markCellAsBomb = (cell) => {
   cell.classList.toggle('bomb')
   if (cell.firstElementChild) {
     cell.replaceChildren()
     flagCount--
+    markedCells.push(Number(cell.id))
+    console.log(markedCells)
     flagsMenuCount.innerText = flagCount
     bombsLeftCount++
     bombsMenuCount.innerText = bombsLeftCount
@@ -194,11 +200,23 @@ const markCellAsBomb = (cell) => {
     // audioSetFlag.play()
     cell.append(flag)
     flagCount++
+    if (markedCells.includes(Number(cell.id))) {
+      markedCells = markedCells.filter((cellsId) => cellsId !== Number(cell.id))
+      if (
+        [...new Set(openedCells)].length === boardSize - bombsCount &&
+        markedCells.length === 0
+      ) {
+        console.log('win')
+      }
+    } else markedCells.push(Number(cell.id))
+    console.log('markedCells', markedCells)
+    console.log('bombs', bombs)
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
     bombsMenuCount.innerText = bombsLeftCount
   }
 }
+
 board.addEventListener('contextmenu', (e) => {
   e.preventDefault()
   if (
@@ -287,10 +305,11 @@ const getBombs = (cellId) => {
   cell.innerHTML = count === 0 ? '' : count
   cell.style.color = colors[count]
   cell.classList.add('opened')
-
   openedCells.push(cellId)
-  // console.log([...new Set(openedCells)]);
-  if (([...new Set(openedCells)].length === boardSize - bombsCount)) {
+  if (
+    [...new Set(openedCells)].length === boardSize - bombsCount &&
+    markedCells.length === 0
+  ) {
     console.log('win')
   }
   // audioOpenCell.play()
