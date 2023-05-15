@@ -1,6 +1,6 @@
 const width = 15
 const height = 15
-const bombsCount = 150
+const bombsCount = 50
 let boardSize = width * height
 let zeroCells = []
 let clickCount = 0
@@ -17,17 +17,21 @@ const colors = {
   7: '#C200FB',
   8: '#FF007F',
 }
-let audioGameOver = new Audio();
-audioGameOver.preload = 'auto';
-audioGameOver.src = './assets/sounds/game-over.mp3';
-let audioOpenCell = new Audio();
-audioOpenCell.preload = 'auto';
-audioOpenCell.src = './assets/sounds/open-cell.wav';
-let audioOpenCells = new Audio();
-audioOpenCells.preload = 'auto';
-audioOpenCells.src = './assets/sounds/open-cells.wav';
-
-
+let audioGameOver = new Audio()
+audioGameOver.preload = 'auto'
+audioGameOver.src = './assets/sounds/game-over.mp3'
+let audioOpenCell = new Audio()
+audioOpenCell.preload = 'auto'
+audioOpenCell.src = './assets/sounds/open-cell.wav'
+let audioOpenCells = new Audio()
+audioOpenCells.preload = 'auto'
+audioOpenCells.src = './assets/sounds/open-cells.wav'
+let audioSetFlag = new Audio()
+audioSetFlag.preload = 'auto'
+audioSetFlag.src = './assets/sounds/set-flag.mp3'
+let audioWin = new Audio()
+audioWin.preload = 'auto'
+audioWin.src = './assets/sounds/win.mp3'
 
 function createBoard(size) {
   const board = document.createElement('div')
@@ -41,15 +45,15 @@ function createBoard(size) {
   return board
 }
 
-const  createBombs =  (size, count) => {
+const createBombs = (size, count) => {
   const bombs = []
-   for (let i = 0; i < count; i++) {
+  for (let i = 0; i < count; i++) {
     bombs.push(Math.round(0.5 + Math.random() * size))
   }
   return bombs
 }
 let board = createBoard(boardSize)
-let bombs =  createBombs(boardSize, bombsCount)
+let bombs = createBombs(boardSize, bombsCount)
 const controlPanel = document.createElement('div')
 controlPanel.classList.add('control-panel')
 controlPanel.innerHTML = `  
@@ -61,7 +65,6 @@ controlPanel.innerHTML = `
       <li><a href="#">EASY</a></li>
       <li><a href="#">MEDIUM</a></li>
       <li><a href="#">HARD</a></li>
-      <li><a href="#">NIGHTMARE</a></li>
       <li><a href="#">HELL</a></li>
     </ul>
   </li>
@@ -150,7 +153,6 @@ const openBoard = (board) => {
 board.addEventListener('click', (e) => {
   if (e.target.classList.contains('button')) {
     if (bombs.includes(Number(e.target.id))) {
-      audioOpenCell.play()
       if (clickCount === 0) {
         bombs = createBombs(boardSize, bombsCount)
         getBombs(Number(e.target.id))
@@ -165,11 +167,10 @@ board.addEventListener('click', (e) => {
         clearInterval(setTimer)
         openBoard(board)
         showModal('BOOM', false)
-        // audio.play();
+        audioGameOver.play();
       }
     } else {
       getBombs(Number(e.target.id))
-      audioOpenCell.play()
       clickCount++
     }
   }
@@ -188,6 +189,7 @@ const markCellAsBomb = (cell) => {
     const flag = document.createElement('img')
     flag.classList.add('flag-img')
     flag.src = './assets/icons/flag.png'
+    audioSetFlag.play()
     cell.append(flag)
     flagCount++
     flagsMenuCount.innerText = flagCount
@@ -283,6 +285,7 @@ const getBombs = (cellId) => {
   cell.innerHTML = count === 0 ? '' : count
   cell.style.color = colors[count]
   cell.classList.add('opened')
+  audioOpenCell.play()
   return count
 }
 
