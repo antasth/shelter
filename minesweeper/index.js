@@ -21,6 +21,9 @@ const colors = {
 let audioGameOver = new Audio()
 audioGameOver.preload = 'auto'
 audioGameOver.src = './assets/sounds/game-over.mp3'
+let audioGameOver2 = new Audio()
+audioGameOver2.preload = 'auto'
+audioGameOver2.src = './assets/sounds/game-over2.mp3'
 let audioOpenCell = new Audio()
 audioOpenCell.preload = 'auto'
 audioOpenCell.src = './assets/sounds/open-cell.wav'
@@ -48,7 +51,7 @@ function createBoard(size) {
 
 const createBombs = (size, count) => {
   const bombs = []
-  while(bombs.length < count) {
+  while (bombs.length < count) {
     let random = Math.round(0.5 + Math.random() * size)
     if (!bombs.includes(random)) {
       bombs.push(random)
@@ -63,7 +66,7 @@ controlPanel.classList.add('control-panel')
 controlPanel.innerHTML = `  
 <div class="menu">
 <ul>
-  <li class='start-button'><a href="#" >new game</a></li>
+  <li class='start'><a href="#" >new game</a></li>
   <li><a href="#">Easy 10 x 10</a>
     <ul>
       <li><a href="#">EASY</a></li>
@@ -84,7 +87,7 @@ controlPanel.innerHTML = `
   <img class='menu-img' src="./assets/icons/menu-mine.png" alt="bomb">
   <span class='menu-span bombs'>0</span>
   </li>
-  <li class='settings'>
+  <li class='settings-button'>
   <img class='menu-img' src="./assets/icons/settings.png" alt="settings">
   </li>
 </ul>
@@ -102,7 +105,7 @@ content.classList.add('content')
 content.append(controlPanel, board)
 document.body.append(content, popup)
 
-const startGameButton = document.querySelector('.start-button')
+const startGameButton = document.querySelector('.start')
 const bombsMenuCount = document.querySelector('.bombs')
 bombsMenuCount.innerText = bombsLeftCount
 
@@ -171,8 +174,9 @@ board.addEventListener('click', (e) => {
         e.target.classList.add('disabled')
         clearInterval(setTimer)
         openBoard(board)
-        showModal('BOOM', false)
-        // audioGameOver.play();
+        showModal('GAME OVER', false)
+        audioGameOver2.play()
+        audioWin.pause()
       }
     } else {
       getBombs(Number(e.target.id))
@@ -197,12 +201,10 @@ const markCellAsBomb = (cell) => {
     audioSetFlag.play()
     cell.append(flag)
     flagCount++
-      if (
-        [...new Set(openedCells)].length === boardSize - bombsCount
-      ) {
-        showModal('YOU WIN', false)
-        audioWin.play()
-      }
+    if ([...new Set(openedCells)].length === boardSize - bombsCount) {
+      showModal('YOU WIN', false)
+      audioWin.play()
+    }
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
     bombsMenuCount.innerText = bombsLeftCount
@@ -298,19 +300,24 @@ const getBombs = (cellId) => {
   cell.style.color = colors[count]
   cell.classList.add('opened')
   openedCells.push(cellId)
-  if (
-    [...new Set(openedCells)].length === boardSize - bombsCount 
-  ) {
+  if ([...new Set(openedCells)].length === boardSize - bombsCount) {
     showModal('YOU WIN', false)
     audioWin.play()
   }
-  // audioOpenCell.play()
+  audioOpenCell.play()
   return count
 }
 
-const settings = document.querySelector('.settings')
-settings.addEventListener('click', () => {
-  showModal('', true)
+const start = document.querySelector('.start')
+start.addEventListener('click', () => {
+  const menu = showStartMenu()
+  showModal(menu, false)
+  const range = document.querySelector('.slider')
+  const rangeCount = document.querySelector('.range__count')
+  rangeCount.innerHTML = range.value;
+  range.addEventListener('input', ()=> {
+    rangeCount.innerHTML = range.value;
+  })
 })
 
 // MODAL
@@ -365,4 +372,40 @@ function createPopupCard(content = '', close) {
     modalCard.innerHTML = content
   }
   return modalCard
+}
+
+function showStartMenu() {
+  const menu = `
+  <div class="new-game">
+  <div class="buttons">
+    <div class="start-button" id="easy">
+      <h4>Easy</h4>
+      <p>10x10</p>
+    </div>
+    <div class="start-button" id="medium">
+      <h4>Medium</h4>
+      <p>15x15</p>
+    </div>
+    <div class="start-button" id="hard">
+      <h4>Hard</h4>
+      <p>25x25</p>
+    </div>
+  </div>
+
+  <div class="range">
+    <h4>Mines:</h4><span class="range__count"></span>
+    <div class="slidecontainer">
+      <input
+        type="range"
+        min="1"
+        max="99"
+        value="50"
+        class="slider"
+        id="myRange"
+      />
+    </div>
+  </div>
+</div>
+  `
+  return menu
 }
