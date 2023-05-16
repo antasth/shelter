@@ -4,7 +4,6 @@ const bombsCount = 5
 let boardSize = width * height
 let zeroCells = []
 let openedCells = []
-let markedCells = []
 let clickCount = 0
 let flagCount = 0
 let bombsLeftCount = bombsCount
@@ -124,9 +123,7 @@ startGameButton.addEventListener('click', () => {
   clickCount = 0
   zeroCells = []
   openedCells = []
-  markedCells = []
   bombs = createBombs(boardSize, bombsCount)
-  markedCells = [...bombs]
   flagCount = 0
   flagsMenuCount.innerText = flagCount
   bombsLeftCount = bombsCount
@@ -184,14 +181,12 @@ board.addEventListener('click', (e) => {
   }
 })
 
-markedCells = [...bombs]
 const flagsMenuCount = document.querySelector('.flags')
 const markCellAsBomb = (cell) => {
   cell.classList.toggle('bomb')
   if (cell.firstElementChild) {
     cell.replaceChildren()
     flagCount--
-    markedCells.push(Number(cell.id))
     flagsMenuCount.innerText = flagCount
     bombsLeftCount++
     bombsMenuCount.innerText = bombsLeftCount
@@ -199,18 +194,15 @@ const markCellAsBomb = (cell) => {
     const flag = document.createElement('img')
     flag.classList.add('flag-img')
     flag.src = './assets/icons/flag.png'
-    // audioSetFlag.play()
+    audioSetFlag.play()
     cell.append(flag)
     flagCount++
-    if (markedCells.includes(Number(cell.id))) {
-      markedCells = markedCells.filter((cellsId) => cellsId !== Number(cell.id))
       if (
-        [...new Set(openedCells)].length === boardSize - bombsCount &&
-        markedCells.length === 0
+        [...new Set(openedCells)].length === boardSize - bombsCount
       ) {
         showModal('YOU WIN', false)
+        audioWin.play()
       }
-    } else markedCells.push(Number(cell.id))
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
     bombsMenuCount.innerText = bombsLeftCount
@@ -307,10 +299,10 @@ const getBombs = (cellId) => {
   cell.classList.add('opened')
   openedCells.push(cellId)
   if (
-    [...new Set(openedCells)].length === boardSize - bombsCount &&
-    markedCells.length === 0
+    [...new Set(openedCells)].length === boardSize - bombsCount 
   ) {
     showModal('YOU WIN', false)
+    audioWin.play()
   }
   // audioOpenCell.play()
   return count
