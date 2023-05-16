@@ -66,15 +66,9 @@ controlPanel.classList.add('control-panel')
 controlPanel.innerHTML = `  
 <div class="menu">
 <ul>
-  <li class='start'><a href="#" >new game</a></li>
-  <li><a href="#">Easy 10 x 10</a>
-    <ul>
-      <li><a href="#">EASY</a></li>
-      <li><a href="#">MEDIUM</a></li>
-      <li><a href="#">HARD</a></li>
-      <li><a href="#">HELL</a></li>
-    </ul>
-  </li>
+  <li class='start'>
+  <img class='menu-img' src="./assets/icons/start.png" alt="start">
+  <span class='menu-span start'>Start</span>
   <li>
   <img class='menu-img' src="./assets/icons/timer.png" alt="timer">
   <span class='menu-span timer'>0</span>
@@ -87,8 +81,8 @@ controlPanel.innerHTML = `
   <img class='menu-img' src="./assets/icons/menu-mine.png" alt="bomb">
   <span class='menu-span bombs'>0</span>
   </li>
-  <li class='settings-button'>
-  <img class='menu-img' src="./assets/icons/settings.png" alt="settings">
+  <li class='sound-button'>
+  <img class='menu-img' src="./assets/icons/volume.png" alt="sound">
   </li>
 </ul>
 </div>

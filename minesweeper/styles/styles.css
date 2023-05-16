@@ -165,34 +165,6 @@ body {
   transition: all 0.3s ease;
 }
 
-/*sub menu*/
-.menu li ul {
-  position: absolute;
-  width: 100%;
-  display: none;
-  top: 25px;
-  left: 0;
-}
-.menu li > ul li {
-  border-right: none;
-}
-.menu li > ul li {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 10px 0;
-  text-transform: none;
-  background: #fbd83c;
-}
-.menu li > ul li ul {
-  position: absolute;
-  right: -150px;
-  top: 0;
-}
-.menu li:hover > ul {
-  display: block;
-}
-
 /* POPUP */
 .popup-overlay {
   position: fixed;
