@@ -1,6 +1,6 @@
 let width = 10
 let height = 10
-let bombsCount = 25
+let bombsCount = 1
 let boardSize = width * height
 let zeroCells = []
 let openedCells = []
@@ -219,7 +219,7 @@ board.addEventListener('click', (e) => {
           restartGame()
           hideModal()
           showStartMenu()
-          showModal(menu, false)
+          // showModal(menu, false)
         })
         // audioGameOver2.play()
         // audioWin.pause()
@@ -248,7 +248,8 @@ const markCellAsBomb = (cell) => {
     cell.append(flag)
     flagCount++
     if ([...new Set(openedCells)].length === boardSize - bombsCount) {
-      showModal('YOU WIN', false)
+
+      showModal('🆈🅾🆄 🆆🅸🅽', false)
       // audioWin.play()
     }
     flagsMenuCount.innerText = flagCount
@@ -347,7 +348,7 @@ const getBombs = (cellId) => {
   cell.classList.add('opened')
   openedCells.push(cellId)
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
-    showModal('YOU WIN', false)
+    showModal('🆈🅾🆄 🆆🅸🅽', false)
     // audioWin.play()
   }
   // audioOpenCell.play()
@@ -497,21 +498,25 @@ function showStartMenu() {
   <div class="new-game">
   <div class="buttons">
     <div class="start-button" id="easy">
-      <h4>Easy</h4>
+      <h4>🅴🅰🆂🆈</h4>
       <p>10x10</p>
     </div>
     <div class="start-button" id="medium">
-      <h4>Medium</h4>
+      <h4>🅼🅴🅳🅸🆄🅼</h4>
       <p>15x15</p>
     </div>
     <div class="start-button" id="hard">
-      <h4>Hard</h4>
+      <h4>🅷🅰🆁🅳</h4>
+      <p>25x25</p>
+    </div>
+    <div class="start-button" id="hard">
+      <h4>🅷🅴🅻🅻</h4>
       <p>25x25</p>
     </div>
   </div>
 
   <div class="range">
-    <h4>Mines:</h4><span class="range__count"></span>
+    <h4>🅼🅸🅽🅴🆂:</h4><span class="range__count"></span>
     <div class="slidecontainer">
       <input
         type="range"
@@ -523,6 +528,7 @@ function showStartMenu() {
       />
     </div>
   </div>
+  <button class='begin-game'>START GAME</button>
 </div>
   `
   showModal(menu, false)
