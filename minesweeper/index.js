@@ -1,5 +1,5 @@
-let width = 15
-let height = 15
+let width = 10
+let height = 10
 let bombsCount = 25
 let boardSize = width * height
 let zeroCells = []
@@ -124,7 +124,7 @@ let setTimer = setInterval(function () {
 }, 1000)
 
 // restart game
-startGameButton.addEventListener('click', () => {
+const restartGame = () => {
   document.querySelectorAll('.button').forEach((button) => {
     button.className = 'button'
     button.innerHTML = ''
@@ -147,6 +147,32 @@ startGameButton.addEventListener('click', () => {
   }, 1000)
   resizeBoard()
   setButtonsFontSize(buttons)
+}
+
+startGameButton.addEventListener('click', () => {
+  restartGame()
+  // document.querySelectorAll('.button').forEach((button) => {
+  //   button.className = 'button'
+  //   button.innerHTML = ''
+  //   button.style = ''
+  // })
+  // clickCount = 0
+  // zeroCells = []
+  // openedCells = []
+  // bombs = createBombs(boardSize, bombsCount)
+  // flagCount = 0
+  // flagsMenuCount.innerText = flagCount
+  // bombsLeftCount = bombsCount
+  // bombsMenuCount.innerText = bombsLeftCount
+  // time = 0
+  // timer.innerText = '0'
+  // clearInterval(setTimer)
+  // setTimer = setInterval(function () {
+  //   time++
+  //   timer.innerText = time
+  // }, 1000)
+  // resizeBoard()
+  // setButtonsFontSize(buttons)
 })
 
 // show all cells on gameover
@@ -183,9 +209,20 @@ board.addEventListener('click', (e) => {
         e.target.classList.add('disabled')
         clearInterval(setTimer)
         openBoard(board)
-        showModal('GAME OVER', false)
-        audioGameOver2.play()
-        audioWin.pause()
+        const modalContent = `
+        <h3>🅶🅰🅼🅴 🅾🆅🅴🆁</h3>
+        <button class='start-game'>NEW GAME</button>
+        `
+        showModal(modalContent, false)
+        const startButton = document.querySelector('.start-game')
+        startButton.addEventListener('click', ()=> {
+          restartGame()
+          hideModal()
+          showStartMenu()
+          showModal(menu, false)
+        })
+        // audioGameOver2.play()
+        // audioWin.pause()
       }
     } else {
       getBombs(Number(e.target.id))
@@ -207,12 +244,12 @@ const markCellAsBomb = (cell) => {
     const flag = document.createElement('img')
     flag.classList.add('flag-img')
     flag.src = './assets/icons/flag.png'
-    audioSetFlag.play()
+    // audioSetFlag.play()
     cell.append(flag)
     flagCount++
     if ([...new Set(openedCells)].length === boardSize - bombsCount) {
       showModal('YOU WIN', false)
-      audioWin.play()
+      // audioWin.play()
     }
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
@@ -311,22 +348,22 @@ const getBombs = (cellId) => {
   openedCells.push(cellId)
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
     showModal('YOU WIN', false)
-    audioWin.play()
+    // audioWin.play()
   }
-  audioOpenCell.play()
+  // audioOpenCell.play()
   return count
 }
-
-const start = document.querySelector('.start')
-start.addEventListener('click', () => {
-  const menu = showStartMenu()
-  showModal(menu, false)
-  const range = document.querySelector('.slider')
-  const rangeCount = document.querySelector('.range__count')
-  rangeCount.innerHTML = range.value
-  range.addEventListener('input', () => {
-    rangeCount.innerHTML = range.value
-  })
+// start menu
+startGameButton.addEventListener('click', () => {
+  showStartMenu()
+  // const menu = showStartMenu()
+  // showModal(menu, false)
+  // const range = document.querySelector('.slider')
+  // const rangeCount = document.querySelector('.range__count')
+  // rangeCount.innerHTML = range.value
+  // range.addEventListener('input', () => {
+  //   rangeCount.innerHTML = range.value
+  // })
 })
 
 // MODAL
@@ -353,11 +390,11 @@ function showModal(content, close) {
     })
   }
 
-  modal.addEventListener('click', (e) => {
-    if (e.target == modal) {
-      hideModal(modal)
-    }
-  })
+  // modal.addEventListener('click', (e) => {
+  //   if (e.target == modal) {
+  //     hideModal(modal)
+  //   }
+  // })
 }
 
 function hideModal() {
@@ -488,5 +525,11 @@ function showStartMenu() {
   </div>
 </div>
   `
-  return menu
+  showModal(menu, false)
+  const range = document.querySelector('.slider')
+  const rangeCount = document.querySelector('.range__count')
+  rangeCount.innerHTML = range.value
+  range.addEventListener('input', () => {
+    rangeCount.innerHTML = range.value
+  })
 }
