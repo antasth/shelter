@@ -1,6 +1,6 @@
-let width = 25
-let height = 25
-let bombsCount = 15
+let width = 15
+let height = 15
+let bombsCount = 25
 let boardSize = width * height
 let zeroCells = []
 let openedCells = []
@@ -107,10 +107,14 @@ const startGameButton = document.querySelector('.start')
 const bombsMenuCount = document.querySelector('.bombs')
 bombsMenuCount.innerText = bombsLeftCount
 
+// buttons font size 
+const setButtonsFontSize = (items) => {
+  const fontSize =
+    content.offsetWidth > 1000 ? 1.7 : content.offsetWidth > 499 ? 1 : 1.3
+  changeFontSize(items, fontSize)
+}
 const buttons = document.querySelectorAll('.button')
-const fontSize =
-  content.offsetWidth > 1000 ? 1.7 : content.offsetWidth > 499 ? 1 : 1.3
-changeFontSize(buttons, fontSize)
+setButtonsFontSize(buttons)
 
 // timer
 const timer = document.querySelector('.timer')
@@ -141,6 +145,8 @@ startGameButton.addEventListener('click', () => {
     time++
     timer.innerText = time
   }, 1000)
+  resizeBoard()
+  setButtonsFontSize(buttons)
 })
 
 // show all cells on gameover
