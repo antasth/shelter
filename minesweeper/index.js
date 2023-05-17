@@ -1,6 +1,6 @@
-const width = 10
-const height = 10
-const bombsCount = 5
+let width = 25
+let height = 25
+let bombsCount = 15
 let boardSize = width * height
 let zeroCells = []
 let openedCells = []
@@ -36,6 +36,10 @@ audioSetFlag.src = './assets/sounds/set-flag.mp3'
 let audioWin = new Audio()
 audioWin.preload = 'auto'
 audioWin.src = './assets/sounds/win.mp3'
+
+document.addEventListener('DOMContentLoaded', () => {
+  resizeBoard()
+})
 
 function createBoard(size) {
   const board = document.createElement('div')
@@ -308,9 +312,9 @@ start.addEventListener('click', () => {
   showModal(menu, false)
   const range = document.querySelector('.slider')
   const rangeCount = document.querySelector('.range__count')
-  rangeCount.innerHTML = range.value;
-  range.addEventListener('input', ()=> {
-    rangeCount.innerHTML = range.value;
+  rangeCount.innerHTML = range.value
+  range.addEventListener('input', () => {
+    rangeCount.innerHTML = range.value
   })
 })
 
@@ -368,6 +372,67 @@ function createPopupCard(content = '', close) {
   return modalCard
 }
 
+// media queries
+function resizeBoard() {
+  let cellWidth =
+    content.offsetWidth > 1000
+      ? 650 / width
+      : content.offsetWidth < 768
+      ? (content.offsetWidth * 0.9) / width
+      : (content.offsetWidth * 0.7) / width
+  board.style.gridTemplateColumns = `repeat(auto-fill, ${cellWidth}px)`
+  buttons.forEach((button) => {
+    button.style.width = `${cellWidth}px`
+    button.style.height = `${cellWidth}px`
+    board.style.width = `${cellWidth * width}px`
+  })
+}
+
+const buttons = document.querySelectorAll('.button')
+
+const mediaQueries = [
+  window.matchMedia('(max-width: 499px)'),
+  window.matchMedia('(min-width: 500px) and (max-width: 549px)'),
+  window.matchMedia('(min-width: 550px) and (max-width: 595px)'),
+  window.matchMedia('(min-width: 596px) and (max-width: 675px)'),
+  window.matchMedia('(min-width: 676px) and (max-width: 767px)'),
+  window.matchMedia('(min-width: 768px) and (max-width: 991px)'),
+  window.matchMedia('(min-width: 992px) and (max-width: 1199px)'),
+  window.matchMedia('(min-width: 1200px)'),
+]
+
+function screenMatches() {
+  if (mediaQueries[0].matches) {
+    resizeBoard()
+  }
+  if (mediaQueries[1].matches) {
+    resizeBoard()
+  }
+  if (mediaQueries[2].matches) {
+    resizeBoard()
+  }
+  if (mediaQueries[3].matches) {
+    resizeBoard()
+  }
+  if (mediaQueries[4].matches) {
+    resizeBoard()
+  }
+  if (mediaQueries[5].matches) {
+    resizeBoard()
+  }
+  if (mediaQueries[6].matches) {
+    resizeBoard()
+  }
+  if (mediaQueries[7].matches) {
+    resizeBoard()
+  }
+}
+
+mediaQueries.forEach((item) => {
+  item.addEventListener('change', screenMatches)
+})
+
+// start menu
 function showStartMenu() {
   const menu = `
   <div class="new-game">
