@@ -107,6 +107,11 @@ const startGameButton = document.querySelector('.start')
 const bombsMenuCount = document.querySelector('.bombs')
 bombsMenuCount.innerText = bombsLeftCount
 
+const buttons = document.querySelectorAll('.button')
+const fontSize =
+  content.offsetWidth > 1000 ? 1.7 : content.offsetWidth > 499 ? 1 : 1.3
+changeFontSize(buttons, fontSize)
+
 // timer
 const timer = document.querySelector('.timer')
 let setTimer = setInterval(function () {
@@ -387,8 +392,11 @@ function resizeBoard() {
     board.style.width = `${cellWidth * width}px`
   })
 }
-
-const buttons = document.querySelectorAll('.button')
+function changeFontSize(items, size) {
+  items.forEach((item) => {
+    item.style.fontSize = `${size}rem`
+  })
+}
 
 const mediaQueries = [
   window.matchMedia('(max-width: 499px)'),
@@ -404,27 +412,35 @@ const mediaQueries = [
 function screenMatches() {
   if (mediaQueries[0].matches) {
     resizeBoard()
+    changeFontSize(buttons, 0.8)
   }
   if (mediaQueries[1].matches) {
     resizeBoard()
+    changeFontSize(buttons, 1)
   }
   if (mediaQueries[2].matches) {
     resizeBoard()
+    changeFontSize(buttons, 1.2)
   }
   if (mediaQueries[3].matches) {
     resizeBoard()
+    changeFontSize(buttons, 1.3)
   }
   if (mediaQueries[4].matches) {
     resizeBoard()
+    changeFontSize(buttons, 1.4)
   }
   if (mediaQueries[5].matches) {
     resizeBoard()
+    changeFontSize(buttons, 1.5)
   }
   if (mediaQueries[6].matches) {
     resizeBoard()
+    changeFontSize(buttons, 1.6)
   }
   if (mediaQueries[7].matches) {
     resizeBoard()
+    changeFontSize(buttons, 1.7)
   }
 }
 
