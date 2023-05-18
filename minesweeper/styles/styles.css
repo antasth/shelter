@@ -4,6 +4,15 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: 'GodshineSans';
+  src: url('../assets/fonts/GodshineSans.woff2') format('woff2'),
+      url('../assets/fonts/GodshineSans.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body,
 html {
   padding: 0;
@@ -217,9 +226,9 @@ body {
 } */
 .popup_container button {
   font-weight: 300;
-  font-size: 32px;
-  font-family: 'arial';
-  letter-spacing: 12px;
+  font-size: 34px;
+  font-family: 'GodshineSans';
+  letter-spacing: 16px;
   color: white;
   text-decoration: none;
   border: none;
@@ -380,3 +389,4 @@ input[type='range']::-webkit-slider-thumb {
   background: #cdcdcd;
   box-shadow: -80px 0 0 80px #f92f60;
 }
+
