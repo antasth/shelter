@@ -1,6 +1,6 @@
-let width = 10
-let height = 10
-let bombsCount = 1
+let width = 15
+let height = 15
+let bombsCount = 10
 let boardSize = width * height
 let zeroCells = []
 let openedCells = []
@@ -107,7 +107,7 @@ const startGameButton = document.querySelector('.start')
 const bombsMenuCount = document.querySelector('.bombs')
 bombsMenuCount.innerText = bombsLeftCount
 
-// buttons font size 
+// buttons font size
 const setButtonsFontSize = (items) => {
   const fontSize =
     content.offsetWidth > 1000 ? 1.7 : content.offsetWidth > 499 ? 1 : 1.3
@@ -215,7 +215,7 @@ board.addEventListener('click', (e) => {
         `
         showModal(modalContent, false)
         const startButton = document.querySelector('.start-game')
-        startButton.addEventListener('click', ()=> {
+        startButton.addEventListener('click', () => {
           restartGame()
           hideModal()
           showStartMenu()
@@ -248,7 +248,6 @@ const markCellAsBomb = (cell) => {
     cell.append(flag)
     flagCount++
     if ([...new Set(openedCells)].length === boardSize - bombsCount) {
-
       showModal('🆈🅾🆄 🆆🅸🅽', false)
       // audioWin.play()
     }
@@ -357,14 +356,6 @@ const getBombs = (cellId) => {
 // start menu
 startGameButton.addEventListener('click', () => {
   showStartMenu()
-  // const menu = showStartMenu()
-  // showModal(menu, false)
-  // const range = document.querySelector('.slider')
-  // const rangeCount = document.querySelector('.range__count')
-  // rangeCount.innerHTML = range.value
-  // range.addEventListener('input', () => {
-  //   rangeCount.innerHTML = range.value
-  // })
 })
 
 // MODAL
@@ -495,24 +486,38 @@ mediaQueries.forEach((item) => {
 // start menu
 function showStartMenu() {
   const menu = `
-  <div class="new-game">
   <div class="buttons">
-    <div class="start-button" id="easy">
+  <div class="radio-btn">
+    <input id="radio-1" type="radio" name="radio" value="1" checked />
+    <label class="radio-label" for="radio-1">
       <h4>🅴🅰🆂🆈</h4>
       <p>10x10</p>
-    </div>
-    <div class="start-button" id="medium">
+    </label>
+  </div>
+
+  <div class="radio-btn">
+    <input id="radio-2" type="radio" name="radio" value="2" />
+    <label class="radio-label" for="radio-2">
       <h4>🅼🅴🅳🅸🆄🅼</h4>
       <p>15x15</p>
-    </div>
-    <div class="start-button" id="hard">
+      </label>
+  </div>
+
+  <div class="radio-btn">
+    <input id="radio-3" type="radio" name="radio" value="3" />
+    <label class="radio-label" for="radio-3">
       <h4>🅷🅰🆁🅳</h4>
       <p>25x25</p>
-    </div>
-    <div class="start-button" id="hard">
+    </label>
+  </div>
+
+  <div class="radio-btn hell">
+    <input id="radio-4" type="radio" name="radio" value="4" />
+    <label class="radio-hell" for="radio-4">
       <h4>🅷🅴🅻🅻</h4>
       <p>25x25</p>
-    </div>
+    </label>
+  </div>
   </div>
 
   <div class="range">
