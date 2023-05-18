@@ -228,6 +228,19 @@ function addListenerToBoard() {
       }
     }
   })
+  board.addEventListener('contextmenu', (e) => {
+    e.preventDefault()
+    if (
+      e.target.classList.contains('button') &&
+      !e.target.classList.contains('opened') &&
+      !e.target.classList.contains('disabled')
+    ) {
+      markCellAsBomb(e.target)
+    }
+    if (e.target.classList.contains('flag-img')) {
+      markCellAsBomb(e.target.parentNode)
+    }
+  })
 }
 addListenerToBoard()
 
@@ -258,19 +271,6 @@ const markCellAsBomb = (cell) => {
   }
 }
 
-board.addEventListener('contextmenu', (e) => {
-  e.preventDefault()
-  if (
-    e.target.classList.contains('button') &&
-    !e.target.classList.contains('opened') &&
-    !e.target.classList.contains('disabled')
-  ) {
-    markCellAsBomb(e.target)
-  }
-  if (e.target.classList.contains('flag-img')) {
-    markCellAsBomb(e.target.parentNode)
-  }
-})
 const getBombs = (cellId) => {
   const column = cellId % width !== 0 ? cellId % width : width
   const row = Math.ceil(cellId / width)
@@ -530,7 +530,7 @@ function showStartMenu() {
         type="range"
         min="1"
         max="99"
-        value="10"
+        value="50"
         class="slider"
         id="myRange"
       />
