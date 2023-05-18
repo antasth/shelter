@@ -1,5 +1,5 @@
-let width = 15
-let height = 15
+let width = 10
+let height = 10
 let bombsCount = 10
 let boardSize = width * height
 let zeroCells = []
@@ -17,6 +17,12 @@ const colors = {
   6: '#1B3B6F',
   7: '#C200FB',
   8: '#FF007F',
+}
+const boardIdSize = {
+  1: '10',
+  2: '15',
+  3: '25',
+  4: '25',
 }
 let audioGameOver = new Audio()
 audioGameOver.preload = 'auto'
@@ -38,7 +44,7 @@ audioWin.preload = 'auto'
 audioWin.src = './assets/sounds/win.mp3'
 
 document.addEventListener('DOMContentLoaded', () => {
-  resizeBoard()
+  resizeBoard(width)
 })
 
 function createBoard(size) {
@@ -113,7 +119,7 @@ const setButtonsFontSize = (items) => {
     content.offsetWidth > 1000 ? 1.7 : content.offsetWidth > 499 ? 1 : 1.3
   changeFontSize(items, fontSize)
 }
-const buttons = document.querySelectorAll('.button')
+let buttons = document.querySelectorAll('.button')
 setButtonsFontSize(buttons)
 
 // timer
@@ -123,8 +129,21 @@ let setTimer = setInterval(function () {
   timer.innerText = time
 }, 1000)
 
+// start game
+function startGame(size, mines) {
+
+  boardSize = boardIdSize[size] ** 2
+  const board = createBoard(boardSize)
+   width = boardIdSize[size]
+   height = boardIdSize[size]
+   bombsCount = mines
+  content.replaceChildren()
+  content.append(controlPanel, board)
+  restartGame(boardSize, mines, width)
+  addListenerToBoard()
+}
 // restart game
-const restartGame = () => {
+const restartGame = (size, count, boardWidth) => {
   document.querySelectorAll('.button').forEach((button) => {
     button.className = 'button'
     button.innerHTML = ''
@@ -133,7 +152,7 @@ const restartGame = () => {
   clickCount = 0
   zeroCells = []
   openedCells = []
-  bombs = createBombs(boardSize, bombsCount)
+  bombs = createBombs(size, count)
   flagCount = 0
   flagsMenuCount.innerText = flagCount
   bombsLeftCount = bombsCount
@@ -145,34 +164,12 @@ const restartGame = () => {
     time++
     timer.innerText = time
   }, 1000)
-  resizeBoard()
+  resizeBoard(boardWidth)
   setButtonsFontSize(buttons)
 }
 
 startGameButton.addEventListener('click', () => {
-  restartGame()
-  // document.querySelectorAll('.button').forEach((button) => {
-  //   button.className = 'button'
-  //   button.innerHTML = ''
-  //   button.style = ''
-  // })
-  // clickCount = 0
-  // zeroCells = []
-  // openedCells = []
-  // bombs = createBombs(boardSize, bombsCount)
-  // flagCount = 0
-  // flagsMenuCount.innerText = flagCount
-  // bombsLeftCount = bombsCount
-  // bombsMenuCount.innerText = bombsLeftCount
-  // time = 0
-  // timer.innerText = '0'
-  // clearInterval(setTimer)
-  // setTimer = setInterval(function () {
-  //   time++
-  //   timer.innerText = time
-  // }, 1000)
-  // resizeBoard()
-  // setButtonsFontSize(buttons)
+  restartGame(boardSize, bombsCount, width)
 })
 
 // show all cells on gameover
@@ -192,44 +189,48 @@ const openBoard = (board) => {
     }
   })
 }
-
-board.addEventListener('click', (e) => {
-  if (e.target.classList.contains('button')) {
-    if (bombs.includes(Number(e.target.id))) {
-      if (clickCount === 0) {
-        bombs = createBombs(boardSize, bombsCount)
+function addListenerToBoard() {
+  const board = document.querySelector('.board')
+  board.addEventListener('click', (e) => {
+    if (e.target.classList.contains('button')) {
+      if (bombs.includes(Number(e.target.id))) {
+        if (clickCount === 0) {
+          bombs = createBombs(boardSize, bombsCount)
+          getBombs(Number(e.target.id))
+          clickCount++
+        } else {
+          clickCount++
+          const bombImg = document.createElement('img')
+          bombImg.classList.add('bomb-img')
+          bombImg.src = './assets/icons/mine.png'
+          e.target.append(bombImg)
+          e.target.classList.add('disabled')
+          clearInterval(setTimer)
+          openBoard(board)
+          const modalContent = `
+          <h3>🅶🅰🅼🅴 🅾🆅🅴🆁</h3>
+          <button class='start-game'>NEW GAME</button>
+          `
+          showModal(modalContent, false)
+          const startButton = document.querySelector('.start-game')
+          startButton.addEventListener('click', () => {
+            restartGame(boardSize, bombsCount, width)
+            hideModal()
+            showStartMenu()
+            // showModal(menu, false)
+          })
+          // audioGameOver2.play()
+          // audioWin.pause()
+        }
+      } else {
         getBombs(Number(e.target.id))
         clickCount++
-      } else {
-        clickCount++
-        const bombImg = document.createElement('img')
-        bombImg.classList.add('bomb-img')
-        bombImg.src = './assets/icons/mine.png'
-        e.target.append(bombImg)
-        e.target.classList.add('disabled')
-        clearInterval(setTimer)
-        openBoard(board)
-        const modalContent = `
-        <h3>🅶🅰🅼🅴 🅾🆅🅴🆁</h3>
-        <button class='start-game'>NEW GAME</button>
-        `
-        showModal(modalContent, false)
-        const startButton = document.querySelector('.start-game')
-        startButton.addEventListener('click', () => {
-          restartGame()
-          hideModal()
-          showStartMenu()
-          // showModal(menu, false)
-        })
-        // audioGameOver2.play()
-        // audioWin.pause()
       }
-    } else {
-      getBombs(Number(e.target.id))
-      clickCount++
     }
-  }
-})
+  })
+}
+addListenerToBoard()
+
 
 const flagsMenuCount = document.querySelector('.flags')
 const markCellAsBomb = (cell) => {
@@ -278,7 +279,7 @@ const getBombs = (cellId) => {
   if (row !== 1 && row !== width && column !== 1 && column !== width) {
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
-        let id = (row + i - 1) * width + column + j
+        let id = (Number(row) + i - 1) * Number(width) + Number(column) + j
         if (bombs.includes(id)) {
           count++
         } else {
@@ -289,7 +290,7 @@ const getBombs = (cellId) => {
   } else if (column === 1) {
     for (let i = -1; i <= 1; i++) {
       for (let j = 0; j <= 1; j++) {
-        let id = (row + i - 1) * width + column + j
+        let id = (Number(row) + i - 1) * Number(width) + Number(column) + j
         if (bombs.includes(id)) {
           count++
         } else {
@@ -300,7 +301,7 @@ const getBombs = (cellId) => {
   } else if (column === width) {
     for (let i = -1; i <= 1; i++) {
       for (let j = -1; j <= 0; j++) {
-        let id = (row + i - 1) * width + column + j
+        let id = (Number(row) + i - 1) * Number(width) + Number(column) + j
         if (bombs.includes(id)) {
           count++
         } else {
@@ -311,7 +312,7 @@ const getBombs = (cellId) => {
   } else if (row === 1) {
     for (let i = 0; i <= 1; i++) {
       for (let j = -1; j <= 1; j++) {
-        let id = (row + i - 1) * width + column + j
+        let id = (Number(row) + i - 1) * Number(width) + Number(column) + j
         if (bombs.includes(id)) {
           count++
         } else {
@@ -322,7 +323,7 @@ const getBombs = (cellId) => {
   } else if (row === width) {
     for (let i = -1; i <= 0; i++) {
       for (let j = -1; j <= 1; j++) {
-        let id = (row + i - 1) * width + column + j
+        let id = (Number(row) + i - 1) * Number(width) + Number(column) + j
         if (bombs.includes(id)) {
           count++
         } else {
@@ -413,18 +414,20 @@ function createPopupCard(content = '', close) {
 }
 
 // media queries
-function resizeBoard() {
+function resizeBoard(boardWidth) {
   let cellWidth =
     content.offsetWidth > 1000
-      ? 650 / width
+      ? 650 / boardWidth
       : content.offsetWidth < 768
-      ? (content.offsetWidth * 0.9) / width
-      : (content.offsetWidth * 0.7) / width
+      ? (content.offsetWidth * 0.9) / boardWidth
+      : (content.offsetWidth * 0.7) / boardWidth
+      const board = document.querySelector('.board')
+      const buttons = document.querySelectorAll('.button')
   board.style.gridTemplateColumns = `repeat(auto-fill, ${cellWidth}px)`
   buttons.forEach((button) => {
     button.style.width = `${cellWidth}px`
     button.style.height = `${cellWidth}px`
-    board.style.width = `${cellWidth * width}px`
+    board.style.width = `${cellWidth * boardWidth}px`
   })
 }
 function changeFontSize(items, size) {
@@ -446,35 +449,35 @@ const mediaQueries = [
 
 function screenMatches() {
   if (mediaQueries[0].matches) {
-    resizeBoard()
+    resizeBoard(width)
     changeFontSize(buttons, 0.8)
   }
   if (mediaQueries[1].matches) {
-    resizeBoard()
+    resizeBoard(width)
     changeFontSize(buttons, 1)
   }
   if (mediaQueries[2].matches) {
-    resizeBoard()
+    resizeBoard(width)
     changeFontSize(buttons, 1.2)
   }
   if (mediaQueries[3].matches) {
-    resizeBoard()
+    resizeBoard(width)
     changeFontSize(buttons, 1.3)
   }
   if (mediaQueries[4].matches) {
-    resizeBoard()
+    resizeBoard(width)
     changeFontSize(buttons, 1.4)
   }
   if (mediaQueries[5].matches) {
-    resizeBoard()
+    resizeBoard(width)
     changeFontSize(buttons, 1.5)
   }
   if (mediaQueries[6].matches) {
-    resizeBoard()
+    resizeBoard(width)
     changeFontSize(buttons, 1.6)
   }
   if (mediaQueries[7].matches) {
-    resizeBoard()
+    resizeBoard(width)
     changeFontSize(buttons, 1.7)
   }
 }
@@ -527,7 +530,7 @@ function showStartMenu() {
         type="range"
         min="1"
         max="99"
-        value="50"
+        value="10"
         class="slider"
         id="myRange"
       />
@@ -542,5 +545,12 @@ function showStartMenu() {
   rangeCount.innerHTML = range.value
   range.addEventListener('input', () => {
     rangeCount.innerHTML = range.value
+  })
+  const startButton = document.querySelector('.begin-game')
+  startButton.addEventListener('click', () => {
+    const selectedBoard = document.querySelector('input[name="radio"]:checked')
+
+    startGame(selectedBoard.value, Number(range.value))
+    hideModal()
   })
 }
