@@ -133,9 +133,9 @@ let setTimer = setInterval(function () {
 function startGame(size, mines) {
   boardSize = boardIdSize[size] ** 2
   const board = createBoard(boardSize)
-   width = boardIdSize[size]
-   height = boardIdSize[size]
-   bombsCount = mines
+  width = boardIdSize[size]
+  height = boardIdSize[size]
+  bombsCount = mines
   content.replaceChildren()
   content.append(controlPanel, board)
   restartGame(boardSize, mines, width)
@@ -143,7 +143,6 @@ function startGame(size, mines) {
 }
 // restart game
 const restartGame = (size, count, boardWidth) => {
-
   const buttons = document.querySelectorAll('.button')
   buttons.forEach((button) => {
     button.className = 'button'
@@ -210,7 +209,7 @@ function addListenerToBoard() {
           openBoard(board)
           const modalContent = `
           <h3>🅶🅰🅼🅴 🅾🆅🅴🆁</h3>
-          <button class='start-game'>NEW GAME</button>
+          <button class='start-game'>TRY AGAIN</button>
           `
           showModal(modalContent, false)
           const startButton = document.querySelector('.start-game')
@@ -242,10 +241,8 @@ function addListenerToBoard() {
       markCellAsBomb(e.target.parentNode)
     }
   })
-
 }
 addListenerToBoard()
-
 
 const flagsMenuCount = document.querySelector('.flags')
 const markCellAsBomb = (cell) => {
@@ -264,7 +261,19 @@ const markCellAsBomb = (cell) => {
     cell.append(flag)
     flagCount++
     if ([...new Set(openedCells)].length === boardSize - bombsCount) {
-      showModal('🆈🅾🆄 🆆🅸🅽', false)
+      const winMessage = createWinMessage(time, clickCount)
+      const modalContent = `
+      <h3>${winMessage}</h3>
+      <button class='start-game'>NEW GAME</button>
+      `
+      showModal(modalContent, false)
+      const startButton = document.querySelector('.start-game')
+      startButton.addEventListener('click', () => {
+        restartGame(boardSize, bombsCount, width)
+        hideModal()
+        showStartMenu()
+        // showModal(menu, false)
+      })
       // audioWin.play()
     }
     flagsMenuCount.innerText = flagCount
@@ -350,7 +359,19 @@ const getBombs = (cellId) => {
   cell.classList.add('opened')
   openedCells.push(cellId)
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
-    showModal('🆈🅾🆄 🆆🅸🅽', false)
+    let winMessage = createWinMessage(time, clickCount)
+    const modalContent = `
+    <h3>${winMessage}</h3>
+    <button class='start-game'>NEW GAME</button>
+    `
+    showModal(modalContent, false)
+    const startButton = document.querySelector('.start-game')
+    startButton.addEventListener('click', () => {
+      restartGame(boardSize, bombsCount, width)
+      hideModal()
+      showStartMenu()
+      // showModal(menu, false)
+    })
     // audioWin.play()
   }
   // audioOpenCell.play()
@@ -423,8 +444,8 @@ function resizeBoard(boardWidth) {
       : content.offsetWidth < 768
       ? (content.offsetWidth * 0.9) / boardWidth
       : (content.offsetWidth * 0.7) / boardWidth
-      const board = document.querySelector('.board')
-      const buttons = document.querySelectorAll('.button')
+  const board = document.querySelector('.board')
+  const buttons = document.querySelectorAll('.button')
   board.style.gridTemplateColumns = `repeat(auto-fill, ${cellWidth}px)`
   buttons.forEach((button) => {
     button.style.width = `${cellWidth}px`
@@ -556,4 +577,9 @@ function showStartMenu() {
     startGame(selectedBoard.value, Number(range.value))
     hideModal()
   })
+}
+
+function createWinMessage(time, moves) {
+  let message = `🅷🅾🅾🆁🅰🆈! 🆈🅾🆄 🅵🅾🆄🅽🅳 🅰🅻🅻 🅼🅸🅽🅴🆂 🅸🅽 ${time} 🆂🅴🅲🅾🅽🅳🆂 🅰🅽🅳 ${moves} 🅼🅾🆅🅴🆂!`
+  return message
 }
