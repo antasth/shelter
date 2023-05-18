@@ -525,7 +525,7 @@ mediaQueries.forEach((item) => {
 function showStartMenu() {
   const menu = `
   <div class="buttons">
-  <div class="radio-btn">
+  <div class="radio-btn" id='1'>
     <input id="radio-1" type="radio" name="radio" value="1" checked />
     <label class="radio-label" for="radio-1">
       <h4>🅴🅰🆂🆈</h4>
@@ -533,7 +533,7 @@ function showStartMenu() {
     </label>
   </div>
 
-  <div class="radio-btn">
+  <div class="radio-btn" id='2'>
     <input id="radio-2" type="radio" name="radio" value="2" />
     <label class="radio-label" for="radio-2">
       <h4>🅼🅴🅳🅸🆄🅼</h4>
@@ -541,7 +541,7 @@ function showStartMenu() {
       </label>
   </div>
 
-  <div class="radio-btn">
+  <div class="radio-btn" id='3'>
     <input id="radio-3" type="radio" name="radio" value="3" />
     <label class="radio-label" for="radio-3">
       <h4>🅷🅰🆁🅳</h4>
@@ -549,9 +549,9 @@ function showStartMenu() {
     </label>
   </div>
 
-  <div class="radio-btn hell">
+  <div class="radio-btn hell" id='4'>
     <input id="radio-4" type="radio" name="radio" value="4" />
-    <label class="radio-hell" for="radio-4">
+    <label class="radio-label radio-hell" for="radio-4">
       <h4>🅷🅴🅻🅻</h4>
       <p>25x25</p>
     </label>
@@ -565,7 +565,7 @@ function showStartMenu() {
         type="range"
         min="1"
         max="99"
-        value="50"
+        value="10"
         class="slider"
         id="myRange"
       />
@@ -581,11 +581,44 @@ function showStartMenu() {
   range.addEventListener('input', () => {
     rangeCount.innerHTML = range.value
   })
+  const modal = document.querySelector('.modal')
+  const slider = document.querySelector('.slider')
+  let isHell = false
+  modal.addEventListener('click', (e)=> {
+    if (e.target.parentNode.classList.contains('radio-btn')) {
+      isHell = false
+      let id = Number(e.target.parentNode.id)
+      switch(id) {
+        case 1: 
+        slider.value = 10
+        slider.disabled = false
+        rangeCount.innerHTML = 10
+          break
+        case 2:
+          slider.value = 30
+          slider.disabled = false
+          rangeCount.innerHTML = 30
+          break 
+        case 3:
+          slider.value = 70
+          slider.disabled = false
+          rangeCount.innerHTML = 70
+          break 
+        case 4:
+          slider.value = 150
+          slider.disabled = true
+          rangeCount.innerHTML = 150
+          isHell = true
+          break 
+      }
+    }
+  })
+
   const startButton = document.querySelector('.begin-game')
   startButton.addEventListener('click', () => {
     const selectedBoard = document.querySelector('input[name="radio"]:checked')
 
-    startGame(selectedBoard.value, Number(range.value))
+    startGame(selectedBoard.value, isHell ? 150 : Number(range.value))
     hideModal()
   })
 }
