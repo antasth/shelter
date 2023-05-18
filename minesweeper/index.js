@@ -88,6 +88,10 @@ controlPanel.innerHTML = `
   <span class='menu-span flags'>0</span>
   </li>
   <li>
+  <img class='menu-img' src="./assets/icons/tap.png" alt="moves">
+  <span class='menu-span moves'>0</span>
+  </li>
+  <li>
   <img class='menu-img' src="./assets/icons/menu-mine.png" alt="bomb">
   <span class='menu-span bombs'>0</span>
   </li>
@@ -149,12 +153,14 @@ function startGame(size, mines) {
 // restart game
 const restartGame = (size, count, boardWidth) => {
   const buttons = document.querySelectorAll('.button')
+  const clickMenuCount = document.querySelector('.moves')
   buttons.forEach((button) => {
     button.className = 'button'
     button.innerHTML = ''
     button.style = ''
   })
   clickCount = 0
+  clickMenuCount.innerHTML = clickCount
   zeroCells = []
   openedCells = []
   bombs = createBombs(size, count)
@@ -192,6 +198,7 @@ const openBoard = (board) => {
 }
 function addListenerToBoard() {
   const board = document.querySelector('.board')
+  const clickMenuCount = document.querySelector('.moves')
   board.addEventListener('click', (e) => {
     if (e.target.classList.contains('button')) {
       if (bombs.includes(Number(e.target.id))) {
@@ -199,8 +206,10 @@ function addListenerToBoard() {
           bombs = createBombs(boardSize, bombsCount)
           getBombs(Number(e.target.id))
           clickCount++
+          clickMenuCount.innerHTML = clickCount
         } else {
           clickCount++
+          clickMenuCount.innerHTML = clickCount
           const bombImg = document.createElement('img')
           bombImg.classList.add('bomb-img')
           bombImg.src = './assets/icons/mine.png'
@@ -225,6 +234,7 @@ function addListenerToBoard() {
       } else {
         getBombs(Number(e.target.id))
         clickCount++
+        clickMenuCount.innerHTML = clickCount
       }
     }
   })
@@ -581,6 +591,6 @@ function showStartMenu() {
 }
 
 function createWinMessage(time, moves) {
-  let message = `🅷🅾🅾🆁🅰🆈! 🆈🅾🆄 🅵🅾🆄🅽🅳 🅰🅻🅻 🅼🅸🅽🅴🆂 🅸🅽 ${time} 🆂🅴🅲🅾🅽🅳🆂 🅰🅽🅳 ${moves} 🅼🅾🆅🅴🆂!`
+  let message = `🅷🅾🅾🆁🅰🆈! 🆈🅾🆄 🅵🅾🆄🅽🅳 🅰🅻🅻 🅼🅸🅽🅴🆂 🅸🅽 ${time} 🆂🅴🅲🅾🅽🅳🆂 🅰🅽🅳 ${moves + 1} 🅼🅾🆅🅴🆂!`
   return message
 }
