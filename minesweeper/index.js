@@ -131,7 +131,6 @@ let setTimer = setInterval(function () {
 
 // start game
 function startGame(size, mines) {
-
   boardSize = boardIdSize[size] ** 2
   const board = createBoard(boardSize)
    width = boardIdSize[size]
@@ -144,7 +143,9 @@ function startGame(size, mines) {
 }
 // restart game
 const restartGame = (size, count, boardWidth) => {
-  document.querySelectorAll('.button').forEach((button) => {
+
+  const buttons = document.querySelectorAll('.button')
+  buttons.forEach((button) => {
     button.className = 'button'
     button.innerHTML = ''
     button.style = ''
@@ -241,6 +242,7 @@ function addListenerToBoard() {
       markCellAsBomb(e.target.parentNode)
     }
   })
+
 }
 addListenerToBoard()
 
@@ -448,6 +450,7 @@ const mediaQueries = [
 ]
 
 function screenMatches() {
+  const buttons = document.querySelectorAll('.button')
   if (mediaQueries[0].matches) {
     resizeBoard(width)
     changeFontSize(buttons, 0.8)
