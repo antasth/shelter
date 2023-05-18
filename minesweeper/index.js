@@ -140,6 +140,11 @@ function startGame(size, mines) {
   content.append(controlPanel, board)
   restartGame(boardSize, mines, width)
   addListenerToBoard()
+  setTimer = setInterval(function () {
+    time++
+    timer.innerText = time
+  }, 1000)
+
 }
 // restart game
 const restartGame = (size, count, boardWidth) => {
@@ -160,10 +165,6 @@ const restartGame = (size, count, boardWidth) => {
   time = 0
   timer.innerText = '0'
   clearInterval(setTimer)
-  setTimer = setInterval(function () {
-    time++
-    timer.innerText = time
-  }, 1000)
   resizeBoard(boardWidth)
   setButtonsFontSize(buttons)
 }
@@ -217,7 +218,6 @@ function addListenerToBoard() {
             restartGame(boardSize, bombsCount, width)
             hideModal()
             showStartMenu()
-            // showModal(menu, false)
           })
           // audioGameOver2.play()
           // audioWin.pause()
@@ -261,6 +261,7 @@ const markCellAsBomb = (cell) => {
     cell.append(flag)
     flagCount++
     if ([...new Set(openedCells)].length === boardSize - bombsCount) {
+      clearInterval(setTimer)
       const winMessage = createWinMessage(time, clickCount)
       const modalContent = `
       <h3>${winMessage}</h3>
@@ -272,7 +273,6 @@ const markCellAsBomb = (cell) => {
         restartGame(boardSize, bombsCount, width)
         hideModal()
         showStartMenu()
-        // showModal(menu, false)
       })
       // audioWin.play()
     }
@@ -359,6 +359,7 @@ const getBombs = (cellId) => {
   cell.classList.add('opened')
   openedCells.push(cellId)
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
+    clearInterval(setTimer)
     let winMessage = createWinMessage(time, clickCount)
     const modalContent = `
     <h3>${winMessage}</h3>
