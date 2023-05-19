@@ -4,6 +4,7 @@ let bombsCount = 10
 let boardSize = width * height
 let zeroCells = []
 let openedCells = []
+let flaggedCells = []
 let clickCount = 0
 let flagCount = 0
 let bombsLeftCount = bombsCount
@@ -24,6 +25,7 @@ const boardIdSize = {
   3: '25',
   4: '25',
 }
+let gameState = {}
 let audioGameOver = new Audio()
 audioGameOver.preload = 'auto'
 audioGameOver.src = './assets/sounds/game-over.mp3'
@@ -45,6 +47,7 @@ audioWin.src = './assets/sounds/win.mp3'
 
 document.addEventListener('DOMContentLoaded', () => {
   resizeBoard(width)
+  getFromLocalStorage()
 })
 
 function createBoard(size) {
@@ -131,6 +134,7 @@ const timer = document.querySelector('.timer')
 let setTimer = setInterval(function () {
   time++
   timer.innerText = time
+  gameState.time = time
 }, 1000)
 
 // start game
@@ -147,8 +151,14 @@ function startGame(size, mines) {
   setTimer = setInterval(function () {
     time++
     timer.innerText = time
+    gameState.time = time
   }, 1000)
-
+  gameState.size = Number(boardIdSize[size])
+  gameState.boardIdSize = boardIdSize[size] ** 2
+  gameState.width = Number(width)
+  gameState.height = Number(height)
+  gameState.bombsCount = bombsCount
+  console.log('gameState',gameState);
 }
 // restart game
 const restartGame = (size, count, boardWidth) => {
@@ -163,7 +173,9 @@ const restartGame = (size, count, boardWidth) => {
   clickMenuCount.innerHTML = clickCount
   zeroCells = []
   openedCells = []
+  flaggedCells = []
   bombs = createBombs(size, count)
+  gameState.bombs = bombs
   flagCount = 0
   flagsMenuCount.innerText = flagCount
   bombsLeftCount = bombsCount
@@ -206,9 +218,11 @@ function addListenerToBoard() {
           bombs = createBombs(boardSize, bombsCount)
           getBombs(Number(e.target.id))
           clickCount++
+          gameState.clickCount = clickCount
           clickMenuCount.innerHTML = clickCount
         } else {
           clickCount++
+          gameState.clickCount = clickCount
           clickMenuCount.innerHTML = clickCount
           const bombImg = document.createElement('img')
           bombImg.classList.add('bomb-img')
@@ -235,6 +249,7 @@ function addListenerToBoard() {
         getBombs(Number(e.target.id))
         clickCount++
         clickMenuCount.innerHTML = clickCount
+        gameState.clickCount = clickCount
       }
     }
   })
@@ -260,8 +275,12 @@ const markCellAsBomb = (cell) => {
   if (cell.firstElementChild) {
     cell.replaceChildren()
     flagCount--
+    flaggedCells.splice(flaggedCells.indexOf(cell), 1)
+    gameState.flaggedCells = flaggedCells
     flagsMenuCount.innerText = flagCount
     bombsLeftCount++
+    gameState.flagCount = flagCount
+    gameState.bombsLeftCount = bombsLeftCount
     bombsMenuCount.innerText = bombsLeftCount
   } else {
     const flag = document.createElement('img')
@@ -270,6 +289,9 @@ const markCellAsBomb = (cell) => {
     // audioSetFlag.play()
     cell.append(flag)
     flagCount++
+    gameState.flagCount = flagCount
+    flaggedCells.push(cell.id)
+    gameState.flaggedCells = flaggedCells
     if ([...new Set(openedCells)].length === boardSize - bombsCount) {
       clearInterval(setTimer)
       const winMessage = createWinMessage(time, clickCount)
@@ -289,6 +311,8 @@ const markCellAsBomb = (cell) => {
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
     bombsMenuCount.innerText = bombsLeftCount
+    gameState.bombsLeftCount = bombsLeftCount
+
   }
 }
 
@@ -368,6 +392,7 @@ const getBombs = (cellId) => {
   cell.style.color = colors[count]
   cell.classList.add('opened')
   openedCells.push(cellId)
+  gameState.openedCells = openedCells
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
     clearInterval(setTimer)
     let winMessage = createWinMessage(time, clickCount)
@@ -627,3 +652,16 @@ function createWinMessage(time, moves) {
   let message = `🅷🅾🅾🆁🅰🆈! 🆈🅾🆄 🅵🅾🆄🅽🅳 🅰🅻🅻 🅼🅸🅽🅴🆂 🅸🅽 ${time} 🆂🅴🅲🅾🅽🅳🆂 🅰🅽🅳 ${moves + 1} 🅼🅾🆅🅴🆂!`
   return message
 }
+
+// save game state
+function saveToLocalStorage() {
+  // console.log(gameState);
+  localStorage.gameState = JSON.stringify(gameState)
+}
+
+function getFromLocalStorage () {
+  console.log(JSON.parse(localStorage.gameState));
+}
+window.addEventListener('unload', () => {
+  saveToLocalStorage()
+})
