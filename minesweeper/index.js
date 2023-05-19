@@ -430,7 +430,7 @@ const getBombs = (cellId) => {
   cell.style.color = colors[count]
   cell.classList.add('opened')
   openedCells.push(cellId)
-  gameState.openedCellsSave = openedCells
+  gameState.openedCellsSave = [...new Set(openedCells)]
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
     clearInterval(setTimer)
     let winMessage = createWinMessage(time, clickCount)
@@ -723,8 +723,9 @@ function restoreGameState({
   boardSizeSave,
 }) {
   width = widthSave
+  openedCells = openedCellsSave
+  // openedCells = [...new Set(openedCellsSave)]
 
-  openedCells = [...new Set(openedCellsSave)]
   startGame(sizeSave, bombsCountSave)
 
   if (flaggedCellsSave) {
@@ -733,6 +734,7 @@ function restoreGameState({
       markCellAsBomb(cellButton)
     })
   }
+
   bombs = bombsSave
   openedCellsSave.forEach((cell) => {
     getBombs(cell)
