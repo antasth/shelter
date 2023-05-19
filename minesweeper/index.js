@@ -199,7 +199,7 @@ const restartGame = (size, count, boardWidth) => {
     button.innerHTML = ''
     button.style = ''
   })
-  clickCount = 0
+  // clickCount = 0
   clickMenuCount.innerHTML = clickCount
   zeroCells = []
   openedCells = []
@@ -207,8 +207,10 @@ const restartGame = (size, count, boardWidth) => {
   if (localStorage.gameState) {
     const gameData = getFromLocalStorage()
     bombs = gameData.bombsSave
+    clickCount = gameData.clickCountSave
   } else {
     bombs = createBombs(size, count)
+    clickCount = 0
   }
   gameState.bombsSave = bombs
   flagCount = 0
@@ -715,14 +717,14 @@ function restoreGameState({
   bombsSave,
   sizeSave,
   widthSave,
-  heightSave,
   clickCountSave,
   bombsCountSave,
   openedCellsSave,
   flaggedCellsSave,
-  boardSizeSave,
 }) {
   width = widthSave
+  time = timeSave
+  clickCount = clickCountSave
   openedCells = openedCellsSave
   // openedCells = [...new Set(openedCellsSave)]
 
