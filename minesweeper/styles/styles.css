@@ -246,10 +246,7 @@ body {
   min-width: 100%;
 } */
 .popup_container button {
-  font-weight: 300;
-  font-size: 34px;
-  font-family: 'GodshineSans';
-  letter-spacing: 16px;
+
   color: white;
   text-decoration: none;
   border: none;
@@ -269,8 +266,16 @@ body {
 .popup_container button:active {
   background: #fb0e49;
 }
-.start-game_small-btn {
-  font-size: 22px;
+.start-game, .begin-game {
+  font-weight: 300;
+  font-family: 'GodshineSans';
+  font-size: 34px;
+  letter-spacing: 16px;
+}
+.start-game_small {
+  width: 100%;
+  font-size: 30px;
+  letter-spacing: normal;
 }
 .popup-close {
   position: absolute;

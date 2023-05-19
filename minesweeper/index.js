@@ -49,11 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
   resizeBoard(width)
   let modalContent = `
   <h4>🅼🅸🅽🅴🆂🆆🅴🅴🅿🅴🆁</h4>
-  <button class='start-game'>🆂🆃🅰🆁🆃 🅽🅴🆆 🅶🅰🅼🅴</button>
+  <button class='start-game start-game_small'>
+  🆂🆃🅰🆁🆃 🅽🅴🆆  🅶🅰🅼🅴
+  </button>
   `
   if (localStorage.gameState) {
     modalContent += `
-    <button class='continue-game'>🅲🅾🅽🆃🅸🅽🆄🅴 🅻🅰🆂🆃 🅶🅰🅼🅴</button>`
+    <button class='continue-game start-game_small'>🅲🅾🅽🆃🅸🅽🆄🅴 🅻🅰🆂🆃 🅶🅰🅼🅴</button>`
   }
   showModal(modalContent, false)
   const startBtn = document.querySelector('.start-game')
