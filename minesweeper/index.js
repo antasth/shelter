@@ -47,7 +47,35 @@ audioWin.src = './assets/sounds/win.mp3'
 
 document.addEventListener('DOMContentLoaded', () => {
   resizeBoard(width)
-  getFromLocalStorage()
+  let modalContent = `
+  <h4>🅼🅸🅽🅴🆂🆆🅴🅴🅿🅴🆁</h4>
+  <button class='start-game'>🆂🆃🅰🆁🆃 🅽🅴🆆 🅶🅰🅼🅴</button>
+  `
+  if (localStorage.gameState) {
+    modalContent += `
+    <button class='continue-game'>🅲🅾🅽🆃🅸🅽🆄🅴 🅻🅰🆂🆃 🅶🅰🅼🅴</button>`
+  }
+  showModal(modalContent, false)
+  const startBtn = document.querySelector('.start-game')
+  const continueBtn = document.querySelector('.continue-game')
+
+  startBtn.addEventListener('click', () => {
+    showStartMenu()
+    if (localStorage.gameState) {
+      gameState = {}
+      localStorage.removeItem('gameState')
+    }
+  })
+
+  if (continueBtn) {
+    continueBtn.addEventListener('click', () => {
+      if (localStorage.gameState) {
+        const savedGameState = getFromLocalStorage()
+        restoreGameState(savedGameState)
+        hideModal()
+      }
+    })
+  }
 })
 
 function createBoard(size) {
@@ -134,7 +162,7 @@ const timer = document.querySelector('.timer')
 let setTimer = setInterval(function () {
   time++
   timer.innerText = time
-  gameState.time = time
+  gameState.timeSave = time
 }, 1000)
 
 // start game
@@ -151,15 +179,15 @@ function startGame(size, mines) {
   setTimer = setInterval(function () {
     time++
     timer.innerText = time
-    gameState.time = time
+    gameState.timeSave = time
   }, 1000)
-  gameState.size = Number(boardIdSize[size])
-  gameState.boardIdSize = boardIdSize[size] ** 2
-  gameState.width = Number(width)
-  gameState.height = Number(height)
-  gameState.bombsCount = bombsCount
-  console.log('gameState',gameState);
+  gameState.sizeSave = size
+  gameState.boardIdSizeSave = boardIdSize[size] ** 2
+  gameState.widthSave = Number(width)
+  gameState.heightSave = Number(height)
+  gameState.bombsCountSave = bombsCount
 }
+
 // restart game
 const restartGame = (size, count, boardWidth) => {
   const buttons = document.querySelectorAll('.button')
@@ -174,8 +202,13 @@ const restartGame = (size, count, boardWidth) => {
   zeroCells = []
   openedCells = []
   flaggedCells = []
-  bombs = createBombs(size, count)
-  gameState.bombs = bombs
+  if (localStorage.gameState) {
+    const gameData = getFromLocalStorage()
+    bombs = gameData.bombsSave
+  } else {
+    bombs = createBombs(size, count)
+  }
+  gameState.bombsSave = bombs
   flagCount = 0
   flagsMenuCount.innerText = flagCount
   bombsLeftCount = bombsCount
@@ -218,11 +251,11 @@ function addListenerToBoard() {
           bombs = createBombs(boardSize, bombsCount)
           getBombs(Number(e.target.id))
           clickCount++
-          gameState.clickCount = clickCount
+          gameState.clickCountSave = clickCount
           clickMenuCount.innerHTML = clickCount
         } else {
           clickCount++
-          gameState.clickCount = clickCount
+          gameState.clickCountSave = clickCount
           clickMenuCount.innerHTML = clickCount
           const bombImg = document.createElement('img')
           bombImg.classList.add('bomb-img')
@@ -236,6 +269,8 @@ function addListenerToBoard() {
           <button class='start-game'>TRY AGAIN</button>
           `
           showModal(modalContent, false)
+          gameState = {}
+          localStorage.removeItem('gameState')
           const startButton = document.querySelector('.start-game')
           startButton.addEventListener('click', () => {
             restartGame(boardSize, bombsCount, width)
@@ -249,7 +284,7 @@ function addListenerToBoard() {
         getBombs(Number(e.target.id))
         clickCount++
         clickMenuCount.innerHTML = clickCount
-        gameState.clickCount = clickCount
+        gameState.clickCountSave = clickCount
       }
     }
   })
@@ -276,11 +311,11 @@ const markCellAsBomb = (cell) => {
     cell.replaceChildren()
     flagCount--
     flaggedCells.splice(flaggedCells.indexOf(cell), 1)
-    gameState.flaggedCells = flaggedCells
+    gameState.flaggedCellsSave = flaggedCells
     flagsMenuCount.innerText = flagCount
     bombsLeftCount++
-    gameState.flagCount = flagCount
-    gameState.bombsLeftCount = bombsLeftCount
+    gameState.flagCountSave = flagCount
+    gameState.bombsLeftCountSave = bombsLeftCount
     bombsMenuCount.innerText = bombsLeftCount
   } else {
     const flag = document.createElement('img')
@@ -289,9 +324,9 @@ const markCellAsBomb = (cell) => {
     // audioSetFlag.play()
     cell.append(flag)
     flagCount++
-    gameState.flagCount = flagCount
+    gameState.flagCountSave = flagCount
     flaggedCells.push(cell.id)
-    gameState.flaggedCells = flaggedCells
+    gameState.flaggedCellsSave = flaggedCells
     if ([...new Set(openedCells)].length === boardSize - bombsCount) {
       clearInterval(setTimer)
       const winMessage = createWinMessage(time, clickCount)
@@ -301,6 +336,8 @@ const markCellAsBomb = (cell) => {
       `
       showModal(modalContent, false)
       const startButton = document.querySelector('.start-game')
+      gameState = {}
+      localStorage.removeItem('gameState')
       startButton.addEventListener('click', () => {
         restartGame(boardSize, bombsCount, width)
         hideModal()
@@ -311,8 +348,7 @@ const markCellAsBomb = (cell) => {
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
     bombsMenuCount.innerText = bombsLeftCount
-    gameState.bombsLeftCount = bombsLeftCount
-
+    gameState.bombsLeftCountSave = bombsLeftCount
   }
 }
 
@@ -392,7 +428,7 @@ const getBombs = (cellId) => {
   cell.style.color = colors[count]
   cell.classList.add('opened')
   openedCells.push(cellId)
-  gameState.openedCells = openedCells
+  gameState.openedCellsSave = openedCells
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
     clearInterval(setTimer)
     let winMessage = createWinMessage(time, clickCount)
@@ -401,6 +437,8 @@ const getBombs = (cellId) => {
     <button class='start-game'>NEW GAME</button>
     `
     showModal(modalContent, false)
+    gameState = {}
+    localStorage.removeItem('gameState')
     const startButton = document.querySelector('.start-game')
     startButton.addEventListener('click', () => {
       restartGame(boardSize, bombsCount, width)
@@ -609,32 +647,32 @@ function showStartMenu() {
   const modal = document.querySelector('.modal')
   const slider = document.querySelector('.slider')
   let isHell = false
-  modal.addEventListener('click', (e)=> {
+  modal.addEventListener('click', (e) => {
     if (e.target.parentNode.classList.contains('radio-btn')) {
       isHell = false
       let id = Number(e.target.parentNode.id)
-      switch(id) {
-        case 1: 
-        slider.value = 10
-        slider.disabled = false
-        rangeCount.innerHTML = 10
+      switch (id) {
+        case 1:
+          slider.value = 10
+          slider.disabled = false
+          rangeCount.innerHTML = 10
           break
         case 2:
           slider.value = 30
           slider.disabled = false
           rangeCount.innerHTML = 30
-          break 
+          break
         case 3:
           slider.value = 70
           slider.disabled = false
           rangeCount.innerHTML = 70
-          break 
+          break
         case 4:
           slider.value = 150
           slider.disabled = true
           rangeCount.innerHTML = 150
           isHell = true
-          break 
+          break
       }
     }
   })
@@ -649,19 +687,52 @@ function showStartMenu() {
 }
 
 function createWinMessage(time, moves) {
-  let message = `🅷🅾🅾🆁🅰🆈! 🆈🅾🆄 🅵🅾🆄🅽🅳 🅰🅻🅻 🅼🅸🅽🅴🆂 🅸🅽 ${time} 🆂🅴🅲🅾🅽🅳🆂 🅰🅽🅳 ${moves + 1} 🅼🅾🆅🅴🆂!`
+  let message = `🅷🅾🅾🆁🅰🆈! 🆈🅾🆄 🅵🅾🆄🅽🅳 🅰🅻🅻 🅼🅸🅽🅴🆂 🅸🅽 ${time} 🆂🅴🅲🅾🅽🅳🆂 🅰🅽🅳 ${
+    moves + 1
+  } 🅼🅾🆅🅴🆂!`
   return message
 }
 
-// save game state
+// save and load game state
 function saveToLocalStorage() {
-  // console.log(gameState);
-  localStorage.gameState = JSON.stringify(gameState)
+  if (Object.keys(gameState).length > 2) {
+    localStorage.gameState = JSON.stringify(gameState)
+  }
 }
 
-function getFromLocalStorage () {
-  console.log(JSON.parse(localStorage.gameState));
+function getFromLocalStorage() {
+  return JSON.parse(localStorage.gameState)
 }
+
 window.addEventListener('unload', () => {
   saveToLocalStorage()
 })
+
+function restoreGameState({
+  timeSave,
+  bombsSave,
+  sizeSave,
+  widthSave,
+  heightSave,
+  clickCountSave,
+  bombsCountSave,
+  openedCellsSave,
+  flaggedCellsSave,
+  boardSizeSave,
+}) {
+  width = widthSave
+
+  openedCells = [...new Set(openedCellsSave)]
+  startGame(sizeSave, bombsCountSave)
+
+  if (flaggedCellsSave) {
+    flaggedCellsSave.forEach((cell) => {
+      const cellButton = document.getElementById(cell)
+      markCellAsBomb(cellButton)
+    })
+  }
+  bombs = bombsSave
+  openedCellsSave.forEach((cell) => {
+    getBombs(cell)
+  })
+}
