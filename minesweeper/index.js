@@ -78,6 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     })
   }
+  if (localStorage.Theme === 'dark') {
+    document.body.setAttribute('dark', '')
+    document.querySelector('.theme-button__input').checked = true
+  }
 })
 
 function createBoard(size) {
@@ -775,7 +779,11 @@ switchCheckbox.addEventListener('change', () => {
 })
 
 function toggleTheme() {
-  document.body.hasAttribute('dark')
-    ? document.body.removeAttribute('dark')
-    : document.body.setAttribute('dark', '')
+  if (document.body.hasAttribute('dark')) {
+    document.body.removeAttribute('dark')
+    localStorage.setItem('Theme', 'light')
+  } else {
+    document.body.setAttribute('dark', '')
+    localStorage.setItem('Theme', 'dark')
+  }
 }
