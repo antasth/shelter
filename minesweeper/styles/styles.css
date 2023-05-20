@@ -23,16 +23,12 @@ html {
     rgba(250, 249, 63, 1) 0%,
     rgba(252, 153, 56, 1) 90%
   );
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     110.3deg,
     rgba(73, 93, 109, 1) 4.3%,
     rgba(49, 55, 82, 1) 96.7%
-  );
-  background-image: radial-gradient(
-    circle farthest-corner at 22.4% 21.7%,
-    rgba(4, 189, 228, 1) 0%,
-    rgba(2, 83, 185, 1) 100.2%
-  );
+  ); */
+  background-image: var(--var-body-background);
 
   /* background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
@@ -95,7 +91,7 @@ body {
   cursor: pointer;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  background: linear-gradient(to right, #50aff8, #91cffe);
+  background: var(--var-cell-background);
 
   /* background-image: radial-gradient( circle farthest-corner at 22.4% 21.7%,  rgba(4,189,228,1) 0%, rgba(2,83,185,1) 100.2% ); */
 }
@@ -132,7 +128,7 @@ body {
 
   /* background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
   color: rgb(88, 88, 88); */
-  background: linear-gradient(to right, #e0eafc, #cfdef3);
+  background: var(--var-cell-opened);
 
   /* background-image: linear-gradient( 174.2deg,  rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4% ); */
 }
@@ -470,7 +466,7 @@ input[type='range']::-webkit-slider-thumb {
 	width: 60px;
 	height: 30px;
 	border-radius: 100px;
-	background-color: #041bb1;
+	background-color: var(--var-theme-background);
 	overflow: hidden;
 	cursor: pointer;
 	&:before,
@@ -491,7 +487,7 @@ input[type='range']::-webkit-slider-thumb {
 	}
 
 	&:after {
-		background-color: #041bb1;
+		background-color: var(--var-theme-background);
 		left: -58px;
 		transform: scale(0.00001);
 	}
@@ -509,4 +505,23 @@ input[type='range']::-webkit-slider-thumb {
 			transform: translateX(85px) scale(1);
 		}
 	}
+}
+
+
+:root {
+  --var-body-background: radial-gradient(
+    circle farthest-corner at 22.4% 21.7%,
+    rgba(4, 189, 228, 1) 0%,
+    rgba(2, 83, 185, 1) 100.2%
+  );
+  --var-cell-background: linear-gradient(to right, #50aff8, #91cffe);
+  --var-cell-opened: linear-gradient(to right, #e0eafc, #cfdef3);
+  --var-theme-background: rgba(13, 165, 196, 0.5);
+}
+
+[dark] {
+  --var-body-background:linear-gradient( 109.6deg,  rgba(118,12,99,1) 11.2%, rgba(71,11,75,1) 98.6% );
+  --var-cell-background: linear-gradient(#3b2751, #271739);
+  --var-cell-opened:  linear-gradient(to right, #cac3bd, #ffffff);
+  --var-theme-background: #B030B0;
 }

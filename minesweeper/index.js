@@ -746,7 +746,7 @@ function restoreGameState({
   width = widthSave
   time = timeSave
   // ! BUG WITH CLICKCOUNT AFTER RELOAD
-  clickCount  = Number(clickCountSave) ? clickCountSave : 0
+  clickCount = Number(clickCountSave) ? clickCountSave : 0
   openedCells = openedCellsSave
 
   startGame(sizeSave, bombsCountSave)
@@ -764,4 +764,18 @@ function restoreGameState({
       getBombs(cell)
     })
   }
+}
+
+// switch theme
+
+const switchCheckbox = document.querySelector('.theme-button__input')
+
+switchCheckbox.addEventListener('change', () => {
+  toggleTheme()
+})
+
+function toggleTheme() {
+  document.body.hasAttribute('dark')
+    ? document.body.removeAttribute('dark')
+    : document.body.setAttribute('dark', '')
 }
