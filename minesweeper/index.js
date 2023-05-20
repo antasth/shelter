@@ -149,6 +149,7 @@ document.body.append(content, popup)
 const startGameButton = document.querySelector('.start')
 const bombsMenuCount = document.querySelector('.bombs')
 bombsMenuCount.innerText = bombsLeftCount
+display = document.querySelector('.timer')
 
 // buttons font size
 const setButtonsFontSize = (items) => {
@@ -160,14 +161,18 @@ let buttons = document.querySelectorAll('.button')
 setButtonsFontSize(buttons)
 
 // timer
-const timer = document.querySelector('.timer')
-let setTimer = setInterval(function () {
-  time++
-  timer.innerText = time
-  gameState.timeSave = time
-}, 1000)
+function startTimer(duration, display) {
+  let timer = duration
+  let timerID = setInterval(function () {
+    localStorage.setItem('Seconds', duration++)
+    display.textContent = timer
+    ++timer
+  }, 1000)
+  return timerID
+}
 
 // start game
+let timerID
 function startGame(size, mines) {
   boardSize = boardIdSize[size] ** 2
   const board = createBoard(boardSize)
@@ -178,11 +183,9 @@ function startGame(size, mines) {
   content.append(controlPanel, board)
   restartGame(boardSize, mines, width)
   addListenerToBoard()
-  setTimer = setInterval(function () {
-    time++
-    timer.innerText = time
-    gameState.timeSave = time
-  }, 1000)
+  let seconds = window.localStorage.getItem('Seconds')
+  display.innerHTML = `${seconds}`
+  timerID = startTimer(seconds, display)
   gameState.sizeSave = size
   gameState.boardIdSizeSave = boardIdSize[size] ** 2
   gameState.widthSave = Number(width)
@@ -218,8 +221,7 @@ const restartGame = (size, count, boardWidth) => {
   bombsLeftCount = bombsCount
   bombsMenuCount.innerText = bombsLeftCount
   time = 0
-  timer.innerText = '0'
-  clearInterval(setTimer)
+  display.innerText = '0'
   resizeBoard(boardWidth)
   setButtonsFontSize(buttons)
 }
@@ -266,7 +268,7 @@ function addListenerToBoard() {
           bombImg.src = './assets/icons/mine.png'
           e.target.append(bombImg)
           e.target.classList.add('disabled')
-          clearInterval(setTimer)
+          // clearInterval(setTimer)
           openBoard(board)
           const modalContent = `
           <h3>🅶🅰🅼🅴 🅾🆅🅴🆁</h3>
@@ -275,6 +277,8 @@ function addListenerToBoard() {
           showModal(modalContent, false)
           gameState = {}
           localStorage.removeItem('gameState')
+          localStorage.setItem('Seconds', 0)
+          clearInterval(timerID)
           const startButton = document.querySelector('.start-game')
           startButton.addEventListener('click', () => {
             restartGame(boardSize, bombsCount, width)
@@ -332,8 +336,11 @@ const markCellAsBomb = (cell) => {
     flaggedCells.push(cell.id)
     gameState.flaggedCellsSave = flaggedCells
     if ([...new Set(openedCells)].length === boardSize - bombsCount) {
-      clearInterval(setTimer)
-      const winMessage = createWinMessage(time, clickCount)
+      // clearInterval(setTimer)
+      const winMessage = createWinMessage(
+        localStorage.getItem('Seconds'),
+        clickCount
+      )
       const modalContent = `
       <h3>${winMessage}</h3>
       <button class='start-game'>NEW GAME</button>
@@ -342,6 +349,8 @@ const markCellAsBomb = (cell) => {
       const startButton = document.querySelector('.start-game')
       gameState = {}
       localStorage.removeItem('gameState')
+      localStorage.setItem('Seconds', 0)
+      clearInterval(timerID)
       startButton.addEventListener('click', () => {
         restartGame(boardSize, bombsCount, width)
         hideModal()
@@ -434,8 +443,10 @@ const getBombs = (cellId) => {
   openedCells.push(cellId)
   gameState.openedCellsSave = [...new Set(openedCells)]
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
-    clearInterval(setTimer)
-    let winMessage = createWinMessage(time, clickCount)
+    let winMessage = createWinMessage(
+      localStorage.getItem('Seconds'),
+      clickCount
+    )
     const modalContent = `
     <h3>${winMessage}</h3>
     <button class='start-game'>NEW GAME</button>
@@ -443,12 +454,13 @@ const getBombs = (cellId) => {
     showModal(modalContent, false)
     gameState = {}
     localStorage.removeItem('gameState')
+    localStorage.setItem('Seconds', 0)
+    clearInterval(timerID)
     const startButton = document.querySelector('.start-game')
     startButton.addEventListener('click', () => {
       restartGame(boardSize, bombsCount, width)
       hideModal()
       showStartMenu()
-      // showModal(menu, false)
     })
     // audioWin.play()
   }
@@ -684,7 +696,8 @@ function showStartMenu() {
   const startButton = document.querySelector('.begin-game')
   startButton.addEventListener('click', () => {
     const selectedBoard = document.querySelector('input[name="radio"]:checked')
-
+    localStorage.setItem('Seconds', 0)
+    clearInterval(timerID)
     startGame(selectedBoard.value, isHell ? 150 : Number(range.value))
     hideModal()
   })
@@ -724,9 +737,9 @@ function restoreGameState({
 }) {
   width = widthSave
   time = timeSave
-  clickCount = clickCountSave
+  // ! BUG WITH CLICKCOUNT
+  clickCount  = Number(clickCountSave) ? clickCountSave : 0
   openedCells = openedCellsSave
-  // openedCells = [...new Set(openedCellsSave)]
 
   startGame(sizeSave, bombsCountSave)
 
@@ -738,7 +751,9 @@ function restoreGameState({
   }
 
   bombs = bombsSave
-  openedCellsSave.forEach((cell) => {
-    getBombs(cell)
-  })
+  if (openedCellsSave) {
+    openedCellsSave.forEach((cell) => {
+      getBombs(cell)
+    })
+  }
 }
