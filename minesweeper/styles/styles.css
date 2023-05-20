@@ -68,7 +68,8 @@ body {
   row-gap: 1rem;
 }
 .control-panel {
-  width: 100%;
+  width: 90%;
+  max-width: 650px;
   font-weight: bold;
   font-size: 1rem;
   margin-top: 1rem;
@@ -157,11 +158,12 @@ body {
   justify-content: center;
 }
 .menu > ul li {
+  width: 100%;
   position: relative;
   border-right: 1px solid #4a4478;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   column-gap: 5px;
   padding: 0 15px;
   cursor: pointer;
@@ -173,7 +175,7 @@ body {
   transition: all 0.4s ease-in-out;
 }
 .menu > ul li:hover img {
-  transform: rotate(360deg);
+  transform: scale(1.2);
 }
 .menu > ul li a {
   display: block;
@@ -189,6 +191,32 @@ body {
 .menu-span {
   color: #011936;
 }
+
+@media (max-width: 767.98px) {
+  .control-panel {
+    width: 95%;
+  }
+  .menu > ul li {
+    width: 90%;
+  }
+  .menu-img {
+    width: 20px;
+    height: 20px;
+  }
+ }
+@media (max-width: 599.98px) { 
+  .menu > ul li {
+    width: 70%;
+    padding: 0 5px;
+  }
+  .menu-span {
+    font-size: 14px;
+  } 
+  .start-span {
+    display: none;
+  }
+ }
+
 /* POPUP */
 .popup-overlay {
   position: fixed;
@@ -423,4 +451,62 @@ input[type='range']::-webkit-slider-thumb {
   cursor: ew-resize;
   background: #cdcdcd;
   box-shadow: -80px 0 0 80px #f92f60;
+}
+/* dark light switch */
+.theme-button {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.theme-button__toggle {
+	position: relative;
+	display: block;
+	width: 60px;
+	height: 30px;
+	border-radius: 100px;
+	background-color: #041bb1;
+	overflow: hidden;
+	cursor: pointer;
+	&:before,
+	&:after {
+		display: block;
+		position: absolute;
+		content: "";		
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+		top: 4px;
+		left: 4px;
+		transition: .5s ease;
+	}
+	&:before {
+		background-color: #ffa41b;
+
+	}
+
+	&:after {
+		background-color: #041bb1;
+		left: -58px;
+		transform: scale(0.00001);
+	}
+}
+
+.theme-button__input {
+	display: none;
+	&:checked + label {
+		&:before {
+			background-color: #FFF;
+			transform: translateX(30px);
+		}
+		
+		&:after {
+			transform: translateX(85px) scale(1);
+		}
+	}
 }

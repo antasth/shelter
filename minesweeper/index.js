@@ -111,7 +111,11 @@ controlPanel.innerHTML = `
 <ul>
   <li class='start'>
   <img class='menu-img' src="./assets/icons/start.png" alt="start">
-  <span class='menu-span start'>Start</span>
+  <span class='menu-span start-span'>Start</span>
+  </li>
+  <li class='score'>
+  <img class='menu-img' src="./assets/icons/score.png" alt="score">
+  </li>
   <li>
   <img class='menu-img' src="./assets/icons/timer.png" alt="timer">
   <span class='menu-span timer'>0</span>
@@ -130,6 +134,10 @@ controlPanel.innerHTML = `
   </li>
   <li class='sound-button'>
   <img class='menu-img' src="./assets/icons/volume.png" alt="sound">
+  </li>
+  <li class='theme-button'>
+	<input class='theme-button__input' type="checkbox" id="toggle"/>
+	<label class='theme-button__toggle' for="toggle"></label>
   </li>
 </ul>
 </div>
@@ -737,7 +745,7 @@ function restoreGameState({
 }) {
   width = widthSave
   time = timeSave
-  // ! BUG WITH CLICKCOUNT
+  // ! BUG WITH CLICKCOUNT AFTER RELOAD
   clickCount  = Number(clickCountSave) ? clickCountSave : 0
   openedCells = openedCellsSave
 
