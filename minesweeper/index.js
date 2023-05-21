@@ -74,12 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
 function createBoard(size) {
   const board = document.createElement('div')
   board.classList.add('board')
+  const boardLock = document.createElement('div')
+  boardLock.classList.add('board__overlay','hide')
   for (let i = 0; i < size; i++) {
     const button = document.createElement('div')
     button.classList.add('button')
     button.id = i + 1
     board.append(button)
   }
+  board.append(boardLock)
   return board
 }
 
@@ -271,11 +274,13 @@ function addListenerToBoard() {
           e.target.classList.add('disabled')
           // clearInterval(setTimer)
           openBoard(board)
+          console.log('game over');
           const modalContent = `
           <h3>🅶🅰🅼🅴 🅾🆅🅴🆁</h3>
           <button class='start-game'>TRY AGAIN</button>
           `
-          showModal(modalContent, false)
+          showModal(modalContent, true)
+          lockBoard()
           gameState = {}
           localStorage.removeItem('gameState')
           localStorage.setItem('Seconds', 0)
@@ -339,7 +344,7 @@ const markCellAsBomb = (cell) => {
     gameState.flagCountSave = flagCount
     flaggedCells.push(cell.id)
     gameState.flaggedCellsSave = flaggedCells
-    if ([...new Set(openedCells)].length === boardSize - bombsCount) {
+    if ([...new Set(openedCells)].length === boardSize - bombsCount && !gameOver) {
       // clearInterval(setTimer)
       const winMessage = createWinMessage(
         localStorage.getItem('Seconds'),
@@ -349,7 +354,8 @@ const markCellAsBomb = (cell) => {
       <h3>${winMessage}</h3>
       <button class='start-game'>NEW GAME</button>
       `
-      showModal(modalContent, false)
+      showModal(modalContent, true)
+      lockBoard()
       const startButton = document.querySelector('.start-game')
       gameState = {}
       localStorage.removeItem('gameState')
@@ -442,24 +448,26 @@ const getBombs = (cellId) => {
       }
     })
   }
-  const cell = document.getElementById(`${cellId}`)
-  if(!cell.classList.contains('bomb') || gameOver) {
-    cell.innerHTML = count === 0 ? '' : count
-    cell.style.color = colors[count]
-    cell.classList.add('opened')
-    openedCells.push(cellId)
-  }
-  if(gameOver) {
-    if (cell.classList.contains('bomb') && !bombs.includes(cellId)) {
-      const error = document.createElement('img')
-      error.classList.add('error-img')
-      error.src = './assets/icons/error.png'
-      cell.replaceChildren()
-      cell.append(error)
+  if(cellId !== 0) {
+    const cell = document.getElementById(`${cellId}`)
+    if (!cell.classList.contains('bomb') || gameOver) {
+      cell.innerHTML = count === 0 ? '' : count
+      cell.style.color = colors[count]
+      cell.classList.add('opened')
+      openedCells.push(cellId)
     }
-  } 
+    if (gameOver) {
+      if (cell.classList.contains('bomb') && !bombs.includes(cellId)) {
+        const error = document.createElement('img')
+        error.classList.add('error-img')
+        error.src = './assets/icons/error.png'
+        cell.replaceChildren()
+        cell.append(error)
+      }
+    }
+  }
   gameState.openedCellsSave = [...new Set(openedCells)]
-  if ([...new Set(openedCells)].length === boardSize - bombsCount) {
+  if ([...new Set(openedCells)].length === boardSize - bombsCount && !gameOver) {
     let winMessage = createWinMessage(
       localStorage.getItem('Seconds'),
       clickCount
@@ -468,7 +476,8 @@ const getBombs = (cellId) => {
     <h3>${winMessage}</h3>
     <button class='start-game'>NEW GAME</button>
     `
-    showModal(modalContent, false)
+    showModal(modalContent, true)
+    lockBoard()
     gameState = {}
     localStorage.removeItem('gameState')
     saveToScore()
@@ -893,10 +902,14 @@ function toggleMute(elem) {
   if (!elem.muted) {
     elem.muted = true
     elem.pause()
-    document.querySelector('.sound-img').setAttribute('src', './assets/icons/mute.png')
+    document
+      .querySelector('.sound-img')
+      .setAttribute('src', './assets/icons/mute.png')
   } else {
     elem.muted = false
-    document.querySelector('.sound-img').setAttribute('src', './assets/icons/volume.png')
+    document
+      .querySelector('.sound-img')
+      .setAttribute('src', './assets/icons/volume.png')
   }
 }
 function mutePage() {
@@ -909,3 +922,11 @@ const soundBtn = document.querySelector('.sound-button')
 soundBtn.addEventListener('click', () => {
   mutePage()
 })
+
+// lock buttons after game
+
+function lockBoard() {
+  const board = document.querySelector('.board__overlay')
+  board.classList.add('show')
+  board.classList.remove('hide')
+}
