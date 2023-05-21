@@ -798,7 +798,9 @@ function toggleTheme() {
 function saveToScore() {
   if (localStorage.Score && !gameOver) {
     const score = JSON.parse(localStorage.Score)
-    console.log(score)
+    if (score.length === 10) {
+      score.shift()
+    }
     const result = {}
     result.time = localStorage.Seconds
     result.moves = clickCount + 1
@@ -824,35 +826,43 @@ function getScoreFromLocalStorage() {
 
 const score = document.querySelector('.score')
 score.addEventListener('click', () => {
-  const data = getScoreFromLocalStorage()
-  console.log(data)
-  const modalContent = document.createElement('div')
-  modalContent.classList.add('results')
-  const scoreHeader = document.createElement('h3')
-  scoreHeader.classList.add('results__header')
-  scoreHeader.innerHTML = '🅻🅰🆂🆃 🆂🅲🅾🆁🅴'
-  const resultsTable = document.createElement('table')
-  resultsTable.classList.add('results-table')
-  const resultsTableBody = document.createElement('tbody')
-  resultsTableBody.innerHTML = `
+  if (localStorage.Score) {
+    const data = getScoreFromLocalStorage()
+    data.reverse()
+    const modalContent = document.createElement('div')
+    modalContent.classList.add('results')
+    const scoreHeader = document.createElement('h3')
+    scoreHeader.classList.add('results__header')
+    scoreHeader.innerHTML = '🅻🅰🆂🆃 🆂🅲🅾🆁🅴'
+    const resultsTable = document.createElement('table')
+    resultsTable.classList.add('results-table')
+    const resultsTableBody = document.createElement('tbody')
+    resultsTableBody.innerHTML = `
   <tr>
+  <th>№</th>
   <th>🅱🅾🅰🆁🅳</th>
   <th>🆃🅸🅼🅴</th>
   <th>🅼🅾🆅🅴🆂</th>
 </tr>
   `
-  data.forEach((element) => {
-    const tableRow = document.createElement('tr')
-    tableRow.classList.add('results__table-row')
-    tableRow.innerHTML = `<td>${element.board}</td>
+  let i = 1
+    data.forEach((element) => {
+      const tableRow = document.createElement('tr')
+      tableRow.classList.add('results__table-row')
+      tableRow.innerHTML = `
+      <td>${i++}</td>
+      <td>${element.board}</td>
     <td>${element.time}</td>
       <td>${element.moves}</td>
       `
-    resultsTableBody.appendChild(tableRow)
-  })
-  resultsTable.append(resultsTableBody)
-  modalContent.append(scoreHeader, resultsTable)
+      resultsTableBody.appendChild(tableRow)
+    })
+    resultsTable.append(resultsTableBody)
+    modalContent.append(scoreHeader, resultsTable)
 
-  console.log(modalContent)
-  showModal(modalContent.outerHTML, true)
+    showModal(modalContent.outerHTML, true)
+  } else {
+    const emptyScoreMessage = `<h3>🆂🅲🅾🆁🅴 🅻🅸🆂🆃 🅸🆂 🅴🅼🅿🆃🆈</h3>`
+    showModal(emptyScoreMessage, true)
+  }
 })
