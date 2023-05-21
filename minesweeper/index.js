@@ -274,7 +274,6 @@ function addListenerToBoard() {
           e.target.classList.add('disabled')
           // clearInterval(setTimer)
           openBoard(board)
-          console.log('game over');
           const modalContent = `
           <h3>🅶🅰🅼🅴 🅾🆅🅴🆁</h3>
           <button class='start-game'>TRY AGAIN</button>
@@ -297,8 +296,10 @@ function addListenerToBoard() {
           document.querySelector('.win').pause()
         }
       } else {
+        if (!openedCells.includes(Number(e.target.id))) {
+          clickCount++
+        }
         getBombs(Number(e.target.id))
-        clickCount++
         clickMenuCount.innerHTML = clickCount
         gameState.clickCountSave = clickCount
       }
@@ -458,6 +459,7 @@ const getBombs = (cellId) => {
     }
     if (gameOver) {
       if (cell.classList.contains('bomb') && !bombs.includes(cellId)) {
+        cell.classList.add('error')
         const error = document.createElement('img')
         error.classList.add('error-img')
         error.src = './assets/icons/error.png'
