@@ -27,24 +27,6 @@ const boardIdSize = {
   4: '25',
 }
 let gameState = {}
-let audioGameOver = new Audio()
-audioGameOver.preload = 'auto'
-audioGameOver.src = './assets/sounds/game-over.mp3'
-let audioGameOver2 = new Audio()
-audioGameOver2.preload = 'auto'
-audioGameOver2.src = './assets/sounds/game-over2.mp3'
-let audioOpenCell = new Audio()
-audioOpenCell.preload = 'auto'
-audioOpenCell.src = './assets/sounds/open-cell.wav'
-let audioOpenCells = new Audio()
-audioOpenCells.preload = 'auto'
-audioOpenCells.src = './assets/sounds/open-cells.wav'
-let audioSetFlag = new Audio()
-audioSetFlag.preload = 'auto'
-audioSetFlag.src = './assets/sounds/set-flag.mp3'
-let audioWin = new Audio()
-audioWin.preload = 'auto'
-audioWin.src = './assets/sounds/win.mp3'
 
 document.addEventListener('DOMContentLoaded', () => {
   resizeBoard(width)
@@ -142,7 +124,7 @@ controlPanel.innerHTML = `
   <span class='menu-span bombs'>0</span>
   </li>
   <li class='sound-button'>
-  <img class='menu-img' src="./assets/icons/volume.png" alt="sound">
+  <img class='menu-img sound-img' src="./assets/icons/volume.png" alt="sound">
   </li>
   <li class='theme-button'>
 	<input class='theme-button__input' type="checkbox" id="toggle"/>
@@ -306,6 +288,8 @@ function addListenerToBoard() {
           })
           // audioGameOver2.play()
           // audioWin.pause()
+          document.querySelector('.gameOver2').play()
+          document.querySelector('.win').pause()
         }
       } else {
         getBombs(Number(e.target.id))
@@ -349,6 +333,7 @@ const markCellAsBomb = (cell) => {
     flag.classList.add('flag-img')
     flag.src = './assets/icons/flag.png'
     // audioSetFlag.play()
+    document.querySelector('.setFlag').play()
     cell.append(flag)
     flagCount++
     gameState.flagCountSave = flagCount
@@ -377,6 +362,7 @@ const markCellAsBomb = (cell) => {
         showStartMenu()
       })
       // audioWin.play()
+      document.querySelector('.win').play()
     }
     flagsMenuCount.innerText = flagCount
     bombsLeftCount > 0 ? bombsLeftCount-- : bombsLeftCount
@@ -484,8 +470,10 @@ const getBombs = (cellId) => {
       showStartMenu()
     })
     // audioWin.play()
+    document.querySelector('.win').play()
   }
   // audioOpenCell.play()
+  document.querySelector('.openCell').play()
   return count
 }
 // start menu
@@ -797,7 +785,7 @@ function toggleTheme() {
   }
 }
 
-// save result to score
+// score
 function saveToScore() {
   if (localStorage.Score && !gameOver) {
     const score = JSON.parse(localStorage.Score)
@@ -868,4 +856,45 @@ score.addEventListener('click', () => {
     const emptyScoreMessage = `<h3>🆂🅲🅾🆁🅴 🅻🅸🆂🆃 🅸🆂 🅴🅼🅿🆃🆈</h3>`
     showModal(emptyScoreMessage, true)
   }
+})
+
+// sound
+let sounds = {
+  openCell: './assets/sounds/open-cell.wav',
+  openCells: './assets/sounds/open-cells.wav',
+  gameOver1: './assets/sounds/game-over.mp3',
+  gameOver2: './assets/sounds/game-over2.mp3',
+  setFlag: './assets/sounds/set-flag.mp3',
+  win: './assets/sounds/win.mp3',
+}
+
+const pageSounds = document.createElement('div')
+pageSounds.classList.add('audio')
+for (key in sounds) {
+  let audio = document.createElement('audio')
+  audio.classList.add(key)
+  audio.setAttribute('src', sounds[key])
+  pageSounds.append(audio)
+}
+document.body.append(pageSounds)
+
+function toggleMute(elem) {
+  if (!elem.muted) {
+    elem.muted = true
+    elem.pause()
+    document.querySelector('.sound-img').setAttribute('src', './assets/icons/mute.png')
+  } else {
+    elem.muted = false
+    document.querySelector('.sound-img').setAttribute('src', './assets/icons/volume.png')
+  }
+}
+function mutePage() {
+  const audioElements = document.querySelectorAll('audio')
+  audioElements.forEach((elem) => toggleMute(elem))
+}
+
+const soundBtn = document.querySelector('.sound-button')
+
+soundBtn.addEventListener('click', () => {
+  mutePage()
 })
