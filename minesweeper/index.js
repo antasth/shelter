@@ -48,37 +48,40 @@ audioWin.src = './assets/sounds/win.mp3'
 
 document.addEventListener('DOMContentLoaded', () => {
   resizeBoard(width)
-  let modalContent = `
-  <h4>🅼🅸🅽🅴🆂🆆🅴🅴🅿🅴🆁</h4>
-  <button class='start-game start-game_small'>
-  🆂🆃🅰🆁🆃 🅽🅴🆆  🅶🅰🅼🅴
-  </button>
-  `
-  if (localStorage.gameState) {
-    modalContent += `
-    <button class='continue-game start-game_small'>🅲🅾🅽🆃🅸🅽🆄🅴 🅻🅰🆂🆃 🅶🅰🅼🅴</button>`
-  }
-  showModal(modalContent, false)
-  const startBtn = document.querySelector('.start-game')
-  const continueBtn = document.querySelector('.continue-game')
+  if (!localStorage.gameState) {
+    localStorage.setItem('Seconds', 0)
+    clearInterval(timerID)
+    startGame(1, 10)
+  } else {
+    let modalContent = `
+    <h4>🅼🅸🅽🅴🆂🆆🅴🅴🅿🅴🆁</h4>
+    <button class='start-game start-game_small'>
+    🆂🆃🅰🆁🆃 🅽🅴🆆  🅶🅰🅼🅴
+    </button>
+    <button class='continue-game start-game_small'>🅲🅾🅽🆃🅸🅽🆄🅴 🅻🅰🆂🆃 🅶🅰🅼🅴</button>
+    `
+    showModal(modalContent, false)
+    const startBtn = document.querySelector('.start-game')
+    const continueBtn = document.querySelector('.continue-game')
 
-  startBtn.addEventListener('click', () => {
-    showStartMenu()
-    if (localStorage.gameState) {
-      gameState = {}
-      gameOver = false
-      localStorage.removeItem('gameState')
-    }
-  })
-
-  if (continueBtn) {
-    continueBtn.addEventListener('click', () => {
+    startBtn.addEventListener('click', () => {
+      showStartMenu()
       if (localStorage.gameState) {
-        const savedGameState = getFromLocalStorage()
-        restoreGameState(savedGameState)
-        hideModal()
+        gameState = {}
+        gameOver = false
+        localStorage.removeItem('gameState')
       }
     })
+
+    if (continueBtn) {
+      continueBtn.addEventListener('click', () => {
+        if (localStorage.gameState) {
+          const savedGameState = getFromLocalStorage()
+          restoreGameState(savedGameState)
+          hideModal()
+        }
+      })
+    }
   }
   if (localStorage.Theme === 'dark') {
     document.body.setAttribute('dark', '')
@@ -845,7 +848,7 @@ score.addEventListener('click', () => {
   <th>🅼🅾🆅🅴🆂</th>
 </tr>
   `
-  let i = 1
+    let i = 1
     data.forEach((element) => {
       const tableRow = document.createElement('tr')
       tableRow.classList.add('results__table-row')
