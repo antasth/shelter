@@ -153,9 +153,13 @@ body {
 
 }
 .flag-img,
-.bomb-img {
+.bomb-img,
+.error-img {
   width: 100%;
   height: 100%;
+}
+.error-img {
+  background-color: aliceblue;
 }
 
 /* menu */
@@ -208,10 +212,9 @@ body {
   width: 25px;
   text-align: center;
 }
-/* .timer {
-  width: 25px;
-  text-align: center;
-} */
+.timer {
+  width: 35px;
+}
 .start-span {
   width: 100%;
 }

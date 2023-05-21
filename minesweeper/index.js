@@ -443,10 +443,21 @@ const getBombs = (cellId) => {
     })
   }
   const cell = document.getElementById(`${cellId}`)
-  cell.innerHTML = count === 0 ? '' : count
-  cell.style.color = colors[count]
-  cell.classList.add('opened')
-  openedCells.push(cellId)
+  if(!cell.classList.contains('bomb') || gameOver) {
+    cell.innerHTML = count === 0 ? '' : count
+    cell.style.color = colors[count]
+    cell.classList.add('opened')
+    openedCells.push(cellId)
+  }
+  if(gameOver) {
+    if (cell.classList.contains('bomb') && !bombs.includes(cellId)) {
+      const error = document.createElement('img')
+      error.classList.add('error-img')
+      error.src = './assets/icons/error.png'
+      cell.replaceChildren()
+      cell.append(error)
+    }
+  } 
   gameState.openedCellsSave = [...new Set(openedCells)]
   if ([...new Set(openedCells)].length === boardSize - bombsCount) {
     let winMessage = createWinMessage(
