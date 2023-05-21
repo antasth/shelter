@@ -10,6 +10,7 @@ let flagCount = 0
 let bombsLeftCount = bombsCount
 let time = 0
 let gameOver = false
+let isHell
 const colors = {
   1: '#508AA8',
   2: '#20BF55',
@@ -290,9 +291,9 @@ function addListenerToBoard() {
             hideModal()
             showStartMenu()
           })
-          // audioGameOver2.play()
-          // audioWin.pause()
-          document.querySelector('.gameOver2').play()
+          isHell ?
+          document.querySelector('.gameOver1').play() :
+          document.querySelector('.gameOver2').play() 
           document.querySelector('.win').pause()
         }
       } else {
@@ -338,7 +339,6 @@ const markCellAsBomb = (cell) => {
     const flag = document.createElement('img')
     flag.classList.add('flag-img')
     flag.src = './assets/icons/flag.png'
-    // audioSetFlag.play()
     document.querySelector('.setFlag').play()
     cell.append(flag)
     flagCount++
@@ -346,7 +346,6 @@ const markCellAsBomb = (cell) => {
     flaggedCells.push(cell.id)
     gameState.flaggedCellsSave = flaggedCells
     if ([...new Set(openedCells)].length === boardSize - bombsCount && !gameOver) {
-      // clearInterval(setTimer)
       const winMessage = createWinMessage(
         localStorage.getItem('Seconds'),
         clickCount
@@ -368,7 +367,6 @@ const markCellAsBomb = (cell) => {
         hideModal()
         showStartMenu()
       })
-      // audioWin.play()
       document.querySelector('.win').play()
     }
     flagsMenuCount.innerText = flagCount
@@ -491,10 +489,8 @@ const getBombs = (cellId) => {
       hideModal()
       showStartMenu()
     })
-    // audioWin.play()
     document.querySelector('.win').play()
   }
-  // audioOpenCell.play()
   document.querySelector('.openCell').play()
   return count
 }
@@ -693,7 +689,7 @@ function showStartMenu() {
   })
   const modal = document.querySelector('.modal')
   const slider = document.querySelector('.slider')
-  let isHell = false
+   isHell = false
   modal.addEventListener('click', (e) => {
     if (e.target.parentNode.classList.contains('radio-btn')) {
       isHell = false
