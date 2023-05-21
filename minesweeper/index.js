@@ -830,27 +830,29 @@ score.addEventListener('click', () => {
   modalContent.classList.add('results')
   const scoreHeader = document.createElement('h3')
   scoreHeader.classList.add('results__header')
-  scoreHeader.innerHTML = '🆂🅲🅾🆁🅴'
-  const scoreSubHeader = document.createElement('h5')
-  scoreSubHeader.classList.add('results__subheader')
-  scoreSubHeader.innerHTML = `
-  <span>🅱🅾🅰🆁🅳  </span>
-    <span>🅼🅾🆅🅴🆂  </span>
-    <span>🆃🅸🅼🅴</span> `
-  const scoreList = document.createElement('ol')
-  scoreList.classList.add('results__list')
+  scoreHeader.innerHTML = '🅻🅰🆂🆃 🆂🅲🅾🆁🅴'
+  const resultsTable = document.createElement('table')
+  resultsTable.classList.add('results-table')
+  const resultsTableBody = document.createElement('tbody')
+  resultsTableBody.innerHTML = `
+  <tr>
+  <th>🅱🅾🅰🆁🅳</th>
+  <th>🆃🅸🅼🅴</th>
+  <th>🅼🅾🆅🅴🆂</th>
+</tr>
+  `
   data.forEach((element) => {
-    // console.log(element);
-    const listItem = document.createElement('li')
-    listItem.classList.add('results__list-item')
-    listItem.innerHTML =
-      `<span>${element.board}</span>
-      <span>${element.moves}</span>
-      <span>${element.time}</span>`
-    
-    scoreList.appendChild(listItem)
+    const tableRow = document.createElement('tr')
+    tableRow.classList.add('results__table-row')
+    tableRow.innerHTML = `<td>${element.board}</td>
+    <td>${element.time}</td>
+      <td>${element.moves}</td>
+      `
+    resultsTableBody.appendChild(tableRow)
   })
-  modalContent.append(scoreHeader, scoreSubHeader, scoreList)
+  resultsTable.append(resultsTableBody)
+  modalContent.append(scoreHeader, resultsTable)
+
   console.log(modalContent)
   showModal(modalContent.outerHTML, true)
 })

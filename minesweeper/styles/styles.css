@@ -328,7 +328,7 @@ body {
   cursor: pointer;
 }
 .popup-close:hover {
-  color: #50aff8;
+  color: #ffffff;
 }
 
 /* SETTINGS */
@@ -545,17 +545,19 @@ input[type='range']::-webkit-slider-thumb {
   row-gap: 15px;
 }
 .results__header {
-  font-size: 42px;
+  font-size: 38px;
   white-space: nowrap;
 }
 
-.results__subheader, .results__list-item {
-  font-size: 18px;
-  display: flex;
-  justify-content: space-around;
+table, th, td {
+  border: 1px solid #f92f60;
+  border-collapse: collapse;
 }
-
-.results__list-item {
-  font-size: 22px;
-  white-space: nowrap;
+th {
+  font-size: 24px;
+  padding: 10px;
+}
+td {
+  font-size: 28px;
+  padding: 5px 0;
 }
