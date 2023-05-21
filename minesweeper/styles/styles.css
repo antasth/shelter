@@ -207,7 +207,7 @@ body {
   width: 25px;
   text-align: center;
 }
-.timer {
+.timer, .bombs {
   width: 35px;
 }
 .start-span {
@@ -225,7 +225,7 @@ body {
     height: 20px;
   }
  }
-@media (max-width: 599.98px) { 
+@media (max-width: 675.98px) { 
   .menu > ul li {
     width: 70%;
     padding: 0 5px;
