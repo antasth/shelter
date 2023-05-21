@@ -815,6 +815,7 @@ function saveToScore() {
     const result = {}
     result.time = localStorage.Seconds
     result.moves = clickCount + 1
+    result.bombs = bombsCount
     result.board = `${width}x${width}`
     score.push(result)
     localStorage.Score = JSON.stringify(score)
@@ -823,6 +824,7 @@ function saveToScore() {
     const result = {}
     result.time = localStorage.Seconds
     result.moves = clickCount + 1
+    result.bombs = bombsCount
     result.board = `${width}x${width}`
     score.push(result)
     localStorage.Score = JSON.stringify(score)
@@ -852,6 +854,7 @@ score.addEventListener('click', () => {
   <tr>
   <th>№</th>
   <th>BOARD</th>
+  <th>BOMBS</th>
   <th>TIME</th>
   <th>MOVES</th>
 </tr>
@@ -863,6 +866,7 @@ score.addEventListener('click', () => {
       tableRow.innerHTML = `
       <td>${i++}</td>
       <td>${element.board}</td>
+      <td>${element.bombs}</td>
     <td>${element.time}</td>
       <td>${element.moves}</td>
       `
