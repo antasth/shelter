@@ -831,9 +831,9 @@ score.addEventListener('click', () => {
     resultsTableBody.innerHTML = `
   <tr>
   <th>№</th>
-  <th>🅱🅾🅰🆁🅳</th>
-  <th>🆃🅸🅼🅴</th>
-  <th>🅼🅾🆅🅴🆂</th>
+  <th>BOARD</th>
+  <th>TIME</th>
+  <th>MOVES</th>
 </tr>
   `
     let i = 1

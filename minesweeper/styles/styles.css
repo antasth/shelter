@@ -13,11 +13,23 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Shentox';
+  src: url('../assets/fonts/Shentox-Regular.woff2') format('woff2'),
+      url('../assets/fonts/Shentox-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
 body,
 html {
   padding: 0;
   margin: 0;
   height: 100%;
+  font-family: 'Shentox';
   background-image: radial-gradient(
     circle farthest-corner at 10% 20%,
     rgba(250, 249, 63, 1) 0%,
@@ -121,7 +133,7 @@ body {
   color: rgb(88, 88, 88);
 }
 .disabled:hover {
-  /* background: #a5a5a5; */
+  background: #a5a5a5;
 }
 
 .opened {
@@ -159,6 +171,7 @@ body {
   justify-content: center;
 }
 .menu > ul li {
+  /* min-width: 50px; */
   width: 100%;
   position: relative;
   border-right: 1px solid #4a4478;
@@ -191,8 +204,17 @@ body {
 }
 .menu-span {
   color: var(--var-menu-text);
+  letter-spacing: 3px;
+  width: 25px;
+  text-align: center;
 }
-
+/* .timer {
+  width: 25px;
+  text-align: center;
+} */
+.start-span {
+  width: 100%;
+}
 @media (max-width: 767.98px) {
   .control-panel {
     width: 95%;
@@ -299,7 +321,7 @@ body {
   margin-top: 25px;
   padding: 10px 20px;
   font-weight: 300;
-  font-family: 'GodshineSans';
+  /* font-family: 'GodshineSans'; */
   font-size: 34px;
   letter-spacing: 16px;
 }
@@ -312,16 +334,15 @@ body {
   position: absolute;
   top: 5px;
   right: 5px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
   /* margin: 0; */
-  padding: 5px 10px;
+  padding: 5px 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #292929;
-  background: transparent;
   border: none;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
@@ -330,27 +351,7 @@ body {
   color: #ffffff;
 }
 
-/* SETTINGS */
-
-.settings {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 400px;
-  height: 300px;
-  background-color: #50aff8;
-}
-.settings__list {
-  list-style: none;
-  padding: 50px;
-  background-color: #df5003;
-}
-.settings__list li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
+/* new game menu*/
 .new-game {
   display: flex;
   flex-direction: column;
@@ -559,6 +560,7 @@ th {
   padding: 10px;
 }
 td {
+  min-width: 110px;
   font-size: 28px;
   padding: 5px 0;
 }
