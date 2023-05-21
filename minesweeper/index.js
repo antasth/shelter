@@ -9,6 +9,7 @@ let clickCount = 0
 let flagCount = 0
 let bombsLeftCount = bombsCount
 let time = 0
+let gameOver = false
 const colors = {
   1: '#508AA8',
   2: '#20BF55',
@@ -65,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showStartMenu()
     if (localStorage.gameState) {
       gameState = {}
+      gameOver = false
       localStorage.removeItem('gameState')
     }
   })
@@ -227,6 +229,7 @@ const restartGame = (size, count, boardWidth) => {
     bombs = createBombs(size, count)
     clickCount = 0
   }
+  gameOver = false
   gameState.bombsSave = bombs
   flagCount = 0
   flagsMenuCount.innerText = flagCount
@@ -244,6 +247,7 @@ startGameButton.addEventListener('click', () => {
 
 // show all cells on gameover
 const openBoard = (board) => {
+  gameOver = true
   board.childNodes.forEach((cell) => {
     if (bombs.includes(Number(cell.id))) {
       const bombImg = document.createElement('img')
@@ -361,6 +365,7 @@ const markCellAsBomb = (cell) => {
       const startButton = document.querySelector('.start-game')
       gameState = {}
       localStorage.removeItem('gameState')
+      saveToScore()
       localStorage.setItem('Seconds', 0)
       clearInterval(timerID)
       startButton.addEventListener('click', () => {
@@ -466,6 +471,7 @@ const getBombs = (cellId) => {
     showModal(modalContent, false)
     gameState = {}
     localStorage.removeItem('gameState')
+    saveToScore()
     localStorage.setItem('Seconds', 0)
     clearInterval(timerID)
     const startButton = document.querySelector('.start-game')
@@ -787,3 +793,64 @@ function toggleTheme() {
     localStorage.setItem('Theme', 'dark')
   }
 }
+
+// save result to score
+function saveToScore() {
+  if (localStorage.Score && !gameOver) {
+    const score = JSON.parse(localStorage.Score)
+    console.log(score)
+    const result = {}
+    result.time = localStorage.Seconds
+    result.moves = clickCount + 1
+    result.board = `${width}x${width}`
+    score.push(result)
+    localStorage.Score = JSON.stringify(score)
+  } else if (!gameOver) {
+    let score = []
+    const result = {}
+    result.time = localStorage.Seconds
+    result.moves = clickCount + 1
+    result.board = `${width}x${width}`
+    score.push(result)
+    localStorage.Score = JSON.stringify(score)
+  }
+}
+
+function getScoreFromLocalStorage() {
+  if (localStorage.Score) {
+    return JSON.parse(localStorage.Score)
+  }
+}
+
+const score = document.querySelector('.score')
+score.addEventListener('click', () => {
+  const data = getScoreFromLocalStorage()
+  console.log(data)
+  const modalContent = document.createElement('div')
+  modalContent.classList.add('results')
+  const scoreHeader = document.createElement('h3')
+  scoreHeader.classList.add('results__header')
+  scoreHeader.innerHTML = '🆂🅲🅾🆁🅴'
+  const scoreSubHeader = document.createElement('h5')
+  scoreSubHeader.classList.add('results__subheader')
+  scoreSubHeader.innerHTML = `
+  <span>🅱🅾🅰🆁🅳  </span>
+    <span>🅼🅾🆅🅴🆂  </span>
+    <span>🆃🅸🅼🅴</span> `
+  const scoreList = document.createElement('ol')
+  scoreList.classList.add('results__list')
+  data.forEach((element) => {
+    // console.log(element);
+    const listItem = document.createElement('li')
+    listItem.classList.add('results__list-item')
+    listItem.innerHTML =
+      `<span>${element.board}</span>
+      <span>${element.moves}</span>
+      <span>${element.time}</span>`
+    
+    scoreList.appendChild(listItem)
+  })
+  modalContent.append(scoreHeader, scoreSubHeader, scoreList)
+  console.log(modalContent)
+  showModal(modalContent.outerHTML, true)
+})
