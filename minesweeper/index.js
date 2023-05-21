@@ -101,7 +101,9 @@ let board = createBoard(boardSize)
 let bombs = createBombs(boardSize, bombsCount)
 const controlPanel = document.createElement('div')
 controlPanel.classList.add('control-panel')
-controlPanel.innerHTML = `  
+const controlPanelContent = document.createElement('div')
+controlPanelContent.classList.add('control-panel__content')
+controlPanelContent.innerHTML = `  
 <div class="menu">
 <ul>
   <li class='start'>
@@ -137,6 +139,7 @@ controlPanel.innerHTML = `
 </ul>
 </div>
 `
+controlPanel.append(controlPanelContent)
 const popup = document.createElement('div')
 popup.classList.add('popup-overlay', 'popup-overlay__modal', 'hide')
 popup.innerHTML = `
@@ -727,6 +730,17 @@ function showStartMenu() {
     clearInterval(timerID)
     startGame(selectedBoard.value, isHell ? 150 : Number(range.value))
     hideModal()
+    if(isHell) {
+      document.body.setAttribute('hell', '')
+      document.querySelector('.theme-button').style.display = 'none'
+      document.querySelector('.song').muted = false
+      document.querySelector('.song').loop = true
+      document.querySelector('.song').play()
+    } else {
+      document.body.removeAttribute('hell')
+      document.querySelector('.theme-button').style.display = 'block'   
+      document.querySelector('.song').muted = true
+    }
   })
 }
 
@@ -888,6 +902,7 @@ let sounds = {
   gameOver2: './assets/sounds/game-over2.mp3',
   setFlag: './assets/sounds/set-flag.mp3',
   win: './assets/sounds/win.mp3',
+  song: './assets/sounds/song.mp3'
 }
 
 const pageSounds = document.createElement('div')
