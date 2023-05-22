@@ -76,7 +76,7 @@ function createBoard(size) {
   const board = document.createElement('div')
   board.classList.add('board')
   const boardLock = document.createElement('div')
-  boardLock.classList.add('board__overlay','hide')
+  boardLock.classList.add('board__overlay', 'hide')
   for (let i = 0; i < size; i++) {
     const button = document.createElement('div')
     button.classList.add('button')
@@ -208,7 +208,6 @@ const restartGame = (size, count, boardWidth) => {
     button.innerHTML = ''
     button.style = ''
   })
-  // clickCount = 0
   clickMenuCount.innerHTML = clickCount
   zeroCells = []
   openedCells = []
@@ -239,23 +238,19 @@ startGameButton.addEventListener('click', () => {
 
 // show all cells on gameover
 const openBoard = (board) => {
-  console.log(bombs);
   gameOver = true
   board.childNodes.forEach((cell) => {
     if (bombs.includes(Number(cell.id))) {
       const bombImg = document.createElement('img')
       bombImg.classList.add('bomb-img')
       bombImg.src = './assets/icons/mine.png'
-      // if (cell.firstElementChild) {
-        cell.replaceChildren()
-      // }
+      cell.replaceChildren()
       cell.append(bombImg)
       cell.classList.add('disabled')
     } else {
       getBombs(Number(cell.id))
     }
   })
-  console.log('bombs2', bombs);
 }
 function addListenerToBoard() {
   const board = document.querySelector('.board')
@@ -264,7 +259,6 @@ function addListenerToBoard() {
     if (e.target.classList.contains('button')) {
       if (bombs.includes(Number(e.target.id))) {
         if (clickCount === 0) {
-          console.log('create bombs');
           bombs = createBombs(boardSize, bombsCount, Number(e.target.id))
           getBombs(Number(e.target.id))
           clickCount++
@@ -279,7 +273,6 @@ function addListenerToBoard() {
           bombImg.src = './assets/icons/mine.png'
           e.target.append(bombImg)
           e.target.classList.add('disabled')
-          // clearInterval(setTimer)
           openBoard(board)
           const modalContent = `
           <h3>🅶🅰🅼🅴 🅾🆅🅴🆁</h3>
@@ -297,9 +290,9 @@ function addListenerToBoard() {
             hideModal()
             showStartMenu()
           })
-          isHell ?
-          document.querySelector('.gameOver1').play() :
-          document.querySelector('.gameOver2').play() 
+          isHell
+            ? document.querySelector('.gameOver1').play()
+            : document.querySelector('.gameOver2').play()
           document.querySelector('.win').pause()
         }
       } else {
@@ -351,7 +344,10 @@ const markCellAsBomb = (cell) => {
     gameState.flagCountSave = flagCount
     flaggedCells.push(cell.id)
     gameState.flaggedCellsSave = flaggedCells
-    if ([...new Set(openedCells)].length === boardSize - bombsCount && !gameOver) {
+    if (
+      [...new Set(openedCells)].length === boardSize - bombsCount &&
+      !gameOver
+    ) {
       const winMessage = createWinMessage(
         localStorage.getItem('Seconds'),
         clickCount
@@ -453,7 +449,7 @@ const getBombs = (cellId) => {
       }
     })
   }
-  if(cellId !== 0) {
+  if (cellId !== 0) {
     const cell = document.getElementById(`${cellId}`)
     if (!cell.classList.contains('bomb') || gameOver) {
       cell.innerHTML = count === 0 ? '' : count
@@ -473,7 +469,10 @@ const getBombs = (cellId) => {
     }
   }
   gameState.openedCellsSave = [...new Set(openedCells)]
-  if ([...new Set(openedCells)].length === boardSize - bombsCount && !gameOver) {
+  if (
+    [...new Set(openedCells)].length === boardSize - bombsCount &&
+    !gameOver
+  ) {
     let winMessage = createWinMessage(
       localStorage.getItem('Seconds'),
       clickCount
@@ -528,12 +527,6 @@ function showModal(content, close) {
       hideModal(modal)
     })
   }
-
-  // modal.addEventListener('click', (e) => {
-  //   if (e.target == modal) {
-  //     hideModal(modal)
-  //   }
-  // })
 }
 
 function hideModal() {
@@ -695,7 +688,7 @@ function showStartMenu() {
   })
   const modal = document.querySelector('.modal')
   const slider = document.querySelector('.slider')
-   isHell = false
+  isHell = false
   modal.addEventListener('click', (e) => {
     if (e.target.parentNode.classList.contains('radio-btn')) {
       isHell = false
@@ -733,7 +726,7 @@ function showStartMenu() {
     clearInterval(timerID)
     startGame(selectedBoard.value, isHell ? 150 : Number(range.value))
     hideModal()
-    if(isHell) {
+    if (isHell) {
       document.body.setAttribute('hell', '')
       document.querySelector('.theme-button').style.display = 'none'
       document.querySelector('.song').muted = false
@@ -741,7 +734,7 @@ function showStartMenu() {
       document.querySelector('.song').play()
     } else {
       document.body.removeAttribute('hell')
-      document.querySelector('.theme-button').style.display = 'block'   
+      document.querySelector('.theme-button').style.display = 'block'
       document.querySelector('.song').muted = true
     }
   })
@@ -781,7 +774,6 @@ function restoreGameState({
 }) {
   width = widthSave
   time = timeSave
-  // ! BUG WITH CLICKCOUNT AFTER RELOAD
   clickCount = Number(clickCountSave) ? clickCountSave : 0
   openedCells = openedCellsSave
 
@@ -905,7 +897,7 @@ let sounds = {
   gameOver2: './assets/sounds/game-over2.mp3',
   setFlag: './assets/sounds/set-flag.mp3',
   win: './assets/sounds/win.mp3',
-  song: './assets/sounds/song.mp3'
+  song: './assets/sounds/song.mp3',
 }
 
 const pageSounds = document.createElement('div')
