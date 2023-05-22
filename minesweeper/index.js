@@ -729,13 +729,12 @@ function showStartMenu() {
     if (isHell) {
       document.body.setAttribute('hell', '')
       document.querySelector('.theme-button').style.display = 'none'
-      document.querySelector('.song').muted = false
       document.querySelector('.song').loop = true
       document.querySelector('.song').play()
     } else {
       document.body.removeAttribute('hell')
       document.querySelector('.theme-button').style.display = 'block'
-      document.querySelector('.song').muted = true
+      document.querySelector('.song').pause()
     }
   })
 }
@@ -923,6 +922,7 @@ function toggleMute(elem) {
       .querySelector('.sound-img')
       .setAttribute('src', './assets/icons/volume.png')
   }
+  
 }
 function mutePage() {
   const audioElements = document.querySelectorAll('audio')
