@@ -34,6 +34,8 @@ html {
     rgba(252, 153, 56, 1) 90%
   );
   background: var(--var-body-background);
+  background-size: cover;
+  background-position: center;
 }
 html {
   width: 100%;

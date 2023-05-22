@@ -87,18 +87,18 @@ function createBoard(size) {
   return board
 }
 
-const createBombs = (size, count) => {
+const createBombs = (size, count, forbidden) => {
   const bombs = []
   while (bombs.length < count) {
     let random = Math.round(0.5 + Math.random() * size)
-    if (!bombs.includes(random)) {
+    if (!bombs.includes(random) && random !== forbidden) {
       bombs.push(random)
     }
   }
   return bombs
 }
 let board = createBoard(boardSize)
-let bombs = createBombs(boardSize, bombsCount)
+let bombs = createBombs(boardSize, bombsCount, 0)
 const controlPanel = document.createElement('div')
 controlPanel.classList.add('control-panel')
 const controlPanelContent = document.createElement('div')
@@ -218,7 +218,7 @@ const restartGame = (size, count, boardWidth) => {
     bombs = gameData.bombsSave
     clickCount = gameData.clickCountSave
   } else {
-    bombs = createBombs(size, count)
+    bombs = createBombs(size, count, 0)
     clickCount = 0
   }
   gameOver = false
@@ -239,21 +239,23 @@ startGameButton.addEventListener('click', () => {
 
 // show all cells on gameover
 const openBoard = (board) => {
+  console.log(bombs);
   gameOver = true
   board.childNodes.forEach((cell) => {
     if (bombs.includes(Number(cell.id))) {
       const bombImg = document.createElement('img')
       bombImg.classList.add('bomb-img')
       bombImg.src = './assets/icons/mine.png'
-      if (cell.firstElementChild) {
+      // if (cell.firstElementChild) {
         cell.replaceChildren()
-      }
+      // }
       cell.append(bombImg)
       cell.classList.add('disabled')
     } else {
       getBombs(Number(cell.id))
     }
   })
+  console.log('bombs2', bombs);
 }
 function addListenerToBoard() {
   const board = document.querySelector('.board')
@@ -262,7 +264,8 @@ function addListenerToBoard() {
     if (e.target.classList.contains('button')) {
       if (bombs.includes(Number(e.target.id))) {
         if (clickCount === 0) {
-          bombs = createBombs(boardSize, bombsCount)
+          console.log('create bombs');
+          bombs = createBombs(boardSize, bombsCount, Number(e.target.id))
           getBombs(Number(e.target.id))
           clickCount++
           gameState.clickCountSave = clickCount
