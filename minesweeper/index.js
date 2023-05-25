@@ -740,9 +740,7 @@ function showStartMenu() {
 }
 
 function createWinMessage(time, moves) {
-  let message = `🅷🅾🅾🆁🅰🆈! 🆈🅾🆄 🅵🅾🆄🅽🅳 🅰🅻🅻 🅼🅸🅽🅴🆂 🅸🅽 ${time} 🆂🅴🅲🅾🅽🅳🆂 🅰🅽🅳 ${
-    moves + 1
-  } 🅼🅾🆅🅴🆂!`
+  let message = `🅷🅾🅾🆁🅰🆈! 🆈🅾🆄 🅵🅾🆄🅽🅳 🅰🅻🅻 🅼🅸🅽🅴🆂 🅸🅽 ${time} 🆂🅴🅲🅾🅽🅳🆂 🅰🅽🅳 ${moves} 🅼🅾🆅🅴🆂!`
   return message
 }
 
@@ -922,7 +920,6 @@ function toggleMute(elem) {
       .querySelector('.sound-img')
       .setAttribute('src', './assets/icons/volume.png')
   }
-  
 }
 function mutePage() {
   const audioElements = document.querySelectorAll('audio')
