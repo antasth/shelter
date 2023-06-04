@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./assets/img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./assets/img/favicon/favicon-16x16.png"
+    />
+
+    <link rel="stylesheet" href="./assets/styles/normalize.css" />
+    <link rel="stylesheet" href="template.css" />
+    <link rel="stylesheet" href="./pages/pets/style.css" />
+    <title>Shelter</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <div class="header__content">
+          <div class="header__logo">
+            <a href="index.html">
+              <h1 class="header__logo-title">Cozy House</h1>
+              <p class="header__logo-subtitle">Shelter for pets in Boston</p>
+            </a>
+          </div>
+          <nav>
+            <ul class="header__nav">
+              <li class="header__nav__item">
+                <a href="index.html"><p>About the shelter</p></a>
+              </li>
+              <li class="header__nav__item-inactive">
+                <p>Our pets</p>
+              </li>
+              <li class="header__nav__item">
+                <a href="index.html#options"><p>Help the shelter</p></a>
+              </li>
+              <li class="header__nav__item">
+                <a href="#contacts"><p>Contacts</p></a>
+              </li>
+            </ul>
+            <div class="burger__icon burger__icon-black">
+              <span></span>
+            </div>
+          </nav>
+
+          <div class="burger">
+            <div class="burger__wrapper">
+              <div class="burger__menu">
+                <ul class="burger__list">
+                  <li class="burger__list-item">
+                    <a href="index.html">About the shelter</a>
+                  </li>
+                  <li class="burger__list-item active__burger-item">
+                    Our pets
+                  </li>
+                  <li class="burger__list-item">
+                    <a href="index.html#options">Help the shelter</a>
+                  </li>
+                  <li class="burger__list-item">
+                    <a href="#contacts">Contacts</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="burger__background"></div>
+        </div>
+      </div>
+
+      <div class="content">
+        <section class="pets">
+          <h3 class="pets__title">
+            Our friends who <br />
+            are looking for a house
+          </h3>
+          <div class="pets__content">
+            <div class="pets__cards"></div>
+            <div class="pets__pagination">
+              <div id="double-back-button" class="pagination__button inactive">
+                <h4>&lt;&lt;</h4>
+              </div>
+              <div id="back-button" class="pagination__button inactive">
+                <h4>&lt;</h4>
+              </div>
+              <div id="page-number" class="pagination__button active">
+                <h4>1</h4>
+              </div>
+              <div id="forward-button" class="pagination__button">
+                <h4>&gt;</h4>
+              </div>
+              <div id="double-forward-button" class="pagination__button">
+                <h4>&gt;&gt;</h4>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer" id="contacts">
+        <div class="footer__content">
+          <div class="footer__description">
+            <div class="footer__contacts">
+              <h3>For questions and suggestions</h3>
+              <a href="mailto:email@shelter.com">
+                <div class="footer__item footer__contacts__item">
+                  <img src="./assets/img/contacts/icon-email.svg" alt="email" />
+                  <h4 class="footer__text">email@shelter.com</h4>
+                </div>
+              </a>
+              <a href="tel:+136745677554">
+                <div class="footer__item footer__contacts__item">
+                  <img src="./assets/img/contacts/icon-phone.svg" alt="phone" />
+                  <h4 class="footer__text">+13 674 567 75 54</h4>
+                </div>
+              </a>
+            </div>
+
+            <div class="footer__location">
+              <h3>We are waiting for your visit</h3>
+              <a href="https://goo.gl/maps/mUWuXb7c4zMshJ7GA" target="_blank">
+                <div class="footer__item footer__location__item">
+                  <img
+                    src="./assets/img/contacts/icon-marker.svg"
+                    alt="location"
+                  />
+                  <h4 class="footer__text">
+                    1 Central Street, Boston (entrance from the store)
+                  </h4>
+                </div>
+              </a>
+              <a href="https://goo.gl/maps/mUWuXb7c4zMshJ7GA" target="_blank">
+                <div class="footer__item footer__location__item">
+                  <img
+                    src="./assets/img/contacts/icon-marker.svg"
+                    alt="location"
+                  />
+                  <h4 class="footer__text">18 South Park, London</h4>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="footer__img">
+            <img src="./assets/img/footer-puppy.png" alt="puppy" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup-overlay popup-overlay__modal hide">
+      <div class="popup">
+        <div class="popup_container"></div>
+      </div>
+    </div>
+    <script type="module" src="./pages/pets/pets.js"></script>
+    <script type="module" src="./modules/popup.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
