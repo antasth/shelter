@@ -3,7 +3,7 @@ import './news.css';
 
 class News {
     draw(data: NewsData[]): void {
-        console.log(data);
+        // console.log(data);
         const news: NewsData[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment: DocumentFragment = document.createDocumentFragment();

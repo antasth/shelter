@@ -1,3 +1,8 @@
+export interface SourceResponse {
+    sources: Source[];
+    status: string;
+}
+
 export interface Source {
     id: string;
     name: string;
@@ -22,4 +27,24 @@ export interface NewsData {
 export interface NewsSource {
     id: string;
     name: string;
+}
+
+export interface DataResponse {
+    articles: Article[];
+    status: string;
+    totalResults: number;
+}
+
+export interface Article {
+    source: {
+        id: string;
+        name: string;
+    };
+    author: string;
+    content: string;
+    description: string;
+    publishedAt: string;
+    title: string;
+    url: string;
+    urlToImage: string;
 }
