@@ -2,7 +2,7 @@ import { NewsData } from '../../../types/index';
 import './news.css';
 
 class News {
-    draw(data: NewsData[]) {
+    draw(data: NewsData[]): void {
         console.log(data);
         const news: NewsData[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
@@ -43,7 +43,7 @@ class News {
                 fragment.append(newsClone);
             }
         });
-        const newsElement = document.querySelector('.news');
+        const newsElement: HTMLElement | null = document.querySelector('.news');
         if (newsElement) {
             newsElement.innerHTML = '';
             newsElement.appendChild(fragment);
