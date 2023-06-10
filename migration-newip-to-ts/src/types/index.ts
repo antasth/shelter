@@ -48,3 +48,7 @@ export interface Article {
     url: string;
     urlToImage: string;
 }
+
+export interface LoaderOptions {
+    apiKey: string;
+}
