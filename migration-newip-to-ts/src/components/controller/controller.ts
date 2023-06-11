@@ -1,4 +1,4 @@
-import { SourceResponse } from '../../types/index';
+import { SourceResponse, DataResponse } from '../../types/index';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: Event, callback: (data?: SourceResponse) => void): void {
+    getNews(e: Event, callback: (data?: DataResponse) => void): void {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 
