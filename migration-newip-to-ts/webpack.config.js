@@ -14,6 +14,18 @@ const baseConfig = {
                 use: ['style-loader', 'css-loader'],
             },
             { test: /\.ts$/i, use: 'ts-loader' },
+            // {
+            //     test: /\.(png|jpeg|gif|svg|webp|ico|avif)$/i,
+            //     type: 'asset',
+            //     generator: {
+            //         filename: 'assets/img/[name][hash][ext][query]',
+            //     },
+            //     parser: {
+            //         dataUrlCondition: {
+            //             maxSize: 10 * 1024,
+            //         },
+            //     },
+            // },
         ],
     },
     resolve: {

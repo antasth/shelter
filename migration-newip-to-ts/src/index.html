@@ -9,15 +9,24 @@
     <body>
         <header>
             <h1>News Portal</h1>
+            <div class="logo">
+                <!-- <img src="img/logo.png" alt="logo"> -->
+            </div>
         </header>
         <main>
-            <div class="sources buttons"></div>
+            <div class="sources-list">
+                <!-- <div class="sources__top">
+                    <h2 class="sources__header">Sources</h2>
+                    <input class="sources__search" type="text" id="search"  placeholder="Search sources...">
+                </div> -->
+                <h2 class="sources__header">Sources</h2>
+
+                <div class="sources buttons"></div>
+            </div>
             <div class="news"></div>
         </main>
         <footer>
-            <p class="copyright">
-                Copyright <a href="https://newsapi.org">NewsAPI</a>
-            </p>
+            <p class="copyright">Copyright <a href="https://newsapi.org">NewsAPI</a></p>
         </footer>
 
         <template id="sourceItemTemp">
@@ -47,5 +56,11 @@
         </template>
 
         <script src="./index.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.js"
+            integrity="sha512-bvxXT2u2PNVKMpHmLR54QQ+qAnhn0dM//5spHP+sjRcnlZSmNMaLkvZXAr8peMHyNlUoDEgNnYIlrUTnr5kNYQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
     </body>
 </html>
