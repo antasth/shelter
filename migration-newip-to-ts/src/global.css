@@ -58,7 +58,11 @@ footer .copyright a:hover {
 footer .copyright:before {
     content: '©';
 }
-
+.footer__links {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
 :active,
 :hover,
 :focus {
