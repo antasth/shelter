@@ -3,7 +3,6 @@ import './sources.css';
 
 class Sources {
     draw(data: Source[]): void {
-        console.log(data);
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement | null = document.querySelector('#sourceItemTemp');
 
@@ -27,18 +26,15 @@ class Sources {
         }
         // SEARCH FEATURE
         const searchInput = <HTMLInputElement>document.querySelector('.sources__search');
-        console.log(searchInput);
         if (searchInput) {
             searchInput.addEventListener('keyup', () => {
                 const filter = searchInput.value;
                 const sourceItems = document.querySelectorAll('.source__item');
                 sourceItems.forEach((item) => {
                     if (item instanceof HTMLElement) {
-                        if (item.innerText.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
-                            item.style.display = '';
-                        } else {
-                            item.style.display = 'none';
-                        }
+                        item.innerText.toLowerCase().indexOf(filter.toLowerCase()) > -1
+                            ? (item.style.display = '')
+                            : (item.style.display = 'none');
                     }
                 });
             });
