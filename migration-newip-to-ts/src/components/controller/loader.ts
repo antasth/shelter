@@ -1,9 +1,5 @@
-type urlOptions = {
-    apiKey: string;
-    sources?: string;
-};
-
-import { LoaderOptions } from '../../types/index';
+import { GetRespOptions, LoaderOptions } from '../../types/index';
+import { urlOptions } from '../../types/types';
 class Loader {
     private baseLink: string;
     private options: LoaderOptions;
@@ -14,7 +10,7 @@ class Loader {
     }
 
     public getResp(
-        { endpoint, options = {} }: { endpoint: string; options?: Record<string, string> },
+        { endpoint, options = {} }: GetRespOptions,
         callback = (): void => {
             console.error('No callback for GET response');
         }
@@ -34,6 +30,7 @@ class Loader {
 
     public makeUrl(options: Record<string, string>, endpoint: string): string {
         const urlOptions: urlOptions = { ...this.options, ...options };
+
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {

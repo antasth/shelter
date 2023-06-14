@@ -52,3 +52,8 @@ export interface Article {
 export interface LoaderOptions {
     apiKey: string;
 }
+
+export interface GetRespOptions {
+    endpoint: string;
+    options?: Record<string, string>;
+}

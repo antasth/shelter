@@ -4,13 +4,13 @@ import './news.css';
 
 class News {
     draw(data: NewsData[]): void {
-        const news: NewsData[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+        const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
-        const fragment: DocumentFragment = document.createDocumentFragment();
+        const fragment = document.createDocumentFragment();
         const newsItemTemp = getElement<HTMLTemplateElement>(document.body, '#newsItemTemp');
 
         news.forEach((item, idx) => {
-            const newsClone: DocumentFragment = newsItemTemp.content.cloneNode(true) as DocumentFragment;
+            const newsClone = newsItemTemp.content.cloneNode(true) as DocumentFragment;
 
             if (idx % 2) newsClone.querySelector('.news__item')?.classList.add('alt');
 
