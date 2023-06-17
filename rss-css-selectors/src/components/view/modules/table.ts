@@ -10,7 +10,7 @@ class Table {
     }
     drawTable() {
         console.log('table');
-        document.body.append(this.cup.drawCup());
+        document.querySelector('.board')?.append(this.cup.drawCup());
         document.querySelector('.cup')?.append(this.star.drawStar());
     }
 }

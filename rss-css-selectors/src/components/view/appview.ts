@@ -10,12 +10,6 @@ export class AppView {
     public drawTable() {
         this.table.drawTable();
     }
-    // public drawPicle() {
-    //     console.log('picle');
-    // }
-    // public drawPlate() {
-    //     console.log('plate');
-    // }
 }
 
 export default AppView;

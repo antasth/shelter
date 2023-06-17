@@ -1,4 +1,4 @@
-import cupimg from '../../../assets/img/cup1.png';
+import cupimg from '../../../assets/img/cup2.png';
 
 class Cup {
     drawCup() {
