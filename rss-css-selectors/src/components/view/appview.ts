@@ -8,7 +8,7 @@ export class AppView {
     }
 
     public drawTable() {
-        this.table.drawTable();
+        this.table.drawTable(1);
     }
 }
 
