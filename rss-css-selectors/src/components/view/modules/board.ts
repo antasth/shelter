@@ -1,8 +1,15 @@
 import levels from '../../../data/levels';
-import { LevelElement } from '../../../interfaces/interfaces';
+import { getElement } from '../../../functions/functions';
+import { LevelElement, LevelObject } from '../../../interfaces/interfaces';
 
 class Board {
-    drawElement(elem: LevelElement) {
+    private data: LevelObject;
+
+    constructor(level: number) {
+        this.data = levels[level];
+    }
+
+    private drawElement(elem: LevelElement): void {
         console.log(elem);
         const cup = document.createElement(elem.tag);
         if (elem.class) cup.classList.add(elem.class);
@@ -13,12 +20,13 @@ class Board {
             if (elem.childId) cupChild.setAttribute('id', elem.childId);
             cup.append(cupChild);
         }
-        document.querySelector('.board')?.append(cup);
+
+        const board = getElement('.board');
+        board.append(cup);
     }
-    drawBoard(lvl: number) {
-        const data = levels[lvl];
-        // console.log(data.html);
-        data.html.forEach((elem) => {
+
+    public drawBoard(): void {
+        this.data.html.forEach((elem) => {
             this.drawElement(elem);
         });
     }

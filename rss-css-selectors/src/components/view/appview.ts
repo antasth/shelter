@@ -6,12 +6,12 @@ export class AppView {
     private menu: Menu;
 
     constructor() {
-        this.board = new Board();
+        this.board = new Board(0);
         this.menu = new Menu(0);
     }
 
     public drawBoard() {
-        this.board.drawBoard(1);
+        this.board.drawBoard();
     }
     public drawMenu() {
         this.menu.drawMenu();
