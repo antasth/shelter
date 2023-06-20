@@ -1,19 +1,25 @@
-import Cup from './cup';
-// import Star from './star';
 import levels from '../../../data/levels';
+import { LevelElement } from '../../../interfaces/interfaces';
 
 class Table {
-    cup: Cup;
-    // star: Star;
-    constructor() {
-        this.cup = new Cup();
-        // this.star = new Star();
+    drawElement(elem: LevelElement) {
+        console.log(elem);
+        const cup = document.createElement(elem.tag);
+        if (elem.class) cup.classList.add(elem.class);
+        if (elem.id) cup.setAttribute('id', elem.id);
+        if (elem.child) {
+            const cupChild = document.createElement(elem.child);
+            if (elem.childClass) cupChild.classList.add(elem.childClass);
+            if (elem.childId) cupChild.setAttribute('id', elem.childId);
+            cup.append(cupChild);
+        }
+        document.querySelector('.board')?.append(cup);
     }
     drawTable(lvl: number) {
         const data = levels[lvl];
-        console.log(data.html);
+        // console.log(data.html);
         data.html.forEach((elem) => {
-            if (elem === 'cup') document.querySelector('.board')?.append(this.cup.drawCup());
+            this.drawElement(elem);
         });
     }
 }

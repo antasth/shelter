@@ -4,5 +4,14 @@ export interface LevelObject {
     type: string;
     description: string;
     example: string;
-    html: string[];
+    html: Array<LevelElement>;
+}
+
+export interface LevelElement {
+    tag: string;
+    class?: string;
+    id?: string;
+    child?: string;
+    childClass?: string;
+    childId?: string;
 }
