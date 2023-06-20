@@ -1,7 +1,7 @@
 import levels from '../../../data/levels';
 import { LevelElement } from '../../../interfaces/interfaces';
 
-class Table {
+class Board {
     drawElement(elem: LevelElement) {
         console.log(elem);
         const cup = document.createElement(elem.tag);
@@ -15,7 +15,7 @@ class Table {
         }
         document.querySelector('.board')?.append(cup);
     }
-    drawTable(lvl: number) {
+    drawBoard(lvl: number) {
         const data = levels[lvl];
         // console.log(data.html);
         data.html.forEach((elem) => {
@@ -24,4 +24,4 @@ class Table {
     }
 }
 
-export default Table;
+export default Board;

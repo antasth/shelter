@@ -13,7 +13,7 @@ class App {
     start() {
         console.log('start');
         this.controller.method1();
-        this.view.drawTable();
+        this.view.drawBoard();
     }
 }
 

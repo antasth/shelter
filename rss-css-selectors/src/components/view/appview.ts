@@ -1,14 +1,14 @@
-import Table from './modules/table';
+import Board from './modules/board';
 
 export class AppView {
-    private table: Table;
+    private board: Board;
 
     constructor() {
-        this.table = new Table();
+        this.board = new Board();
     }
 
-    public drawTable() {
-        this.table.drawTable(1);
+    public drawBoard() {
+        this.board.drawBoard(1);
     }
 }
 
