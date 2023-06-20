@@ -1,4 +1,5 @@
 import levels from '../../../data/levels';
+import { getElement } from '../../../functions/functions';
 import { LevelObject } from '../../../interfaces/interfaces';
 
 class Menu {
@@ -10,13 +11,17 @@ class Menu {
         this.data = levels[level];
     }
 
-    public drawMenu() {
-        const menu = document.querySelector('.menu');
+    public drawMenu(): void {
+        const sidebar = getElement('.sidebar');
+        const menu = document.createElement('div');
+        menu.classList.add('menu');
         const nav = this.drawNavMenu();
         const content = this.drawContent();
         menu?.append(nav, content);
+        sidebar.append(menu);
     }
-    private drawNavMenu() {
+
+    private drawNavMenu(): HTMLDivElement {
         const menuNav = document.createElement('div');
         menuNav.classList.add('menu__nav');
         const leftButton = this.drawNavButton('left');
@@ -26,13 +31,15 @@ class Menu {
         menuNav.append(leftButton, level, rightButton);
         return menuNav;
     }
-    private drawNavButton(direction: string) {
+
+    private drawNavButton(direction: string): HTMLButtonElement {
         const navButton = document.createElement('button');
         navButton.classList.add('menu__button', `menu__button-${direction}`);
         navButton.innerText = direction === 'left' ? '<' : '>';
         return navButton;
     }
-    private drawContent() {
+
+    private drawContent(): HTMLDivElement {
         const content = document.createElement('div');
         content.classList.add('menu__content');
 
