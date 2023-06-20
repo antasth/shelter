@@ -4,14 +4,17 @@ import Menu from './modules/menu';
 export class AppView {
     private board: Board;
     private menu: Menu;
+    // private level: number;
 
-    constructor() {
-        this.board = new Board(0);
-        this.menu = new Menu(0);
+    constructor(level: number) {
+        // this.level = level;
+        this.board = new Board(level);
+        this.menu = new Menu(level);
     }
 
-    public drawBoard() {
-        this.board.drawBoard();
+    public drawBoard(level: number) {
+        // this.level = lvl;
+        this.board.drawBoard(level);
     }
     public drawMenu() {
         this.menu.drawMenu();

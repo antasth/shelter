@@ -9,7 +9,7 @@ class Board {
         this.data = levels[level];
     }
 
-    private drawElement(elem: LevelElement): void {
+    private drawElement(elem: LevelElement): HTMLElement {
         console.log(elem);
         const cup = document.createElement(elem.tag);
         if (elem.class) cup.classList.add(elem.class);
@@ -20,14 +20,15 @@ class Board {
             if (elem.childId) cupChild.setAttribute('id', elem.childId);
             cup.append(cupChild);
         }
-
-        const board = getElement('.board');
-        board.append(cup);
+        return cup;
     }
 
-    public drawBoard(): void {
+    public drawBoard(lvl: number): void {
+        this.data = levels[lvl];
+        const board = getElement('.board');
+        board.replaceChildren();
         this.data.html.forEach((elem) => {
-            this.drawElement(elem);
+            board.append(this.drawElement(elem));
         });
     }
 }

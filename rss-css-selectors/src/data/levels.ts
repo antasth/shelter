@@ -9,7 +9,7 @@ const levels: Array<LevelObject> = [
             'Добро пожаловать в Coffee Shop — место, где вы напишете CSS-код, чтобы выпить чашечку кофе. Начнём с самого простого. Селекторы тега — это выборка элементов по именам их тегов: h1, p, img, a и т.д. В селекторе тега, в качестве селектора выступает имя тега',
         example: 'Например, чтобы изменить цвет текста у заголовка, нужно обратиться к нему так - h1 {color: blue;}',
         task: 'Задание: выберите все белые чашки используя селектор тега',
-        html: [{ tag: 'cup', class: '', id: '', child: 'star', childClass: '', childId: '' }],
+        html: [{ tag: 'cup', child: 'star' }],
     },
     {
         id: 2,
@@ -21,7 +21,6 @@ const levels: Array<LevelObject> = [
             'Например, мы можем обратиться к элементу <div id="main"> используя id селектор так - #main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя id селектор',
         html: [{ tag: 'cup' }, { tag: 'cup', class: 'coffe', child: 'star' }],
-        // html: ['cup', 'star', 'cup'],
     },
     {
         id: 3,
@@ -32,8 +31,7 @@ const levels: Array<LevelObject> = [
         example:
             'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя классовый селектор',
-        // html: ['cup', 'cup', 'cup'],
-        html: [{ tag: 'cup', class: '', id: '', child: 'star', childClass: '', childId: '' }],
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup' }, { tag: 'cup' }],
     },
 ];
 export default levels;
