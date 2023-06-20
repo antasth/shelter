@@ -1,3 +1,4 @@
+import levels from '../../data/levels';
 import { getElement } from '../../functions/functions';
 import AppController from '../controller/appController';
 import AppView from '../view/appview';
@@ -28,12 +29,16 @@ class App {
         });
     }
     nextLevel() {
-        this.level += 1;
-        this.view.drawBoard(this.level);
+        if (this.level < levels.length - 1) {
+            this.level += 1;
+            this.view.drawBoard(this.level);
+        }
     }
     prevLevel() {
-        this.level -= 1;
-        this.view.drawBoard(this.level);
+        if (this.level > 0) {
+            this.level -= 1;
+            this.view.drawBoard(this.level);
+        }
     }
 }
 
