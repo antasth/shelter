@@ -14,6 +14,7 @@ class App {
         console.log('start');
         this.controller.method1();
         this.view.drawBoard();
+        this.view.drawMenu();
     }
 }
 

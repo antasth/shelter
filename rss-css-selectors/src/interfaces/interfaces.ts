@@ -4,6 +4,7 @@ export interface LevelObject {
     type: string;
     description: string;
     example: string;
+    task: string;
     html: Array<LevelElement>;
 }
 

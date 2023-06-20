@@ -9,6 +9,9 @@ body {
     background-color: $back;
     color: $text;
 }
+h1 {
+    margin: 0;
+}
 .main {
     display: grid;
     grid-template-columns: 70% 30%;
@@ -18,11 +21,6 @@ body {
     background-color: #0d1821;
     display: flex;
     flex-direction: column;
-    &__header {
-        h1 {
-            margin: 0;
-        }
-    }
 }
 .board {
     display: flex;
@@ -39,6 +37,19 @@ body {
 }
 .sidebar {
     background-color: #e6aace;
+}
+.menu {
+    padding: 1rem;
+    &__nav {
+        display: flex;
+        align-items: center;
+        column-gap: 0.5rem;
+    }
+    &__button {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+    }
 }
 cup {
     position: relative;
