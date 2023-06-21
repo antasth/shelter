@@ -4,9 +4,9 @@ import AppController from '../controller/appController';
 import AppView from '../view/appview';
 
 class App {
-    controller: AppController;
-    view: AppView;
-    level: number;
+    private controller: AppController;
+    private view: AppView;
+    private level: number;
 
     constructor() {
         this.level = 0;
@@ -14,11 +14,29 @@ class App {
         this.view = new AppView(0);
     }
 
-    start() {
+    public start(): void {
         this.controller.method1();
         this.view.drawBoard(this.level);
-        this.view.drawMenu();
-
+        this.view.drawMenu(this.level);
+        this.addListenersToNavButtons();
+    }
+    private nextLevel(): void {
+        if (this.level < levels.length - 1) {
+            this.level += 1;
+            this.view.drawBoard(this.level);
+            this.view.drawMenu(this.level);
+            this.addListenersToNavButtons();
+        }
+    }
+    private prevLevel(): void {
+        if (this.level > 0) {
+            this.level -= 1;
+            this.view.drawBoard(this.level);
+            this.view.drawMenu(this.level);
+            this.addListenersToNavButtons();
+        }
+    }
+    private addListenersToNavButtons(): void {
         const buttonLeft = getElement('.menu__button-left');
         const buttonRight = getElement('.menu__button-right');
         buttonLeft.addEventListener('click', () => {
@@ -27,18 +45,6 @@ class App {
         buttonRight.addEventListener('click', () => {
             this.nextLevel();
         });
-    }
-    nextLevel() {
-        if (this.level < levels.length - 1) {
-            this.level += 1;
-            this.view.drawBoard(this.level);
-        }
-    }
-    prevLevel() {
-        if (this.level > 0) {
-            this.level -= 1;
-            this.view.drawBoard(this.level);
-        }
     }
 }
 

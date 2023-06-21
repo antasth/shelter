@@ -10,7 +10,7 @@ class Board {
     }
 
     private drawElement(elem: LevelElement): HTMLElement {
-        console.log(elem);
+        // console.log(elem);
         const cup = document.createElement(elem.tag);
         if (elem.class) cup.classList.add(elem.class);
         if (elem.id) cup.setAttribute('id', elem.id);

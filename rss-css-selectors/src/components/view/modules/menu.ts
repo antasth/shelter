@@ -11,8 +11,10 @@ class Menu {
         this.data = levels[level];
     }
 
-    public drawMenu(): void {
+    public drawMenu(level: number): void {
+        this.data = levels[level];
         const sidebar = getElement('.sidebar');
+        sidebar.replaceChildren();
         const menu = document.createElement('div');
         menu.classList.add('menu');
         const nav = this.drawNavMenu();
@@ -27,7 +29,7 @@ class Menu {
         const leftButton = this.drawNavButton('left');
         const rightButton = this.drawNavButton('right');
         const level = document.createElement('h1');
-        level.innerText = `Level ${this.level} of ${levels.length}`;
+        level.innerText = `Level ${this.data.id} of ${levels.length}`;
         menuNav.append(leftButton, level, rightButton);
         return menuNav;
     }
