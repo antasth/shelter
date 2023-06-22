@@ -12,7 +12,7 @@ class Editor {
     public drawEditor(): void {
         const editor = getElement('.editor__wrapper');
         editor.append(this.drawCssEditor(), this.drawHtmlEditor());
-        // console.log(this.data);
+        this.createHtmlContent(this.level);
     }
     private drawCssEditor(): HTMLDivElement {
         const cssEditor = document.createElement('div');
@@ -23,7 +23,7 @@ class Editor {
         cssEditorHeader.innerText = 'CSS';
 
         const editorContent = document.createElement('div');
-        editorContent.classList.add('editor__content');
+        editorContent.classList.add('editor__content-css');
 
         const listNumbers = this.createListNumbers();
 
@@ -42,21 +42,14 @@ class Editor {
 
         const cssEditorHeader = document.createElement('div');
         cssEditorHeader.classList.add('editor__header');
-        cssEditorHeader.innerText = 'CSS';
+        cssEditorHeader.innerText = 'HTML';
 
         const editorContent = document.createElement('div');
-        editorContent.classList.add('editor__content');
+        editorContent.classList.add('editor__content-html');
 
         const listNumbers = this.createListNumbers();
 
-        const editorHtmlContent = document.createElement('div');
-        editorHtmlContent.classList.add('editor__html');
-        // const boardHtmlContent = getElement('.board');
-        // editorHtmlContent.innerHTML = boardHtmlContent.innerHTML;
-        console.log(this.createHtmlContent(this.level));
-        editorHtmlContent.innerText = this.createHtmlContent(this.level);
-
-        editorContent.append(listNumbers, editorHtmlContent);
+        editorContent.append(listNumbers);
         htmlEditor.append(cssEditorHeader, editorContent);
         return htmlEditor;
     }
@@ -66,11 +59,19 @@ class Editor {
         editorNumbers.innerHTML = [...Array(20)].map((_, i) => `<li>${i + 1}</li>`).join('');
         return editorNumbers;
     }
-    public createHtmlContent(level: number): string {
+    public createHtmlContent(level: number): void {
         this.data = levels[level].htmlContent;
-        const htmlContent = this.data;
-
-        return htmlContent;
+        if (document.querySelector('.editor__content')) this.clearHtmlContent();
+        const editorHtml = getElement('.editor__content-html');
+        const editorHtmlContent = document.createElement('div');
+        editorHtmlContent.classList.add('editor__content');
+        editorHtmlContent.innerText = this.data;
+        editorHtml.append(editorHtmlContent);
+    }
+    private clearHtmlContent(): void {
+        const editorHtml = getElement('.editor__content-html');
+        const editorContent = getElement('.editor__content');
+        if (editorHtml && editorContent) editorHtml.removeChild(editorContent);
     }
 }
 export default Editor;

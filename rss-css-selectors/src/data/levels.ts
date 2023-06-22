@@ -22,12 +22,7 @@ const levels: Array<LevelObject> = [
             'Например, мы можем обратиться к элементу <div id="main"> используя id селектор так - #main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя id селектор',
         html: [{ tag: 'cup' }, { tag: 'cup', class: 'coffe', child: 'star' }],
-        htmlContent: `
-        <cup>
-            <cup class="coffe">
-                <star />
-            </cup>
-        </cup>`,
+        htmlContent: `<cup/>\n<cup class="coffe">\n<star />\n</cup>\n<cup/>`,
     },
     {
         id: 3,
@@ -39,12 +34,7 @@ const levels: Array<LevelObject> = [
             'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя классовый селектор',
         html: [{ tag: 'cup', child: 'star' }, { tag: 'cup' }, { tag: 'cup' }],
-        htmlContent: `
-        <cup>
-            <star />
-        </cup>
-        <cup/>
-        <cup/>`,
+        htmlContent: `<cup>\n<star/>\n</cup>\n<cup/>\n<cup/>`,
     },
 ];
 export default levels;

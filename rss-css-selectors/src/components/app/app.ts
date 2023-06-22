@@ -26,6 +26,7 @@ class App {
             this.level += 1;
             this.view.drawBoard(this.level);
             this.view.drawMenu(this.level);
+            this.view.createHtmlContent(this.level);
             this.addListenersToNavButtons();
         }
     }
@@ -34,6 +35,7 @@ class App {
             this.level -= 1;
             this.view.drawBoard(this.level);
             this.view.drawMenu(this.level);
+            this.view.createHtmlContent(this.level);
             this.addListenersToNavButtons();
         }
     }

@@ -22,6 +22,9 @@ export class AppView {
     public drawEditor() {
         this.editor.drawEditor();
     }
+    public createHtmlContent(level: number) {
+        this.editor.createHtmlContent(level);
+    }
 }
 
 export default AppView;

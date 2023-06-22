@@ -67,7 +67,8 @@ h1 {
     &__header {
         background-color: #1197ab;
     }
-    &__content {
+    &__content-css,
+    &__content-html {
         display: flex;
     }
     &__numbers {
