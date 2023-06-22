@@ -18,6 +18,7 @@ class App {
         this.controller.method1();
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
+        this.view.drawEditor();
         this.addListenersToNavButtons();
     }
     private nextLevel(): void {

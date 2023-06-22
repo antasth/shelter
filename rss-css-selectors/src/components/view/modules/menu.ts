@@ -3,11 +3,11 @@ import { getElement } from '../../../functions/functions';
 import { LevelObject } from '../../../interfaces/interfaces';
 
 class Menu {
-    private level: number;
+    // private level: number;
     private data: LevelObject;
 
     constructor(level: number) {
-        this.level = level + 1;
+        // this.level = level + 1;
         this.data = levels[level];
     }
 
