@@ -10,6 +10,7 @@ const levels: Array<LevelObject> = [
         example: 'Например, чтобы изменить цвет текста у заголовка, нужно обратиться к нему так - h1 {color: blue;}',
         task: 'Задание: выберите все белые чашки используя селектор тега',
         html: [{ tag: 'cup', child: 'star' }],
+        htmlContent: `<cup>\n<star/>\n</cup>`,
     },
     {
         id: 2,
@@ -21,6 +22,12 @@ const levels: Array<LevelObject> = [
             'Например, мы можем обратиться к элементу <div id="main"> используя id селектор так - #main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя id селектор',
         html: [{ tag: 'cup' }, { tag: 'cup', class: 'coffe', child: 'star' }],
+        htmlContent: `
+        <cup>
+            <cup class="coffe">
+                <star />
+            </cup>
+        </cup>`,
     },
     {
         id: 3,
@@ -32,6 +39,12 @@ const levels: Array<LevelObject> = [
             'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя классовый селектор',
         html: [{ tag: 'cup', child: 'star' }, { tag: 'cup' }, { tag: 'cup' }],
+        htmlContent: `
+        <cup>
+            <star />
+        </cup>
+        <cup/>
+        <cup/>`,
     },
 ];
 export default levels;

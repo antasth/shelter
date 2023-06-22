@@ -10,7 +10,7 @@ export class AppView {
     constructor(level: number) {
         this.board = new Board(level);
         this.menu = new Menu(level);
-        this.editor = new Editor();
+        this.editor = new Editor(level);
     }
 
     public drawBoard(level: number) {

@@ -1,9 +1,18 @@
+import levels from '../../../data/levels';
 import { getElement } from '../../../functions/functions';
 
 class Editor {
+    private data: string;
+    private level: number;
+
+    constructor(level: number) {
+        this.level = level;
+        this.data = levels[level].htmlContent;
+    }
     public drawEditor(): void {
         const editor = getElement('.editor__wrapper');
         editor.append(this.drawCssEditor(), this.drawHtmlEditor());
+        // console.log(this.data);
     }
     private drawCssEditor(): HTMLDivElement {
         const cssEditor = document.createElement('div');
@@ -41,8 +50,11 @@ class Editor {
         const listNumbers = this.createListNumbers();
 
         const editorHtmlContent = document.createElement('div');
-        const boardHtmlContent = getElement('.board');
-        editorHtmlContent.textContent = boardHtmlContent.innerHTML;
+        editorHtmlContent.classList.add('editor__html');
+        // const boardHtmlContent = getElement('.board');
+        // editorHtmlContent.innerHTML = boardHtmlContent.innerHTML;
+        console.log(this.createHtmlContent(this.level));
+        editorHtmlContent.innerText = this.createHtmlContent(this.level);
 
         editorContent.append(listNumbers, editorHtmlContent);
         htmlEditor.append(cssEditorHeader, editorContent);
@@ -53,6 +65,12 @@ class Editor {
         editorNumbers.classList.add('editor__numbers');
         editorNumbers.innerHTML = [...Array(20)].map((_, i) => `<li>${i + 1}</li>`).join('');
         return editorNumbers;
+    }
+    public createHtmlContent(level: number): string {
+        this.data = levels[level].htmlContent;
+        const htmlContent = this.data;
+
+        return htmlContent;
     }
 }
 export default Editor;
