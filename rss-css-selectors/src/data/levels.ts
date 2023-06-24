@@ -22,8 +22,8 @@ const levels: Array<LevelObject> = [
         example:
             'Например, мы можем обратиться к элементу <div id="main"> используя id селектор так - #main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя id селектор',
-        html: [{ tag: 'cup' }, { tag: 'cup', child: 'star' }, { tag: 'cup' }],
-        htmlContent: `<cup/>\n<cup>\n\t<star/>\n</cup>\n<cup/>`,
+        html: [{ tag: 'cup' }, { tag: 'cup', id: 'star', child: 'star' }, { tag: 'cup' }],
+        htmlContent: `<cup/>\n<cup id='star'>\n\t<star/>\n</cup>\n<cup/>`,
         answer: '#star',
     },
     {

@@ -1,13 +1,16 @@
 import levels from '../../../data/levels';
 import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
+import Submit from './submit';
 
-class ButtonListeners {
+class NavButtonListeners {
     private view: AppView;
     private level: number;
+    private submit: Submit;
 
     constructor(level: number) {
         this.view = new AppView(0);
+        this.submit = new Submit();
         this.level = level;
     }
     public nextLevel(level: number): void {
@@ -39,6 +42,13 @@ class ButtonListeners {
         buttonRight.addEventListener('click', () => {
             this.nextLevel(this.level);
         });
+        const submitBtn = getElement('.editor__button');
+        submitBtn.addEventListener('click', () => {
+            if (this.submit.checkAnswer(this.level)) {
+                this.nextLevel(this.level);
+                this.submit.clearInput();
+            }
+        });
     }
 }
-export default ButtonListeners;
+export default NavButtonListeners;
