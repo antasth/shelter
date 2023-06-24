@@ -7,6 +7,7 @@ export interface LevelObject {
     task: string;
     html: Array<LevelElement>;
     htmlContent: string;
+    answer: string;
 }
 
 export interface LevelElement {

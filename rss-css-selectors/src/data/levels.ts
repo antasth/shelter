@@ -9,8 +9,9 @@ const levels: Array<LevelObject> = [
             'Добро пожаловать в Coffee Shop — место, где вы напишете CSS-код, чтобы выпить чашечку кофе. Начнём с самого простого. Селекторы тега — это выборка элементов по именам их тегов: h1, p, img, a и т.д. В селекторе тега, в качестве селектора выступает имя тега',
         example: 'Например, чтобы изменить цвет текста у заголовка, нужно обратиться к нему так - h1 {color: blue;}',
         task: 'Задание: выберите все белые чашки используя селектор тега',
-        html: [{ tag: 'cup', child: 'star' }],
-        htmlContent: `<cup>\n<star/>\n</cup>`,
+        html: [{ tag: 'cup' }, { tag: 'cup' }],
+        htmlContent: `<cup/>\n<cup/>`,
+        answer: 'cup',
     },
     {
         id: 2,
@@ -21,8 +22,9 @@ const levels: Array<LevelObject> = [
         example:
             'Например, мы можем обратиться к элементу <div id="main"> используя id селектор так - #main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя id селектор',
-        html: [{ tag: 'cup' }, { tag: 'cup', class: 'coffe', child: 'star' }],
-        htmlContent: `<cup/>\n<cup class="coffe">\n<star />\n</cup>\n<cup/>`,
+        html: [{ tag: 'cup' }, { tag: 'cup', child: 'star' }, { tag: 'cup' }],
+        htmlContent: `<cup/>\n<cup>\n\t<star/>\n</cup>\n<cup/>`,
+        answer: '#star',
     },
     {
         id: 3,
@@ -33,8 +35,9 @@ const levels: Array<LevelObject> = [
         example:
             'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя классовый селектор',
-        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup' }, { tag: 'cup' }],
-        htmlContent: `<cup>\n<star/>\n</cup>\n<cup/>\n<cup/>`,
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: `<cup>\n\t<star/>\n</cup>\n<cup>\n\t<star class='star'/>\n</cup>\n<cup/>`,
+        answer: '.star',
     },
 ];
 export default levels;

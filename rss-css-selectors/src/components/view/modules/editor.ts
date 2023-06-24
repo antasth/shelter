@@ -22,8 +22,8 @@ class Editor {
         cssEditorHeader.classList.add('editor__header');
         cssEditorHeader.innerText = 'CSS';
 
-        const editorContent = document.createElement('div');
-        editorContent.classList.add('editor__content-css');
+        const cssEditorContent = document.createElement('div');
+        cssEditorContent.classList.add('editor__content-css');
 
         const listNumbers = this.createListNumbers();
 
@@ -32,8 +32,15 @@ class Editor {
         editorInput.setAttribute('placeholder', 'введите CSS селектор');
         editorInput.setAttribute('type', 'text');
 
-        editorContent.append(listNumbers, editorInput);
-        cssEditor.append(cssEditorHeader, editorContent);
+        const submitButton = document.createElement('button');
+        submitButton.classList.add('editor__button');
+        submitButton.textContent = 'Enter';
+        const inputContent = document.createElement('div');
+        inputContent.classList.add('editor__input__content');
+        inputContent.append(editorInput, submitButton);
+
+        cssEditorContent.append(listNumbers, inputContent);
+        cssEditor.append(cssEditorHeader, cssEditorContent);
         return cssEditor;
     }
     private drawHtmlEditor(): HTMLDivElement {
@@ -63,9 +70,10 @@ class Editor {
         this.data = levels[level].htmlContent;
         if (document.querySelector('.editor__content')) this.clearHtmlContent();
         const editorHtml = getElement('.editor__content-html');
-        const editorHtmlContent = document.createElement('div');
+        const editorHtmlContent = document.createElement('textarea');
+        editorHtmlContent.readOnly = true;
         editorHtmlContent.classList.add('editor__content');
-        editorHtmlContent.innerText = this.data;
+        editorHtmlContent.textContent = this.data;
         editorHtml.append(editorHtmlContent);
     }
     private clearHtmlContent(): void {
