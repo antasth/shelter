@@ -20,3 +20,10 @@ export const createElement = (
     }
     return element;
 };
+
+export const createNumbersList = (): HTMLUListElement => {
+    const editorNumbers = document.createElement('ul');
+    editorNumbers.classList.add('editor__numbers');
+    editorNumbers.innerHTML = [...Array(20)].map((_, i) => `<li>${i + 1}</li>`).join('');
+    return editorNumbers;
+};

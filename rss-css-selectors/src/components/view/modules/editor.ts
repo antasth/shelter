@@ -1,5 +1,5 @@
 import levels from '../../../data/levels';
-import { createElement, getElement } from '../../../functions/functions';
+import { createElement, createNumbersList, getElement } from '../../../functions/functions';
 
 class Editor {
     private data: Array<string | string[]>;
@@ -25,7 +25,7 @@ class Editor {
         const cssEditorContent = document.createElement('div');
         cssEditorContent.classList.add('editor__content-css');
 
-        const listNumbers = this.createListNumbers();
+        const listNumbers = createNumbersList();
 
         const editorInput = document.createElement('input');
         editorInput.classList.add('editor__input');
@@ -54,18 +54,12 @@ class Editor {
         const editorContent = document.createElement('div');
         editorContent.classList.add('editor__content-html');
 
-        const listNumbers = this.createListNumbers();
-
+        const listNumbers = createNumbersList();
         editorContent.append(listNumbers);
         htmlEditor.append(cssEditorHeader, editorContent);
         return htmlEditor;
     }
-    private createListNumbers(): HTMLUListElement {
-        const editorNumbers = document.createElement('ul');
-        editorNumbers.classList.add('editor__numbers');
-        editorNumbers.innerHTML = [...Array(20)].map((_, i) => `<li>${i + 1}</li>`).join('');
-        return editorNumbers;
-    }
+
     public createHtmlContent(level: number): void {
         this.data = levels[level].htmlContent;
         if (document.querySelector('.editor__content')) this.clearHtmlContent();
