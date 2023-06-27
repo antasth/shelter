@@ -77,7 +77,6 @@ h1 {
     &__content-css,
     &__content-html {
         display: flex;
-        
     }
     &__numbers {
         margin: 0;
@@ -117,8 +116,10 @@ h1 {
         width: 50%;
         background-color: #af17b4;
     }
-    &__block, &__line {
+    &__block,
+    &__line {
         cursor: pointer;
+
         &:hover {
             background-color: #1197ab;
         }

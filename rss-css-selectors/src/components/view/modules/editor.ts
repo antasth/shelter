@@ -47,11 +47,17 @@ class Editor {
     }
 
     private createHtmlContentTags(data: Array<string | string[]>, parentElement: HTMLElement): void {
-        data.forEach((item: string | string[]) => {
+        data.forEach((item: string | string[], index: number) => {
+            const dataIndex = String(index + 1);
             if (typeof item === 'string') {
-                createElement('div', 'editor__line', item, parentElement);
+                const editorLine = createElement('div', 'editor__line', item, parentElement);
+
+                if (editorLine.parentElement?.classList.contains('editor__content')) {
+                    editorLine.setAttribute('data-index', dataIndex);
+                }
             } else {
                 const editorBlock = createElement('div', 'editor__block', '', parentElement);
+                editorBlock.setAttribute('data-index', dataIndex);
                 this.createHtmlContentTags(item, editorBlock);
             }
         });
