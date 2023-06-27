@@ -117,14 +117,11 @@ h1 {
         width: 50%;
         background-color: #af17b4;
     }
-    &__block {
+    &__block, &__line {
+        cursor: pointer;
         &:hover {
             background-color: #1197ab;
         }
-    }
-    &__line {
-        cursor: pointer;
-
     }
 }
 

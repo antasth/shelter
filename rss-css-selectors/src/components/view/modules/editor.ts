@@ -72,24 +72,33 @@ class Editor {
         const editorHtml = getElement('.editor__content-html');
         const editorHtmlContent = document.createElement('div');
         editorHtmlContent.classList.add('editor__content');
-        editorHtmlContent.append(this.createContent(this.data));
         editorHtml.append(editorHtmlContent);
+        this.createContent(this.data, editorHtmlContent);
     }
 
-    private createContent(data: Array<string | string[]>): HTMLDivElement {
-        const content = document.createElement('div');
-        content.classList.add('editor__block');
+    private createContent(data: Array<string | string[]>, parentElement: HTMLElement): void {
         data.forEach((item: string | string[]) => {
-            const editorLine = document.createElement('div');
-            editorLine.classList.add('editor__line');
+            const editorLine = this.createEditorLine();
             if (typeof item === 'string') {
                 editorLine.innerText = item;
-                content.append(editorLine);
-            } else content.append(this.createContent(item));
+                parentElement.append(editorLine);
+            } else {
+                const editorBlock = this.createEditorBlock();
+                this.createContent(item, editorBlock);
+                parentElement.append(editorBlock);
+            }
         });
-        return content;
     }
-
+    private createEditorLine(): HTMLDivElement {
+        const editorLine = document.createElement('div');
+        editorLine.classList.add('editor__line');
+        return editorLine;
+    }
+    private createEditorBlock(): HTMLDivElement {
+        const editorBlock = document.createElement('div');
+        editorBlock.classList.add('editor__block');
+        return editorBlock;
+    }
     private clearHtmlContent(): void {
         const editorHtml = getElement('.editor__content-html');
         const editorContent = getElement('.editor__content');
