@@ -1,13 +1,11 @@
 import levels from '../../../data/levels';
-import { getElement } from '../../../functions/functions';
+import { createElement, getElement } from '../../../functions/functions';
 import { LevelObject } from '../../../interfaces/interfaces';
 
 class Menu {
-    // private level: number;
     private data: LevelObject;
 
     constructor(level: number) {
-        // this.level = level + 1;
         this.data = levels[level];
     }
 
@@ -15,12 +13,10 @@ class Menu {
         this.data = levels[level];
         const sidebar = getElement('.sidebar');
         sidebar.replaceChildren();
-        const menu = document.createElement('div');
-        menu.classList.add('menu');
+        const menu = createElement('div', 'menu', '', sidebar);
         const nav = this.drawNavMenu();
         const content = this.drawContent();
-        menu?.append(nav, content);
-        sidebar.append(menu);
+        menu.append(nav, content);
     }
 
     private drawNavMenu(): HTMLDivElement {
@@ -41,26 +37,13 @@ class Menu {
         return navButton;
     }
 
-    private drawContent(): HTMLDivElement {
-        const content = document.createElement('div');
-        content.classList.add('menu__content');
-
-        const header = document.createElement('h1');
-        header.innerText = this.data.name;
-
-        const type = document.createElement('h3');
-        type.innerText = this.data.type;
-
-        const description = document.createElement('p');
-        description.innerText = this.data.description;
-
-        const example = document.createElement('p');
-        example.innerText = this.data.example;
-
-        const task = document.createElement('p');
-        task.innerText = this.data.task;
-
-        content.append(header, type, description, example, task);
+    private drawContent(): HTMLElement {
+        const content = createElement('div', 'menu__content', '', null);
+        createElement('h1', 'menu__header', this.data.name, content);
+        createElement('h3', 'menu__type', this.data.type, content);
+        createElement('p', 'menu__description', this.data.description, content);
+        createElement('p', 'menu__example', this.data.example, content);
+        createElement('p', 'menu__task', this.data.task, content);
         return content;
     }
 }
