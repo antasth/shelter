@@ -2,7 +2,7 @@ import levels from '../../../data/levels';
 import { getElement } from '../../../functions/functions';
 
 class Editor {
-    private data: string;
+    private data: Array<string | string[]>;
     private level: number;
 
     constructor(level: number) {
@@ -70,12 +70,26 @@ class Editor {
         this.data = levels[level].htmlContent;
         if (document.querySelector('.editor__content')) this.clearHtmlContent();
         const editorHtml = getElement('.editor__content-html');
-        const editorHtmlContent = document.createElement('textarea');
-        editorHtmlContent.readOnly = true;
+        const editorHtmlContent = document.createElement('div');
         editorHtmlContent.classList.add('editor__content');
-        editorHtmlContent.textContent = this.data;
+        editorHtmlContent.append(this.createContent(this.data));
         editorHtml.append(editorHtmlContent);
     }
+
+    private createContent(data: Array<string | string[]>): HTMLDivElement {
+        const content = document.createElement('div');
+        content.classList.add('editor__block');
+        data.forEach((item: string | string[]) => {
+            const editorLine = document.createElement('div');
+            editorLine.classList.add('editor__line');
+            if (typeof item === 'string') {
+                editorLine.innerText = item;
+                content.append(editorLine);
+            } else content.append(this.createContent(item));
+        });
+        return content;
+    }
+
     private clearHtmlContent(): void {
         const editorHtml = getElement('.editor__content-html');
         const editorContent = getElement('.editor__content');

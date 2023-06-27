@@ -117,6 +117,15 @@ h1 {
         width: 50%;
         background-color: #af17b4;
     }
+    &__block {
+        &:hover {
+            background-color: #1197ab;
+        }
+    }
+    &__line {
+        cursor: pointer;
+
+    }
 }
 
 cup {

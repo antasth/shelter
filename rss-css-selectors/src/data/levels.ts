@@ -10,7 +10,7 @@ const levels: Array<LevelObject> = [
         example: 'Например, чтобы изменить цвет текста у заголовка, нужно обратиться к нему так - h1 {color: blue;}',
         task: 'Задание: выберите все белые чашки используя селектор тега',
         html: [{ tag: 'cup' }, { tag: 'cup' }],
-        htmlContent: `<cup/>\n<cup/>`,
+        htmlContent: ['<cup/>', '<cup/>'],
         answer: 'cup',
     },
     {
@@ -23,7 +23,7 @@ const levels: Array<LevelObject> = [
             'Например, мы можем обратиться к элементу <div id="main"> используя id селектор так - #main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя id селектор',
         html: [{ tag: 'cup' }, { tag: 'cup', id: 'star', child: 'star' }, { tag: 'cup' }],
-        htmlContent: `<cup/>\n<cup id='star'>\n\t<star/>\n</cup>\n<cup/>`,
+        htmlContent: ['<cup/>', ['<cup id="star">', '<star/>', '</cup>'], '<cup/>'],
         answer: '#star',
     },
     {
@@ -36,7 +36,7 @@ const levels: Array<LevelObject> = [
             'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
         task: 'Задание: выберите все белые чашки используя классовый селектор',
         html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-        htmlContent: `<cup>\n\t<star/>\n</cup>\n<cup>\n\t<star class='star'/>\n</cup>\n<cup/>`,
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
         answer: '.star',
     },
 ];
