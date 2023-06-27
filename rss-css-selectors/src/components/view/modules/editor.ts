@@ -1,5 +1,5 @@
 import levels from '../../../data/levels';
-import { getElement } from '../../../functions/functions';
+import { createElement, getElement } from '../../../functions/functions';
 
 class Editor {
     private data: Array<string | string[]>;
@@ -78,27 +78,15 @@ class Editor {
 
     private createContent(data: Array<string | string[]>, parentElement: HTMLElement): void {
         data.forEach((item: string | string[]) => {
-            const editorLine = this.createEditorLine();
             if (typeof item === 'string') {
-                editorLine.innerText = item;
-                parentElement.append(editorLine);
+                createElement('div', 'editor__line', item, parentElement);
             } else {
-                const editorBlock = this.createEditorBlock();
+                const editorBlock = createElement('div', 'editor__block', '', parentElement);
                 this.createContent(item, editorBlock);
-                parentElement.append(editorBlock);
             }
         });
     }
-    private createEditorLine(): HTMLDivElement {
-        const editorLine = document.createElement('div');
-        editorLine.classList.add('editor__line');
-        return editorLine;
-    }
-    private createEditorBlock(): HTMLDivElement {
-        const editorBlock = document.createElement('div');
-        editorBlock.classList.add('editor__block');
-        return editorBlock;
-    }
+
     private clearHtmlContent(): void {
         const editorHtml = getElement('.editor__content-html');
         const editorContent = getElement('.editor__content');
