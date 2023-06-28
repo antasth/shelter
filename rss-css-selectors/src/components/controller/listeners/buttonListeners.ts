@@ -3,37 +3,37 @@ import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
 import Submit from './submit';
 
-class NavButtonListeners {
+class ButtonListeners {
     private view: AppView;
-    private level: number;
     private submit: Submit;
+    private level: number;
 
     constructor(level: number) {
         this.view = new AppView(0);
         this.submit = new Submit();
         this.level = level;
     }
+    private redrawContent(): void {
+        this.view.drawBoard(this.level);
+        this.view.drawMenu(this.level);
+        this.view.createHtmlContent(this.level);
+        this.addListenersToButtons();
+    }
     public nextLevel(level: number): void {
         this.level = level;
         if (this.level < levels.length - 1) {
             this.level += 1;
-            this.view.drawBoard(this.level);
-            this.view.drawMenu(this.level);
-            this.view.createHtmlContent(this.level);
-            this.addListenersToNavButtons();
+            this.redrawContent();
         }
     }
     public prevLevel(level: number): void {
         this.level = level;
         if (this.level > 0) {
             this.level -= 1;
-            this.view.drawBoard(this.level);
-            this.view.drawMenu(this.level);
-            this.view.createHtmlContent(this.level);
-            this.addListenersToNavButtons();
+            this.redrawContent();
         }
     }
-    public addListenersToNavButtons(): void {
+    public addListenersToButtons(): void {
         const buttonLeft = getElement('.menu__button-left');
         const buttonRight = getElement('.menu__button-right');
         buttonLeft.addEventListener('click', () => {
@@ -49,6 +49,15 @@ class NavButtonListeners {
                 this.submit.clearInput();
             }
         });
+        const levelButtons = getElement('.levels__content');
+        levelButtons.addEventListener('click', (e) => {
+            if (e.target && e.target instanceof HTMLElement) {
+                if (e.target.className === 'levels__button') {
+                    this.level = Number(e.target.id.slice(3)) - 1;
+                    this.redrawContent();
+                }
+            }
+        });
     }
 }
-export default NavButtonListeners;
+export default ButtonListeners;

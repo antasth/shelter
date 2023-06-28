@@ -1,18 +1,18 @@
-import NavButtonListeners from './listeners/buttonListeners';
+import ButtonListeners from './listeners/buttonListeners';
 
 class AppController {
-    private navButtonListeners: NavButtonListeners;
+    private buttonListeners: ButtonListeners;
     constructor(level: number) {
-        this.navButtonListeners = new NavButtonListeners(level);
+        this.buttonListeners = new ButtonListeners(level);
     }
     public nextLevel(level: number) {
-        this.navButtonListeners.nextLevel(level);
+        this.buttonListeners.nextLevel(level);
     }
     public prevLevel(level: number) {
-        this.navButtonListeners.prevLevel(level);
+        this.buttonListeners.prevLevel(level);
     }
-    public addListenersToNavButtons() {
-        this.navButtonListeners.addListenersToNavButtons();
+    public addListenersToButtons() {
+        this.buttonListeners.addListenersToButtons();
     }
 }
 
