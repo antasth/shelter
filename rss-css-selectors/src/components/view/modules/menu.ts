@@ -1,21 +1,25 @@
 import levels from '../../../data/levels';
 import { createElement, getElement } from '../../../functions/functions';
 import { LevelObject } from '../../../interfaces/interfaces';
+import LevelButtons from './levelButtons';
 
 class Menu {
     private data: LevelObject;
+    private levelsMenu: LevelButtons;
 
     constructor(level: number) {
         this.data = levels[level];
+        this.levelsMenu = new LevelButtons();
     }
 
     public drawMenu(level: number): void {
         this.data = levels[level];
-        const sidebar = getElement('.sidebar');
+        const sidebar = getElement('.sidebar__wrapper');
         sidebar.replaceChildren();
         const menu = createElement('div', 'menu', '', sidebar);
         const nav = this.drawNavMenu();
         const content = this.drawContent();
+        this.levelsMenu.drawLevelButtons();
         menu.append(nav, content);
     }
 

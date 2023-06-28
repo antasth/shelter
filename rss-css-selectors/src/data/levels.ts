@@ -39,5 +39,122 @@ const levels: Array<LevelObject> = [
         htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
         answer: '.star',
     },
+    {
+        id: 4,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
+    {
+        id: 5,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
+    {
+        id: 6,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
+    {
+        id: 7,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
+    {
+        id: 8,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
+    {
+        id: 9,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
+    {
+        id: 10,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
+    {
+        id: 11,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
+    {
+        id: 12,
+        name: 'Class selector',
+        type: '.class',
+        description:
+            'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
+        example:
+            'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
+        task: 'Задание: выберите все белые чашки используя классовый селектор',
+        html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
+        htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
+        answer: '.star',
+    },
 ];
 export default levels;
