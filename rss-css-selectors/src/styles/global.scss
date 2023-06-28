@@ -7,10 +7,11 @@ html,
 body {
     height: 100%;
     min-height: 100%;
+    background: linear-gradient(to right, #141e30, #243b55);
 }
 body {
     background-color: $back;
-    // color: $text;
+    color: $text;
 }
 h1 {
     margin: 0;
@@ -21,25 +22,24 @@ h1 {
     height: 100%;
 }
 .content {
-    background-color: #0d1821;
     display: flex;
     flex-direction: column;
+    &__header {
+        padding: 10px;
+        background: linear-gradient(to right, #606c88, #3f4c6b);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 }
 .board {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #344966;
     width: 100%;
     height: 100%;
 }
-.editor {
-    background-color: #bfcc94;
-    height: 100%;
-}
 .sidebar {
-    background-color: #e6aace;
     min-height: 100%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     &__wrapper {
         height: 100%;
         padding: 1rem;
@@ -49,17 +49,20 @@ h1 {
     }
 }
 .levels {
+    align-self: center;
     width: 100%;
-    background-color: #1883db;
+    max-width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: end;
+
     &__content {
-        background-color: #bfcc94;
         display: grid;
         grid-template-columns: repeat(4, auto);
+        padding: 20px 0;
         gap: 15px;
         justify-content: center;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
     &__button {
         width: 50px;
@@ -68,9 +71,9 @@ h1 {
         border: none;
         cursor: pointer;
         &__active {
-            background-color: #1883db;
-        }   
-             &:hover {
+            background-color: #fb4f36;
+        }
+        &:hover {
             background-color: #1883db;
         }
     }
@@ -92,24 +95,33 @@ h1 {
     justify-content: center;
     padding: 10px;
     font-size: 16px;
+    height: 100%;
     &__wrapper {
         display: flex;
         justify-content: center;
         width: 100%;
         height: 100%;
         max-width: 800px;
-        background-color: #c94b10;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        background: linear-gradient(to right, #ff416c, #ff4b2b);
     }
     &__header {
-        background-color: #1197ab;
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        background-color: #ede6e3;
+        color: #141e30;
     }
     &__content {
         width: 100%;
         padding-top: 5px;
-        background-color: #f797f0;
+        color: #141e30;
         resize: none;
         outline: none;
     }
+
     &__content-css,
     &__content-html {
         display: flex;
@@ -120,7 +132,7 @@ h1 {
         line-height: 1.2;
         list-style: none;
         width: 1.5rem;
-        background-color: #a92e8c;
+        background-color: #072c2f;
         li {
             text-align: center;
         }
@@ -146,11 +158,9 @@ h1 {
     }
     &__css {
         width: 50%;
-        background-color: #220e94;
     }
     &__html {
         width: 50%;
-        background-color: #af17b4;
     }
     &__block,
     &__line {
