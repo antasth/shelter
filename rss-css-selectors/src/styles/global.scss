@@ -67,7 +67,10 @@ h1 {
         border-radius: 25px;
         border: none;
         cursor: pointer;
-        &:hover {
+        &__active {
+            background-color: #1883db;
+        }   
+             &:hover {
             background-color: #1883db;
         }
     }

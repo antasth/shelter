@@ -5,11 +5,11 @@ import LevelButtons from './levelButtons';
 
 class Menu {
     private data: LevelObject;
-    private levelsMenu: LevelButtons;
+    private levelButtons: LevelButtons;
 
     constructor(level: number) {
         this.data = levels[level];
-        this.levelsMenu = new LevelButtons();
+        this.levelButtons = new LevelButtons();
     }
 
     public drawMenu(level: number): void {
@@ -19,7 +19,7 @@ class Menu {
         const menu = createElement('div', 'menu', '', sidebar);
         const nav = this.drawNavMenu();
         const content = this.drawContent();
-        this.levelsMenu.drawLevelButtons();
+        this.levelButtons.drawLevelButtons(level);
         menu.append(nav, content);
     }
 
