@@ -29,7 +29,7 @@ class Menu {
         const leftButton = this.drawNavButton('left');
         const rightButton = this.drawNavButton('right');
         const level = document.createElement('h1');
-        level.innerText = `Level ${this.data.id} of ${levels.length}`;
+        level.innerText = `LEVEL ${this.data.id} OF ${levels.length}`;
         menuNav.append(leftButton, level, rightButton);
         return menuNav;
     }
