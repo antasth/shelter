@@ -14,6 +14,9 @@ class AppController {
     public addListenersToButtons() {
         this.buttonListeners.addListenersToButtons();
     }
+    public addHoverListeners() {
+        this.buttonListeners.addHoverListeners();
+    }
 }
 
 export default AppController;

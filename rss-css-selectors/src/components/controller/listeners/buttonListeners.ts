@@ -1,16 +1,19 @@
 import levels from '../../../data/levels';
 import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
+import HoverListeners from './hoverListeners';
 import Submit from './submit';
 
 class ButtonListeners {
     private view: AppView;
     private submit: Submit;
     private level: number;
+    private hover: HoverListeners;
 
     constructor(level: number) {
         this.view = new AppView(0);
         this.submit = new Submit();
+        this.hover = new HoverListeners();
         this.level = level;
     }
     private redrawContent(): void {
@@ -18,6 +21,10 @@ class ButtonListeners {
         this.view.drawMenu(this.level);
         this.view.createHtmlContent(this.level);
         this.addListenersToButtons();
+        this.hover.addHoverListeners();
+    }
+    public addHoverListeners() {
+        this.hover.addHoverListeners();
     }
     public nextLevel(level: number): void {
         this.level = level;
@@ -50,7 +57,7 @@ class ButtonListeners {
             }
         });
         const levelButtons = getElement('.levels__content');
-        levelButtons.addEventListener('click', (e) => {
+        levelButtons.addEventListener('click', (e: Event) => {
             if (e.target && e.target instanceof HTMLElement) {
                 if (e.target.className === 'levels__button') {
                     this.level = Number(e.target.id.slice(3)) - 1;

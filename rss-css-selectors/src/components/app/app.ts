@@ -17,6 +17,7 @@ class App {
         this.view.drawMenu(this.level);
         this.view.drawEditor();
         this.controller.addListenersToButtons();
+        this.controller.addHoverListeners();
     }
 }
 
