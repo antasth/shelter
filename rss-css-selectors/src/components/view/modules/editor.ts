@@ -23,7 +23,7 @@ class Editor {
         const editorInput = createElement('input', 'editor__input', '', inputContent);
         editorInput.setAttribute('placeholder', 'введите CSS селектор');
         editorInput.setAttribute('type', 'text');
-        createElement('button', 'editor__button', 'Enter', inputContent);
+        createElement('button', 'editor__button', 'enter', inputContent);
 
         const listNumbers = createNumbersList();
         cssEditorContent.append(listNumbers, inputContent);

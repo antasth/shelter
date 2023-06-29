@@ -10,12 +10,12 @@ export const getElement = <T extends HTMLElement>(selector: string): T => {
 export const createElement = (
     tagName: string,
     className: string,
-    textContent: string,
+    innerText: string,
     parentNode: HTMLElement | null
 ): HTMLElement => {
     const element = document.createElement(tagName);
     element.classList.add(className);
-    element.textContent = textContent;
+    element.innerText = innerText;
     if (parentNode) {
         parentNode.append(element);
     }
@@ -25,6 +25,6 @@ export const createElement = (
 export const createNumbersList = (): HTMLUListElement => {
     const editorNumbers = document.createElement('ul');
     editorNumbers.classList.add('editor__numbers');
-    editorNumbers.innerHTML = [...Array(20)].map((_, i) => `<li>${i + 1}</li>`).join('');
+    editorNumbers.innerHTML = [...Array(13)].map((_, i) => `<li>${i + 1}</li>`).join('');
     return editorNumbers;
 };
