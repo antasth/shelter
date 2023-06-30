@@ -62,6 +62,7 @@ class Listeners {
         });
         const helpButton: HTMLButtonElement = getElement('.help__button');
         helpButton.addEventListener('click', () => {
+            this.submit.clearInput();
             this.help.showAnswer(levels[this.level].answer);
         });
         const input: HTMLInputElement = getElement('.editor__input');
