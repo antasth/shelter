@@ -23,13 +23,11 @@ class Menu {
         menu.append(nav, content);
     }
 
-    private drawNavMenu(): HTMLDivElement {
-        const menuNav = document.createElement('div');
-        menuNav.classList.add('menu__nav');
+    private drawNavMenu(): HTMLElement {
+        const menuNav = createElement('div', 'menu__nav', '', null);
+        const level = createElement('h1', 'menu__nav__header', `LEVEL ${this.data.id} OF ${levels.length}`, null);
         const leftButton = this.drawNavButton('left');
         const rightButton = this.drawNavButton('right');
-        const level = document.createElement('h1');
-        level.innerText = `LEVEL ${this.data.id} OF ${levels.length}`;
         menuNav.append(leftButton, level, rightButton);
         return menuNav;
     }

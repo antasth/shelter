@@ -13,7 +13,7 @@ export const createElement = (
     innerText: string,
     parentNode: HTMLElement | null
 ): HTMLElement => {
-    const element = document.createElement(tagName);
+    const element: HTMLElement = document.createElement(tagName);
     element.classList.add(className);
     element.innerText = innerText;
     if (parentNode) {
