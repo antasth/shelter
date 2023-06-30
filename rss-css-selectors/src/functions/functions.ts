@@ -28,3 +28,12 @@ export const createNumbersList = (): HTMLUListElement => {
     editorNumbers.innerHTML = [...Array(13)].map((_, i) => `<li>${i + 1}</li>`).join('');
     return editorNumbers;
 };
+
+export const writeAnswerToInput = (input: HTMLInputElement, answer: string, speed: number): void => {
+    let i = 0;
+    if (i < answer.length) {
+        input.innerText += answer.charAt(i);
+        i += 1;
+        setTimeout(writeAnswerToInput, speed);
+    }
+};

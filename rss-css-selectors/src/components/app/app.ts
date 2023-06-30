@@ -15,6 +15,7 @@ class App {
     public start(): void {
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
+        this.view.drawHelpButton();
         this.view.drawEditor();
         this.controller.addListenersToButtons();
         this.controller.addHoverListeners();
