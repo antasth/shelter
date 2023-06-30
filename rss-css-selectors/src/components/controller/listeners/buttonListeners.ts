@@ -56,6 +56,15 @@ class ButtonListeners {
                 this.submit.clearInput();
             }
         });
+        const input = getElement('.editor__input');
+        input.addEventListener('keyup', (event: KeyboardEvent) => {
+            if (event.key === 'Enter') {
+                if (this.submit.checkAnswer(this.level)) {
+                    this.nextLevel(this.level);
+                    this.submit.clearInput();
+                }
+            }
+        });
         const levelButtons = getElement('.levels__content');
         levelButtons.addEventListener('click', (e: Event) => {
             if (e.target && e.target instanceof HTMLElement) {
