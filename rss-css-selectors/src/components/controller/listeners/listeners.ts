@@ -4,11 +4,11 @@ import AppView from '../../view/appview';
 import HoverListeners from './hoverListeners';
 import Submit from './submit';
 
-class ButtonListeners {
+class Listeners {
     private view: AppView;
     private submit: Submit;
-    private level: number;
     private hover: HoverListeners;
+    private level: number;
 
     constructor(level: number) {
         this.view = new AppView(0);
@@ -41,22 +41,22 @@ class ButtonListeners {
         }
     }
     public addListenersToButtons(): void {
-        const buttonLeft = getElement('.menu__button-left');
-        const buttonRight = getElement('.menu__button-right');
+        const buttonLeft: HTMLButtonElement = getElement('.menu__button-left');
+        const buttonRight: HTMLButtonElement = getElement('.menu__button-right');
         buttonLeft.addEventListener('click', () => {
             this.prevLevel(this.level);
         });
         buttonRight.addEventListener('click', () => {
             this.nextLevel(this.level);
         });
-        const submitBtn = getElement('.editor__button');
+        const submitBtn: HTMLButtonElement = getElement('.editor__button');
         submitBtn.addEventListener('click', () => {
             if (this.submit.checkAnswer(this.level)) {
                 this.nextLevel(this.level);
                 this.submit.clearInput();
             }
         });
-        const input = getElement('.editor__input');
+        const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
             if (event.key === 'Enter') {
                 if (this.submit.checkAnswer(this.level)) {
@@ -65,7 +65,7 @@ class ButtonListeners {
                 }
             }
         });
-        const levelButtons = getElement('.levels__content');
+        const levelButtons: HTMLDivElement = getElement('.levels__content');
         levelButtons.addEventListener('click', (e: Event) => {
             if (e.target && e.target instanceof HTMLElement) {
                 if (e.target.className === 'levels__button') {
@@ -76,4 +76,4 @@ class ButtonListeners {
         });
     }
 }
-export default ButtonListeners;
+export default Listeners;

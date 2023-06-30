@@ -26,7 +26,7 @@ class Board {
 
     public drawBoard(lvl: number): void {
         this.data = levels[lvl];
-        const board = getElement('.board');
+        const board: HTMLDivElement = getElement('.board');
         board.replaceChildren();
         this.data.html.forEach((elem, i) => {
             const index = String(i + 1);

@@ -10,7 +10,7 @@ class Editor {
         this.data = levels[level].htmlContent;
     }
     public drawEditor(): void {
-        const editor = getElement('.editor__wrapper');
+        const editor: HTMLDivElement = getElement('.editor__wrapper');
         editor.append(this.drawCssEditor(), this.drawHtmlEditor());
         this.createHtmlContent(this.level);
     }
@@ -41,7 +41,7 @@ class Editor {
     public createHtmlContent(level: number): void {
         this.data = levels[level].htmlContent;
         if (document.querySelector('.editor__content')) this.clearHtmlContent();
-        const editorHtml = getElement('.editor__content-html');
+        const editorHtml: HTMLDivElement = getElement('.editor__content-html');
         const editorHtmlContent = createElement('div', 'editor__content', '', editorHtml);
         this.createHtmlContentTags(this.data, editorHtmlContent);
     }
@@ -64,8 +64,8 @@ class Editor {
     }
 
     private clearHtmlContent(): void {
-        const editorHtml = getElement('.editor__content-html');
-        const editorContent = getElement('.editor__content');
+        const editorHtml: HTMLDivElement = getElement('.editor__content-html');
+        const editorContent: HTMLDivElement = getElement('.editor__content');
         if (editorHtml && editorContent) editorHtml.removeChild(editorContent);
     }
 }

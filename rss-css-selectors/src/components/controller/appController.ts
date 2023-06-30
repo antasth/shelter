@@ -1,21 +1,21 @@
-import ButtonListeners from './listeners/buttonListeners';
+import Listeners from './listeners/listeners';
 
 class AppController {
-    private buttonListeners: ButtonListeners;
+    private listeners: Listeners;
     constructor(level: number) {
-        this.buttonListeners = new ButtonListeners(level);
+        this.listeners = new Listeners(level);
     }
     public nextLevel(level: number) {
-        this.buttonListeners.nextLevel(level);
+        this.listeners.nextLevel(level);
     }
     public prevLevel(level: number) {
-        this.buttonListeners.prevLevel(level);
+        this.listeners.prevLevel(level);
     }
     public addListenersToButtons() {
-        this.buttonListeners.addListenersToButtons();
+        this.listeners.addListenersToButtons();
     }
     public addHoverListeners() {
-        this.buttonListeners.addHoverListeners();
+        this.listeners.addHoverListeners();
     }
 }
 

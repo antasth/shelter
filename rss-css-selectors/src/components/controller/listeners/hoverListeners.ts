@@ -2,8 +2,8 @@ import { getElement } from '../../../functions/functions';
 
 class HoverListeners {
     public addHoverListeners(): void {
-        const board = getElement('.board');
-        const editor = getElement('.editor__content');
+        const board: HTMLDivElement = getElement('.board');
+        const editor: HTMLDivElement = getElement('.editor__content');
         this.addListener(board, editor);
         this.addListener(editor, board);
     }

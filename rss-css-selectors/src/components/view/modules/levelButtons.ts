@@ -3,7 +3,7 @@ import { createElement, getElement } from '../../../functions/functions';
 
 class LevelButtons {
     public drawLevelButtons(level: number): void {
-        const sidebar = getElement('.sidebar__wrapper');
+        const sidebar: HTMLDivElement = getElement('.sidebar__wrapper');
         const levels = createElement('div', 'levels', '', sidebar);
         createElement('h3', 'levels__header', 'Select level', levels);
         const content = createElement('div', 'levels__content', '', levels);
