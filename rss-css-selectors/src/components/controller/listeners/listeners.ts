@@ -1,6 +1,7 @@
 import levels from '../../../data/levels';
 import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
+import HelpListener from './help';
 import HoverListeners from './hoverListeners';
 import Submit from './submit';
 
@@ -8,17 +9,20 @@ class Listeners {
     private view: AppView;
     private submit: Submit;
     private hover: HoverListeners;
+    private help: HelpListener;
     private level: number;
 
     constructor(level: number) {
+        this.level = level;
         this.view = new AppView(0);
         this.submit = new Submit();
         this.hover = new HoverListeners();
-        this.level = level;
+        this.help = new HelpListener();
     }
     private redrawContent(): void {
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
+        this.view.drawHelpButton();
         this.view.createHtmlContent(this.level);
         this.addListenersToButtons();
         this.hover.addHoverListeners();
@@ -49,12 +53,16 @@ class Listeners {
         buttonRight.addEventListener('click', () => {
             this.nextLevel(this.level);
         });
-        const submitBtn: HTMLButtonElement = getElement('.editor__button');
-        submitBtn.addEventListener('click', () => {
+        const submitButton: HTMLButtonElement = getElement('.editor__button');
+        submitButton.addEventListener('click', () => {
             if (this.submit.checkAnswer(this.level)) {
                 this.nextLevel(this.level);
                 this.submit.clearInput();
             }
+        });
+        const helpButton: HTMLButtonElement = getElement('.help__button');
+        helpButton.addEventListener('click', () => {
+            this.help.showAnswer(levels[this.level].answer);
         });
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {

@@ -29,11 +29,15 @@ export const createNumbersList = (): HTMLUListElement => {
     return editorNumbers;
 };
 
-export const writeAnswerToInput = (input: HTMLInputElement, answer: string, speed: number): void => {
+// function based on this example https://www.w3schools.com/howto/howto_js_typewriter.asp
+export const writeAnswerToInput = (input: HTMLInputElement, answer: string): void => {
     let i = 0;
-    if (i < answer.length) {
-        input.innerText += answer.charAt(i);
-        i += 1;
-        setTimeout(writeAnswerToInput, speed);
-    }
+    const write = (): void => {
+        if (i < answer.length) {
+            input.value += answer[i];
+            i += 1;
+            setTimeout(write, 300);
+        }
+    };
+    write();
 };

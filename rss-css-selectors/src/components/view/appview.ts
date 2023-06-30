@@ -13,7 +13,7 @@ export class AppView {
         this.board = new Board(level);
         this.menu = new Menu(level);
         this.editor = new Editor(level);
-        this.help = new HelpButton(level);
+        this.help = new HelpButton();
     }
 
     public drawBoard(level: number) {
