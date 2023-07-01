@@ -35,6 +35,7 @@ class Listeners {
         this.view.createHtmlContent(this.level);
         this.addListenersToButtons();
         this.hover.addHoverListeners();
+        this.input.restoreInput();
     }
     public addHoverListeners() {
         this.hover.addHoverListeners();
@@ -44,6 +45,7 @@ class Listeners {
         if (this.level < levels.length - 1) {
             this.level += 1;
             this.redrawContent();
+            gameData.currentLevel = this.level;
         }
     }
     public prevLevel(level: number): void {
@@ -51,6 +53,7 @@ class Listeners {
         if (this.level > 0) {
             this.level -= 1;
             this.redrawContent();
+            gameData.currentLevel = this.level;
         }
     }
     public addListenersToButtons(): void {
@@ -75,6 +78,8 @@ class Listeners {
         helpButton.addEventListener('click', () => {
             this.submit.clearInput();
             this.isHelpUsed = true;
+            this.input.clearInput();
+            this.input.showAnswer(levels[this.level].answer);
             this.help.showAnswer(levels[this.level].answer);
         });
         const input: HTMLInputElement = getElement('.editor__input');

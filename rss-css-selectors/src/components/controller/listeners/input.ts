@@ -1,13 +1,14 @@
-import { createElement, getElement } from '../../../functions/functions';
+import { createElement, getElement, writeAnswerToInput } from '../../../functions/functions';
 
 class InputListener {
     public writeToFakeInput(str: string): void {
         const fakeInput: HTMLDivElement = getElement('.editor__input-color');
+        fakeInput.replaceChildren();
         const inputString: string = str;
-        const separators = ['.', '#'];
+        const separators: string[] = ['.', '#'];
 
-        const dotIndex = inputString.indexOf(separators[0]);
-        const hashIndex = inputString.indexOf(separators[1]);
+        const dotIndex: number = inputString.indexOf(separators[0]);
+        const hashIndex: number = inputString.indexOf(separators[1]);
 
         if (dotIndex >= 0 && hashIndex === -1) {
             createElement('span', 'span-purple', inputString.slice(0, dotIndex), fakeInput);
@@ -32,6 +33,21 @@ class InputListener {
     public clearInput(): void {
         const fakeInput: HTMLDivElement = getElement('.editor__input-color');
         fakeInput.innerText = '';
+        fakeInput.replaceChildren();
+    }
+    public restoreInput(): void {
+        const fakeInput: HTMLDivElement = getElement('.editor__input-color');
+        const realInput: HTMLInputElement = getElement('.editor__input');
+        realInput.value = '';
+        fakeInput.replaceChildren();
+        fakeInput.innerText = 'Введите CSS селектор';
+    }
+    public showAnswer(answer: string): void {
+        const fakeInput: HTMLDivElement = getElement('.editor__input-color');
+        writeAnswerToInput(fakeInput, answer);
+        setTimeout(() => {
+            this.writeToFakeInput(answer);
+        }, 1200);
     }
 }
 

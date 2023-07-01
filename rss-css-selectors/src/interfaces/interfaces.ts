@@ -20,6 +20,7 @@ export interface LevelElement {
 }
 
 export interface GameData {
+    currentLevel: number;
     completedLevels: Array<CompletedLevelObject>;
 }
 interface CompletedLevelObject {
