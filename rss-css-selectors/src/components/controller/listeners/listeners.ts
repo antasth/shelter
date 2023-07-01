@@ -85,7 +85,7 @@ class Listeners {
         const levelButtons: HTMLDivElement = getElement('.levels__content');
         levelButtons.addEventListener('click', (e: Event) => {
             if (e.target && e.target instanceof HTMLElement) {
-                if (e.target.className === 'levels__button') {
+                if (e.target.className.includes('levels__button')) {
                     this.level = Number(e.target.id.slice(3)) - 1;
                     this.redrawContent();
                 }
