@@ -18,3 +18,7 @@ export interface LevelElement {
     childClass?: string;
     childId?: string;
 }
+
+export interface GameData {
+    completedLevels: Array<Array<number | boolean>>;
+}

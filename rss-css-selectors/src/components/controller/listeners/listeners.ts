@@ -1,3 +1,4 @@
+import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
 import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
@@ -11,6 +12,7 @@ class Listeners {
     private hover: HoverListeners;
     private help: HelpListener;
     private level: number;
+    private isHelpUsed = false;
 
     constructor(level: number) {
         this.level = level;
@@ -58,11 +60,14 @@ class Listeners {
             if (this.submit.checkAnswer(this.level)) {
                 this.nextLevel(this.level);
                 this.submit.clearInput();
+                gameData.completedLevels.push([this.level, this.isHelpUsed]);
+                this.isHelpUsed = false;
             }
         });
         const helpButton: HTMLButtonElement = getElement('.help__button');
         helpButton.addEventListener('click', () => {
             this.submit.clearInput();
+            this.isHelpUsed = true;
             this.help.showAnswer(levels[this.level].answer);
         });
         const input: HTMLInputElement = getElement('.editor__input');
