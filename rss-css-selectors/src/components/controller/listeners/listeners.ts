@@ -4,6 +4,7 @@ import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
 import HelpListener from './help';
 import HoverListeners from './hoverListeners';
+import InputListener from './input';
 import ResetListener from './reset';
 import Submit from './submit';
 
@@ -13,6 +14,7 @@ class Listeners {
     private hover: HoverListeners;
     private help: HelpListener;
     private reset: ResetListener;
+    private input: InputListener;
     private level: number;
     private isHelpUsed = false;
 
@@ -23,6 +25,7 @@ class Listeners {
         this.hover = new HoverListeners();
         this.help = new HelpListener();
         this.reset = new ResetListener();
+        this.input = new InputListener();
     }
     private redrawContent(): void {
         this.view.drawBoard(this.level);
@@ -76,6 +79,8 @@ class Listeners {
         });
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
+            this.input.clearInput();
+            this.input.writeToFakeInput(input.value);
             if (event.key === 'Enter') {
                 if (this.submit.checkAnswer(this.level)) {
                     gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
