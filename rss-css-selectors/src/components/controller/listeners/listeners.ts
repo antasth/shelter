@@ -4,6 +4,7 @@ import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
 import HelpListener from './help';
 import HoverListeners from './hoverListeners';
+import ResetListener from './reset';
 import Submit from './submit';
 
 class Listeners {
@@ -11,6 +12,7 @@ class Listeners {
     private submit: Submit;
     private hover: HoverListeners;
     private help: HelpListener;
+    private reset: ResetListener;
     private level: number;
     private isHelpUsed = false;
 
@@ -20,11 +22,13 @@ class Listeners {
         this.submit = new Submit();
         this.hover = new HoverListeners();
         this.help = new HelpListener();
+        this.reset = new ResetListener();
     }
     private redrawContent(): void {
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
         this.view.drawHelpButton();
+        this.view.drawResetButton();
         this.view.createHtmlContent(this.level);
         this.addListenersToButtons();
         this.hover.addHoverListeners();
@@ -90,6 +94,12 @@ class Listeners {
                     this.redrawContent();
                 }
             }
+        });
+        const resetButton: HTMLButtonElement = getElement('.reset__button');
+        resetButton.addEventListener('click', () => {
+            this.reset.resetGameProgress();
+            this.level = 0;
+            this.redrawContent();
         });
     }
 }

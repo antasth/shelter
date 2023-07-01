@@ -5,6 +5,7 @@ $textlight: #f0f4ef;
 $harddark: #072c2f;
 $pink: #ff416c;
 $blue: #1883db;
+$purple: #d218a7;
 $lightblue: #3099ee;
 $green: #0afb89;
 $lightgreen: #02e963;
@@ -105,7 +106,13 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: end;
-
+    &__top {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__header {
+        margin: 0;
+    }
     &__content {
         display: grid;
         grid-template-columns: repeat(4, auto);
@@ -128,10 +135,10 @@ h1 {
             background-color: $blue;
         }
         &__help {
-            background-color: #d218a7;
+            background-color: $purple;
         }
         &__self {
-            background-color: #02e963;
+            background-color: $lightgreen;
         }
     }
 }
@@ -203,15 +210,8 @@ h1 {
         outline: none;
     }
     &__button {
-        width: 100%;
-        max-width: 80px;
-        border-radius: 5px;
-        color: $textdark;
         margin-right: 10px;
-        cursor: pointer;
         background-color: $green;
-        border: none;
-        box-shadow: $shadow;
         &:hover {
             background-color: $lightgreen;
         }
@@ -265,6 +265,15 @@ star {
     &:hover {
         transform: rotate(75deg);
     }
+}
+button {
+    height: 23px;
+    padding: 0 10px; 
+    border-radius: 5px;
+    color: $textdark;
+    cursor: pointer;
+    border: none;
+    box-shadow: $shadow;
 }
 .active-line {
     background-color: $backlight;

@@ -6,7 +6,8 @@ class LevelButtons {
     public drawLevelButtons(level: number): void {
         const sidebar: HTMLDivElement = getElement('.sidebar__wrapper');
         const levels = createElement('div', 'levels', '', sidebar);
-        createElement('h3', 'levels__header', 'Select level', levels);
+        const levelsHeader = createElement('div', 'levels__top', '', levels);
+        createElement('h3', 'levels__header', 'Select level', levelsHeader);
         const content = createElement('div', 'levels__content', '', levels);
         this.drawLevel(content);
         this.setActiveLevel(level);
