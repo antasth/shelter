@@ -127,6 +127,12 @@ h1 {
         &:hover {
             background-color: $blue;
         }
+        &__help {
+            background-color: #d218a7;
+        }
+        &__self {
+            background-color: #02e963;
+        }
     }
 }
 

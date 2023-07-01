@@ -58,9 +58,10 @@ class Listeners {
         const submitButton: HTMLButtonElement = getElement('.editor__button');
         submitButton.addEventListener('click', () => {
             if (this.submit.checkAnswer(this.level)) {
+                console.log(this.level);
+                gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                 this.nextLevel(this.level);
                 this.submit.clearInput();
-                gameData.completedLevels.push([this.level, this.isHelpUsed]);
                 this.isHelpUsed = false;
             }
         });
@@ -74,8 +75,10 @@ class Listeners {
         input.addEventListener('keyup', (event: KeyboardEvent) => {
             if (event.key === 'Enter') {
                 if (this.submit.checkAnswer(this.level)) {
+                    gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                     this.nextLevel(this.level);
                     this.submit.clearInput();
+                    this.isHelpUsed = false;
                 }
             }
         });

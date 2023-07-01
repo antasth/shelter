@@ -20,5 +20,9 @@ export interface LevelElement {
 }
 
 export interface GameData {
-    completedLevels: Array<Array<number | boolean>>;
+    completedLevels: Array<CompletedLevelObject>;
+}
+interface CompletedLevelObject {
+    level: number;
+    help: boolean;
 }
