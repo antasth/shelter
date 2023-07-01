@@ -2,8 +2,8 @@ import { createElement, getElement } from '../../../functions/functions';
 
 class HelpButton {
     public drawHelpButton(): void {
-        const board: HTMLDivElement = getElement('.board');
-        createElement('button', 'help__button', 'Need Help?', board);
+        const board: HTMLDivElement = getElement('.levels__top');
+        createElement('button', 'help__button', 'need help?', board);
     }
 }
 export default HelpButton;

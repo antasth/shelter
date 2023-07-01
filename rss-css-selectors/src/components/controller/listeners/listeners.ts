@@ -62,7 +62,6 @@ class Listeners {
         const submitButton: HTMLButtonElement = getElement('.editor__button');
         submitButton.addEventListener('click', () => {
             if (this.submit.checkAnswer(this.level)) {
-                console.log(this.level);
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                 this.nextLevel(this.level);
                 this.submit.clearInput();

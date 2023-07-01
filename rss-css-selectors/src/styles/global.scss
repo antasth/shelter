@@ -72,7 +72,8 @@ h1 {
     }
 }
 .menu {
-    h1, h3 {
+    h1,
+    h3 {
         letter-spacing: 0.2rem;
     }
     h3 {
@@ -109,6 +110,21 @@ h1 {
     &__top {
         display: flex;
         justify-content: space-between;
+    }
+    .help__button {
+        color: $textlight;
+        background-color: $purple;
+    }
+    .reset__button {
+        color: $textlight;
+        background: $pink;
+    }
+    .help__button,
+    .reset__button {
+        transition: all 0.2s ease;
+        &:hover {
+            background-color: $blue;
+        }
     }
     &__header {
         margin: 0;
@@ -268,7 +284,7 @@ star {
 }
 button {
     height: 23px;
-    padding: 0 10px; 
+    padding: 0 10px;
     border-radius: 5px;
     color: $textdark;
     cursor: pointer;

@@ -11,7 +11,6 @@ class LevelButtons {
         const content = createElement('div', 'levels__content', '', levels);
         this.drawLevel(content);
         this.setActiveLevel(level);
-        console.log(gameData);
     }
     private drawLevel(parentElement: HTMLElement) {
         levels.forEach((_, i) => {

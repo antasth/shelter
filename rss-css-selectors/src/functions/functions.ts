@@ -36,7 +36,7 @@ export const writeAnswerToInput = (input: HTMLInputElement, answer: string): voi
         if (i < answer.length) {
             input.value += answer[i];
             i += 1;
-            setTimeout(write, 300);
+            setTimeout(write, 200);
         }
     };
     write();
