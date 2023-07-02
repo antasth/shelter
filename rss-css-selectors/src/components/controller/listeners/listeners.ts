@@ -97,10 +97,14 @@ class Listeners {
             this.input.writeToFakeInput(input.value);
             if (event.key === 'Enter') {
                 if (this.submit.checkAnswer(this.level)) {
+                    editor.classList.remove('wobble');
+                    board.classList.add('swirl-out-bck');
                     gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                     this.nextLevel(this.level);
                     this.submit.clearInput();
                     this.isHelpUsed = false;
+                } else if (this.submit.checkAnswer(this.level) !== null) {
+                    editor.classList.add('wobble');
                 }
             }
         });

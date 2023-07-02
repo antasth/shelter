@@ -1,5 +1,6 @@
 $backdark: #303036;
 $backlight: #ede6e3;
+$backlighttransparent: rgba(237, 230, 227, 0.3);
 $textdark: #141e30;
 $textlight: #f0f4ef;
 $harddark: #072c2f;
@@ -9,7 +10,7 @@ $purple: #d218a7;
 $lightblue: #3099ee;
 $green: #0afb89;
 $lightgreen: #02e963;
-$darkgreen:#07ba19;
+$darkgreen: #07ba19;
 $darkgradient: linear-gradient(to right, #141e30, #243b55);
 $pinkgradient: linear-gradient(to right, #ff416c, #ff4b2b);
 $shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -194,6 +195,16 @@ h1 {
     }
     &__content star {
         margin-left: 20px;
+        &:hover {
+            background-color: $green;
+        }
+    }
+    &__content cup {
+        cursor: pointer;
+        &:hover {
+            background-color: $backlight;
+            color: $textdark;
+        }
     }
     &__content-css,
     &__content-html {
@@ -245,7 +256,6 @@ h1 {
         letter-spacing: 2px;
         background-color: white;
         z-index: 1;
-        // opacity: 0;
     }
     &__button {
         margin-right: 10px;
@@ -259,14 +269,6 @@ h1 {
     }
     &__html {
         width: 50%;
-    }
-    &__block,
-    &__line {
-        cursor: pointer;
-        &:hover {
-            background-color: $backlight;
-            color: $textdark;
-        }
     }
     &__line {
         padding-left: 0.5rem;
@@ -284,7 +286,7 @@ h1 {
     }
 }
 
-cup {
+.cup {
     position: relative;
     width: 170px;
     height: 170px;
@@ -292,12 +294,13 @@ cup {
     background-size: contain;
     background-repeat: no-repeat;
     transition: all 0.5s ease;
+    // z-index: 2;
     &:hover {
         transform: scale(1.2);
     }
 }
 
-star {
+.star {
     background-image: url('../assets/img/star1.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -309,10 +312,10 @@ star {
     margin: auto;
     width: 50px;
     height: 50px;
-    z-index: 5;
+    z-index: 15;
     transition: all 0.5s ease;
     &:hover {
-        transform: rotate(75deg);
+        transform: rotate(360deg);
     }
 }
 button {
@@ -324,15 +327,44 @@ button {
     border: none;
     box-shadow: $shadow;
 }
-.active-line {
+cup.active-line {
     background-color: $backlight;
+    color: $textdark;
+}
+star.active-line {
+    background-color: $green;
     color: $textdark;
 }
 .active-element {
     transform: scale(1.2);
 }
-
-
+.tooltip {
+    position: absolute;
+    left: -70px;
+    top: -20px;
+    white-space: nowrap;
+    background: $purple;
+    color: $textdark;
+    padding: 0.3rem;
+    pointer-events: none;
+    z-index: 20;
+}
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: -70px;
+    top: -20px;
+    white-space: nowrap;
+    background: $purple;
+    color: $textdark;
+    padding: 0.3rem;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 20;
+}
+[data-tooltip]:hover::after {
+    opacity: 1;
+}
 
 // animations
 /* ----------------------------------------------
@@ -347,71 +379,69 @@ button {
  * animation wobble
  * ----------------------------------------
  */
- .wobble {
-	-webkit-animation: wobble 0.8s both;
-	        animation: wobble 0.8s both;
+.wobble {
+    -webkit-animation: wobble 0.8s both;
+    animation: wobble 0.8s both;
 }
 
- @-webkit-keyframes wobble {
+@-webkit-keyframes wobble {
     0%,
     100% {
-      -webkit-transform: translateX(0%);
-              transform: translateX(0%);
-      -webkit-transform-origin: 50% 50%;
-              transform-origin: 50% 50%;
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
     }
     15% {
-      -webkit-transform: translateX(-30px) rotate(-6deg);
-              transform: translateX(-30px) rotate(-6deg);
+        -webkit-transform: translateX(-30px) rotate(-6deg);
+        transform: translateX(-30px) rotate(-6deg);
     }
     30% {
-      -webkit-transform: translateX(15px) rotate(6deg);
-              transform: translateX(15px) rotate(6deg);
+        -webkit-transform: translateX(15px) rotate(6deg);
+        transform: translateX(15px) rotate(6deg);
     }
     45% {
-      -webkit-transform: translateX(-15px) rotate(-3.6deg);
-              transform: translateX(-15px) rotate(-3.6deg);
+        -webkit-transform: translateX(-15px) rotate(-3.6deg);
+        transform: translateX(-15px) rotate(-3.6deg);
     }
     60% {
-      -webkit-transform: translateX(9px) rotate(2.4deg);
-              transform: translateX(9px) rotate(2.4deg);
+        -webkit-transform: translateX(9px) rotate(2.4deg);
+        transform: translateX(9px) rotate(2.4deg);
     }
     75% {
-      -webkit-transform: translateX(-6px) rotate(-1.2deg);
-              transform: translateX(-6px) rotate(-1.2deg);
+        -webkit-transform: translateX(-6px) rotate(-1.2deg);
+        transform: translateX(-6px) rotate(-1.2deg);
     }
-  }
-  @keyframes wobble {
+}
+@keyframes wobble {
     0%,
     100% {
-      -webkit-transform: translateX(0%);
-              transform: translateX(0%);
-      -webkit-transform-origin: 50% 50%;
-              transform-origin: 50% 50%;
+        -webkit-transform: translateX(0%);
+        transform: translateX(0%);
+        -webkit-transform-origin: 50% 50%;
+        transform-origin: 50% 50%;
     }
     15% {
-      -webkit-transform: translateX(-30px) rotate(-6deg);
-              transform: translateX(-30px) rotate(-6deg);
+        -webkit-transform: translateX(-30px) rotate(-6deg);
+        transform: translateX(-30px) rotate(-6deg);
     }
     30% {
-      -webkit-transform: translateX(15px) rotate(6deg);
-              transform: translateX(15px) rotate(6deg);
+        -webkit-transform: translateX(15px) rotate(6deg);
+        transform: translateX(15px) rotate(6deg);
     }
     45% {
-      -webkit-transform: translateX(-15px) rotate(-3.6deg);
-              transform: translateX(-15px) rotate(-3.6deg);
+        -webkit-transform: translateX(-15px) rotate(-3.6deg);
+        transform: translateX(-15px) rotate(-3.6deg);
     }
     60% {
-      -webkit-transform: translateX(9px) rotate(2.4deg);
-              transform: translateX(9px) rotate(2.4deg);
+        -webkit-transform: translateX(9px) rotate(2.4deg);
+        transform: translateX(9px) rotate(2.4deg);
     }
     75% {
-      -webkit-transform: translateX(-6px) rotate(-1.2deg);
-              transform: translateX(-6px) rotate(-1.2deg);
+        -webkit-transform: translateX(-6px) rotate(-1.2deg);
+        transform: translateX(-6px) rotate(-1.2deg);
     }
-  }
-  
-
+}
 
 /* ----------------------------------------------
  * Generated by Animista on 2023-7-1 23:25:2
@@ -425,77 +455,32 @@ button {
  * animation swirl-out-bck
  * ----------------------------------------
  */
- .swirl-out-bck {
-	-webkit-animation: swirl-out-bck 0.6s ease-in both;
-	        animation: swirl-out-bck 0.6s ease-in both;
+.swirl-out-bck {
+    -webkit-animation: swirl-out-bck 0.6s ease-in both;
+    animation: swirl-out-bck 0.6s ease-in both;
 }
 
- @-webkit-keyframes swirl-out-bck {
+@-webkit-keyframes swirl-out-bck {
     0% {
-      -webkit-transform: rotate(0) scale(1);
-              transform: rotate(0) scale(1);
-      opacity: 1;
+        -webkit-transform: rotate(0) scale(1);
+        transform: rotate(0) scale(1);
+        opacity: 1;
     }
     100% {
-      -webkit-transform: rotate(-540deg) scale(0);
-              transform: rotate(-540deg) scale(0);
-      opacity: 0;
+        -webkit-transform: rotate(-540deg) scale(0);
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
     }
-  }
-  @keyframes swirl-out-bck {
-    0% {
-      -webkit-transform: rotate(0) scale(1);
-              transform: rotate(0) scale(1);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: rotate(-540deg) scale(0);
-              transform: rotate(-540deg) scale(0);
-      opacity: 0;
-    }
-  }
-  
-
-
-/* ----------------------------------------------
- * Generated by Animista on 2023-7-1 23:28:33
- * Licensed under FreeBSD License.
- * See http://animista.net/license for more info. 
- * w: http://animista.net, t: @cssanimista
- * ---------------------------------------------- */
-
-/**
- * ----------------------------------------
- * animation swirl-in-fwd
- * ----------------------------------------
- */
- .swirl-in-fwd {
-	-webkit-animation: swirl-in-fwd 0.6s ease-out both;
-	        animation: swirl-in-fwd 0.6s ease-out both;
 }
-
- @-webkit-keyframes swirl-in-fwd {
+@keyframes swirl-out-bck {
     0% {
-      -webkit-transform: rotate(-540deg) scale(0);
-              transform: rotate(-540deg) scale(0);
-      opacity: 0;
+        -webkit-transform: rotate(0) scale(1);
+        transform: rotate(0) scale(1);
+        opacity: 1;
     }
     100% {
-      -webkit-transform: rotate(0) scale(1);
-              transform: rotate(0) scale(1);
-      opacity: 1;
+        -webkit-transform: rotate(-540deg) scale(0);
+        transform: rotate(-540deg) scale(0);
+        opacity: 0;
     }
-  }
-  @keyframes swirl-in-fwd {
-    0% {
-      -webkit-transform: rotate(-540deg) scale(0);
-              transform: rotate(-540deg) scale(0);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: rotate(0) scale(1);
-              transform: rotate(0) scale(1);
-      opacity: 1;
-    }
-  }
-  
+}

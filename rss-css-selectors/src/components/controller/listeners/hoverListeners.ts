@@ -1,4 +1,4 @@
-import { getElement } from '../../../functions/functions';
+import { createElement, getElement } from '../../../functions/functions';
 
 class HoverListeners {
     public addHoverListeners(): void {
@@ -19,27 +19,43 @@ class HoverListeners {
     }
     private toggleActiveClass(eventType: string, element: HTMLElement): void {
         if (eventType === 'mouseover') {
-            if (element?.classList.contains('editor__line') || element?.classList.contains('editor__block')) {
-                element?.classList.add('active-line');
-            } else element?.classList.add('active-element');
+            if (element && element.parentNode instanceof HTMLElement) {
+                if (element.parentNode.classList.contains('board') || element.parentNode.classList.contains('cup')) {
+                    element.classList.add('active-element');
+                    const tooltip = element.dataset.tooltip;
+                    if (tooltip) {
+                        createElement('div', 'tooltip', tooltip, element);
+                    }
+                } else element.classList.add('active-line');
+            }
         }
         if (eventType === 'mouseout') {
-            if (element?.classList.contains('editor__line') || element?.classList.contains('editor__block')) {
-                element?.classList.remove('active-line');
-            } else element?.classList.remove('active-element');
+            if (element && element.parentNode instanceof HTMLElement) {
+                if (element.parentNode.classList.contains('board') || element.parentNode.classList.contains('cup')) {
+                    element.classList.remove('active-element');
+                    const tooltip: HTMLDivElement = getElement('.tooltip');
+                    if (tooltip) {
+                        tooltip.remove();
+                    }
+                } else element.classList.remove('active-line');
+            }
         }
     }
     private getChildElement(event: Event, child: HTMLElement): HTMLElement {
         let childElement: Element | null = null;
         if (event.target && event.target instanceof HTMLElement) {
             const target: HTMLElement = event.target;
-            const elementId = target.dataset.index ? target.dataset.index : target.parentElement?.dataset.index;
-            [childElement] = [...child.children].filter((item) => {
-                if (item instanceof HTMLElement && item.dataset.index === elementId) {
-                    return item;
-                }
-            });
+            const elementId = target.dataset.index;
+            const selector = child.classList.contains('editor__content')
+                ? target.classList[0]
+                : target.nodeName.toLowerCase();
+            if (elementId && child.classList.contains('editor__content')) {
+                childElement = getElement(`.editor__content ${selector}[data-index="${elementId}"]`);
+            } else if (elementId) {
+                childElement = getElement(`.${selector}[data-index="${elementId}"]`);
+            }
         }
+
         return childElement as HTMLElement;
     }
 }

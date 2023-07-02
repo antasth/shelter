@@ -6,7 +6,7 @@ export interface LevelObject {
     example: string;
     task: string;
     html: Array<LevelElement>;
-    htmlContent: Array<string | string[]>;
+    htmlContent: Array<string>;
     answer: string;
 }
 
@@ -17,6 +17,10 @@ export interface LevelElement {
     child?: string;
     childClass?: string;
     childId?: string;
+    index: string;
+    childIndex?: string;
+    tooltip: string;
+    childTooltip?: string;
 }
 
 export interface GameData {

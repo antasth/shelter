@@ -2,7 +2,7 @@ import levels from '../../../data/levels';
 import { createElement, createNumbersList, getElement } from '../../../functions/functions';
 
 class Editor {
-    private data: Array<string | string[]>;
+    private data: Array<string>;
     private level: number;
 
     constructor(level: number) {
@@ -47,20 +47,11 @@ class Editor {
         this.createHtmlContentTags(this.data, editorHtmlContent);
     }
 
-    private createHtmlContentTags(data: Array<string | string[]>, parentElement: HTMLElement): void {
-        data.forEach((item: string | string[], index: number) => {
+    private createHtmlContentTags(data: Array<string>, parentElement: HTMLElement): void {
+        data.forEach((item: string, index: number) => {
             const dataIndex = String(index + 1);
-            if (typeof item === 'string') {
-                const editorLine = createElement('div', 'editor__line', item, parentElement);
-
-                if (editorLine.parentElement?.classList.contains('editor__content')) {
-                    editorLine.setAttribute('data-index', dataIndex);
-                }
-            } else {
-                const editorBlock = createElement('div', 'editor__block', '', parentElement);
-                editorBlock.setAttribute('data-index', dataIndex);
-                this.createHtmlContentTags(item, editorBlock);
-            }
+            console.log(dataIndex);
+            parentElement.insertAdjacentHTML('beforeend', item);
         });
     }
 

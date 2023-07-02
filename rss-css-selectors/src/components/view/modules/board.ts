@@ -9,15 +9,18 @@ class Board {
         this.data = levels[level];
     }
 
-    private drawElement(elem: LevelElement, index: string): HTMLElement {
+    private drawElement(elem: LevelElement): HTMLElement {
         const cup = document.createElement(elem.tag);
         if (elem.class) cup.classList.add(elem.class);
         if (elem.id) cup.setAttribute('id', elem.id);
-        cup.setAttribute('data-index', index);
+        cup.setAttribute('data-index', elem.index);
+        cup.setAttribute('data-tooltip', elem.tooltip);
         if (elem.child) {
             const cupChild = document.createElement(elem.child);
             if (elem.childClass) cupChild.classList.add(elem.childClass);
             if (elem.childId) cupChild.setAttribute('id', elem.childId);
+            if (elem.childIndex) cupChild.setAttribute('data-index', elem.childIndex);
+            if (elem.childTooltip) cupChild.setAttribute('data-tooltip', elem.childTooltip);
             cup.append(cupChild);
         }
         return cup;
@@ -31,9 +34,8 @@ class Board {
         }, 1000);
 
         board.replaceChildren();
-        this.data.html.forEach((elem, i) => {
-            const index = String(i + 1);
-            board.append(this.drawElement(elem, index));
+        this.data.html.forEach((elem) => {
+            board.append(this.drawElement(elem));
         });
     }
 }
