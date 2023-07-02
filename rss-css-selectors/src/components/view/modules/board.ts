@@ -25,9 +25,15 @@ class Board {
         }
         return cup;
     }
-
+    private addAnimationsToTargetElements(targets: number[]): void {
+        targets.forEach((targetIndex: number) => {
+            const targetElement: HTMLElement = getElement(`[data-index="${targetIndex}"]`);
+            targetElement.classList.add('target');
+        });
+    }
     public drawBoard(lvl: number): void {
         this.data = levels[lvl];
+        const targetList = this.data.target;
         const board: HTMLDivElement = getElement('.board');
         setTimeout(() => {
             board.classList.remove('swirl-out-bck');
@@ -37,6 +43,7 @@ class Board {
         this.data.html.forEach((elem) => {
             board.append(this.drawElement(elem));
         });
+        this.addAnimationsToTargetElements(targetList);
     }
 }
 
