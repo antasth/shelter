@@ -11,7 +11,7 @@ class Board {
 
     private drawElement(elem: LevelElement): HTMLElement {
         const cup = document.createElement(elem.tag);
-        if (elem.class) cup.classList.add(elem.class);
+        if (elem.class) cup.classList.add(...elem.class);
         if (elem.id) cup.setAttribute('id', elem.id);
         cup.setAttribute('data-index', elem.index);
         cup.setAttribute('data-tooltip', elem.tooltip);

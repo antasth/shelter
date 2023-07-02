@@ -41,7 +41,7 @@ class Menu {
 
     private drawContent(): HTMLElement {
         const content = createElement('div', 'menu__content', '', null);
-        createElement('h1', 'menu__header', this.data.name, content);
+        createElement('h2', 'menu__header', this.data.name, content);
         createElement('h3', 'menu__type', this.data.type, content);
         createElement('p', 'menu__description', this.data.description, content);
         createElement('p', 'menu__example', this.data.example, content);

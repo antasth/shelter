@@ -193,17 +193,18 @@ h1 {
         resize: none;
         outline: none;
     }
-    &__content star {
+    &__content star,
+    coffe {
         margin-left: 20px;
         &:hover {
-            // background-color: $green;
             color: $textdark;
         }
     }
-    &__content cup, papercup {
+    &__content cup,
+    papercup,
+    redcup {
         cursor: pointer;
         &:hover {
-            // background-color: $backlight;
             color: $textdark;
         }
     }
@@ -294,24 +295,21 @@ h1 {
     background-image: url('../assets/img/cup1.png');
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     transition: all 0.5s ease;
     &:hover {
         transform: scale(1.2);
     }
 }
 .papercup {
-    width: 170px;
-    height: 170px;
     background-image: url('../assets/img/paper-cup1.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    transition: all 0.5s ease;
-    &:hover {
-        transform: scale(1.2);
-    }
+}
+.redcup {
+    background-image: url('../assets/img/red-cup.png');
 }
 .star {
-    background-image: url('../assets/img/star1.png');
+    background-image: url('../assets/img/tea.png');
+    // background-image: url('../assets/img/star1.png');
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
@@ -320,8 +318,27 @@ h1 {
     left: -20px;
     bottom: 0;
     margin: auto;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    z-index: 15;
+    transition: all 0.5s ease;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+.coffe {
+    background-image: url('../assets/img/coffe.png');
+    // background-image: url('../assets/img/star1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: -5px;
+    bottom: 0;
+    margin: auto;
+    width: 60px;
+    height: 60px;
     z-index: 15;
     transition: all 0.5s ease;
     &:hover {
@@ -337,21 +354,26 @@ button {
     border: none;
     box-shadow: $shadow;
 }
-papercup.active-line, cup.active-line {
+papercup.active-line,
+cup.active-line {
     background-color: $backlight;
     color: $textdark;
 }
-star.active-line {
+star.active-line,
+coffe.active-line {
     background-color: $green;
     color: $textdark;
 }
 .active-element {
     transform: scale(1.2);
 }
+
+// TOOLTIPS
 .tooltip {
     position: absolute;
     left: -70px;
     top: -20px;
+    font-size: 14px;
     white-space: nowrap;
     background: $purple;
     color: $textdark;
@@ -364,6 +386,7 @@ star.active-line {
     position: absolute;
     left: -70px;
     top: -20px;
+    font-size: 14px;
     white-space: nowrap;
     background: $purple;
     color: $textdark;
@@ -375,4 +398,3 @@ star.active-line {
 [data-tooltip]:hover::after {
     opacity: 1;
 }
-

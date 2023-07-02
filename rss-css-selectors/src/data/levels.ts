@@ -10,8 +10,8 @@ const levels: Array<LevelObject> = [
         example: 'Например, чтобы изменить цвет текста у заголовка, нужно обратиться к нему так - h1 {color: blue;}',
         task: 'Задание: выберите все белые чашки используя селектор тега',
         html: [
-            { tag: 'cup', class: 'cup', index: '1', tooltip: '<cup><cup/>' },
-            { tag: 'cup', class: 'cup', index: '2', tooltip: '<cup><cup/>' },
+            { tag: 'cup', class: ['cup'], index: '1', tooltip: '<cup><cup/>' },
+            { tag: 'cup', class: ['cup'], index: '2', tooltip: '<cup><cup/>' },
         ],
         htmlContent: ['<cup data-index="1">&lt;cup&gt;<cup/><br>', '<cup data-index="2">&lt;cup&gt;<cup/>'],
         target: [1, 2],
@@ -27,10 +27,10 @@ const levels: Array<LevelObject> = [
             'Например, мы можем обратиться к элементу <div id="main"> используя id селектор так - #main {color: blue;}',
         task: 'Задание: выберите звезду используя id селектор',
         html: [
-            { tag: 'cup', class: 'cup', index: '1', tooltip: '<cup><cup/>' },
+            { tag: 'cup', class: ['cup'], index: '1', tooltip: '<cup><cup/>' },
             {
                 tag: 'cup',
-                class: 'cup',
+                class: ['cup'],
                 id: 'star',
                 child: 'star',
                 childClass: 'star',
@@ -39,7 +39,7 @@ const levels: Array<LevelObject> = [
                 tooltip: '<cup><cup/>',
                 childTooltip: '<star id="star"></star>',
             },
-            { tag: 'cup', class: 'cup', index: '4', tooltip: '<cup><cup/>' },
+            { tag: 'cup', class: ['cup'], index: '4', tooltip: '<cup><cup/>' },
         ],
         htmlContent: [
             '<cup data-index="1">&lt;cup&gt;<cup/><br>',
@@ -61,31 +61,31 @@ const levels: Array<LevelObject> = [
         html: [
             {
                 tag: 'cup',
-                class: 'cup',
+                class: ['cup'],
                 id: 'star',
                 child: 'star',
                 childClass: 'star',
                 index: '1',
                 childIndex: '2',
                 tooltip: '<cup><cup/>',
-                childTooltip: '<star id="star"></star>',
+                childTooltip: '<star class="star"></star>',
             },
             {
                 tag: 'cup',
-                class: 'cup',
+                class: ['cup'],
                 id: 'star',
                 child: 'star',
                 childClass: 'star',
                 index: '3',
                 childIndex: '4',
                 tooltip: '<cup><cup/>',
-                childTooltip: '<star id="star"></star>',
+                childTooltip: '<star class="star"></star>',
             },
-            { tag: 'cup', class: 'cup', index: '5', tooltip: '<cup><cup/>' },
+            { tag: 'cup', class: ['cup'], index: '5', tooltip: '<cup><cup/>' },
         ],
         htmlContent: [
-            '<cup data-index="1">&lt;cup&gt;<br><star data-index="2">&lt;star id="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
-            '<cup data-index="3">&lt;cup&gt;<br><star data-index="4">&lt;star id="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
+            '<cup data-index="1">&lt;cup&gt;<br><star data-index="2">&lt;star class="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
+            '<cup data-index="3">&lt;cup&gt;<br><star data-index="4">&lt;star class="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
             '<cup data-index="5">&lt;cup&gt;<cup/><br>',
         ],
         target: [1, 3, 5],
@@ -101,11 +101,11 @@ const levels: Array<LevelObject> = [
             'Например мы можем обратиться к каждому элементу <div class="main"> и <p>text</p> используя 2 селектора так - .main { color: blue; } p { color: blue; }, a могли бы сделать это так .main, p {color: blue;}',
         task: 'Задание: выберите бумажный стакан и звезду на последней чашке используя комбинированный селектор',
         html: [
-            { tag: 'papercup', class: 'papercup', index: '1', tooltip: '<papercup><papercup/>' },
-            { tag: 'cup', class: 'cup', index: '2', tooltip: '<cup><cup/>' },
+            { tag: 'papercup', class: ['papercup', 'cup'], index: '1', tooltip: '<papercup><papercup/>' },
+            { tag: 'cup', class: ['cup'], index: '2', tooltip: '<cup><cup/>' },
             {
                 tag: 'cup',
-                class: 'cup',
+                class: ['cup'],
                 id: 'star',
                 child: 'star',
                 childClass: 'star',
@@ -123,122 +123,79 @@ const levels: Array<LevelObject> = [
         target: [1, 4],
         answer: ['papercup, #star', '#star, papercup'],
     },
-    // {
-    //     id: 4,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
-    // {
-    //     id: 5,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
-    // {
-    //     id: 6,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
-    // {
-    //     id: 7,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
-    // {
-    //     id: 8,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
-    // {
-    //     id: 9,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
-    // {
-    //     id: 10,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
-    // {
-    //     id: 11,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
-    // {
-    //     id: 12,
-    //     name: 'Class selector',
-    //     type: '.class',
-    //     description:
-    //         'Селекторы классов — это выборка элементов, по значению глобального атрибута class="". В селекторе класса (class), в качестве селектора, выступает имя класса',
-    //     example:
-    //         'Например мы можем обратиться к элементу <div class="main"> используя селектор класса так - .main {color: blue;}',
-    //     task: 'Задание: выберите все белые чашки используя классовый селектор',
-    //     html: [{ tag: 'cup', child: 'star' }, { tag: 'cup', child: 'star', childClass: '.star' }, { tag: 'cup' }],
-    //     htmlContent: [['<cup>', '<star/>', '</cup>'], ['<cup>', '<star class="star"/>', '</cup>'], '<cup/>'],
-    //     answer: '.star',
-    // },
+    {
+        id: 5,
+        name: 'Сombined class selectors',
+        type: '.class.class',
+        description:
+            'Такое «склеивание» объединяет селекторы в одно правило. Селекторы записываются слитно. Стили будут применены только к тому элементу, который содержит все перечисленные селекторы.',
+        example:
+            'Например у нас есть 2 элемента <div class="main"> и <div class="main test">, мы можем использовать селектор .main.test { color: blue; }, чтобы обратиться только к второму элементу.',
+        task: 'Задание: выберите красную чашку используя комбинированный классовый селектор',
+        html: [
+            { tag: 'cup', class: ['cup'], index: '1', tooltip: '<cup><cup/>' },
+            { tag: 'redcup', class: ['redcup', 'cup'], index: '2', tooltip: '<redcup class="cup redcup"><redcup/>' },
+            {
+                tag: 'cup',
+                class: ['cup'],
+                id: 'star',
+                child: 'star',
+                childClass: 'star',
+                index: '3',
+                childIndex: '4',
+                tooltip: '<cup><cup/>',
+                childTooltip: '<star id="star"></star>',
+            },
+        ],
+        htmlContent: [
+            '<cup data-index="1">&lt;cup/&gt;<cup/><br>',
+            '<redcup data-index="2">&lt;redcup class="cup redcup"/&gt;<redcup/><br>',
+            '<cup data-index="3">&lt;cup&gt;<br><star data-index="4">&lt;star id="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
+        ],
+        target: [2],
+        answer: ['.cup.redcup', '.redcup.cup'],
+    },
+    {
+        id: 6,
+        name: 'Childrens',
+        type: '.class .class',
+        description:
+            'Последовательность селекторов отражает вложенность — каждый следующий селектор должен обязательно находиться на каком-то уровне вложенности в предыдущий селектор.',
+        example:
+            'Например у нас есть вложенные элементы <div class="main"><h1>header</h1></div>, в этом случае мы можем обратиться к h1 с помощью комбинации селекторов .main h1',
+        task: 'Задание: выберите логотип кофе на бумажном стакане используя наследование селекторов',
+        html: [
+            { tag: 'papercup', class: ['papercup', 'cup'], index: '1', tooltip: '<papercup><papercup/>' },
+            {
+                tag: 'cup',
+                class: ['cup'],
+                index: '2',
+                tooltip: '<cup><cup/>',
+                child: 'coffe',
+                childClass: 'coffe',
+                childIndex: '3',
+                childTooltip: '<coffe id="coffe"></coffe>',
+            },
+            { tag: 'redcup', class: ['redcup', 'cup'], index: '4', tooltip: '<redcup class="cup redcup"><redcup/>' },
+            {
+                tag: 'papercup',
+                class: ['papercup', 'cup'],
+                index: '5',
+                tooltip: '<papercup><papercup/>',
+                child: 'coffe',
+                childClass: 'coffe',
+                childIndex: '6',
+                childTooltip: '<coffe id="coffe"></coffe>',
+            },
+        ],
+        htmlContent: [
+            '<papercup data-index="1">&lt;papercup/&gt;<papercup/><br>',
+            '<cup data-index="2">&lt;cup&gt;<br><coffe data-index="3">&lt;coffe id="coffe"&gt;</coffe><br>&lt;cup/&gt;<cup/><br>',
+            '<redcup data-index="4">&lt;redcup class="redcup"/&gt;<br>',
+            '<papercup data-index="5">&lt;papercup&gt;<br><coffe data-index="6">&lt;coffe id="coffe"/&gt;</coffe><br>&lt;papercup/><br>',
+        ],
+        target: [6],
+        answer: ['papercup #coffe'],
+    },
 ];
 export default levels;

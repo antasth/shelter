@@ -13,7 +13,7 @@ export interface LevelObject {
 
 export interface LevelElement {
     tag: string;
-    class?: string;
+    class?: string[];
     id?: string;
     child?: string;
     childClass?: string;
