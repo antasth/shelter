@@ -26,6 +26,10 @@ class Board {
     public drawBoard(lvl: number): void {
         this.data = levels[lvl];
         const board: HTMLDivElement = getElement('.board');
+        setTimeout(() => {
+            board.classList.remove('swirl-out-bck');
+        }, 1000);
+
         board.replaceChildren();
         this.data.html.forEach((elem, i) => {
             const index = String(i + 1);

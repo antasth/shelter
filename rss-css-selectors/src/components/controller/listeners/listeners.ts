@@ -27,6 +27,7 @@ class Listeners {
         this.reset = new ResetListener();
         this.input = new InputListener();
     }
+
     private redrawContent(): void {
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
@@ -66,16 +67,23 @@ class Listeners {
             this.nextLevel(this.level);
         });
         const submitButton: HTMLButtonElement = getElement('.editor__button');
+        const editor = getElement('.editor');
+        const board = getElement('.board');
         submitButton.addEventListener('click', () => {
             if (this.submit.checkAnswer(this.level)) {
+                editor.classList.remove('wobble');
+                board.classList.add('swirl-out-bck');
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                 this.nextLevel(this.level);
                 this.submit.clearInput();
                 this.isHelpUsed = false;
+            } else if (this.submit.checkAnswer(this.level) !== null) {
+                editor.classList.add('wobble');
             }
         });
         const helpButton: HTMLButtonElement = getElement('.help__button');
         helpButton.addEventListener('click', () => {
+            editor.classList.remove('wobble');
             this.submit.clearInput();
             this.isHelpUsed = true;
             this.input.clearInput();
@@ -84,6 +92,7 @@ class Listeners {
         });
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
+            editor.classList.remove('wobble');
             this.input.clearInput();
             this.input.writeToFakeInput(input.value);
             if (event.key === 'Enter') {
