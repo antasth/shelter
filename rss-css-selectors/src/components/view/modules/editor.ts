@@ -48,9 +48,7 @@ class Editor {
     }
 
     private createHtmlContentTags(data: Array<string>, parentElement: HTMLElement): void {
-        data.forEach((item: string, index: number) => {
-            const dataIndex = String(index + 1);
-            console.log(dataIndex);
+        data.forEach((item: string) => {
             parentElement.insertAdjacentHTML('beforeend', item);
         });
     }
