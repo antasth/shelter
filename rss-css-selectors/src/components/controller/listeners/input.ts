@@ -1,3 +1,4 @@
+import gameData from '../../../data/gamedata';
 import { createElement, getElement, writeAnswerToInput } from '../../../functions/functions';
 
 class InputListener {
@@ -47,7 +48,7 @@ class InputListener {
         writeAnswerToInput(fakeInput, answer);
         setTimeout(() => {
             this.writeToFakeInput(answer);
-        }, 1200);
+        }, gameData.writeAnswerDelay);
     }
 }
 

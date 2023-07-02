@@ -196,13 +196,14 @@ h1 {
     &__content star {
         margin-left: 20px;
         &:hover {
-            background-color: $green;
+            // background-color: $green;
+            color: $textdark;
         }
     }
-    &__content cup {
+    &__content cup, papercup {
         cursor: pointer;
         &:hover {
-            background-color: $backlight;
+            // background-color: $backlight;
             color: $textdark;
         }
     }
@@ -294,12 +295,21 @@ h1 {
     background-size: contain;
     background-repeat: no-repeat;
     transition: all 0.5s ease;
-    // z-index: 2;
     &:hover {
         transform: scale(1.2);
     }
 }
-
+.papercup {
+    width: 170px;
+    height: 170px;
+    background-image: url('../assets/img/paper-cup1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: all 0.5s ease;
+    &:hover {
+        transform: scale(1.2);
+    }
+}
 .star {
     background-image: url('../assets/img/star1.png');
     background-size: contain;
@@ -327,7 +337,7 @@ button {
     border: none;
     box-shadow: $shadow;
 }
-cup.active-line {
+papercup.active-line, cup.active-line {
     background-color: $backlight;
     color: $textdark;
 }

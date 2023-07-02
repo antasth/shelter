@@ -87,8 +87,8 @@ class Listeners {
             this.submit.clearInput();
             this.isHelpUsed = true;
             this.input.clearInput();
-            this.input.showAnswer(levels[this.level].answer);
-            this.help.showAnswer(levels[this.level].answer);
+            this.input.showAnswer(levels[this.level].answer[0]);
+            this.help.showAnswer(levels[this.level].answer[0]);
         });
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {

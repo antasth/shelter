@@ -8,7 +8,7 @@ export interface LevelObject {
     html: Array<LevelElement>;
     htmlContent: Array<string>;
     target: number[];
-    answer: string;
+    answer: string[];
 }
 
 export interface LevelElement {
@@ -26,6 +26,7 @@ export interface LevelElement {
 
 export interface GameData {
     currentLevel: number;
+    writeAnswerDelay: number;
     completedLevels: Array<CompletedLevelObject>;
 }
 interface CompletedLevelObject {

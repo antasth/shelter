@@ -1,3 +1,5 @@
+import gameData from '../data/gamedata';
+
 export const getElement = <T extends HTMLElement>(selector: string): T => {
     const element = document.querySelector<T>(selector);
     if (!element) {
@@ -31,6 +33,8 @@ export const createNumbersList = (): HTMLUListElement => {
 
 // function based on this example https://www.w3schools.com/howto/howto_js_typewriter.asp
 export const writeAnswerToInput = (input: HTMLInputElement | HTMLDivElement, answer: string): void => {
+    const delay = 100;
+    gameData.writeAnswerDelay = answer.length * delay + 200;
     let i = 0;
     const write = (): void => {
         if (i < answer.length) {
@@ -40,7 +44,7 @@ export const writeAnswerToInput = (input: HTMLInputElement | HTMLDivElement, ans
                 input.innerText += answer[i];
             }
             i += 1;
-            setTimeout(write, 200);
+            setTimeout(write, delay);
         }
     };
     write();

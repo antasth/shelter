@@ -5,7 +5,7 @@ class Submit {
     public checkAnswer(level: number): boolean | null {
         const answer: HTMLInputElement = getElement('.editor__input');
         if (answer.value) {
-            return answer.value === levels[level].answer;
+            return levels[level].answer.includes(answer.value);
         } else return null;
     }
     public clearInput(): void {

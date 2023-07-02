@@ -15,7 +15,7 @@ const levels: Array<LevelObject> = [
         ],
         htmlContent: ['<cup data-index="1">&lt;cup&gt;<cup/><br>', '<cup data-index="2">&lt;cup&gt;<cup/>'],
         target: [1, 2],
-        answer: 'cup',
+        answer: ['cup'],
     },
     {
         id: 2,
@@ -47,7 +47,7 @@ const levels: Array<LevelObject> = [
             '<cup data-index="4">&lt;cup&gt;<cup/><br>',
         ],
         target: [3],
-        answer: '#star',
+        answer: ['#star'],
     },
     {
         id: 3,
@@ -89,7 +89,39 @@ const levels: Array<LevelObject> = [
             '<cup data-index="5">&lt;cup&gt;<cup/><br>',
         ],
         target: [1, 3, 5],
-        answer: '.star',
+        answer: ['.star'],
+    },
+    {
+        id: 4,
+        name: 'Сombined selectors',
+        type: '<tag> #id .class',
+        description:
+            'Иногда при написании стилей мы хотим обратиться к селектору более точно, чем просто по имени класса или тега. Для этого можно использовать различные комбинации.',
+        example:
+            'Например мы можем обратиться к каждому элементу <div class="main"> и <p>text</p> используя 2 селектора так - .main { color: blue; } p { color: blue; }, a могли бы сделать это так .main, p {color: blue;}',
+        task: 'Задание: выберите бумажный стакан и звезду на последней чашке используя комбинированный селектор',
+        html: [
+            { tag: 'papercup', class: 'papercup', index: '1', tooltip: '<papercup><papercup/>' },
+            { tag: 'cup', class: 'cup', index: '2', tooltip: '<cup><cup/>' },
+            {
+                tag: 'cup',
+                class: 'cup',
+                id: 'star',
+                child: 'star',
+                childClass: 'star',
+                index: '3',
+                childIndex: '4',
+                tooltip: '<cup><cup/>',
+                childTooltip: '<star id="star"></star>',
+            },
+        ],
+        htmlContent: [
+            '<papercup data-index="1">&lt;papercup/&gt;<papercup/><br>',
+            '<cup data-index="2">&lt;cup&gt;<cup/><br>',
+            '<cup data-index="3">&lt;cup&gt;<br><star data-index="4">&lt;star id="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
+        ],
+        target: [1, 4],
+        answer: ['papercup, #star', '#star, papercup'],
     },
     // {
     //     id: 4,
