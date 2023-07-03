@@ -139,6 +139,12 @@ class Listeners {
             this.level = 0;
             this.redrawContent();
         });
+        const burgerIcon: HTMLDivElement = getElement('.burger__icon');
+        const sidebar: HTMLDivElement = getElement('.sidebar');
+        burgerIcon.addEventListener('click', () => {
+            burgerIcon.classList.toggle('burger__icon-active');
+            sidebar.classList.toggle('sidebar__active');
+        });
     }
 }
 export default Listeners;
