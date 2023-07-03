@@ -183,7 +183,7 @@ const levels: Array<LevelObject> = [
             '<cup data-index="3">&lt;cup&gt;<br><tea data-index="4">&lt;tea id="tea"&gt;</tea><br>&lt;cup/&gt;<cup/><br>',
         ],
         target: [2, 4],
-        answer: ['.cup.redcup, tea', '.redcup.cup, #tea'],
+        answer: ['.cup.redcup, tea', '.redcup.cup, #tea', '.cup.redcup, #tea', 'redcup.cup, tea'],
     },
     {
         id: 7,

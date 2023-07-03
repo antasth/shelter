@@ -65,9 +65,13 @@ class Listeners {
         const buttonRight: HTMLButtonElement = getElement('.menu__button-right');
         buttonLeft.addEventListener('click', () => {
             this.prevLevel(this.level);
+            gameData.currentLevel = this.level;
+            this.storage.saveToLocalStorage();
         });
         buttonRight.addEventListener('click', () => {
             this.nextLevel(this.level);
+            gameData.currentLevel = this.level;
+            this.storage.saveToLocalStorage();
         });
         const submitButton: HTMLButtonElement = getElement('.editor__button');
         const editor = getElement('.editor');
