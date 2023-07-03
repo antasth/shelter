@@ -89,12 +89,12 @@ class Listeners {
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                 gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
                 this.storage.saveToLocalStorage();
-                this.nextLevel(this.level);
                 this.submit.clearInput();
                 this.isHelpUsed = false;
                 if (this.level === levels.length - 1) {
                     this.view.showWinMessage();
                 }
+                this.nextLevel(this.level);
             } else if (this.submit.checkAnswer(this.level) !== null) {
                 editor.classList.add('wobble');
             }
