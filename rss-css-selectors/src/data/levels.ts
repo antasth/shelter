@@ -88,7 +88,7 @@ const levels: Array<LevelObject> = [
             '<cup data-index="3">&lt;cup&gt;<br><tea data-index="4">&lt;tea class="tea"&gt;</tea><br>&lt;cup/&gt;<cup/><br>',
             '<cup data-index="5">&lt;cup/&gt;<cup/><br>',
         ],
-        target: [1, 3, 5],
+        target: [2, 4],
         answer: ['.tea'],
     },
     {
@@ -99,7 +99,7 @@ const levels: Array<LevelObject> = [
             'Иногда при написании стилей мы хотим обратиться к селектору более точно, чем просто по имени класса или тега. Для этого можно использовать различные комбинации.',
         example:
             'Например мы можем обратиться к каждому элементу <div class="main"> и <p>text</p> используя 2 селектора так - .main { color: blue; } p { color: blue; }, a могли бы сделать это так .main, p {color: blue;}',
-        task: 'Задание: выберите бумажный стакан и звезду на последней чашке используя комбинированный селектор',
+        task: 'Задание: выберите бумажный стакан и лого чая на последней чашке используя комбинированный селектор',
         html: [
             { tag: 'papercup', class: ['papercup', 'cup'], index: '1', tooltip: '<papercup><papercup/>' },
             { tag: 'cup', class: ['cup'], index: '2', tooltip: '<cup><cup/>' },
@@ -183,7 +183,16 @@ const levels: Array<LevelObject> = [
             '<cup data-index="3">&lt;cup&gt;<br><tea data-index="4">&lt;tea id="tea"&gt;</tea><br>&lt;cup/&gt;<cup/><br>',
         ],
         target: [2, 4],
-        answer: ['.cup.redcup, tea', '.redcup.cup, #tea', '.cup.redcup, #tea', 'redcup.cup, tea'],
+        answer: [
+            '.cup.redcup, tea',
+            'tea, .cup.redcup',
+            '.redcup.cup, #tea',
+            '#tea, .redcup.cup',
+            '.cup.redcup, #tea',
+            '#tea, .cup.redcup,',
+            'redcup.cup, tea',
+            'tea, redcup.cup',
+        ],
     },
     {
         id: 7,
@@ -225,7 +234,7 @@ const levels: Array<LevelObject> = [
             '<papercup data-index="5">&lt;papercup&gt;<br><coffe data-index="6">&lt;coffe id="coffe"/&gt;</coffe><br>&lt;papercup/><br>',
         ],
         target: [6],
-        answer: ['papercup #coffe'],
+        answer: ['papercup #coffe', 'papercup coffe'],
     },
     {
         id: 8,
@@ -294,8 +303,8 @@ const levels: Array<LevelObject> = [
         name: 'Related selectors',
         type: '.element1 + .element2',
         description: 'Немного усложним задачу по смежным селекторам',
-        example: 'Например .tea:hover ~ .tea {color: red;}',
-        task: 'Задание: выберите красную чашку по селектору класса и логотип чая на чашке используя последующие селекторы',
+        example: '',
+        task: 'Задание: выберите красную чашку по селектору класса и логотип чая на чашке используя смежные селекторы',
         html: [
             { tag: 'cup', class: ['cup'], index: '1', tooltip: '<cup><cup/>' },
             { tag: 'redcup', class: ['redcup', 'cup'], index: '2', tooltip: '<redcup class="cup redcup"><redcup/>' },
@@ -317,7 +326,16 @@ const levels: Array<LevelObject> = [
             '<cup data-index="3">&lt;cup&gt;<br><tea data-index="4">&lt;tea id="tea"&gt;</tea><br>&lt;cup/&gt;<cup/><br>',
         ],
         target: [2, 4],
-        answer: ['.redcup, cup + tea', '.redcup, cup + #tea'],
+        answer: [
+            'cup + tea, .redcup',
+            'cup + tea, redcup',
+            '.redcup, cup + tea',
+            '.redcup, cup + #tea',
+            'redcup, cup + tea',
+            '.redcup, cup + #tea',
+            'cup + #tea, .redcup',
+            'cup + #tea, redcup',
+        ],
     },
 ];
 export default levels;
