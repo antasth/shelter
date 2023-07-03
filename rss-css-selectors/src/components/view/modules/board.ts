@@ -1,5 +1,5 @@
 import levels from '../../../data/levels';
-import { getElement } from '../../../functions/functions';
+import { createElement, getElement } from '../../../functions/functions';
 import { LevelElement, LevelObject } from '../../../interfaces/interfaces';
 
 class Board {
@@ -44,6 +44,14 @@ class Board {
             board.append(this.drawElement(elem));
         });
         this.addAnimationsToTargetElements(targetList);
+    }
+    public showWinMessage() {
+        const board: HTMLDivElement = getElement('.board');
+        const editor: HTMLDivElement = getElement('.editor__content');
+        board.replaceChildren();
+        editor.replaceChildren();
+        board.classList.remove('swirl-out-bck');
+        createElement('h1', 'win__message', 'Поздравляю, последний уровень пройден!', board);
     }
 }
 

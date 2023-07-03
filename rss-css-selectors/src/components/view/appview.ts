@@ -37,6 +37,9 @@ export class AppView {
     public createHtmlContent(level: number) {
         this.editor.createHtmlContent(level);
     }
+    public showWinMessage() {
+        this.board.showWinMessage();
+    }
 }
 
 export default AppView;

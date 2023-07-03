@@ -355,7 +355,9 @@ coffe.active-line {
 .active-element {
     transform: scale(1.2);
 }
-
+.win__message {
+    white-space: wrap;
+}
 // TOOLTIPS
 .tooltip {
     position: absolute;

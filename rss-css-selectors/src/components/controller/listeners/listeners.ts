@@ -82,6 +82,9 @@ class Listeners {
                 this.nextLevel(this.level);
                 this.submit.clearInput();
                 this.isHelpUsed = false;
+                if (this.level === levels.length - 1) {
+                    this.view.showWinMessage();
+                }
             } else if (this.submit.checkAnswer(this.level) !== null) {
                 editor.classList.add('wobble');
             }
@@ -120,6 +123,8 @@ class Listeners {
             if (e.target && e.target instanceof HTMLElement) {
                 if (e.target.className.includes('levels__button')) {
                     this.level = Number(e.target.id.slice(3)) - 1;
+                    gameData.currentLevel = this.level;
+                    this.storage.saveToLocalStorage();
                     this.redrawContent();
                 }
             }
