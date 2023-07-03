@@ -29,7 +29,7 @@ export interface GameData {
     writeAnswerDelay: number;
     completedLevels: Array<CompletedLevelObject>;
 }
-interface CompletedLevelObject {
+export interface CompletedLevelObject {
     level: number;
     help: boolean;
 }

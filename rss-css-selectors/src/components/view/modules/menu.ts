@@ -1,5 +1,5 @@
 import levels from '../../../data/levels';
-import { createElement, getElement } from '../../../functions/functions';
+import { createElement, getDirectionSymbol, getElement, getLevelHeader } from '../../../functions/functions';
 import { LevelObject } from '../../../interfaces/interfaces';
 import LevelButtons from './levelButtons';
 
@@ -25,7 +25,8 @@ class Menu {
 
     private drawNavMenu(): HTMLElement {
         const menuNav = createElement('div', 'menu__nav', '', null);
-        const level = createElement('h1', 'menu__nav__header', `LEVEL ${this.data.id} OF ${levels.length}`, null);
+        const levelHeader = getLevelHeader(this.data.id, levels.length);
+        const level = createElement('h1', 'menu__nav__header', levelHeader, null);
         const leftButton = this.drawNavButton('left');
         const rightButton = this.drawNavButton('right');
         menuNav.append(leftButton, level, rightButton);
@@ -35,7 +36,7 @@ class Menu {
     private drawNavButton(direction: string): HTMLButtonElement {
         const navButton = document.createElement('button');
         navButton.classList.add('menu__button', `menu__button-${direction}`);
-        navButton.innerText = direction === 'left' ? '<' : '>';
+        navButton.innerText = getDirectionSymbol(direction);
         return navButton;
     }
 

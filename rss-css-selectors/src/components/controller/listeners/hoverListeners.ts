@@ -1,4 +1,4 @@
-import { createElement, getElement } from '../../../functions/functions';
+import { createElement, getElement, getSelector } from '../../../functions/functions';
 
 class HoverListeners {
     public addHoverListeners(): void {
@@ -46,9 +46,7 @@ class HoverListeners {
         if (event.target && event.target instanceof HTMLElement) {
             const target: HTMLElement = event.target;
             const elementId = target.dataset.index;
-            const selector = child.classList.contains('editor__content')
-                ? target.classList[0]
-                : target.nodeName.toLowerCase();
+            const selector = getSelector(target, child);
             if (elementId && child.classList.contains('editor__content')) {
                 childElement = getElement(`.editor__content ${selector}[data-index="${elementId}"]`);
             } else if (elementId) {
