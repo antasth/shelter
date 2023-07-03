@@ -25,7 +25,7 @@ const levels: Array<LevelObject> = [
             'Селектор id — это выборка элементов, по значению глобального атрибута id="". В селекторе id, в качестве селектора, выступает имя уникального идентификатора',
         example:
             'Например, мы можем обратиться к элементу <div id="main"> используя id селектор так - #main {color: blue;}',
-        task: 'Задание: выберите звезду используя id селектор',
+        task: 'Задание: выберите чайный логотип используя id селектор',
         html: [
             { tag: 'cup', class: ['cup'], index: '1', tooltip: '<cup><cup/>' },
             {
@@ -86,7 +86,7 @@ const levels: Array<LevelObject> = [
         htmlContent: [
             '<cup data-index="1">&lt;cup&gt;<br><star data-index="2">&lt;star class="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
             '<cup data-index="3">&lt;cup&gt;<br><star data-index="4">&lt;star class="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
-            '<cup data-index="5">&lt;cup&gt;<cup/><br>',
+            '<cup data-index="5">&lt;cup/&gt;<cup/><br>',
         ],
         target: [1, 3, 5],
         answer: ['.star'],
@@ -117,7 +117,7 @@ const levels: Array<LevelObject> = [
         ],
         htmlContent: [
             '<papercup data-index="1">&lt;papercup/&gt;<papercup/><br>',
-            '<cup data-index="2">&lt;cup&gt;<cup/><br>',
+            '<cup data-index="2">&lt;cup/&gt;<cup/><br>',
             '<cup data-index="3">&lt;cup&gt;<br><star data-index="4">&lt;star id="star"&gt;</star><br>&lt;cup/&gt;<cup/><br>',
         ],
         target: [1, 4],

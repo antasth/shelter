@@ -2,6 +2,7 @@ import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
 import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
+import LocalStorage from '../localStorage/localStorage';
 import HelpListener from './help';
 import HoverListeners from './hoverListeners';
 import InputListener from './input';
@@ -17,6 +18,7 @@ class Listeners {
     private input: InputListener;
     private level: number;
     private isHelpUsed = false;
+    private storage: LocalStorage;
 
     constructor(level: number) {
         this.level = level;
@@ -26,6 +28,7 @@ class Listeners {
         this.help = new HelpListener();
         this.reset = new ResetListener();
         this.input = new InputListener();
+        this.storage = new LocalStorage();
     }
 
     private redrawContent(): void {
@@ -74,6 +77,8 @@ class Listeners {
                 editor.classList.remove('wobble');
                 board.classList.add('swirl-out-bck');
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
+                gameData.currentLevel = this.level + 1;
+                this.storage.saveToLocalStorage();
                 this.nextLevel(this.level);
                 this.submit.clearInput();
                 this.isHelpUsed = false;
@@ -100,6 +105,8 @@ class Listeners {
                     editor.classList.remove('wobble');
                     board.classList.add('swirl-out-bck');
                     gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
+                    gameData.currentLevel = this.level + 1;
+                    this.storage.saveToLocalStorage();
                     this.nextLevel(this.level);
                     this.submit.clearInput();
                     this.isHelpUsed = false;
