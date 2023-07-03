@@ -49,3 +49,7 @@ export const writeAnswerToInput = (input: HTMLInputElement | HTMLDivElement, ans
     };
     write();
 };
+
+export const getFromLocalStorage = () => {
+    return localStorage.gameData ? JSON.parse(localStorage.gameData) : gameData;
+};

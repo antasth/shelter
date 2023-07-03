@@ -193,7 +193,7 @@ h1 {
         resize: none;
         outline: none;
     }
-    &__content star,
+    &__content star, tea,
     coffe {
         margin-left: 20px;
         &:hover {
@@ -327,9 +327,26 @@ h1 {
         transform: scale(1.1);
     }
 }
+.tea {
+    background-image: url('../assets/img/tea.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: -20px;
+    bottom: 0;
+    margin: auto;
+    width: 60px;
+    height: 60px;
+    z-index: 15;
+    transition: all 0.5s ease;
+    &:hover {
+        transform: scale(1.1);
+    }
+}
 .coffe {
     background-image: url('../assets/img/coffe.png');
-    // background-image: url('../assets/img/star1.png');
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
