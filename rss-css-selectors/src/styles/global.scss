@@ -168,13 +168,13 @@ h1 {
     display: flex;
     justify-content: center;
     margin: 1rem 2rem;
-    height: 100%;
+    // height: 100%;
     font-weight: bold;
     &__wrapper {
         display: flex;
         justify-content: center;
         width: 100%;
-        height: 100%;
+        // height: 100%;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: $shadow;
@@ -360,6 +360,8 @@ coffe.active-line {
 }
 .win__message {
     white-space: wrap;
+    text-align: center;
+    padding: 0 20px;
 }
 // TOOLTIPS
 .tooltip {
@@ -396,60 +398,62 @@ coffe.active-line {
 .burger__icon {
     display: none;
     transition: all 0.5s ease-in-out;
-  }
-  .burger__icon-active {
+}
+.burger__icon-active {
     transform: rotate(90deg);
-  }
-  
-  @media (max-width: 991.98px) {
+}
+
+@media (max-width: 991.98px) {
     .header__content {
-      padding: 30px 20px 0;
+        padding: 30px 20px 0;
     }
     .header__nav {
-      display: none;
+        display: none;
     }
     .burger__icon {
-      display: block;
-      position: absolute;
-      top: 18px;
-      right: 20px;
-      width: 30px;
-      height: 22px;
-      cursor: pointer;
-      z-index: 26;
+        display: block;
+        position: absolute;
+        top: 18px;
+        right: 20px;
+        width: 30px;
+        height: 22px;
+        cursor: pointer;
+        z-index: 26;
     }
     .burger__icon__wrapper {
-      width: 100%;
-      height: 100%;
-      position: relative;
+        width: 100%;
+        height: 100%;
+        position: relative;
     }
     .burger__icon span,
     .burger__icon::after,
     .burger__icon::before {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background-color: $backdark;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: $backdark;
     }
     .burger__icon::after,
     .burger__icon::before {
-      content: '';
+        content: '';
     }
     .burger__icon::before {
-      top: 0;
+        top: 0;
     }
     .burger__icon::after {
-      bottom: 0;
+        bottom: 0;
     }
     .burger__icon span {
-      top: 50%;
-      transform: scale(1) translate(0px, -50%);
+        top: 50%;
+        transform: scale(1) translate(0px, -50%);
     }
-  }
+}
 
+//   Media queries
 @media (max-width: 1199.98px) {
-    .sidebar h1, h3 {
+    .sidebar h1,
+    h3 {
         letter-spacing: normal;
     }
     .sidebar h1 {
@@ -458,14 +462,15 @@ coffe.active-line {
     .sidebar h3 {
         font-size: 16px;
     }
-    .editor__input, .editor__input-color {
+    .editor__input,
+    .editor__input-color {
         min-width: 60%;
         font-size: 12px;
         display: flex;
         align-items: center;
     }
 }
-@media (max-width: 991.98px) { 
+@media (max-width: 991.98px) {
     .sidebar {
         position: fixed;
         top: 0;
@@ -484,5 +489,47 @@ coffe.active-line {
         display: grid;
         grid-template-columns: 100% 0;
         height: 100%;
+    }
+}
+@media (max-width: 687.98px) {
+    .content__header h1 {
+        font-size: 28px;
+    }
+    .editor__button {
+        font-size: 10px;
+    }
+    .editor__content,
+    .editor__numbers {
+        font-size: 12px;
+    }
+    .cup {
+        width: 110px;
+    }
+    .papercup {
+        width: 90px;
+    }
+    .tea,
+    .coffe {
+        width: 40px;
+        height: 40px;
+    }
+    .cup, .papercup, .redcup, .tea, .coffe {
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+    .tooltip {
+        font-size: 12px;
+    }
+    .editor__button {
+        display: none;
+    }
+    .editor__input,
+    .editor__input-color {
+        margin: 0;
+        min-width: 100%;
+        font-size: 10px;
+        display: flex;
+        align-items: center;
     }
 }
