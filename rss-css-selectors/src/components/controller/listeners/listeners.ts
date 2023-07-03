@@ -77,7 +77,7 @@ class Listeners {
                 editor.classList.remove('wobble');
                 board.classList.add('swirl-out-bck');
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
-                gameData.currentLevel = this.level + 1;
+                gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
                 this.storage.saveToLocalStorage();
                 this.nextLevel(this.level);
                 this.submit.clearInput();
@@ -105,7 +105,7 @@ class Listeners {
                     editor.classList.remove('wobble');
                     board.classList.add('swirl-out-bck');
                     gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
-                    gameData.currentLevel = this.level + 1;
+                    gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
                     this.storage.saveToLocalStorage();
                     this.nextLevel(this.level);
                     this.submit.clearInput();
