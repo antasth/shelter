@@ -17,6 +17,9 @@ class AppController {
     public addHoverListeners() {
         this.listeners.addHoverListeners();
     }
+    public addBurgerListener() {
+        this.listeners.addBurgerListener();
+    }
 }
 
 export default AppController;

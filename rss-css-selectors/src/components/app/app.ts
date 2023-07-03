@@ -26,6 +26,7 @@ class App {
         this.view.drawEditor();
         this.controller.addListenersToButtons();
         this.controller.addHoverListeners();
+        this.controller.addBurgerListener();
     }
 }
 

@@ -3,6 +3,7 @@ import levels from '../../../data/levels';
 import { getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
 import LocalStorage from '../localStorage/localStorage';
+import BurgerListener from './burger';
 import HelpListener from './help';
 import HoverListeners from './hoverListeners';
 import InputListener from './input';
@@ -16,6 +17,7 @@ class Listeners {
     private help: HelpListener;
     private reset: ResetListener;
     private input: InputListener;
+    private burger: BurgerListener;
     private level: number;
     private isHelpUsed = false;
     private storage: LocalStorage;
@@ -29,6 +31,7 @@ class Listeners {
         this.reset = new ResetListener();
         this.input = new InputListener();
         this.storage = new LocalStorage();
+        this.burger = new BurgerListener();
     }
 
     private redrawContent(): void {
@@ -43,6 +46,9 @@ class Listeners {
     }
     public addHoverListeners() {
         this.hover.addHoverListeners();
+    }
+    public addBurgerListener() {
+        this.burger.addBurgerListener();
     }
     public nextLevel(level: number): void {
         this.level = level;
@@ -138,12 +144,6 @@ class Listeners {
             this.reset.resetGameProgress();
             this.level = 0;
             this.redrawContent();
-        });
-        const burgerIcon: HTMLDivElement = getElement('.burger__icon');
-        const sidebar: HTMLDivElement = getElement('.sidebar');
-        burgerIcon.addEventListener('click', () => {
-            burgerIcon.classList.toggle('burger__icon-active');
-            sidebar.classList.toggle('sidebar__active');
         });
     }
 }
