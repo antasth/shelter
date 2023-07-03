@@ -193,7 +193,7 @@ h1 {
         resize: none;
         outline: none;
     }
-    &__content star, tea,
+    &__content tea,
     coffe {
         margin-left: 20px;
         &:hover {
@@ -308,15 +308,13 @@ h1 {
 .redcup {
     background-image: url('../assets/img/red-cup.png');
 }
-.star {
-    background-image: url('../assets/img/tea.png');
-    // background-image: url('../assets/img/star1.png');
+.tea,
+.coffe {
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
     top: 0;
     right: 0;
-    left: -20px;
     bottom: 0;
     margin: auto;
     width: 60px;
@@ -329,39 +327,11 @@ h1 {
 }
 .tea {
     background-image: url('../assets/img/tea.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    right: 0;
     left: -20px;
-    bottom: 0;
-    margin: auto;
-    width: 60px;
-    height: 60px;
-    z-index: 15;
-    transition: all 0.5s ease;
-    &:hover {
-        transform: scale(1.1);
-    }
 }
 .coffe {
     background-image: url('../assets/img/coffe.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    right: 0;
     left: -7px;
-    bottom: 0;
-    margin: auto;
-    width: 60px;
-    height: 60px;
-    z-index: 15;
-    transition: all 0.5s ease;
-    &:hover {
-        transform: scale(1.1);
-    }
 }
 button {
     height: 23px;
@@ -377,7 +347,7 @@ cup.active-line {
     background-color: $backlight;
     color: $textdark;
 }
-star.active-line,
+tea.active-line,
 coffe.active-line {
     background-color: $green;
     color: $textdark;
