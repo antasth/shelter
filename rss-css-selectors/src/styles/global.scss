@@ -45,6 +45,17 @@ h1 {
     width: 40px;
     height: 40px;
 }
+.rslogo {
+    width: 70px;
+}
+.header__links {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    h2 {
+        margin: 0;
+    }
+}
 .main {
     display: grid;
     grid-template-columns: 70% 30%;
@@ -498,7 +509,7 @@ coffe.active-line {
 }
 @media (max-width: 687.98px) {
     .content__header h1 {
-        font-size: 24px;
+        font-size: 20px;
     }
     .editor {
         margin: 0 10px 10px;
@@ -521,7 +532,11 @@ coffe.active-line {
         width: 40px;
         height: 40px;
     }
-    .cup, .papercup, .redcup, .tea, .coffe {
+    .cup,
+    .papercup,
+    .redcup,
+    .tea,
+    .coffe {
         &:hover {
             transform: scale(1.05);
         }
@@ -539,5 +554,12 @@ coffe.active-line {
         font-size: 10px;
         display: flex;
         align-items: center;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .content__header h1, h2 {
+        font-size: 16px;
+        letter-spacing: 5px;
     }
 }
