@@ -26,7 +26,7 @@ class Board {
         return cup;
     }
     private addAnimationsToTargetElements(targets: number[]): void {
-        targets.forEach((targetIndex: number) => {
+        targets.forEach((targetIndex) => {
             const targetElement: HTMLElement = getElement(`[data-index="${targetIndex}"]`);
             targetElement.classList.add('target');
         });
