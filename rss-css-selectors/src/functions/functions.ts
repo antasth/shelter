@@ -4,7 +4,6 @@ import { CompletedLevelObject } from '../interfaces/interfaces';
 export const getElement = <T extends HTMLElement>(selector: string): T => {
     const element = document.querySelector<T>(selector);
     if (!element) {
-        console.log(selector);
         throw new TypeError('Type Error');
     }
     return element;
