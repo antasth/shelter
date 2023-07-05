@@ -36,6 +36,8 @@ class LevelButtons {
     private isLevelCompleted(lvl: number): boolean | null {
         const dataFromLocalStorage: GameData = getFromLocalStorage();
         gameData.completedLevels = dataFromLocalStorage.completedLevels;
+        console.log(filterCompletedLevels(gameData.completedLevels, lvl));
+
         const [level] = filterCompletedLevels(gameData.completedLevels, lvl);
         return level ? level.help : null;
     }
