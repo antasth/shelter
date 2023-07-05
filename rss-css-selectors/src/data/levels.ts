@@ -31,8 +31,8 @@ const levels: Array<LevelObject> = [
             {
                 tag: 'cup',
                 class: ['cup'],
-                id: 'tea',
                 child: 'tea',
+                childId: 'tea',
                 childClass: 'tea',
                 index: '2',
                 childIndex: '3',
@@ -106,8 +106,8 @@ const levels: Array<LevelObject> = [
             {
                 tag: 'cup',
                 class: ['cup'],
-                id: 'tea',
                 child: 'tea',
+                childId: 'tea',
                 childClass: 'tea',
                 index: '3',
                 childIndex: '4',
@@ -121,7 +121,7 @@ const levels: Array<LevelObject> = [
             '<cup data-index="3">&lt;cup&gt;<br><tea data-index="4">&lt;tea id="tea"&gt;</tea><br>&lt;cup/&gt;<cup/><br>',
         ],
         target: [1, 4],
-        answer: ['papercup, #tea', '#tea, papercup'],
+        answer: ['papercup, #tea'],
     },
     {
         id: 5,
@@ -153,7 +153,7 @@ const levels: Array<LevelObject> = [
             '<cup data-index="3">&lt;cup&gt;<br><tea data-index="4">&lt;tea id="tea"&gt;</tea><br>&lt;cup/&gt;<cup/><br>',
         ],
         target: [2],
-        answer: ['.cup.redcup', '.redcup.cup'],
+        answer: ['.cup.redcup'],
     },
     {
         id: 6,
@@ -183,16 +183,7 @@ const levels: Array<LevelObject> = [
             '<cup data-index="3">&lt;cup&gt;<br><tea data-index="4">&lt;tea id="tea"&gt;</tea><br>&lt;cup/&gt;<cup/><br>',
         ],
         target: [2, 4],
-        answer: [
-            '.cup.redcup, tea',
-            'tea, .cup.redcup',
-            '.redcup.cup, #tea',
-            '#tea, .redcup.cup',
-            '.cup.redcup, #tea',
-            '#tea, .cup.redcup,',
-            'redcup.cup, tea',
-            'tea, redcup.cup',
-        ],
+        answer: ['.cup.redcup, tea'],
     },
     {
         id: 7,
@@ -222,6 +213,7 @@ const levels: Array<LevelObject> = [
                 index: '5',
                 tooltip: '<papercup><papercup/>',
                 child: 'coffe',
+                childId: 'coffe',
                 childClass: 'coffe',
                 childIndex: '6',
                 childTooltip: '<coffe id="coffe"></coffe>',
@@ -234,7 +226,7 @@ const levels: Array<LevelObject> = [
             '<papercup data-index="5">&lt;papercup&gt;<br><coffe data-index="6">&lt;coffe id="coffe"/&gt;</coffe><br>&lt;papercup/><br>',
         ],
         target: [6],
-        answer: ['papercup #coffe', 'papercup coffe'],
+        answer: ['papercup #coffe'],
     },
     {
         id: 8,
@@ -265,7 +257,7 @@ const levels: Array<LevelObject> = [
             '<cup data-index="4">&lt;cup&gt;<cup/><br>',
         ],
         target: [3],
-        answer: ['cup > tea', 'cup > #tea'],
+        answer: ['cup > tea'],
     },
     {
         id: 9,
@@ -274,15 +266,16 @@ const levels: Array<LevelObject> = [
         description:
             'Элемент справа от + должен следовать в HTML сразу за элементом слева от +. Проще говоря, правый элемент должен быть соседом левого элемента, чтобы смежный селектор сработал.',
         example: 'Например label + input {color: red;}',
-        task: 'Задание: выберите логотип кофе на чашке используя смежные селекторы',
+        task: 'Задание: выберите белую чашку в центре используя смежные селекторы',
         html: [
-            { tag: 'cup', class: ['cup'], index: '1', tooltip: '<cup><cup/>' },
+            { tag: 'papercup', class: ['papercup', 'cup'], index: '1', tooltip: '<papercup><papercup/>' },
             {
                 tag: 'cup',
                 class: ['cup'],
                 index: '2',
                 tooltip: '<cup><cup/>',
                 child: 'coffe',
+                childId: 'coffe',
                 childClass: 'coffe',
                 childIndex: '3',
                 childTooltip: '<coffe id="coffe"></coffe>',
@@ -290,12 +283,12 @@ const levels: Array<LevelObject> = [
             { tag: 'cup', class: ['cup'], index: '4', tooltip: '<cup><cup/>' },
         ],
         htmlContent: [
-            '<cup data-index="1">&lt;cup&gt;<cup/><br>',
-            '<cup data-index="2">&lt;cup&gt;<br><coffe data-index="3">&lt;coffe id="coffe"&gt;</coffe><br>&lt;cup/&gt;<cup/><br>',
+            '<papercup data-index="1">&lt;papercup/&gt;<papercup/><br>',
+            '<cup data-index="2">&lt;cup class="cup"&gt;<br><coffe data-index="3">&lt;coffe id="coffe"&gt;</coffe><br>&lt;cup/&gt;<cup/><br>',
             '<cup data-index="4">&lt;cup&gt;<cup/>',
         ],
-        target: [3],
-        answer: ['cup + coffe', 'cup + #coffe'],
+        target: [2],
+        answer: ['papercup + .cup'],
     },
     {
         id: 10,
@@ -310,8 +303,8 @@ const levels: Array<LevelObject> = [
             {
                 tag: 'cup',
                 class: ['cup'],
-                id: 'tea',
                 child: 'tea',
+                childId: 'tea',
                 childClass: 'tea',
                 index: '3',
                 childIndex: '4',
@@ -325,16 +318,7 @@ const levels: Array<LevelObject> = [
             '<cup data-index="3">&lt;cup&gt;<br><tea data-index="4">&lt;tea id="tea"&gt;</tea><br>&lt;cup/&gt;<cup/><br>',
         ],
         target: [2, 4],
-        answer: [
-            'cup + tea, .redcup',
-            'cup + tea, redcup',
-            '.redcup, cup + tea',
-            '.redcup, cup + #tea',
-            'redcup, cup + tea',
-            '.redcup, cup + #tea',
-            'cup + #tea, .redcup',
-            'cup + #tea, redcup',
-        ],
+        answer: ['cup + .redcup, #tea'],
     },
 ];
 export default levels;

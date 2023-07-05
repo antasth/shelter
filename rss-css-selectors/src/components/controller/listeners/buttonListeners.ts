@@ -1,7 +1,8 @@
 import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
 import {
-    checkAnswer,
+    // checkAnswer,
+    checkAnySelectors,
     clearInput,
     getElement,
     resetGameProgress,
@@ -125,7 +126,7 @@ class Listeners {
     public addButtonSubmitListener(): void {
         const submitButton = getElement('.editor__button');
         submitButton.addEventListener('click', () => {
-            if (checkAnswer(this.level)) {
+            if (checkAnySelectors(this.level)) {
                 this.editor.classList.remove('wobble');
                 this.board.classList.add('swirl-out-bck');
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
@@ -137,7 +138,7 @@ class Listeners {
                     this.view.showWinMessage();
                 }
                 this.nextLevel(this.level);
-            } else if (checkAnswer(this.level) !== null) {
+            } else if (checkAnySelectors(this.level) !== null) {
                 this.editor.classList.add('wobble');
             }
         });
@@ -149,16 +150,19 @@ class Listeners {
             this.input.clearInput();
             this.input.writeToFakeInput(input.value);
             if (event.key === 'Enter') {
-                if (checkAnswer(this.level)) {
+                if (checkAnySelectors(this.level)) {
                     this.editor.classList.remove('wobble');
                     this.board.classList.add('swirl-out-bck');
                     gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                     gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
                     saveToLocalStorage();
-                    this.nextLevel(this.level);
                     clearInput();
                     this.isHelpUsed = false;
-                } else if (checkAnswer(this.level) !== null) {
+                    if (this.level === levels.length - 1) {
+                        this.view.showWinMessage();
+                    }
+                    this.nextLevel(this.level);
+                } else if (checkAnySelectors(this.level) !== null) {
                     this.editor.classList.add('wobble');
                 }
             }

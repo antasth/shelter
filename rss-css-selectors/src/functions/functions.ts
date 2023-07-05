@@ -88,13 +88,18 @@ export const saveToLocalStorage = (): void => {
 export const getFromLocalStorage = () => {
     return localStorage.gameData ? JSON.parse(localStorage.gameData) : gameData;
 };
-
-export const checkAnswer = (level: number): boolean | null => {
-    const answer: HTMLInputElement = getElement('.editor__input');
-    if (answer.value) {
-        return levels[level].answer.includes(answer.value);
-    } else return null;
+export const checkAnySelectors = (level: number): boolean | null => {
+    const input: HTMLInputElement = getElement('.editor__input');
+    const board = getElement('.board');
+    try {
+        const elements: NodeListOf<HTMLElement> = board.querySelectorAll(input.value);
+        const indexes = [...elements].map((element) => Number(element.dataset.index));
+        return indexes.toString() === levels[level].target.toString();
+    } catch (error) {
+        return null;
+    }
 };
+
 export const clearInput = (): void => {
     const answer: HTMLInputElement = getElement('.editor__input');
     answer.value = '';
