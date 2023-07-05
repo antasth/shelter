@@ -1,6 +1,6 @@
 import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
-import { getElement } from '../../../functions/functions';
+import { checkAnswer, clearInput, getElement } from '../../../functions/functions';
 import AppView from '../../view/appview';
 import LocalStorage from '../localStorage/localStorage';
 import BurgerListener from './burger';
@@ -8,11 +8,9 @@ import HelpListener from './help';
 import HoverListeners from './hoverListeners';
 import InputListener from './input';
 import ResetListener from './reset';
-import Submit from './submit';
 
 class Listeners {
     private view: AppView;
-    private submit: Submit;
     private hover: HoverListeners;
     private help: HelpListener;
     private reset: ResetListener;
@@ -25,7 +23,6 @@ class Listeners {
     constructor(level: number) {
         this.level = level;
         this.view = new AppView(0);
-        this.submit = new Submit();
         this.hover = new HoverListeners();
         this.help = new HelpListener();
         this.reset = new ResetListener();
@@ -83,26 +80,26 @@ class Listeners {
         const editor = getElement('.editor');
         const board = getElement('.board');
         submitButton.addEventListener('click', () => {
-            if (this.submit.checkAnswer(this.level)) {
+            if (checkAnswer(this.level)) {
                 editor.classList.remove('wobble');
                 board.classList.add('swirl-out-bck');
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                 gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
                 this.storage.saveToLocalStorage();
-                this.submit.clearInput();
+                clearInput();
                 this.isHelpUsed = false;
                 if (this.level === levels.length - 1) {
                     this.view.showWinMessage();
                 }
                 this.nextLevel(this.level);
-            } else if (this.submit.checkAnswer(this.level) !== null) {
+            } else if (checkAnswer(this.level) !== null) {
                 editor.classList.add('wobble');
             }
         });
         const helpButton = getElement('.help__button');
         helpButton.addEventListener('click', () => {
             editor.classList.remove('wobble');
-            this.submit.clearInput();
+            clearInput();
             this.isHelpUsed = true;
             this.input.clearInput();
             this.input.showAnswer(levels[this.level].answer[0]);
@@ -114,16 +111,16 @@ class Listeners {
             this.input.clearInput();
             this.input.writeToFakeInput(input.value);
             if (event.key === 'Enter') {
-                if (this.submit.checkAnswer(this.level)) {
+                if (checkAnswer(this.level)) {
                     editor.classList.remove('wobble');
                     board.classList.add('swirl-out-bck');
                     gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                     gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
                     this.storage.saveToLocalStorage();
                     this.nextLevel(this.level);
-                    this.submit.clearInput();
+                    clearInput();
                     this.isHelpUsed = false;
-                } else if (this.submit.checkAnswer(this.level) !== null) {
+                } else if (checkAnswer(this.level) !== null) {
                     editor.classList.add('wobble');
                 }
             }

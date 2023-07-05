@@ -1,5 +1,6 @@
 import { baseAnswerDelay, listNumbersArrayLength, symbolShowDelay } from '../data/constants';
 import gameData from '../data/gamedata';
+import levels from '../data/levels';
 import { CompletedLevelObject } from '../interfaces/interfaces';
 
 export const getElement = <T extends HTMLElement>(selector: string): T => {
@@ -84,4 +85,15 @@ export const saveToLocalStorage = (): void => {
 };
 export const getFromLocalStorage = () => {
     return localStorage.gameData ? JSON.parse(localStorage.gameData) : gameData;
+};
+
+export const checkAnswer = (level: number): boolean | null => {
+    const answer: HTMLInputElement = getElement('.editor__input');
+    if (answer.value) {
+        return levels[level].answer.includes(answer.value);
+    } else return null;
+};
+export const clearInput = (): void => {
+    const answer: HTMLInputElement = getElement('.editor__input');
+    answer.value = '';
 };
