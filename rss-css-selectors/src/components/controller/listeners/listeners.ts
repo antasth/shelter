@@ -1,9 +1,15 @@
 import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
-import { checkAnswer, clearInput, getElement, resetGameProgress, showAnswer } from '../../../functions/functions';
+import {
+    addBurgerListener,
+    checkAnswer,
+    clearInput,
+    getElement,
+    resetGameProgress,
+    showAnswer,
+} from '../../../functions/functions';
 import AppView from '../../view/appview';
 import LocalStorage from '../localStorage/localStorage';
-import BurgerListener from './burger';
 import HoverListeners from './hoverListeners';
 import InputListener from './input';
 
@@ -11,7 +17,6 @@ class Listeners {
     private view: AppView;
     private hover: HoverListeners;
     private input: InputListener;
-    private burger: BurgerListener;
     private level: number;
     private isHelpUsed = false;
     private storage: LocalStorage;
@@ -22,7 +27,6 @@ class Listeners {
         this.hover = new HoverListeners();
         this.input = new InputListener();
         this.storage = new LocalStorage();
-        this.burger = new BurgerListener();
     }
 
     private redrawContent(): void {
@@ -39,7 +43,7 @@ class Listeners {
         this.hover.addHoverListeners();
     }
     public addBurgerListener() {
-        this.burger.addBurgerListener();
+        addBurgerListener();
     }
     public nextLevel(level: number): void {
         this.level = level;
