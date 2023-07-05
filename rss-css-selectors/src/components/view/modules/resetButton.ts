@@ -1,4 +1,4 @@
-import { createElement, getElement } from '../../functions/functions';
+import { createElement, getElement } from '../../../functions/functions';
 
 class ResetButton {
     public drawResetButton(): void {

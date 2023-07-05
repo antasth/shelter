@@ -2,7 +2,7 @@ import Board from './modules/board';
 import Editor from './modules/editor';
 import HelpButton from './modules/helpButton';
 import Menu from './modules/menu';
-import ResetButton from './resetButton';
+import ResetButton from './modules/resetButton';
 
 export class AppView {
     private board: Board;

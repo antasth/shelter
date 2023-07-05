@@ -11,7 +11,7 @@ import {
 } from '../../../functions/functions';
 import AppView from '../../view/appview';
 import HoverListeners from './hoverListeners';
-import InputListener from './input';
+import InputListener from './inputListeners';
 
 class Listeners {
     private view: AppView;
