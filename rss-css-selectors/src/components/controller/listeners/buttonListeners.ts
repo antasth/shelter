@@ -36,6 +36,9 @@ class Listeners {
         this.addListenersToButtons();
         this.hover.addHoverListeners();
         this.input.restoreInput();
+        this.addButtonLeftListener();
+        this.addButtonRightListener();
+        this.addButtonResetListener();
     }
     public addHoverListeners() {
         this.hover.addHoverListeners();
@@ -59,19 +62,29 @@ class Listeners {
             gameData.currentLevel = this.level;
         }
     }
-    public addListenersToButtons(): void {
+    public addButtonLeftListener(): void {
         const buttonLeft = getElement('.menu__button-left');
-        const buttonRight = getElement('.menu__button-right');
         buttonLeft.addEventListener('click', () => {
             this.prevLevel(this.level);
-            gameData.currentLevel = this.level;
             saveToLocalStorage();
         });
+    }
+    public addButtonRightListener(): void {
+        const buttonRight = getElement('.menu__button-right');
         buttonRight.addEventListener('click', () => {
             this.nextLevel(this.level);
-            gameData.currentLevel = this.level;
             saveToLocalStorage();
         });
+    }
+    public addButtonResetListener(): void {
+        const resetButton = getElement('.reset__button');
+        resetButton.addEventListener('click', () => {
+            resetGameProgress();
+            this.level = 0;
+            this.redrawContent();
+        });
+    }
+    public addListenersToButtons(): void {
         const submitButton = getElement('.editor__button');
         const editor = getElement('.editor');
         const board = getElement('.board');
@@ -131,12 +144,6 @@ class Listeners {
                     this.redrawContent();
                 }
             }
-        });
-        const resetButton = getElement('.reset__button');
-        resetButton.addEventListener('click', () => {
-            resetGameProgress();
-            this.level = 0;
-            this.redrawContent();
         });
     }
 }
