@@ -3,7 +3,7 @@ import { createElement, getElement, writeAnswerToInput } from '../../../function
 
 class InputListener {
     public writeToFakeInput(str: string): void {
-        const fakeInput: HTMLDivElement = getElement('.editor__input-color');
+        const fakeInput = getElement('.editor__input-color');
         fakeInput.replaceChildren();
         const inputString: string = str;
         const separators: string[] = ['.', '#'];
@@ -32,19 +32,19 @@ class InputListener {
         }
     }
     public clearInput(): void {
-        const fakeInput: HTMLDivElement = getElement('.editor__input-color');
+        const fakeInput = getElement('.editor__input-color');
         fakeInput.innerText = '';
         fakeInput.replaceChildren();
     }
     public restoreInput(): void {
-        const fakeInput: HTMLDivElement = getElement('.editor__input-color');
+        const fakeInput = getElement('.editor__input-color');
         const realInput: HTMLInputElement = getElement('.editor__input');
         realInput.value = '';
         fakeInput.replaceChildren();
         fakeInput.innerText = 'Введите CSS селектор';
     }
     public showAnswer(answer: string): void {
-        const fakeInput: HTMLDivElement = getElement('.editor__input-color');
+        const fakeInput = getElement('.editor__input-color');
         writeAnswerToInput(fakeInput, answer);
         setTimeout(() => {
             this.writeToFakeInput(answer);

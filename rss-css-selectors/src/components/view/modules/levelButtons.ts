@@ -11,7 +11,7 @@ import { GameData } from '../../../interfaces/interfaces';
 
 class LevelButtons {
     public drawLevelButtons(level: number): void {
-        const sidebar: HTMLDivElement = getElement('.sidebar__wrapper');
+        const sidebar = getElement('.sidebar__wrapper');
         const levels = createElement('div', 'levels', '', sidebar);
         const levelsHeader = createElement('div', 'levels__top', '', levels);
         createElement('h3', 'levels__header', 'Select level', levelsHeader);

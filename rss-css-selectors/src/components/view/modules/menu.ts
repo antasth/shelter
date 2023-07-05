@@ -14,7 +14,7 @@ class Menu {
 
     public drawMenu(level: number): void {
         this.data = levels[level];
-        const sidebar: HTMLDivElement = getElement('.sidebar__wrapper');
+        const sidebar = getElement('.sidebar__wrapper');
         sidebar.replaceChildren();
         const menu = createElement('div', 'menu', '', sidebar);
         const nav = this.drawNavMenu();

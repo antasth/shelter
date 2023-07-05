@@ -2,8 +2,8 @@ import { createElement, getElement, getSelector } from '../../../functions/funct
 
 class HoverListeners {
     public addHoverListeners(): void {
-        const board: HTMLDivElement = getElement('.board');
-        const editor: HTMLDivElement = getElement('.editor__content');
+        const board = getElement('.board');
+        const editor = getElement('.editor__content');
         this.addListener(board, editor);
         this.addListener(editor, board);
     }
@@ -33,7 +33,7 @@ class HoverListeners {
             if (element && element.parentNode instanceof HTMLElement) {
                 if (element.parentNode.classList.contains('board') || element.parentNode.classList.contains('cup')) {
                     element.classList.remove('active-element');
-                    const tooltip: HTMLDivElement = getElement('.tooltip');
+                    const tooltip = getElement('.tooltip');
                     if (tooltip) {
                         tooltip.remove();
                     }

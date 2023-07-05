@@ -67,8 +67,8 @@ class Listeners {
         }
     }
     public addListenersToButtons(): void {
-        const buttonLeft: HTMLButtonElement = getElement('.menu__button-left');
-        const buttonRight: HTMLButtonElement = getElement('.menu__button-right');
+        const buttonLeft = getElement('.menu__button-left');
+        const buttonRight = getElement('.menu__button-right');
         buttonLeft.addEventListener('click', () => {
             this.prevLevel(this.level);
             gameData.currentLevel = this.level;
@@ -79,7 +79,7 @@ class Listeners {
             gameData.currentLevel = this.level;
             this.storage.saveToLocalStorage();
         });
-        const submitButton: HTMLButtonElement = getElement('.editor__button');
+        const submitButton = getElement('.editor__button');
         const editor = getElement('.editor');
         const board = getElement('.board');
         submitButton.addEventListener('click', () => {
@@ -99,7 +99,7 @@ class Listeners {
                 editor.classList.add('wobble');
             }
         });
-        const helpButton: HTMLButtonElement = getElement('.help__button');
+        const helpButton = getElement('.help__button');
         helpButton.addEventListener('click', () => {
             editor.classList.remove('wobble');
             this.submit.clearInput();
@@ -128,7 +128,7 @@ class Listeners {
                 }
             }
         });
-        const levelButtons: HTMLDivElement = getElement('.levels__content');
+        const levelButtons = getElement('.levels__content');
         levelButtons.addEventListener('click', (e: Event) => {
             if (e.target && e.target instanceof HTMLElement) {
                 if (e.target.className.includes('levels__button')) {
@@ -139,7 +139,7 @@ class Listeners {
                 }
             }
         });
-        const resetButton: HTMLButtonElement = getElement('.reset__button');
+        const resetButton = getElement('.reset__button');
         resetButton.addEventListener('click', () => {
             this.reset.resetGameProgress();
             this.level = 0;

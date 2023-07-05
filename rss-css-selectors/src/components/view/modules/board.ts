@@ -27,14 +27,14 @@ class Board {
     }
     private addAnimationsToTargetElements(targets: number[]): void {
         targets.forEach((targetIndex) => {
-            const targetElement: HTMLElement = getElement(`[data-index="${targetIndex}"]`);
+            const targetElement = getElement(`[data-index="${targetIndex}"]`);
             targetElement.classList.add('target');
         });
     }
     public drawBoard(lvl: number): void {
         this.data = levels[lvl];
         const targetList = this.data.target;
-        const board: HTMLDivElement = getElement('.board');
+        const board = getElement('.board');
         setTimeout(() => {
             board.classList.remove('swirl-out-bck');
         }, 1000);
@@ -46,8 +46,8 @@ class Board {
         this.addAnimationsToTargetElements(targetList);
     }
     public showWinMessage() {
-        const board: HTMLDivElement = getElement('.board');
-        const editor: HTMLDivElement = getElement('.editor__content');
+        const board = getElement('.board');
+        const editor = getElement('.editor__content');
         board.replaceChildren();
         editor.replaceChildren();
         board.classList.remove('swirl-out-bck');

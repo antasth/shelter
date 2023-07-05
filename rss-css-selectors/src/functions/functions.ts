@@ -38,7 +38,7 @@ export const createArray = (length: number): Array<null> => {
 };
 
 // function based on this example https://www.w3schools.com/howto/howto_js_typewriter.asp
-export const writeAnswerToInput = (input: HTMLInputElement | HTMLDivElement, answer: string): void => {
+export const writeAnswerToInput = (input: HTMLElement, answer: string): void => {
     const delay = symbolShowDelay;
     gameData.writeAnswerDelay = answerDelay(delay, answer.length);
     let i = 0;
