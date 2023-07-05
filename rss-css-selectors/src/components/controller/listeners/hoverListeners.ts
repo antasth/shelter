@@ -9,12 +9,12 @@ class HoverListeners {
     }
     private addListener(parent: HTMLElement, child: HTMLElement): void {
         parent.addEventListener('mouseover', (event: Event) => {
-            const childElement: HTMLElement = this.getChildElement(event, child);
-            this.toggleActiveClass('mouseover', childElement);
+            const childElement = this.getChildElement(event, child);
+            if (childElement) this.toggleActiveClass('mouseover', childElement);
         });
         parent.addEventListener('mouseout', (event: Event) => {
-            const childElement: HTMLElement = this.getChildElement(event, child);
-            this.toggleActiveClass('mouseout', childElement);
+            const childElement = this.getChildElement(event, child);
+            if (childElement) this.toggleActiveClass('mouseout', childElement);
         });
     }
     private toggleActiveClass(eventType: string, element: HTMLElement): void {
@@ -41,20 +41,18 @@ class HoverListeners {
             }
         }
     }
-    private getChildElement(event: Event, child: HTMLElement): HTMLElement {
-        let childElement: Element | null = null;
+    private getChildElement(event: Event, child: HTMLElement): HTMLElement | null {
         if (event.target && event.target instanceof HTMLElement) {
             const target: HTMLElement = event.target;
             const elementId = target.dataset.index;
             const selector = getSelector(target, child);
             if (elementId && child.classList.contains('editor__content')) {
-                childElement = getElement(`.editor__content ${selector}[data-index="${elementId}"]`);
+                return getElement(`.editor__content ${selector}[data-index="${elementId}"]`);
             } else if (elementId) {
-                childElement = getElement(`.${selector}[data-index="${elementId}"]`);
+                return getElement(`.${selector}[data-index="${elementId}"]`);
             }
         }
-
-        return childElement as HTMLElement;
+        return null;
     }
 }
 
