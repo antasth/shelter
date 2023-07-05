@@ -33,12 +33,15 @@ class Listeners {
         this.view.drawHelpButton();
         this.view.drawResetButton();
         this.view.createHtmlContent(this.level);
-        this.addListenersToButtons();
         this.hover.addHoverListeners();
         this.input.restoreInput();
         this.addButtonLeftListener();
         this.addButtonRightListener();
         this.addButtonResetListener();
+        this.addButtonHelpListener();
+        this.addButtonLevelsListener();
+        this.addButtonSubmitListener();
+        this.addInputListener();
     }
     public addHoverListeners() {
         this.hover.addHoverListeners();
@@ -84,7 +87,32 @@ class Listeners {
             this.redrawContent();
         });
     }
-    public addListenersToButtons(): void {
+    public addButtonHelpListener(): void {
+        const editor = getElement('.editor');
+        const helpButton = getElement('.help__button');
+        helpButton.addEventListener('click', () => {
+            editor.classList.remove('wobble');
+            clearInput();
+            this.isHelpUsed = true;
+            this.input.clearInput();
+            this.input.showAnswer(levels[this.level].answer[0]);
+            showAnswer(levels[this.level].answer[0]);
+        });
+    }
+    public addButtonLevelsListener(): void {
+        const levelButtons = getElement('.levels__content');
+        levelButtons.addEventListener('click', (e: Event) => {
+            if (e.target && e.target instanceof HTMLElement) {
+                if (e.target.className.includes('levels__button')) {
+                    this.level = Number(e.target.id.slice(3)) - 1;
+                    gameData.currentLevel = this.level;
+                    saveToLocalStorage();
+                    this.redrawContent();
+                }
+            }
+        });
+    }
+    public addButtonSubmitListener(): void {
         const submitButton = getElement('.editor__button');
         const editor = getElement('.editor');
         const board = getElement('.board');
@@ -105,15 +133,10 @@ class Listeners {
                 editor.classList.add('wobble');
             }
         });
-        const helpButton = getElement('.help__button');
-        helpButton.addEventListener('click', () => {
-            editor.classList.remove('wobble');
-            clearInput();
-            this.isHelpUsed = true;
-            this.input.clearInput();
-            this.input.showAnswer(levels[this.level].answer[0]);
-            showAnswer(levels[this.level].answer[0]);
-        });
+    }
+    public addInputListener(): void {
+        const editor = getElement('.editor');
+        const board = getElement('.board');
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
             editor.classList.remove('wobble');
@@ -131,17 +154,6 @@ class Listeners {
                     this.isHelpUsed = false;
                 } else if (checkAnswer(this.level) !== null) {
                     editor.classList.add('wobble');
-                }
-            }
-        });
-        const levelButtons = getElement('.levels__content');
-        levelButtons.addEventListener('click', (e: Event) => {
-            if (e.target && e.target instanceof HTMLElement) {
-                if (e.target.className.includes('levels__button')) {
-                    this.level = Number(e.target.id.slice(3)) - 1;
-                    gameData.currentLevel = this.level;
-                    saveToLocalStorage();
-                    this.redrawContent();
                 }
             }
         });

@@ -25,12 +25,15 @@ class App {
         this.view.drawHelpButton();
         this.view.drawResetButton();
         this.view.drawEditor();
-        this.controller.addListenersToButtons();
         this.controller.addHoverListeners();
         this.controller.addBurgerListener();
         this.buttonListeners.addButtonLeftListener();
         this.buttonListeners.addButtonRightListener();
         this.buttonListeners.addButtonResetListener();
+        this.buttonListeners.addButtonHelpListener();
+        this.buttonListeners.addButtonLevelsListener();
+        this.buttonListeners.addButtonSubmitListener();
+        this.buttonListeners.addInputListener();
     }
 }
 

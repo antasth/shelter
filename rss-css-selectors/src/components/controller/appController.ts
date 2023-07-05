@@ -5,9 +5,6 @@ class AppController {
     constructor(level: number) {
         this.listeners = new Listeners(level);
     }
-    public addListenersToButtons() {
-        this.listeners.addListenersToButtons();
-    }
     public addHoverListeners() {
         this.listeners.addHoverListeners();
     }
