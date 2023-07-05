@@ -1,7 +1,6 @@
 import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
 import {
-    addBurgerListener,
     checkAnswer,
     clearInput,
     getElement,
@@ -38,6 +37,7 @@ class Listeners {
         this.addButtonLeftListener();
         this.addButtonRightListener();
         this.addButtonResetListener();
+        this.addButtonBurgerListener();
         this.addButtonHelpListener();
         this.addButtonLevelsListener();
         this.addButtonSubmitListener();
@@ -46,9 +46,7 @@ class Listeners {
     public addHoverListeners() {
         this.hover.addHoverListeners();
     }
-    public addBurgerListener() {
-        addBurgerListener();
-    }
+
     public nextLevel(level: number): void {
         this.level = level;
         if (this.level < levels.length - 1) {
@@ -85,6 +83,14 @@ class Listeners {
             resetGameProgress();
             this.level = 0;
             this.redrawContent();
+        });
+    }
+    public addButtonBurgerListener(): void {
+        const burgerIcon = getElement('.burger__icon');
+        const sidebar = getElement('.sidebar');
+        burgerIcon.addEventListener('click', () => {
+            burgerIcon.classList.toggle('burger__icon-active');
+            sidebar.classList.toggle('sidebar__active');
         });
     }
     public addButtonHelpListener(): void {

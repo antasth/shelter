@@ -26,11 +26,11 @@ class App {
         this.view.drawResetButton();
         this.view.drawEditor();
         this.controller.addHoverListeners();
-        this.controller.addBurgerListener();
         this.buttonListeners.addButtonLeftListener();
         this.buttonListeners.addButtonRightListener();
         this.buttonListeners.addButtonResetListener();
         this.buttonListeners.addButtonHelpListener();
+        this.buttonListeners.addButtonBurgerListener();
         this.buttonListeners.addButtonLevelsListener();
         this.buttonListeners.addButtonSubmitListener();
         this.buttonListeners.addInputListener();

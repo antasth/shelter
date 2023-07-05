@@ -109,12 +109,3 @@ export const resetGameProgress = (): void => {
     gameData.completedLevels = [];
     saveToLocalStorage();
 };
-
-export const addBurgerListener = (): void => {
-    const burgerIcon = getElement('.burger__icon');
-    const sidebar = getElement('.sidebar');
-    burgerIcon.addEventListener('click', () => {
-        burgerIcon.classList.toggle('burger__icon-active');
-        sidebar.classList.toggle('sidebar__active');
-    });
-};
