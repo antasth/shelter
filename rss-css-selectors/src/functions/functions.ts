@@ -97,3 +97,8 @@ export const clearInput = (): void => {
     const answer: HTMLInputElement = getElement('.editor__input');
     answer.value = '';
 };
+
+export const showAnswer = (answer: string): void => {
+    const input = getElement('.editor__input');
+    writeAnswerToInput(input, answer);
+};

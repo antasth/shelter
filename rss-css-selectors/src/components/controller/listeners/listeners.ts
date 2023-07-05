@@ -1,10 +1,9 @@
 import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
-import { checkAnswer, clearInput, getElement } from '../../../functions/functions';
+import { checkAnswer, clearInput, getElement, showAnswer } from '../../../functions/functions';
 import AppView from '../../view/appview';
 import LocalStorage from '../localStorage/localStorage';
 import BurgerListener from './burger';
-import HelpListener from './help';
 import HoverListeners from './hoverListeners';
 import InputListener from './input';
 import ResetListener from './reset';
@@ -12,7 +11,6 @@ import ResetListener from './reset';
 class Listeners {
     private view: AppView;
     private hover: HoverListeners;
-    private help: HelpListener;
     private reset: ResetListener;
     private input: InputListener;
     private burger: BurgerListener;
@@ -24,7 +22,6 @@ class Listeners {
         this.level = level;
         this.view = new AppView(0);
         this.hover = new HoverListeners();
-        this.help = new HelpListener();
         this.reset = new ResetListener();
         this.input = new InputListener();
         this.storage = new LocalStorage();
@@ -103,7 +100,7 @@ class Listeners {
             this.isHelpUsed = true;
             this.input.clearInput();
             this.input.showAnswer(levels[this.level].answer[0]);
-            this.help.showAnswer(levels[this.level].answer[0]);
+            showAnswer(levels[this.level].answer[0]);
         });
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
