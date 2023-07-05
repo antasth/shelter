@@ -102,3 +102,8 @@ export const showAnswer = (answer: string): void => {
     const input = getElement('.editor__input');
     writeAnswerToInput(input, answer);
 };
+
+export const resetGameProgress = (): void => {
+    gameData.completedLevels = [];
+    saveToLocalStorage();
+};
