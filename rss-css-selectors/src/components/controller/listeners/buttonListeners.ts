@@ -114,7 +114,7 @@ class Listeners {
         levelButtons.addEventListener('click', (e: Event) => {
             if (e.target && e.target instanceof HTMLElement) {
                 if (e.target.className.includes('levels__button')) {
-                    this.level = Number(e.target.id.slice(3)) - 1;
+                    this.level = Number(e.target.id.replace(/[^\d]/g, '')) - 1;
                     gameData.currentLevel = this.level;
                     saveToLocalStorage();
                     this.redrawContent();
