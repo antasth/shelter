@@ -18,12 +18,18 @@ class Listeners {
     private input: InputListener;
     private level: number;
     private isHelpUsed = false;
+    private editor: HTMLElement;
+    private board: HTMLElement;
+    private sidebar: HTMLElement;
 
     constructor(level: number) {
         this.level = level;
         this.view = new AppView(0);
         this.hover = new HoverListeners();
         this.input = new InputListener();
+        this.editor = getElement('.editor');
+        this.board = getElement('.board');
+        this.sidebar = getElement('.sidebar');
     }
 
     private redrawContent(): void {
@@ -43,11 +49,8 @@ class Listeners {
         this.addButtonSubmitListener();
         this.addInputListener();
     }
-    public addHoverListeners() {
-        this.hover.addHoverListeners();
-    }
 
-    public nextLevel(level: number): void {
+    private nextLevel(level: number): void {
         this.level = level;
         if (this.level < levels.length - 1) {
             this.level += 1;
@@ -55,13 +58,16 @@ class Listeners {
             gameData.currentLevel = this.level;
         }
     }
-    public prevLevel(level: number): void {
+    private prevLevel(level: number): void {
         this.level = level;
         if (this.level > 0) {
             this.level -= 1;
             this.redrawContent();
             gameData.currentLevel = this.level;
         }
+    }
+    public addHoverListeners(): void {
+        this.hover.addHoverListeners();
     }
     public addButtonLeftListener(): void {
         const buttonLeft = getElement('.menu__button-left');
@@ -87,17 +93,15 @@ class Listeners {
     }
     public addButtonBurgerListener(): void {
         const burgerIcon = getElement('.burger__icon');
-        const sidebar = getElement('.sidebar');
         burgerIcon.addEventListener('click', () => {
             burgerIcon.classList.toggle('burger__icon-active');
-            sidebar.classList.toggle('sidebar__active');
+            this.sidebar.classList.toggle('sidebar__active');
         });
     }
     public addButtonHelpListener(): void {
-        const editor = getElement('.editor');
         const helpButton = getElement('.help__button');
         helpButton.addEventListener('click', () => {
-            editor.classList.remove('wobble');
+            this.editor.classList.remove('wobble');
             clearInput();
             this.isHelpUsed = true;
             this.input.clearInput();
@@ -120,12 +124,10 @@ class Listeners {
     }
     public addButtonSubmitListener(): void {
         const submitButton = getElement('.editor__button');
-        const editor = getElement('.editor');
-        const board = getElement('.board');
         submitButton.addEventListener('click', () => {
             if (checkAnswer(this.level)) {
-                editor.classList.remove('wobble');
-                board.classList.add('swirl-out-bck');
+                this.editor.classList.remove('wobble');
+                this.board.classList.add('swirl-out-bck');
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                 gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
                 saveToLocalStorage();
@@ -136,22 +138,20 @@ class Listeners {
                 }
                 this.nextLevel(this.level);
             } else if (checkAnswer(this.level) !== null) {
-                editor.classList.add('wobble');
+                this.editor.classList.add('wobble');
             }
         });
     }
     public addInputListener(): void {
-        const editor = getElement('.editor');
-        const board = getElement('.board');
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
-            editor.classList.remove('wobble');
+            this.editor.classList.remove('wobble');
             this.input.clearInput();
             this.input.writeToFakeInput(input.value);
             if (event.key === 'Enter') {
                 if (checkAnswer(this.level)) {
-                    editor.classList.remove('wobble');
-                    board.classList.add('swirl-out-bck');
+                    this.editor.classList.remove('wobble');
+                    this.board.classList.add('swirl-out-bck');
                     gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                     gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
                     saveToLocalStorage();
@@ -159,7 +159,7 @@ class Listeners {
                     clearInput();
                     this.isHelpUsed = false;
                 } else if (checkAnswer(this.level) !== null) {
-                    editor.classList.add('wobble');
+                    this.editor.classList.add('wobble');
                 }
             }
         });
