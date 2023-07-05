@@ -6,10 +6,10 @@ import {
     clearInput,
     getElement,
     resetGameProgress,
+    saveToLocalStorage,
     showAnswer,
 } from '../../../functions/functions';
 import AppView from '../../view/appview';
-import LocalStorage from '../localStorage/localStorage';
 import HoverListeners from './hoverListeners';
 import InputListener from './input';
 
@@ -19,14 +19,12 @@ class Listeners {
     private input: InputListener;
     private level: number;
     private isHelpUsed = false;
-    private storage: LocalStorage;
 
     constructor(level: number) {
         this.level = level;
         this.view = new AppView(0);
         this.hover = new HoverListeners();
         this.input = new InputListener();
-        this.storage = new LocalStorage();
     }
 
     private redrawContent(): void {
@@ -67,12 +65,12 @@ class Listeners {
         buttonLeft.addEventListener('click', () => {
             this.prevLevel(this.level);
             gameData.currentLevel = this.level;
-            this.storage.saveToLocalStorage();
+            saveToLocalStorage();
         });
         buttonRight.addEventListener('click', () => {
             this.nextLevel(this.level);
             gameData.currentLevel = this.level;
-            this.storage.saveToLocalStorage();
+            saveToLocalStorage();
         });
         const submitButton = getElement('.editor__button');
         const editor = getElement('.editor');
@@ -83,7 +81,7 @@ class Listeners {
                 board.classList.add('swirl-out-bck');
                 gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                 gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
-                this.storage.saveToLocalStorage();
+                saveToLocalStorage();
                 clearInput();
                 this.isHelpUsed = false;
                 if (this.level === levels.length - 1) {
@@ -114,7 +112,7 @@ class Listeners {
                     board.classList.add('swirl-out-bck');
                     gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
                     gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
-                    this.storage.saveToLocalStorage();
+                    saveToLocalStorage();
                     this.nextLevel(this.level);
                     clearInput();
                     this.isHelpUsed = false;
@@ -129,7 +127,7 @@ class Listeners {
                 if (e.target.className.includes('levels__button')) {
                     this.level = Number(e.target.id.slice(3)) - 1;
                     gameData.currentLevel = this.level;
-                    this.storage.saveToLocalStorage();
+                    saveToLocalStorage();
                     this.redrawContent();
                 }
             }
