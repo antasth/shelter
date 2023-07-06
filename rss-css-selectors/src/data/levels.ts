@@ -272,6 +272,7 @@ const levels: Array<LevelObject> = [
             {
                 tag: 'cup',
                 class: ['cup'],
+                id: 'cup',
                 index: '2',
                 tooltip: '<cup><cup/>',
                 child: 'coffe',
@@ -284,7 +285,7 @@ const levels: Array<LevelObject> = [
         ],
         htmlContent: [
             '<papercup data-index="1">&lt;papercup/&gt;<papercup/><br>',
-            '<cup data-index="2">&lt;cup class="cup"&gt;<br><coffe data-index="3">&lt;coffe id="coffe"&gt;</coffe><br>&lt;cup/&gt;<cup/><br>',
+            '<cup data-index="2">&lt;cup id="cup"&gt;<br><coffe data-index="3">&lt;coffe id="coffe"&gt;</coffe><br>&lt;cup/&gt;<cup/><br>',
             '<cup data-index="4">&lt;cup&gt;<cup/>',
         ],
         target: [2],

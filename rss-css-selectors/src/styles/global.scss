@@ -359,6 +359,7 @@ button {
     box-shadow: $shadow;
 }
 papercup.active-line,
+redcup.active-line,
 cup.active-line {
     background-color: $backlight;
     color: $textdark;
