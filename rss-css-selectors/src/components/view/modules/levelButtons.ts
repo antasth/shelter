@@ -6,6 +6,7 @@ import {
     getElement,
     getFromLocalStorage,
     isCompletedByHelp,
+    setActiveLevel,
 } from '../../../functions/functions';
 import { GameData } from '../../../interfaces/interfaces';
 
@@ -17,7 +18,7 @@ class LevelButtons {
         createElement('h3', 'levels__header', 'Select level', levelsHeader);
         const content = createElement('div', 'levels__content', '', levels);
         this.drawLevel(content);
-        this.setActiveLevel(level);
+        setActiveLevel(level);
     }
     private drawLevel(parentElement: HTMLElement) {
         levels.forEach((_, i) => {
@@ -28,10 +29,6 @@ class LevelButtons {
                 button.classList.add(isCompletedByHelp(this.isLevelCompleted(i)));
             }
         });
-    }
-    public setActiveLevel(level: number): void {
-        const button = getElement(`#lvl${level + 1}`);
-        button?.classList.add('levels__button__active');
     }
     private isLevelCompleted(lvl: number): boolean | null {
         const dataFromLocalStorage: GameData = getFromLocalStorage();

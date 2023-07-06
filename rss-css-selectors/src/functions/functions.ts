@@ -113,3 +113,14 @@ export const resetGameProgress = (): void => {
     gameData.completedLevels = [];
     saveToLocalStorage();
 };
+
+export const setActiveLevel = (level: number): void => {
+    const button = getElement(`#lvl${level + 1}`);
+    button?.classList.add('levels__button__active');
+};
+// private isLevelCompleted(lvl: number): boolean | null {
+//     const dataFromLocalStorage: GameData = getFromLocalStorage();
+//     gameData.completedLevels = dataFromLocalStorage.completedLevels;
+//     const [level] = filterCompletedLevels(gameData.completedLevels, lvl);
+//     return level ? level.help : null;
+// }
