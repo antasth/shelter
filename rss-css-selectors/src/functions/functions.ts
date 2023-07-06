@@ -1,7 +1,7 @@
 import { BASE_ANSWER_DELAY, LIST_NUMBERS_ARRAY_LENGTH, SYMBOL_SHOW_DELAY } from '../data/constants';
 import gameData from '../data/gamedata';
 import levels from '../data/levels';
-import { CompletedLevelObject } from '../interfaces/interfaces';
+import { CompletedLevelObject, GameData } from '../interfaces/interfaces';
 
 export const getElement = <T extends HTMLElement>(selector: string): T => {
     const element = document.querySelector<T>(selector);
@@ -118,9 +118,9 @@ export const setActiveLevel = (level: number): void => {
     const button = getElement(`#lvl${level + 1}`);
     button?.classList.add('levels__button__active');
 };
-// private isLevelCompleted(lvl: number): boolean | null {
-//     const dataFromLocalStorage: GameData = getFromLocalStorage();
-//     gameData.completedLevels = dataFromLocalStorage.completedLevels;
-//     const [level] = filterCompletedLevels(gameData.completedLevels, lvl);
-//     return level ? level.help : null;
-// }
+export const isLevelCompleted = (lvl: number): boolean | null => {
+    const dataFromLocalStorage: GameData = getFromLocalStorage();
+    gameData.completedLevels = dataFromLocalStorage.completedLevels;
+    const [level] = filterCompletedLevels(gameData.completedLevels, lvl);
+    return level ? level.help : null;
+};

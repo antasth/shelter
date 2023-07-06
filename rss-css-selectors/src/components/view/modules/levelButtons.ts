@@ -1,14 +1,11 @@
-import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
 import {
     createElement,
-    filterCompletedLevels,
     getElement,
-    getFromLocalStorage,
     isCompletedByHelp,
+    isLevelCompleted,
     setActiveLevel,
 } from '../../../functions/functions';
-import { GameData } from '../../../interfaces/interfaces';
 
 class LevelButtons {
     public drawLevelButtons(level: number): void {
@@ -25,16 +22,10 @@ class LevelButtons {
             const lvl = String(i + 1);
             const button = createElement('button', 'levels__button', lvl, parentElement);
             button.id = `lvl${lvl}`;
-            if (this.isLevelCompleted(i) !== null) {
-                button.classList.add(isCompletedByHelp(this.isLevelCompleted(i)));
+            if (isLevelCompleted(i) !== null) {
+                button.classList.add(isCompletedByHelp(isLevelCompleted(i)));
             }
         });
-    }
-    private isLevelCompleted(lvl: number): boolean | null {
-        const dataFromLocalStorage: GameData = getFromLocalStorage();
-        gameData.completedLevels = dataFromLocalStorage.completedLevels;
-        const [level] = filterCompletedLevels(gameData.completedLevels, lvl);
-        return level ? level.help : null;
     }
 }
 
