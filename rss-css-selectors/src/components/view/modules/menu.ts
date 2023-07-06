@@ -21,6 +21,7 @@ class Menu {
         const content = this.drawContent();
         this.levelButtons.drawLevelButtons(level);
         menu.append(nav, content);
+        this.drawHelpButton();
     }
 
     private drawNavMenu(): HTMLElement {
@@ -48,6 +49,10 @@ class Menu {
         createElement('p', 'menu__example', this.data.example, content);
         createElement('p', 'menu__task', this.data.task, content);
         return content;
+    }
+    private drawHelpButton(): void {
+        const board = getElement('.levels__top');
+        createElement('button', 'help__button', 'need help?', board);
     }
 }
 

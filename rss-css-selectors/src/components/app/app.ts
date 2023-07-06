@@ -19,7 +19,6 @@ class App {
     public start(): void {
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
-        this.view.drawHelpButton();
         this.view.drawResetButton();
         this.view.drawEditor();
         this.buttonListeners.addButtonLeftListener();
