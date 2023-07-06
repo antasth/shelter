@@ -22,6 +22,7 @@ class Menu {
         this.levelButtons.drawLevelButtons(level);
         menu.append(nav, content);
         this.drawHelpButton();
+        this.drawResetButton();
     }
 
     private drawNavMenu(): HTMLElement {
@@ -34,13 +35,6 @@ class Menu {
         return menuNav;
     }
 
-    private drawNavButton(direction: string): HTMLButtonElement {
-        const navButton = document.createElement('button');
-        navButton.classList.add('menu__button', `menu__button-${direction}`);
-        navButton.innerText = getDirectionSymbol(direction);
-        return navButton;
-    }
-
     private drawContent(): HTMLElement {
         const content = createElement('div', 'menu__content', '', null);
         createElement('h2', 'menu__header', this.data.name, content);
@@ -50,9 +44,19 @@ class Menu {
         createElement('p', 'menu__task', this.data.task, content);
         return content;
     }
+    private drawNavButton(direction: string): HTMLButtonElement {
+        const navButton = document.createElement('button');
+        navButton.classList.add('menu__button', `menu__button-${direction}`);
+        navButton.innerText = getDirectionSymbol(direction);
+        return navButton;
+    }
     private drawHelpButton(): void {
         const board = getElement('.levels__top');
         createElement('button', 'help__button', 'need help?', board);
+    }
+    private drawResetButton(): void {
+        const levels = getElement('.levels__top');
+        createElement('button', 'reset__button', 'reset', levels);
     }
 }
 

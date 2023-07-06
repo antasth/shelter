@@ -35,7 +35,6 @@ class Listeners {
     private redrawContent(): void {
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
-        this.view.drawResetButton();
         this.view.createHtmlContent(this.level);
         this.hover.addHoverListeners();
         this.input.restoreInput();
