@@ -210,7 +210,7 @@ h1 {
         outline: none;
     }
     &__content tea,
-    coffe {
+    coffee {
         margin-left: 20px;
         &:hover {
             color: $textdark;
@@ -325,7 +325,7 @@ h1 {
     background-image: url('../assets/img/red-cup.png');
 }
 .tea,
-.coffe {
+.coffee {
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
@@ -345,8 +345,8 @@ h1 {
     background-image: url('../assets/img/tea.png');
     left: -20px;
 }
-.coffe {
-    background-image: url('../assets/img/coffe.png');
+.coffee {
+    background-image: url('../assets/img/coffee.png');
     left: -7px;
 }
 button {
@@ -365,7 +365,7 @@ cup.active-line {
     color: $textdark;
 }
 tea.active-line,
-coffe.active-line {
+coffee.active-line {
     background-color: $green;
     color: $textdark;
 }
@@ -529,7 +529,7 @@ coffe.active-line {
         width: 90px;
     }
     .tea,
-    .coffe {
+    .coffee {
         width: 40px;
         height: 40px;
     }
@@ -537,7 +537,7 @@ coffe.active-line {
     .papercup,
     .redcup,
     .tea,
-    .coffe {
+    .coffee {
         &:hover {
             transform: scale(1.05);
         }
@@ -559,7 +559,8 @@ coffe.active-line {
 }
 
 @media (max-width: 575.98px) {
-    .content__header h1, h2 {
+    .content__header h1,
+    h2 {
         font-size: 16px;
         letter-spacing: 5px;
     }
