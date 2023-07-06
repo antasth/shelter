@@ -1,15 +1,20 @@
 import levels from '../../../data/levels';
-import { createElement, getDirectionSymbol, getElement, getLevelHeader } from '../../../functions/functions';
+import {
+    createElement,
+    getDirectionSymbol,
+    getElement,
+    getLevelHeader,
+    isCompletedByHelp,
+    isLevelCompleted,
+    setActiveLevel,
+} from '../../../functions/functions';
 import { LevelObject } from '../../../interfaces/interfaces';
-import LevelButtons from './levelButtons';
 
 class Menu {
     private data: LevelObject;
-    private levelButtons: LevelButtons;
 
     constructor(level: number) {
         this.data = levels[level];
-        this.levelButtons = new LevelButtons();
     }
 
     public drawMenu(level: number): void {
@@ -19,7 +24,7 @@ class Menu {
         const menu = createElement('div', 'menu', '', sidebar);
         const nav = this.drawNavMenu();
         const content = this.drawContent();
-        this.levelButtons.drawLevelButtons(level);
+        this.drawLevelsContainer(level);
         menu.append(nav, content);
         this.drawHelpButton();
         this.drawResetButton();
@@ -43,6 +48,25 @@ class Menu {
         createElement('p', 'menu__example', this.data.example, content);
         createElement('p', 'menu__task', this.data.task, content);
         return content;
+    }
+    private drawLevelsContainer(level: number): void {
+        const sidebar = getElement('.sidebar__wrapper');
+        const levels = createElement('div', 'levels', '', sidebar);
+        const levelsHeader = createElement('div', 'levels__top', '', levels);
+        createElement('h3', 'levels__header', 'Select level', levelsHeader);
+        const content = createElement('div', 'levels__content', '', levels);
+        this.drawLevelButtons(content);
+        setActiveLevel(level);
+    }
+    private drawLevelButtons(parentElement: HTMLElement) {
+        levels.forEach((_, i) => {
+            const lvl = String(i + 1);
+            const button = createElement('button', 'levels__button', lvl, parentElement);
+            button.id = `lvl${lvl}`;
+            if (isLevelCompleted(i) !== null) {
+                button.classList.add(isCompletedByHelp(isLevelCompleted(i)));
+            }
+        });
     }
     private drawNavButton(direction: string): HTMLButtonElement {
         const navButton = document.createElement('button');
