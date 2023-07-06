@@ -1,4 +1,4 @@
-import { baseAnswerDelay, listNumbersArrayLength, symbolShowDelay } from '../data/constants';
+import { BASE_ANSWER_DELAY, LIST_NUMBERS_ARRAY_LENGTH, SYMBOL_SHOW_DELAY } from '../data/constants';
 import gameData from '../data/gamedata';
 import levels from '../data/levels';
 import { CompletedLevelObject } from '../interfaces/interfaces';
@@ -31,7 +31,7 @@ export const createElement = (
 export const createNumbersList = (): HTMLUListElement => {
     const editorNumbers = document.createElement('ul');
     editorNumbers.classList.add('editor__numbers');
-    const itemsArray = createArray(listNumbersArrayLength);
+    const itemsArray = createArray(LIST_NUMBERS_ARRAY_LENGTH);
     editorNumbers.innerHTML = itemsArray.map((_, i) => `<li>${i + 1}</li>`).join('');
     return editorNumbers;
 };
@@ -42,7 +42,7 @@ export const createArray = (length: number): Array<null> => {
 
 // function based on this example https://www.w3schools.com/howto/howto_js_typewriter.asp
 export const writeAnswerToInput = (input: HTMLElement, answer: string): void => {
-    const delay = symbolShowDelay;
+    const delay = SYMBOL_SHOW_DELAY;
     gameData.writeAnswerDelay = answerDelay(delay, answer.length);
     let i = 0;
     const write = (): void => {
@@ -60,7 +60,7 @@ export const writeAnswerToInput = (input: HTMLElement, answer: string): void => 
 };
 
 export const answerDelay = (delay: number, length: number): number => {
-    return length * delay + baseAnswerDelay;
+    return length * delay + BASE_ANSWER_DELAY;
 };
 
 export const filterCompletedLevels = (levels: CompletedLevelObject[], currentLevel: number): CompletedLevelObject[] => {

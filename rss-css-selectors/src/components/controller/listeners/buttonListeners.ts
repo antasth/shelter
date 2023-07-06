@@ -1,7 +1,6 @@
 import gameData from '../../../data/gamedata';
 import levels from '../../../data/levels';
 import {
-    // checkAnswer,
     checkAnySelectors,
     clearInput,
     getElement,
