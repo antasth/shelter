@@ -2,6 +2,17 @@ import gameData from '../../../data/gamedata';
 import { createElement, getElement, writeAnswerToInput } from '../../../functions/functions';
 
 class InputListener {
+    public addInputListener(): void {
+        const input: HTMLInputElement = getElement('.editor__input');
+        const editor = getElement('.editor');
+        input.addEventListener('keyup', (event: KeyboardEvent) => {
+            if (event.key !== 'Enter') {
+                editor.classList.remove('wobble');
+                this.clearInput();
+                this.writeToFakeInput(input.value);
+            }
+        });
+    }
     public writeToFakeInput(str: string): void {
         const fakeInput = getElement('.editor__input-color');
         fakeInput.replaceChildren();

@@ -43,9 +43,6 @@ class Listeners {
         this.addButtonResetListener();
         this.addButtonHelpListener();
         this.addButtonLevelsListener();
-        this.addButtonSubmitListener();
-        this.addKeyboardEnterListener();
-        this.addInputListener();
     }
 
     private nextLevel(level: number): void {
@@ -63,9 +60,6 @@ class Listeners {
             this.redrawContent();
             gameData.currentLevel = this.level;
         }
-    }
-    public addHoverListeners(): void {
-        this.hover.addHoverListeners();
     }
     public addButtonLeftListener(): void {
         const buttonLeft = getElement('.menu__button-left');
@@ -161,16 +155,6 @@ class Listeners {
                 } else {
                     this.editor.classList.add('wobble');
                 }
-            }
-        });
-    }
-    public addInputListener(): void {
-        const input: HTMLInputElement = getElement('.editor__input');
-        input.addEventListener('keyup', (event: KeyboardEvent) => {
-            if (event.key !== 'Enter') {
-                this.editor.classList.remove('wobble');
-                this.input.clearInput();
-                this.input.writeToFakeInput(input.value);
             }
         });
     }

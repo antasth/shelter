@@ -1,6 +1,7 @@
 import { getFromLocalStorage } from '../../functions/functions';
 import { GameData } from '../../interfaces/interfaces';
 import Listeners from '../controller/listeners/buttonListeners';
+import InputListener from '../controller/listeners/inputListeners';
 import AppView from '../view/appview';
 
 class App {
@@ -8,12 +9,14 @@ class App {
     private level: number;
     private storageData: GameData;
     private buttonListeners: Listeners;
+    private inputListeners: InputListener;
 
     constructor() {
         this.storageData = getFromLocalStorage();
         this.level = this.storageData ? this.storageData.currentLevel : 0;
         this.view = new AppView(this.level);
         this.buttonListeners = new Listeners(this.level);
+        this.inputListeners = new InputListener();
     }
 
     public start(): void {
@@ -28,7 +31,7 @@ class App {
         this.buttonListeners.addButtonLevelsListener();
         this.buttonListeners.addButtonSubmitListener();
         this.buttonListeners.addKeyboardEnterListener();
-        this.buttonListeners.addInputListener();
+        this.inputListeners.addInputListener();
     }
 }
 
