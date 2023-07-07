@@ -24,8 +24,8 @@ class Menu {
         const menu = createElement('div', 'menu', '', sidebar);
         const nav = this.drawNavMenu();
         const content = this.drawContent();
-        this.drawLevelsContainer(level);
         menu.append(nav, content);
+        this.drawLevelsContainer(level);
         this.drawHelpButton();
         this.drawResetButton();
     }
@@ -58,7 +58,7 @@ class Menu {
         this.drawLevelButtons(content);
         setActiveLevel(level);
     }
-    private drawLevelButtons(parentElement: HTMLElement) {
+    private drawLevelButtons(parentElement: HTMLElement): void {
         levels.forEach((_, i) => {
             const lvl = String(i + 1);
             const button = createElement('button', 'levels__button', lvl, parentElement);

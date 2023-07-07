@@ -45,7 +45,7 @@ class Board {
         });
         this.addAnimationsToTargetElements(targetList);
     }
-    public showWinMessage() {
+    public showWinMessage(): void {
         const board = getElement('.board');
         const editor = getElement('.editor__content');
         board.replaceChildren();
