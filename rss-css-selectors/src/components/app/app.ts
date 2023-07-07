@@ -23,14 +23,7 @@ class App {
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
         this.view.drawEditor();
-        this.buttonListeners.addButtonLeftListener();
-        this.buttonListeners.addButtonRightListener();
-        this.buttonListeners.addButtonResetListener();
-        this.buttonListeners.addButtonHelpListener();
-        this.buttonListeners.addButtonBurgerListener();
-        this.buttonListeners.addButtonLevelsListener();
-        this.buttonListeners.addButtonSubmitListener();
-        this.buttonListeners.addKeyboardEnterListener();
+        this.buttonListeners.addButtonListeners();
         this.inputListeners.addInputListener();
     }
 }

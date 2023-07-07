@@ -31,7 +31,16 @@ class Listeners {
         this.board = getElement('.board');
         this.sidebar = getElement('.sidebar');
     }
-
+    public addButtonListeners() {
+        this.addButtonLeftListener();
+        this.addButtonRightListener();
+        this.addButtonResetListener();
+        this.addButtonHelpListener();
+        this.addButtonBurgerListener();
+        this.addButtonLevelsListener();
+        this.addButtonSubmitListener();
+        this.addKeyboardEnterListener();
+    }
     private redrawContent(): void {
         this.view.drawBoard(this.level);
         this.view.drawMenu(this.level);
@@ -61,7 +70,7 @@ class Listeners {
             gameData.currentLevel = this.level;
         }
     }
-    public addButtonLeftListener(): void {
+    private addButtonLeftListener(): void {
         const buttonLeft = getElement('.menu__button-left');
         buttonLeft.addEventListener('click', () => {
             this.prevLevel(this.level);
@@ -69,7 +78,7 @@ class Listeners {
             saveToLocalStorage();
         });
     }
-    public addButtonRightListener(): void {
+    private addButtonRightListener(): void {
         const buttonRight = getElement('.menu__button-right');
         buttonRight.addEventListener('click', () => {
             this.nextLevel(this.level);
@@ -77,7 +86,7 @@ class Listeners {
             saveToLocalStorage();
         });
     }
-    public addButtonResetListener(): void {
+    private addButtonResetListener(): void {
         const resetButton = getElement('.reset__button');
         resetButton.addEventListener('click', () => {
             resetGameProgress();
@@ -85,14 +94,14 @@ class Listeners {
             this.redrawContent();
         });
     }
-    public addButtonBurgerListener(): void {
+    private addButtonBurgerListener(): void {
         const burgerIcon = getElement('.burger__icon');
         burgerIcon.addEventListener('click', () => {
             burgerIcon.classList.toggle('burger__icon-active');
             this.sidebar.classList.toggle('sidebar__active');
         });
     }
-    public addButtonHelpListener(): void {
+    private addButtonHelpListener(): void {
         const helpButton = getElement('.help__button');
         helpButton.addEventListener('click', () => {
             this.editor.classList.remove('wobble');
@@ -103,7 +112,7 @@ class Listeners {
             showAnswer(levels[this.level].answer[0]);
         });
     }
-    public addButtonLevelsListener(): void {
+    private addButtonLevelsListener(): void {
         const levelButtons = getElement('.levels__content');
         levelButtons.addEventListener('click', (e: Event) => {
             if (e.target && e.target instanceof HTMLElement) {
@@ -116,7 +125,7 @@ class Listeners {
             }
         });
     }
-    public addButtonSubmitListener(): void {
+    private addButtonSubmitListener(): void {
         const submitButton = getElement('.editor__button');
         submitButton.addEventListener('click', () => {
             if (checkAnySelectors(this.level)) {
@@ -136,7 +145,7 @@ class Listeners {
             }
         });
     }
-    public addKeyboardEnterListener(): void {
+    private addKeyboardEnterListener(): void {
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
             if (event.key === 'Enter') {
