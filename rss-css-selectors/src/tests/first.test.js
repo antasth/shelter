@@ -8,7 +8,7 @@ describe('test functions', () => {
         expect(functions.createElement()).toBeInstanceOf(HTMLElement);
     });
     test('answer delay', () => {
-        expect(functions.answerDelay(5, 100)).toBeGreaterThan(200);
+        expect(functions.getAnswerDelay(5, 100)).toBeGreaterThan(200);
     });
     test('array length', () => {
         expect(functions.createArray(15)).toHaveLength(15);
