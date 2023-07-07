@@ -74,7 +74,6 @@ class Listeners {
         const buttonLeft = getElement('.menu__button-left');
         buttonLeft.addEventListener('click', () => {
             this.prevLevel(this.level);
-            this.addButtonBurgerListener();
             saveToLocalStorage();
         });
     }
@@ -82,7 +81,6 @@ class Listeners {
         const buttonRight = getElement('.menu__button-right');
         buttonRight.addEventListener('click', () => {
             this.nextLevel(this.level);
-            this.addButtonBurgerListener();
             saveToLocalStorage();
         });
     }

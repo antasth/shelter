@@ -18,7 +18,6 @@ class Editor {
         const cssEditor = createElement('div', 'editor__css', '', null);
         createElement('div', 'editor__header', 'CSS', cssEditor);
         const cssEditorContent = createElement('div', 'editor__content-css', '', cssEditor);
-
         const inputContent = createElement('div', 'editor__input__content', '', cssEditorContent);
         createElement('div', 'editor__input-color', 'введите CSS селектор', inputContent);
         const editorInput = createElement('input', 'editor__input', '', inputContent);
