@@ -137,7 +137,7 @@ class Listeners {
                     this.view.showWinMessage();
                 }
                 this.nextLevel(this.level);
-            } else if (checkAnySelectors(this.level) !== null) {
+            } else {
                 this.editor.classList.add('wobble');
             }
         });
