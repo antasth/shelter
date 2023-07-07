@@ -1,6 +1,7 @@
 import { getFromLocalStorage } from '../../functions/functions';
 import { GameData } from '../../interfaces/interfaces';
 import Listeners from '../controller/listeners/buttonListeners';
+import HoverListeners from '../controller/listeners/hoverListeners';
 import InputListener from '../controller/listeners/inputListeners';
 import AppView from '../view/appview';
 
@@ -10,6 +11,7 @@ class App {
     private storageData: GameData;
     private buttonListeners: Listeners;
     private inputListeners: InputListener;
+    private hoverListeners: HoverListeners;
 
     constructor() {
         this.storageData = getFromLocalStorage();
@@ -17,6 +19,7 @@ class App {
         this.view = new AppView(this.level);
         this.buttonListeners = new Listeners(this.level);
         this.inputListeners = new InputListener();
+        this.hoverListeners = new HoverListeners();
     }
 
     public start(): void {
@@ -25,6 +28,7 @@ class App {
         this.view.drawEditor();
         this.buttonListeners.addButtonListeners();
         this.inputListeners.addInputListener();
+        this.hoverListeners.addHoverListeners();
     }
 }
 
