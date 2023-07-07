@@ -44,6 +44,7 @@ class Listeners {
         this.addButtonHelpListener();
         this.addButtonLevelsListener();
         this.addButtonSubmitListener();
+        this.addKeyboardEnterListener();
         this.addInputListener();
     }
 
@@ -141,12 +142,9 @@ class Listeners {
             }
         });
     }
-    public addInputListener(): void {
+    public addKeyboardEnterListener(): void {
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
-            this.editor.classList.remove('wobble');
-            this.input.clearInput();
-            this.input.writeToFakeInput(input.value);
             if (event.key === 'Enter') {
                 if (checkAnySelectors(this.level)) {
                     this.editor.classList.remove('wobble');
@@ -160,9 +158,19 @@ class Listeners {
                         this.view.showWinMessage();
                     }
                     this.nextLevel(this.level);
-                } else if (checkAnySelectors(this.level) !== null) {
+                } else {
                     this.editor.classList.add('wobble');
                 }
+            }
+        });
+    }
+    public addInputListener(): void {
+        const input: HTMLInputElement = getElement('.editor__input');
+        input.addEventListener('keyup', (event: KeyboardEvent) => {
+            if (event.key !== 'Enter') {
+                this.editor.classList.remove('wobble');
+                this.input.clearInput();
+                this.input.writeToFakeInput(input.value);
             }
         });
     }

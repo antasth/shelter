@@ -27,6 +27,7 @@ class App {
         this.buttonListeners.addButtonBurgerListener();
         this.buttonListeners.addButtonLevelsListener();
         this.buttonListeners.addButtonSubmitListener();
+        this.buttonListeners.addKeyboardEnterListener();
         this.buttonListeners.addInputListener();
     }
 }
