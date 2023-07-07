@@ -1,3 +1,4 @@
+import { SHOW_ITEMS_DELAY } from '../../../data/constants';
 import levels from '../../../data/levels';
 import { createElement, getElement } from '../../../functions/functions';
 import { LevelElement, LevelObject } from '../../../interfaces/interfaces';
@@ -37,7 +38,7 @@ class Board {
         const board = getElement('.board');
         setTimeout(() => {
             board.classList.remove('swirl-out-bck');
-        }, 1000);
+        }, SHOW_ITEMS_DELAY);
 
         board.replaceChildren();
         this.data.html.forEach((elem) => {
