@@ -126,44 +126,33 @@ class Listeners {
     private addButtonSubmitListener(): void {
         const submitButton = getElement('.editor__button');
         submitButton.addEventListener('click', () => {
-            if (checkAnySelectors(this.level)) {
-                this.editor.classList.remove('wobble');
-                this.board.classList.add('swirl-out-bck');
-                gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
-                gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
-                saveToLocalStorage();
-                clearInput();
-                this.isHelpUsed = false;
-                if (this.level === levels.length - 1) {
-                    this.view.showWinMessage();
-                }
-                this.nextLevel(this.level);
-            } else {
-                this.editor.classList.add('wobble');
-            }
+            this.checkSubmitedSelectors();
         });
     }
     private addKeyboardEnterListener(): void {
         const input: HTMLInputElement = getElement('.editor__input');
         input.addEventListener('keyup', (event: KeyboardEvent) => {
             if (event.key === 'Enter') {
-                if (checkAnySelectors(this.level)) {
-                    this.editor.classList.remove('wobble');
-                    this.board.classList.add('swirl-out-bck');
-                    gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
-                    gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
-                    saveToLocalStorage();
-                    clearInput();
-                    this.isHelpUsed = false;
-                    if (this.level === levels.length - 1) {
-                        this.view.showWinMessage();
-                    }
-                    this.nextLevel(this.level);
-                } else {
-                    this.editor.classList.add('wobble');
-                }
+                this.checkSubmitedSelectors();
             }
         });
+    }
+    private checkSubmitedSelectors(): void {
+        if (checkAnySelectors(this.level)) {
+            this.editor.classList.remove('wobble');
+            this.board.classList.add('swirl-out-bck');
+            gameData.completedLevels.push({ level: this.level, help: this.isHelpUsed });
+            gameData.currentLevel = this.level < levels.length - 1 ? this.level + 1 : this.level;
+            saveToLocalStorage();
+            clearInput();
+            this.isHelpUsed = false;
+            if (this.level === levels.length - 1) {
+                this.view.showWinMessage();
+            }
+            this.nextLevel(this.level);
+        } else {
+            this.editor.classList.add('wobble');
+        }
     }
 }
 export default Listeners;
