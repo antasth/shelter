@@ -1,4 +1,4 @@
-import { SHOW_ITEMS_DELAY } from '../../../data/constants';
+import { SHOW_ITEMS_DELAY, WIN_MESSAGE } from '../../../data/constants';
 import levels from '../../../data/levels';
 import { createElement, getElement } from '../../../functions/functions';
 import { LevelElement, LevelObject } from '../../../interfaces/interfaces';
@@ -52,7 +52,7 @@ class Board {
         board.replaceChildren();
         editor.replaceChildren();
         board.classList.remove('swirl-out-bck');
-        createElement('h1', 'win__message', 'Поздравляю, последний уровень пройден!', board);
+        createElement('h1', 'win__message', WIN_MESSAGE, board);
     }
 }
 

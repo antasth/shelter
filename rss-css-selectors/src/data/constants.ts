@@ -2,3 +2,4 @@ export const LIST_NUMBERS_ARRAY_LENGTH = 13;
 export const BASE_ANSWER_DELAY = 200;
 export const SYMBOL_SHOW_DELAY = 100;
 export const SHOW_ITEMS_DELAY = 1000;
+export const WIN_MESSAGE = 'Поздравляю, последний уровень пройден!';
