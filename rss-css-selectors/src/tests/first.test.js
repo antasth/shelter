@@ -10,8 +10,18 @@ describe('test functions', () => {
     test('answer delay', () => {
         expect(functions.getAnswerDelay(5, 100)).toBeGreaterThan(200);
     });
+    test('throw error', () => {
+        const attempt = () => functions.getElement('');
+        expect(attempt).toThrow();
+    });
     test('array length', () => {
         expect(functions.createArray(15)).toHaveLength(15);
+    });
+    test('isCompletedByHelp return value', () => {
+        expect(functions.isCompletedByHelp(null)).toBe('levels__button__self');
+    });
+    test('isCompletedByHelp return value', () => {
+        expect(functions.isCompletedByHelp(true)).toBe('levels__button__help');
     });
     test('level header string', () => {
         expect(functions.getLevelHeader(4, 20)).toEqual('LEVEL 4 OF 20');
