@@ -1,8 +1,8 @@
 import { getFromLocalStorage } from '../../functions/functions';
 import { GameData } from '../../interfaces/interfaces';
-import Listeners from '../controller/listeners/buttonListeners';
-import HoverListeners from '../controller/listeners/hoverListeners';
-import InputListener from '../controller/listeners/inputListeners';
+import Listeners from '../controller/buttonListeners';
+import HoverListeners from '../controller/hoverListeners';
+import InputListener from '../controller/inputListeners';
 import AppView from '../view/appview';
 
 class App {

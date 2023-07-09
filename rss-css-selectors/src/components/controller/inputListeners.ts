@@ -1,5 +1,5 @@
-import gameData from '../../../data/gamedata';
-import { createElement, getElement, writeAnswerToInput } from '../../../functions/functions';
+import gameData from '../../data/gamedata';
+import { createElement, getElement, writeAnswerToInput } from '../../functions/functions';
 
 class InputListener {
     public addInputListener(): void {

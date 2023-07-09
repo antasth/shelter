@@ -1,5 +1,5 @@
-import gameData from '../../../data/gamedata';
-import levels from '../../../data/levels';
+import gameData from '../../data/gamedata';
+import levels from '../../data/levels';
 import {
     checkAnySelectors,
     clearInput,
@@ -7,8 +7,8 @@ import {
     resetGameProgress,
     saveToLocalStorage,
     showAnswer,
-} from '../../../functions/functions';
-import AppView from '../../view/appview';
+} from '../../functions/functions';
+import AppView from '../view/appview';
 import HoverListeners from './hoverListeners';
 import InputListener from './inputListeners';
 

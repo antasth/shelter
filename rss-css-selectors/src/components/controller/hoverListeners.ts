@@ -1,4 +1,4 @@
-import { createElement, getElement, getSelector } from '../../../functions/functions';
+import { createElement, getElement, getSelector } from '../../functions/functions';
 
 class HoverListeners {
     public addHoverListeners(): void {
