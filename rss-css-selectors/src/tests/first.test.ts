@@ -1,11 +1,11 @@
-const functions = require('../functions/functions.js');
+import * as functions from '../functions/functions';
 
 describe('test functions', () => {
     test('instance of createNumbersList function', () => {
         expect(functions.createNumbersList()).toBeInstanceOf(HTMLUListElement);
     });
     test('instance of createElement function', () => {
-        expect(functions.createElement()).toBeInstanceOf(HTMLElement);
+        expect(functions.createElement('div', 'main', 'someText', null)).toBeInstanceOf(HTMLElement);
     });
     test('answer delay', () => {
         expect(functions.getAnswerDelay(5, 100)).toBeGreaterThan(200);
