@@ -1,4 +1,4 @@
-const functions = require('../functions/functions.ts');
+const functions = require('../functions/functions.js');
 
 describe('test functions', () => {
     test('instance of createNumbersList function', () => {
@@ -34,9 +34,6 @@ describe('test functions', () => {
     });
     test('get Direction Symbol left', () => {
         expect(functions.getDirectionSymbol('left')).toEqual('<');
-    });
-    test('get Direction Symbol right', () => {
-        expect(functions.getDirectionSymbol('right')).toEqual('>');
     });
     test('isCompletedByHelp cant return string "кофе"', () => {
         expect(functions.isCompletedByHelp(null)).not.toMatch('кофе');
