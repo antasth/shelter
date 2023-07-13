@@ -36,7 +36,9 @@ class Garage {
     const carContent = createElement('div', ['garage__item__content'], '', carItem);
     createElement('button', ['button', 'garage__item__button'], 'A', carContent);
     createElement('button', ['button', 'garage__item__button'], 'B', carContent);
-    createElement('div', ['garage__item__car'], '', carContent);
+    const carImg = createElement('div', ['garage__item__car'], '', carContent);
+    carImg.setAttribute('id', String(car.id));
+    carImg.style.backgroundColor = car.color;
   }
 }
 
