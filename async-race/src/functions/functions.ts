@@ -8,12 +8,12 @@ export const getElement = <T extends HTMLElement>(selector: string): T => {
 
 export const createElement = (
   tagName: string,
-  className: string,
+  className: string[],
   innerText: string,
   parentNode: HTMLElement | null
 ): HTMLElement => {
   const element: HTMLElement = document.createElement(tagName);
-  element.classList.add(className);
+  element.classList.add(...className);
   element.innerText = innerText;
   if (parentNode) {
     parentNode.append(element);
