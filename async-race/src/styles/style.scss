@@ -3,12 +3,67 @@
   margin: 0;
   padding: 0;
 }
-
-.car {
+.button {
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 50px;
-  background-color: blueviolet;
+  justify-content: center;
+  cursor: pointer;
+  padding: 5px;
+}
+.header {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+}
+
+.main {
+  padding: 0 10px;
+}
+.menu {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  row-gap: 10px;
+  &__block {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__controls {
+    display: flex;
+    &__button {
+      width: 100%;
+    }
+  }
+}
+
+.garage {
+  padding-top: 2rem;
+  &__content {
+    padding: 20px 0;
+  }
+
+  &__item {
+    &__header {
+      display: flex;
+      column-gap: 0.5rem;
+    }
+    &__content {
+      display: flex;
+      align-items: center;
+      column-gap: 0.2rem;
+    }
+    &__button {
+      width: 25px;
+      height: 25px;
+    }
+    &__car {
+      width: 200px;
+      height: 100px;
+      -webkit-mask: url(../assets/img/car.svg);
+      mask: url(../assets/img/car.svg);
+      -webkit-mask-size: cover;
+      mask-size: cover;
+      background-color: red;
+    }
+  }
 }
