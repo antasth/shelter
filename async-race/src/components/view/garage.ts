@@ -26,7 +26,7 @@ class Garage {
     });
   }
 
-  private drawCarBlock(parentElement: HTMLElement, car: CarObject) {
+  private drawCarBlock(parentElement: HTMLElement, car: CarObject): void {
     const carItem = createElement('div', ['garage__item'], '', parentElement);
     const carItemHeader = createElement('div', ['garage__item__header'], '', carItem);
     createElement('button', ['button', 'garage__header__button'], 'SELECT', carItemHeader);

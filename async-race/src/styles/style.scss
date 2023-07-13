@@ -3,6 +3,11 @@
   margin: 0;
   padding: 0;
 }
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+}
 .button {
   display: flex;
   align-items: center;
@@ -45,6 +50,7 @@
   &__item {
     &__header {
       display: flex;
+      align-items: center;
       column-gap: 0.5rem;
     }
     &__content {
