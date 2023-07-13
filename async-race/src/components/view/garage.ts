@@ -1,14 +1,21 @@
+import { CarObject } from '../../interfaces/interfaces';
 import Car from './modules/car';
 
 class Garage {
+  private cars: CarObject[];
+
   private car: Car;
 
-  constructor() {
-    this.car = new Car('lada', 'red');
+  constructor(cars: CarObject[]) {
+    this.cars = cars;
+    this.car = new Car();
   }
 
   public drawGarage() {
-    this.car.drawCar();
+    console.log(this.cars);
+    this.cars.forEach((car) => {
+      this.car.drawCar(car);
+    });
   }
 }
 

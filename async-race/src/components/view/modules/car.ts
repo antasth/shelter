@@ -1,15 +1,8 @@
+import { CarObject } from '../../../interfaces/interfaces';
+
 class Car {
-  private name: string;
-
-  private color: string;
-
-  constructor(name: string, color: string) {
-    this.name = name;
-    this.color = color;
-  }
-
-  public drawCar(): void {
-    console.log('car');
+  public drawCar(car: CarObject): void {
+    console.log('car', car);
   }
 }
 

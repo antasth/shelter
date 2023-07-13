@@ -1,5 +1,5 @@
 import { SERVER_URL } from '../../data/constants';
-import { Cars } from '../../interfaces/interfaces';
+import { CarObject } from '../../interfaces/interfaces';
 
 class Loader {
   private garage = `${SERVER_URL}/garage`;
@@ -8,9 +8,8 @@ class Loader {
 
   private engine = `${SERVER_URL}/engine`;
 
-  public async getCars(): Promise<Cars> {
+  public async getCars(): Promise<CarObject[]> {
     const response = await (await fetch(this.garage)).json();
-    console.log(response);
     return response;
   }
 }

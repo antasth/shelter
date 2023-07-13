@@ -1,19 +1,22 @@
+import { CarObject } from '../../interfaces/interfaces';
 import Loader from '../controller/loader';
 import Garage from '../view/garage';
+
+const loader = new Loader();
+const cars = await loader.getCars();
 
 class App {
   public garage: Garage;
 
-  public loader: Loader;
+  public cars: CarObject[];
 
   constructor() {
-    this.garage = new Garage();
-    this.loader = new Loader();
+    this.cars = cars;
+    this.garage = new Garage(this.cars);
   }
 
   public start(): void {
     this.garage.drawGarage();
-    this.loader.getCars();
   }
 }
 
