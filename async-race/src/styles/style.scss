@@ -5,15 +5,27 @@
 }
 html,
 body {
-    height: 100%;
-    min-height: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+body {
+  background: #232526;
+  background: -webkit-linear-gradient(to right, #414345, #232526);  
+  background: linear-gradient(to right, #414345, #232526); 
+  
+  color: aliceblue;
 }
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   padding: 5px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #e95500;
+  }
 }
 .header {
   display: flex;
@@ -27,11 +39,16 @@ body {
 .menu {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
+  max-width: 350px;
   row-gap: 10px;
   &__block {
     display: flex;
     justify-content: space-between;
+    column-gap: 0.3rem;
+    height: 2rem;
+    &__color {
+      height: 100%;
+    }
   }
   &__controls {
     display: flex;

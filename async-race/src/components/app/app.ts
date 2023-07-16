@@ -1,9 +1,8 @@
+import * as request from '../../api/request';
 import { CarObject } from '../../interfaces/interfaces';
-import Loader from '../controller/loader';
 import Garage from '../view/garage';
 
-const loader = new Loader();
-const cars = await loader.getCars();
+const cars = await request.getCars();
 
 class App {
   public garage: Garage;
