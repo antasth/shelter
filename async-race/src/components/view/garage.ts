@@ -28,6 +28,7 @@ class Garage {
 
   private drawCarBlock(parentElement: HTMLElement, car: CarObject): void {
     const carItem = createElement('div', ['garage__item'], '', parentElement);
+    carItem.setAttribute('id', String(car.id));
     const carItemHeader = createElement('div', ['garage__item__header'], '', carItem);
     createElement('button', ['button', 'garage__header__button'], 'SELECT', carItemHeader);
     createElement('button', ['button', 'garage__header__button'], 'REMOVE', carItemHeader);
