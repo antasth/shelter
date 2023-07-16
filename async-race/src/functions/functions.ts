@@ -1,3 +1,5 @@
+import { CAR_BRANDS, CAR_MODELS } from '../data/constants';
+
 export const getElement = <T extends HTMLElement>(selector: string): T => {
   const element = document.querySelector<T>(selector);
   if (!element) {
@@ -20,8 +22,11 @@ export const createElement = (
   }
   return element;
 };
-
-export const createRandomCar = () => {};
-export const createRandomCarName = () => {};
-
 export const getRandomNumber = (max: number) => Math.round(0.5 + Math.random() * (max + 1));
+
+export const createRandomCarName = () => {
+  const carNameIndex = getRandomNumber(CAR_BRANDS.length);
+  const carModelIndex = getRandomNumber(CAR_MODELS.length);
+  return `${CAR_BRANDS[carNameIndex]} ${CAR_MODELS[carModelIndex]}`;
+};
+export const createRandomCar = () => {};
