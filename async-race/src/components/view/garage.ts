@@ -34,11 +34,14 @@ class Garage {
     createElement('p', ['garage__header__carname'], car.name, carItemHeader);
     console.log(car);
     const carContent = createElement('div', ['garage__item__content'], '', carItem);
-    createElement('button', ['button', 'garage__item__button'], 'A', carContent);
-    createElement('button', ['button', 'garage__item__button'], 'B', carContent);
-    const carImg = createElement('div', ['garage__item__car'], '', carContent);
+    const carControls = createElement('div', ['garage__item__content__controls'], '', carContent);
+    createElement('button', ['button', 'garage__item__button'], 'A', carControls);
+    createElement('button', ['button', 'garage__item__button'], 'B', carControls);
+    const carTrack = createElement('div', ['garage__item__content__track'], '', carContent);
+    const carImg = createElement('div', ['garage__item__car'], '', carTrack);
     carImg.setAttribute('id', String(car.id));
     carImg.style.backgroundColor = car.color;
+    createElement('div', ['garage__item__flag'], '', carTrack);
   }
 }
 
