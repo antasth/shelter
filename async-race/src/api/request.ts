@@ -19,3 +19,14 @@ export const engineRequest = async (): Promise<CarObject[]> => {
   const response = await (await fetch(engine)).json();
   return response;
 };
+export const createCar = async (data: CarObject) => {
+  const response = await fetch(garage, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  const result = await response.json();
+  console.log(result);
+};

@@ -34,13 +34,18 @@
     "comma-dangle": [
       "error",
       {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
         "functions": "never"
       }
     ],
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto"
+        "endOfLine": "auto",
+        "trailingComma": "none"
       }
     ],
     "import/extensions": [

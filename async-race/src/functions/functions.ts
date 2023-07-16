@@ -20,3 +20,8 @@ export const createElement = (
   }
   return element;
 };
+
+export const createRandomCar = () => {};
+export const createRandomCarName = () => {};
+
+export const getRandomNumber = (max: number) => Math.round(0.5 + Math.random() * (max + 1));
