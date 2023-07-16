@@ -23,19 +23,17 @@ export const createElement = (
   return element;
 };
 export const getRandomNumber = (max: number) => {
-  return Math.round(0.5 + Math.random() * (max + 1));
+  return Math.floor(Math.random() * max);
 };
 
 export const getRandomColor = () => {
-  return `#${Math.round(Math.random() * 0xffffff)
-    .toString(16)
-    .padStart(6, '0')
-    .toUpperCase()}`;
+  return `#${getRandomNumber(0xffffff).toString(16).padStart(6, '0').toUpperCase()}`;
 };
 
 export const createRandomCarName = () => {
   const carNameIndex = getRandomNumber(CAR_BRANDS.length);
   const carModelIndex = getRandomNumber(CAR_MODELS.length);
+  console.log(carNameIndex, carModelIndex);
   return `${CAR_BRANDS[carNameIndex]} ${CAR_MODELS[carModelIndex]}`;
 };
 export const createRandomCar = () => {};
