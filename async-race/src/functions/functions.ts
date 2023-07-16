@@ -22,7 +22,16 @@ export const createElement = (
   }
   return element;
 };
-export const getRandomNumber = (max: number) => Math.round(0.5 + Math.random() * (max + 1));
+export const getRandomNumber = (max: number) => {
+  return Math.round(0.5 + Math.random() * (max + 1));
+};
+
+export const getRandomColor = () => {
+  return `#${Math.round(Math.random() * 0xffffff)
+    .toString(16)
+    .padStart(6, '0')
+    .toUpperCase()}`;
+};
 
 export const createRandomCarName = () => {
   const carNameIndex = getRandomNumber(CAR_BRANDS.length);

@@ -1,4 +1,4 @@
-import { createElement, createRandomCarName, getElement } from '../../functions/functions';
+import { createElement, createRandomCarName, getElement, getRandomColor } from '../../functions/functions';
 import { CarObject } from '../../interfaces/interfaces';
 import Menu from './modules/menu';
 
@@ -43,7 +43,7 @@ class Garage {
     carImg.setAttribute('id', String(car.id));
     carImg.style.backgroundColor = car.color;
     createElement('div', ['garage__item__flag'], '', carTrack);
-    console.log(createRandomCarName());
+    console.log(createRandomCarName(), getRandomColor());
   }
 }
 
