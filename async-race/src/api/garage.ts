@@ -1,11 +1,5 @@
-import { SERVER_URL } from '../data/constants';
+import { garage, winners } from '../data/constants';
 import { CarObject } from '../interfaces/interfaces';
-
-const garage = `${SERVER_URL}/garage`;
-
-const winners = `${SERVER_URL}/winners`;
-
-const engine = `${SERVER_URL}/engine`;
 
 export const getCars = async (): Promise<CarObject[]> => {
   const response = await (await fetch(garage)).json();
@@ -17,11 +11,7 @@ export const getWinners = async (): Promise<CarObject[]> => {
   const response = await (await fetch(winners)).json();
   return response;
 };
-export const engineRequest = async (): Promise<CarObject[]> => {
-  const response = await (await fetch(engine)).json();
-  return response;
-};
-export const postCar = async (data: CarObject) => {
+export const postCar = async (data: CarObject): Promise<void> => {
   const response = await fetch(garage, {
     method: 'POST',
     headers: {
@@ -33,7 +23,7 @@ export const postCar = async (data: CarObject) => {
   console.log(result);
 };
 
-export const deleteCar = async (id: number) => {
+export const deleteCar = async (id: number): Promise<void> => {
   fetch(`${garage}/${id}`, {
     method: 'DELETE'
   });

@@ -1,5 +1,4 @@
-import * as request from '../../api/request';
-// import { createRandomCarName, getElement, getRandomColor } from '../../functions/functions';
+import * as request from '../../api/garage';
 import { CarObject } from '../../interfaces/interfaces';
 import Listeners from '../controller/buttonListeners';
 import Garage from '../view/garage';
@@ -22,17 +21,6 @@ class App {
   public start(): void {
     this.garage.drawGarage();
     this.listeners.addListeners();
-    // const del = getElement('.garage__header__button');
-    // del.addEventListener('click', () => {
-    //   request.deleteCar(9);
-    // });
-    // const add = getElement('.garage__item__button');
-    // add.addEventListener('click', () => {
-    //   request.createCar({
-    //     name: createRandomCarName(),
-    //     color: getRandomColor()
-    //   });
-    // });
   }
 }
 

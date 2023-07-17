@@ -1,4 +1,5 @@
-import * as request from '../../api/request';
+import * as engineRequest from '../../api/engine';
+import * as garageRequest from '../../api/garage';
 import { createRandomCar, getElement } from '../../functions/functions';
 
 class Listeners {
@@ -14,8 +15,11 @@ class Listeners {
         const targetCarItem = event.target.closest('.garage__item');
         console.log(targetCarItem);
         if (targetCarItem && event.target.classList.contains('button__remove')) {
-          request.deleteCar(+targetCarItem.id);
+          garageRequest.deleteCar(+targetCarItem.id);
           targetCarItem.remove();
+        }
+        if (targetCarItem && event.target.classList.contains('button__start')) {
+          engineRequest.startEngine(+targetCarItem.id);
         }
       }
     });
@@ -24,7 +28,7 @@ class Listeners {
   private addGenerateButtonListener() {
     const generateButton = getElement('.button__generate');
     generateButton.addEventListener('click', () => {
-      for (let i = 0; i < 100; i += 1) request.postCar(createRandomCar());
+      for (let i = 0; i < 100; i += 1) garageRequest.postCar(createRandomCar());
     });
   }
 }
