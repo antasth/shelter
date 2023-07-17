@@ -1,9 +1,10 @@
 import * as request from '../../api/request';
-import { getElement } from '../../functions/functions';
+import { createRandomCar, getElement } from '../../functions/functions';
 
 class Listeners {
   public addListeners(): void {
     this.addGarageListeners();
+    this.addGenerateButtonListener();
   }
 
   private addGarageListeners(): void {
@@ -17,6 +18,13 @@ class Listeners {
           targetCarItem.remove();
         }
       }
+    });
+  }
+
+  private addGenerateButtonListener() {
+    const generateButton = getElement('.button__generate');
+    generateButton.addEventListener('click', () => {
+      for (let i = 0; i < 100; i += 1) request.postCar(createRandomCar());
     });
   }
 }

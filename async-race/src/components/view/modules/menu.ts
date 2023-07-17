@@ -13,12 +13,17 @@ class Menu {
     const menu = createElement('section', ['menu'], '', null);
     menu.append(this.drawInputBlock('CREATE'), this.drawInputBlock('UPDATE'));
     const controls = createElement('div', ['menu__controls'], '', menu);
-    controls.append(this.drawMenuButton('Race'), this.drawMenuButton('Reset'), this.drawMenuButton('Generate'));
+    controls.append(this.drawMenuButton('race'), this.drawMenuButton('reset'), this.drawMenuButton('generate'));
     return menu;
   }
 
   private drawMenuButton(buttonText: string): HTMLElement {
-    const menuButton = createElement('button', ['button', 'menu__controls__button'], buttonText, null);
+    const menuButton = createElement(
+      'button',
+      ['button', `button__${buttonText}`, 'menu__controls__button'],
+      buttonText,
+      null
+    );
     return menuButton;
   }
 

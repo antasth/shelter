@@ -21,7 +21,7 @@ export const engineRequest = async (): Promise<CarObject[]> => {
   const response = await (await fetch(engine)).json();
   return response;
 };
-export const createCar = async (data: CarObject) => {
+export const postCar = async (data: CarObject) => {
   const response = await fetch(garage, {
     method: 'POST',
     headers: {

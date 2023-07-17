@@ -33,7 +33,11 @@ export const getRandomColor = () => {
 export const createRandomCarName = () => {
   const carNameIndex = getRandomNumber(CAR_BRANDS.length);
   const carModelIndex = getRandomNumber(CAR_MODELS.length);
-  console.log(carNameIndex, carModelIndex);
   return `${CAR_BRANDS[carNameIndex]} ${CAR_MODELS[carModelIndex]}`;
 };
-export const createRandomCar = () => {};
+export const createRandomCar = () => {
+  return {
+    name: createRandomCarName(),
+    color: getRandomColor()
+  };
+};
