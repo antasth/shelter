@@ -9,6 +9,8 @@ const engine = `${SERVER_URL}/engine`;
 
 export const getCars = async (): Promise<CarObject[]> => {
   const response = await (await fetch(garage)).json();
+  console.log(response);
+
   return response;
 };
 export const getWinners = async (): Promise<CarObject[]> => {
@@ -29,4 +31,10 @@ export const createCar = async (data: CarObject) => {
   });
   const result = await response.json();
   console.log(result);
+};
+
+export const deleteCar = async (id: number) => {
+  fetch(`${garage}/${id}`, {
+    method: 'DELETE'
+  });
 };

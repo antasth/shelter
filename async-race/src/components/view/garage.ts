@@ -30,14 +30,14 @@ class Garage {
     const carItem = createElement('div', ['garage__item'], '', parentElement);
     carItem.setAttribute('id', String(car.id));
     const carItemHeader = createElement('div', ['garage__item__header'], '', carItem);
-    createElement('button', ['button', 'garage__header__button'], 'SELECT', carItemHeader);
-    createElement('button', ['button', 'garage__header__button'], 'REMOVE', carItemHeader);
+    createElement('button', ['button', 'button__select', 'garage__header__button'], 'SELECT', carItemHeader);
+    createElement('button', ['button', 'button__remove', 'garage__header__button'], 'REMOVE', carItemHeader);
     createElement('p', ['garage__header__carname'], car.name, carItemHeader);
     console.log(car);
     const carContent = createElement('div', ['garage__item__content'], '', carItem);
     const carControls = createElement('div', ['garage__item__content__controls'], '', carContent);
-    createElement('button', ['button', 'garage__item__button'], 'A', carControls);
-    createElement('button', ['button', 'garage__item__button'], 'B', carControls);
+    createElement('button', ['button', 'button__start', 'garage__item__button'], 'A', carControls);
+    createElement('button', ['button', 'button__stop', 'garage__item__button'], 'B', carControls);
     const carTrack = createElement('div', ['garage__item__content__track'], '', carContent);
     const carImg = createElement('div', ['garage__item__car'], '', carTrack);
     carImg.setAttribute('id', String(car.id));
