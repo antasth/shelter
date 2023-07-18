@@ -12,3 +12,7 @@ export interface Engine {
   velocity: number;
   distance: number;
 }
+
+export interface RaceData {
+  carsInGarage: number;
+}

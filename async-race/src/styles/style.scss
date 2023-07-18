@@ -9,9 +9,9 @@ body {
   min-height: 100%;
 }
 body {
-  background: #0f0c29;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #0f0c29;
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
 
   color: aliceblue;
 }
@@ -60,6 +60,12 @@ background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+
 
 .garage {
   padding-top: 2rem;
+  &__header {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    font-size: 22px;
+  }
   &__content {
     padding: 20px 0;
     display: flex;

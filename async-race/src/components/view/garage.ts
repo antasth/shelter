@@ -1,3 +1,4 @@
+import raceData from '../../data/raceData';
 import { createElement, getElement } from '../../functions/functions';
 import { CarObject } from '../../interfaces/interfaces';
 import Menu from './modules/menu';
@@ -18,7 +19,9 @@ class Garage {
     body.append(this.menu.drawHeader(), main);
     main.append(this.menu.drawMenu());
     const garage = createElement('section', ['garage'], '', main);
-    createElement('h2', ['garage__header'], 'Garage', garage);
+    const garageCount = createElement('div', ['garage__header'], '', garage);
+    createElement('h2', ['garage__header__text'], 'Garage', garageCount);
+    createElement('span', ['garage__header__count'], raceData.carsInGarage, garageCount);
     createElement('h3', ['garage__page'], 'Page', garage);
     const garageContent = createElement('div', ['garage__content'], '', garage);
     this.cars.forEach((car) => {
