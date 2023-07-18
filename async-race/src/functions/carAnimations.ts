@@ -16,13 +16,14 @@ export const startCarAnimation = (duration: number): void => {
     }
   );
 };
-export const stopCarAnimation = (): void => {
+export const stopCarAnimation = (isEngineBroken = false): void => {
   const car = getElement('.garage__item__car');
+  const position = isEngineBroken ? car.offsetWidth : 0;
   car.style.animationPlayState = 'paused';
   car.animate(
     [
       {
-        transform: 'translateX(0px)'
+        transform: `translateX(${position}px)`
       }
     ],
     {
