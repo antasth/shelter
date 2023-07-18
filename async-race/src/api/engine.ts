@@ -15,3 +15,10 @@ export const stopEngine = async (id: number): Promise<void> => {
   const result = await response.json();
   console.log(result);
 };
+export const switchToDriveMode = async (id: number): Promise<void> => {
+  const response = await fetch(`${engine}?id=${id}&status=${EngineStatus.drive}`, {
+    method: 'PATCH'
+  });
+  const result = await response.json();
+  console.log(result);
+};
