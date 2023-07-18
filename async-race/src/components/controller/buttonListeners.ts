@@ -1,6 +1,6 @@
 import * as engineRequest from '../../api/engine';
 import * as garageRequest from '../../api/garage';
-import { createRandomCar, getElement } from '../../functions/functions';
+import { animateCar, createRandomCar, getElement } from '../../functions/functions';
 
 class Listeners {
   public addListeners(): void {
@@ -20,6 +20,9 @@ class Listeners {
         }
         if (targetCarItem && event.target.classList.contains('button__start')) {
           engineRequest.startEngine(+targetCarItem.id);
+          // const car = getElement('.garage__item__car');
+          // car.classList.add('move');
+          animateCar(1000);
         }
         if (targetCarItem && event.target.classList.contains('button__stop')) {
           engineRequest.stopEngine(+targetCarItem.id);

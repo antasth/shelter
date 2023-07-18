@@ -85,7 +85,7 @@ background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+
       &__track {
         display: flex;
         justify-content: space-between;
-        width: 85%;
+        width: 100%;
       }
     }
     &__button {
@@ -99,9 +99,10 @@ background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+
       mask: url(../assets/img/car.svg);
       -webkit-mask-size: cover;
       mask-size: cover;
-      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
     &__flag {
+      margin-right: 225px;
       width: 80px;
       height: 80px;
       background-image: url('../assets/img/flag.png');

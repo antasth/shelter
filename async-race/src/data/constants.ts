@@ -1,7 +1,8 @@
 export const SERVER_URL = 'http://127.0.0.1:3000';
-export const garage = `${SERVER_URL}/garage`;
-export const winners = `${SERVER_URL}/winners`;
-export const engine = `${SERVER_URL}/engine`;
+export const GARAGE_PATH = `${SERVER_URL}/garage`;
+export const WINNERS_PATH = `${SERVER_URL}/winners`;
+export const ENGINE_PATH = `${SERVER_URL}/engine`;
+export const CAR_WIDTH = 200;
 export const CAR_BRANDS = [
   'Tesla',
   'Ford',
