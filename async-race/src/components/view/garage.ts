@@ -1,4 +1,4 @@
-import { createElement, createRandomCarName, getElement, getRandomColor } from '../../functions/functions';
+import { createElement, getElement } from '../../functions/functions';
 import { CarObject } from '../../interfaces/interfaces';
 import Menu from './modules/menu';
 
@@ -33,7 +33,6 @@ class Garage {
     createElement('button', ['button', 'button__select', 'garage__header__button'], 'SELECT', carItemHeader);
     createElement('button', ['button', 'button__remove', 'garage__header__button'], 'REMOVE', carItemHeader);
     createElement('p', ['garage__header__carname'], car.name, carItemHeader);
-    console.log(car);
     const carContent = createElement('div', ['garage__item__content'], '', carItem);
     const carControls = createElement('div', ['garage__item__content__controls'], '', carContent);
     createElement('button', ['button', 'button__start', 'garage__item__button'], 'A', carControls);
@@ -43,7 +42,6 @@ class Garage {
     carImg.setAttribute('id', String(car.id));
     carImg.style.backgroundColor = car.color;
     createElement('div', ['garage__item__flag'], '', carTrack);
-    console.log(createRandomCarName(), getRandomColor());
   }
 }
 

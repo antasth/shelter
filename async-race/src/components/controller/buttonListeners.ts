@@ -21,6 +21,9 @@ class Listeners {
         if (targetCarItem && event.target.classList.contains('button__start')) {
           engineRequest.startEngine(+targetCarItem.id);
         }
+        if (targetCarItem && event.target.classList.contains('button__stop')) {
+          engineRequest.stopEngine(+targetCarItem.id);
+        }
       }
     });
   }

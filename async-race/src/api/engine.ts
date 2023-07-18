@@ -1,14 +1,17 @@
 import { engine } from '../data/constants';
-import { CarObject } from '../interfaces/interfaces';
+import { EngineStatus } from '../interfaces/enum';
 
 export const startEngine = async (id: number): Promise<void> => {
-  const response = await fetch(`${engine}?id=${id}&status=started`, {
+  const response = await fetch(`${engine}?id=${id}&status=${EngineStatus.start}`, {
     method: 'PATCH'
   });
   const result = await response.json();
   console.log(result);
 };
-export const stopEngine = async (): Promise<CarObject[]> => {
-  const response = await (await fetch(engine)).json();
-  return response;
+export const stopEngine = async (id: number): Promise<void> => {
+  const response = await fetch(`${engine}?id=${id}&status=${EngineStatus.stop}`, {
+    method: 'PATCH'
+  });
+  const result = await response.json();
+  console.log(result);
 };
