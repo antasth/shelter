@@ -1,8 +1,15 @@
 import * as garageRequest from '../../api/garage';
-import { createRandomCar, getElement } from '../../functions/functions';
+import { createRandomCar, getElement, reloadCars } from '../../functions/functions';
+import Garage from '../view/garage';
 import { startCar, stopCar } from './carDriving';
 
 class Listeners {
+  private garage: Garage;
+
+  constructor() {
+    this.garage = new Garage();
+  }
+
   public addListeners(): void {
     this.addGarageListeners();
     this.addGenerateButtonListener();
@@ -17,8 +24,11 @@ class Listeners {
           const carId = Number(targetCarItem.id);
 
           if (event.target.classList.contains('button__remove')) {
-            garageRequest.deleteCar(carId);
-            targetCarItem.remove();
+            reloadCars(carId, () => {
+              targetCarItem.remove();
+              this.garage.drawGarage();
+              this.addListeners();
+            });
           }
           if (event.target.classList.contains('button__start')) {
             startCar(carId);

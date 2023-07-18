@@ -1,4 +1,6 @@
-import { CAR_BRANDS, CAR_MODELS } from '../data/constants';
+import * as garageRequest from '../api/garage';
+import { CARS_ON_PAGE, CAR_BRANDS, CAR_MODELS } from '../data/constants';
+import raceData from '../data/raceData';
 import { CarObject } from '../interfaces/interfaces';
 
 export const getElement = <T extends HTMLElement>(selector: string): T => {
@@ -41,4 +43,9 @@ export const createRandomCar = (): CarObject => {
     name: createRandomCarName(),
     color: getRandomColor()
   };
+};
+export const reloadCars = async (carId: number, callback: Function): Promise<void> => {
+  await garageRequest.deleteCar(carId);
+  await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+  callback();
 };

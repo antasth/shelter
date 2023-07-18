@@ -4,8 +4,10 @@ import { CarObject } from '../interfaces/interfaces';
 
 export const getCars = async (page: number, limit: number): Promise<CarObject[]> => {
   const response = await fetch(`${GARAGE_PATH}?_page=${page}&_limit=${limit}`);
-  raceData.carsInGarage = Number(response.headers.get('x-total-count'));
+  const carsCount = Number(response.headers.get('x-total-count'));
+  if (carsCount) raceData.carsInGarageCount = carsCount;
   const data = await response.json();
+  raceData.carsData = data;
   console.log(data);
   return data;
 };
@@ -22,7 +24,7 @@ export const postCar = async (data: CarObject): Promise<void> => {
 };
 
 export const deleteCar = async (id: number): Promise<void> => {
-  fetch(`${GARAGE_PATH}/${id}`, {
+  await fetch(`${GARAGE_PATH}/${id}`, {
     method: 'DELETE'
   });
 };

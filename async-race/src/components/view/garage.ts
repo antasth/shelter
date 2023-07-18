@@ -4,27 +4,27 @@ import { CarObject } from '../../interfaces/interfaces';
 import Menu from './modules/menu';
 
 class Garage {
-  private cars: CarObject[];
-
   private menu: Menu;
 
-  constructor(cars: CarObject[]) {
-    this.cars = cars;
+  constructor() {
     this.menu = new Menu();
   }
 
   public drawGarage(): void {
     const body = getElement('body');
+    body.replaceChildren();
     const main = createElement('main', ['main'], '', null);
     body.append(this.menu.drawHeader(), main);
     main.append(this.menu.drawMenu());
     const garage = createElement('section', ['garage'], '', main);
     const garageCount = createElement('div', ['garage__header'], '', garage);
     createElement('h2', ['garage__header__text'], 'Garage', garageCount);
-    createElement('span', ['garage__header__count'], raceData.carsInGarage, garageCount);
+    createElement('span', ['garage__header__count'], raceData.carsInGarageCount, garageCount);
     createElement('h3', ['garage__page'], 'Page', garage);
     const garageContent = createElement('div', ['garage__content'], '', garage);
-    this.cars.forEach((car) => {
+    console.log('raceData', raceData.carsData);
+
+    raceData.carsData.forEach((car) => {
       this.drawCarBlock(garageContent, car);
     });
   }

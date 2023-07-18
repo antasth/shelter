@@ -14,5 +14,7 @@ export interface Engine {
 }
 
 export interface RaceData {
-  carsInGarage: number;
+  carsInGarageCount: number;
+  currentPage: number;
+  carsData: Array<CarObject>;
 }
