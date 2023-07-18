@@ -4,7 +4,6 @@ import { CarObject } from '../interfaces/interfaces';
 export const getCars = async (): Promise<CarObject[]> => {
   const response = await (await fetch(GARAGE_PATH)).json();
   console.log(response);
-
   return response;
 };
 export const postCar = async (data: CarObject): Promise<void> => {

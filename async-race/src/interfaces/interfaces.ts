@@ -7,3 +7,8 @@ export interface CarObject {
 export interface Cars {
   items: Array<CarObject>;
 }
+
+export interface Engine {
+  velocity: number;
+  distance: number;
+}
