@@ -1,4 +1,4 @@
-import { CAR_BRANDS, CAR_MODELS, CAR_WIDTH } from '../data/constants';
+import { CAR_BRANDS, CAR_MODELS } from '../data/constants';
 import { CarObject } from '../interfaces/interfaces';
 
 export const getElement = <T extends HTMLElement>(selector: string): T => {
@@ -41,20 +41,4 @@ export const createRandomCar = (): CarObject => {
     name: createRandomCarName(),
     color: getRandomColor()
   };
-};
-
-export const animateCar = (duration: number): void => {
-  const placeToStop = getElement('.garage__item__content__track').clientWidth - CAR_WIDTH;
-  const car = getElement('.garage__item__car');
-  car.animate(
-    [
-      {
-        transform: `translateX(${placeToStop}px)`
-      }
-    ],
-    {
-      duration,
-      fill: 'forwards'
-    }
-  );
 };

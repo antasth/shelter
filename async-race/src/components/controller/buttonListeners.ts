@@ -1,7 +1,6 @@
-import * as engineRequest from '../../api/engine';
 import * as garageRequest from '../../api/garage';
 import { createRandomCar, getElement } from '../../functions/functions';
-import { startCar } from './startCar';
+import { startCar, stopCar } from './carDriving';
 
 class Listeners {
   public addListeners(): void {
@@ -25,7 +24,7 @@ class Listeners {
             startCar(carId);
           }
           if (event.target.classList.contains('button__stop')) {
-            engineRequest.stopEngine(carId);
+            stopCar(carId);
           }
         }
       }
