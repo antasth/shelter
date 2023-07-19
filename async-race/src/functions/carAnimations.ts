@@ -1,4 +1,4 @@
-import { CAR_WIDTH } from '../data/constants';
+import { CAR_OFFSET, CAR_WIDTH } from '../data/constants';
 import { getElement } from './functions';
 
 export const startCarAnimation = (carId: number, duration: number): void => {
@@ -18,7 +18,8 @@ export const startCarAnimation = (carId: number, duration: number): void => {
 };
 export const stopCarAnimation = (carId: number, isEngineBroken = false): void => {
   const car = getElement(`.garage__item__car[data-index="${carId}"]`);
-  const position = isEngineBroken ? car.offsetWidth : 0;
+
+  const position = isEngineBroken ? car.getBoundingClientRect().x - CAR_OFFSET : 0;
   car.style.animationPlayState = 'paused';
   car.animate(
     [
