@@ -3,6 +3,7 @@ import * as garageRequest from '../../api/garage';
 import { BASE_CAR_SPEED, CARS_ON_PAGE } from '../../data/constants';
 import raceData from '../../data/raceData';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
+import { createRandomCar } from '../../functions/functions';
 import Garage from '../view/garage';
 
 class GarageController {
@@ -32,6 +33,10 @@ class GarageController {
   public async stopCar(id: number): Promise<void> {
     await engineRequest.stopEngine(id);
     stopCarAnimation();
+  }
+
+  public async generateCars() {
+    for (let i = 0; i < 100; i += 1) garageRequest.postCar(createRandomCar());
   }
 }
 

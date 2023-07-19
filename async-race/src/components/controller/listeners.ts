@@ -1,5 +1,4 @@
-import * as garageRequest from '../../api/garage';
-import { createRandomCar, getElement } from '../../functions/functions';
+import { getElement } from '../../functions/functions';
 import GarageController from './garageController';
 
 class Listeners {
@@ -41,7 +40,7 @@ class Listeners {
   private addGenerateButtonListener() {
     const generateButton = getElement('.button__generate');
     generateButton.addEventListener('click', () => {
-      for (let i = 0; i < 100; i += 1) garageRequest.postCar(createRandomCar());
+      this.garageController.generateCars();
     });
   }
 }
