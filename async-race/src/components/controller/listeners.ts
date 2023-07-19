@@ -1,6 +1,5 @@
 import * as garageRequest from '../../api/garage';
 import { createRandomCar, getElement } from '../../functions/functions';
-import { startCar, stopCar } from './carDriving';
 import GarageController from './garageController';
 
 class Listeners {
@@ -29,10 +28,10 @@ class Listeners {
             });
           }
           if (event.target.classList.contains('button__start')) {
-            startCar(carId);
+            this.garageController.startCar(carId);
           }
           if (event.target.classList.contains('button__stop')) {
-            stopCar(carId);
+            this.garageController.stopCar(carId);
           }
         }
       }
