@@ -6,12 +6,15 @@ export const DEFAULT_PAGE = 1;
 export const CARS_ON_PAGE = 7;
 export const BASE_CAR_SPEED = 150;
 export const CAR_WIDTH = 200;
+export const RANDOM_CARS_COUNT = 100;
 export const CAR_BRANDS = [
   'Tesla',
   'Ford',
   'Toyota',
   'Honda',
   'BMW',
+  'Peugeot',
+  'Citroen',
   'Kia',
   'Lada',
   'Audi',
