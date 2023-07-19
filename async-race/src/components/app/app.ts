@@ -1,7 +1,7 @@
 import * as request from '../../api/garage';
 import { CARS_ON_PAGE } from '../../data/constants';
 import raceData from '../../data/raceData';
-import Listeners from '../controller/buttonListeners';
+import Listeners from '../controller/listeners';
 import Garage from '../view/garage';
 
 await request.getCars(raceData.currentPage, CARS_ON_PAGE);

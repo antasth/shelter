@@ -1,13 +1,13 @@
 import * as garageRequest from '../../api/garage';
-import { createRandomCar, getElement, reloadCars } from '../../functions/functions';
-import Garage from '../view/garage';
+import { createRandomCar, getElement } from '../../functions/functions';
 import { startCar, stopCar } from './carDriving';
+import GarageController from './garageController';
 
 class Listeners {
-  private garage: Garage;
+  private garageController: GarageController;
 
   constructor() {
-    this.garage = new Garage();
+    this.garageController = new GarageController();
   }
 
   public addListeners(): void {
@@ -24,9 +24,7 @@ class Listeners {
           const carId = Number(targetCarItem.id);
 
           if (event.target.classList.contains('button__remove')) {
-            reloadCars(carId, () => {
-              targetCarItem.remove();
-              this.garage.drawGarage();
+            this.garageController.deleteCarFromGarage(carId, targetCarItem).then(() => {
               this.addListeners();
             });
           }
