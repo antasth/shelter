@@ -11,6 +11,7 @@ class Listeners {
   public addListeners(): void {
     this.addGarageListeners();
     this.addGenerateButtonListener();
+    this.addRaceButtonListener();
   }
 
   private addGarageListeners(): void {
@@ -41,6 +42,13 @@ class Listeners {
     const generateButton = getElement('.button__generate');
     generateButton.addEventListener('click', () => {
       this.garageController.generateCars();
+    });
+  }
+
+  private addRaceButtonListener() {
+    const raceButton = getElement('.button__race');
+    raceButton.addEventListener('click', () => {
+      this.garageController.startRace();
     });
   }
 }

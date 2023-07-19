@@ -38,6 +38,15 @@ class GarageController {
   public async generateCars() {
     for (let i = 0; i < RANDOM_CARS_COUNT; i += 1) garageRequest.postCar(createRandomCar());
   }
+
+  public async startRace(): Promise<void> {
+    const carsOnPageId = raceData.carsData.map((car) => {
+      return car.id;
+    });
+    carsOnPageId.forEach((id) => {
+      this.startCar(Number(id));
+    });
+  }
 }
 
 export default GarageController;
