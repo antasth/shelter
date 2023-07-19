@@ -12,6 +12,7 @@ class Listeners {
     this.addGarageListeners();
     this.addGenerateButtonListener();
     this.addRaceButtonListener();
+    this.addResetButtonListener();
   }
 
   private addGarageListeners(): void {
@@ -49,6 +50,13 @@ class Listeners {
     const raceButton = getElement('.button__race');
     raceButton.addEventListener('click', () => {
       this.garageController.startRace();
+    });
+  }
+
+  private addResetButtonListener() {
+    const resetButton = getElement('.button__reset');
+    resetButton.addEventListener('click', () => {
+      this.garageController.resetRace();
     });
   }
 }
