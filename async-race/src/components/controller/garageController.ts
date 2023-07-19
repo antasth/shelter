@@ -22,17 +22,17 @@ class GarageController {
 
   public async startCar(id: number): Promise<void> {
     const { velocity } = await engineRequest.startEngine(id);
-    startCarAnimation(velocity * BASE_CAR_SPEED);
+    startCarAnimation(id, velocity * BASE_CAR_SPEED);
     try {
       await engineRequest.switchToDriveMode(id);
     } catch (error) {
-      stopCarAnimation(true);
+      stopCarAnimation(id, true);
     }
   }
 
   public async stopCar(id: number): Promise<void> {
     await engineRequest.stopEngine(id);
-    stopCarAnimation();
+    stopCarAnimation(id);
   }
 
   public async generateCars() {

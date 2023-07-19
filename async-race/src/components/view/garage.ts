@@ -31,7 +31,7 @@ class Garage {
 
   private drawCarBlock(parentElement: HTMLElement, car: CarObject): void {
     const carItem = createElement('div', ['garage__item'], '', parentElement);
-    carItem.setAttribute('id', String(car.id));
+    carItem.setAttribute('data-index', String(car.id));
     const carItemHeader = createElement('div', ['garage__item__header'], '', carItem);
     createElement('button', ['button', 'button__select', 'garage__header__button'], 'SELECT', carItemHeader);
     createElement('button', ['button', 'button__remove', 'garage__header__button'], 'REMOVE', carItemHeader);
@@ -42,7 +42,7 @@ class Garage {
     createElement('button', ['button', 'button__stop', 'garage__item__button'], 'B', carControls);
     const carTrack = createElement('div', ['garage__item__content__track'], '', carContent);
     const carImg = createElement('div', ['garage__item__car'], '', carTrack);
-    carImg.setAttribute('id', String(car.id));
+    carImg.setAttribute('data-index', String(car.id));
     carImg.style.backgroundColor = car.color;
     createElement('div', ['garage__item__flag'], '', carTrack);
   }

@@ -18,8 +18,8 @@ class Listeners {
     garage.addEventListener('click', (event: Event) => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         const targetCarItem = event.target.closest('.garage__item');
-        if (targetCarItem) {
-          const carId = Number(targetCarItem.id);
+        if (targetCarItem instanceof HTMLElement) {
+          const carId = Number(targetCarItem.dataset.index);
 
           if (event.target.classList.contains('button__remove')) {
             this.garageController.deleteCarFromGarage(carId, targetCarItem).then(() => {
