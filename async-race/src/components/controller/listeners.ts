@@ -13,6 +13,7 @@ class Listeners {
     this.addGenerateButtonListener();
     this.addRaceButtonListener();
     this.addResetButtonListener();
+    this.addNavButtonPrevListener();
   }
 
   private addGarageListeners(): void {
@@ -57,6 +58,15 @@ class Listeners {
     const resetButton = getElement('.button__reset');
     resetButton.addEventListener('click', () => {
       this.garageController.resetRace();
+    });
+  }
+
+  private addNavButtonPrevListener() {
+    const prevButton = getElement('.garage__nav__button-prev');
+    prevButton.addEventListener('click', () => {
+      this.garageController.showPrevPage().then(() => {
+        this.addListeners();
+      });
     });
   }
 }

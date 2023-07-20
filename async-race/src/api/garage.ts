@@ -3,6 +3,8 @@ import raceData from '../data/raceData';
 import { CarObject } from '../interfaces/interfaces';
 
 export const getCars = async (page: number, limit: number): Promise<CarObject[]> => {
+  console.log(page);
+
   const response = await fetch(`${GARAGE_PATH}?_page=${page}&_limit=${limit}`);
   const carsCount = Number(response.headers.get('x-total-count'));
   if (carsCount) raceData.carsInGarageCount = carsCount;

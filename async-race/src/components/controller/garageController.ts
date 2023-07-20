@@ -36,7 +36,9 @@ class GarageController {
   }
 
   public async generateCars() {
-    for (let i = 0; i < RANDOM_CARS_COUNT; i += 1) garageRequest.postCar(createRandomCar());
+    for (let i = 0; i < RANDOM_CARS_COUNT; i += 1) {
+      garageRequest.postCar(createRandomCar());
+    }
   }
 
   public startRace(): void {
@@ -51,6 +53,12 @@ class GarageController {
     carsOnPageId.forEach((id) => {
       this.stopCar(id);
     });
+  }
+
+  public async showPrevPage() {
+    if (raceData.currentPage > 1) raceData.currentPage -= 1;
+    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    this.garageView.drawGarage();
   }
 }
 
