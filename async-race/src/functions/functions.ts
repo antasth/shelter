@@ -1,6 +1,6 @@
-import { CAR_BRANDS, CAR_MODELS } from '../data/constants';
+import { CARS_ON_PAGE, CAR_BRANDS, CAR_MODELS } from '../data/constants';
 import raceData from '../data/raceData';
-import { CarObject } from '../interfaces/interfaces';
+import { CarObject, ResponseCarObject } from '../interfaces/interfaces';
 
 export const getElement = <T extends HTMLElement>(selector: string): T => {
   const element = document.querySelector<T>(selector);
@@ -43,6 +43,17 @@ export const createRandomCar = (): CarObject => {
     color: getRandomColor()
   };
 };
+
+export const getRaceData = async (response: Response): Promise<void> => {
+  const data: Array<ResponseCarObject> = await response.json();
+  const carsCount = Number(response.headers.get('x-total-count'));
+  if (carsCount) {
+    raceData.carsInGarageCount = carsCount;
+    raceData.countOfPages = carsCount / CARS_ON_PAGE;
+  }
+  raceData.carsData = data;
+};
+
 export const getCarsOnPageId = () => {
   const carsOnPageId = raceData.carsData.map((car) => {
     return car.id;

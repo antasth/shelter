@@ -1,18 +1,13 @@
 import { GARAGE_PATH } from '../data/constants';
-import raceData from '../data/raceData';
+import { getRaceData } from '../functions/functions';
 import { CarObject } from '../interfaces/interfaces';
 
-export const getCars = async (page: number, limit: number): Promise<CarObject[]> => {
+export const getCars = async (page: number, limit: number): Promise<void> => {
   console.log(page);
-
   const response = await fetch(`${GARAGE_PATH}?_page=${page}&_limit=${limit}`);
-  const carsCount = Number(response.headers.get('x-total-count'));
-  if (carsCount) raceData.carsInGarageCount = carsCount;
-  const data = await response.json();
-  raceData.carsData = data;
-  console.log(data);
-  return data;
+  await getRaceData(response);
 };
+
 export const postCar = async (data: CarObject): Promise<void> => {
   const response = await fetch(GARAGE_PATH, {
     method: 'POST',

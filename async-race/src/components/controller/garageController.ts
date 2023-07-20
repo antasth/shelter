@@ -60,6 +60,10 @@ class GarageController {
     await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }
+
+  // public async showNextPage() {
+
+  // }
 }
 
 export default GarageController;

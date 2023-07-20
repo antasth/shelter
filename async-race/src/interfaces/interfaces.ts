@@ -21,5 +21,6 @@ export interface Engine {
 export interface RaceData {
   carsInGarageCount: number;
   currentPage: number;
+  countOfPages: number;
   carsData: Array<ResponseCarObject>;
 }
