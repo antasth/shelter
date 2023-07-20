@@ -61,9 +61,13 @@ class GarageController {
     this.garageView.drawGarage();
   }
 
-  // public async showNextPage() {
+  public async showNextPage() {
+    console.log(raceData.countOfPages);
 
-  // }
+    if (raceData.currentPage < raceData.countOfPages) raceData.currentPage += 1;
+    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    this.garageView.drawGarage();
+  }
 }
 
 export default GarageController;

@@ -14,6 +14,7 @@ class Listeners {
     this.addRaceButtonListener();
     this.addResetButtonListener();
     this.addNavButtonPrevListener();
+    this.addNavButtonNextListener();
   }
 
   private addGarageListeners(): void {
@@ -65,6 +66,15 @@ class Listeners {
     const prevButton = getElement('.garage__nav__button-prev');
     prevButton.addEventListener('click', () => {
       this.garageController.showPrevPage().then(() => {
+        this.addListeners();
+      });
+    });
+  }
+
+  private addNavButtonNextListener() {
+    const prevButton = getElement('.garage__nav__button-next');
+    prevButton.addEventListener('click', () => {
+      this.garageController.showNextPage().then(() => {
         this.addListeners();
       });
     });

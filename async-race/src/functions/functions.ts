@@ -44,12 +44,10 @@ export const createRandomCar = (): CarObject => {
   };
 };
 
-export const getRaceData = async (response: Response): Promise<void> => {
-  const data: Array<ResponseCarObject> = await response.json();
-  const carsCount = Number(response.headers.get('x-total-count'));
+export const getRaceData = (carsCount: number, data: Array<ResponseCarObject>) => {
   if (carsCount) {
     raceData.carsInGarageCount = carsCount;
-    raceData.countOfPages = carsCount / CARS_ON_PAGE;
+    raceData.countOfPages = Math.ceil(carsCount / CARS_ON_PAGE);
   }
   raceData.carsData = data;
 };
