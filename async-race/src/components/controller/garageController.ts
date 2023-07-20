@@ -3,7 +3,7 @@ import * as garageRequest from '../../api/garage';
 import { BASE_CAR_SPEED, CARS_ON_PAGE, RANDOM_CARS_COUNT } from '../../data/constants';
 import raceData from '../../data/raceData';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
-import { createRandomCar } from '../../functions/functions';
+import { createRandomCar, getCarsOnPageId } from '../../functions/functions';
 import Garage from '../view/garage';
 
 class GarageController {
@@ -40,20 +40,16 @@ class GarageController {
   }
 
   public startRace(): void {
-    const carsOnPageId = raceData.carsData.map((car) => {
-      return car.id;
-    });
+    const carsOnPageId = getCarsOnPageId();
     carsOnPageId.forEach((id) => {
-      this.startCar(Number(id));
+      this.startCar(id);
     });
   }
 
   public resetRace(): void {
-    const carsOnPageId = raceData.carsData.map((car) => {
-      return car.id;
-    });
+    const carsOnPageId = getCarsOnPageId();
     carsOnPageId.forEach((id) => {
-      this.stopCar(Number(id));
+      this.stopCar(id);
     });
   }
 }

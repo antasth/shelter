@@ -1,5 +1,10 @@
 export interface CarObject {
-  id?: number;
+  name: string;
+  color: string;
+}
+
+export interface ResponseCarObject {
+  id: number;
   name: string;
   color: string;
 }
@@ -16,5 +21,5 @@ export interface Engine {
 export interface RaceData {
   carsInGarageCount: number;
   currentPage: number;
-  carsData: Array<CarObject>;
+  carsData: Array<ResponseCarObject>;
 }

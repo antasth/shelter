@@ -1,6 +1,6 @@
 import raceData from '../../data/raceData';
 import { createElement, getElement } from '../../functions/functions';
-import { CarObject } from '../../interfaces/interfaces';
+import { ResponseCarObject } from '../../interfaces/interfaces';
 import Menu from './modules/menu';
 
 class Garage {
@@ -29,7 +29,7 @@ class Garage {
     });
   }
 
-  private drawCarBlock(parentElement: HTMLElement, car: CarObject): void {
+  private drawCarBlock(parentElement: HTMLElement, car: ResponseCarObject): void {
     const carItem = createElement('div', ['garage__item'], '', parentElement);
     carItem.setAttribute('data-index', String(car.id));
     const carItemHeader = createElement('div', ['garage__item__header'], '', carItem);

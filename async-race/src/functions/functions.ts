@@ -1,4 +1,5 @@
 import { CAR_BRANDS, CAR_MODELS } from '../data/constants';
+import raceData from '../data/raceData';
 import { CarObject } from '../interfaces/interfaces';
 
 export const getElement = <T extends HTMLElement>(selector: string): T => {
@@ -41,4 +42,10 @@ export const createRandomCar = (): CarObject => {
     name: createRandomCarName(),
     color: getRandomColor()
   };
+};
+export const getCarsOnPageId = () => {
+  const carsOnPageId = raceData.carsData.map((car) => {
+    return car.id;
+  });
+  return carsOnPageId;
 };
