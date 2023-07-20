@@ -60,7 +60,8 @@ body {
 
 .garage {
   padding-top: 2rem;
-  &__header {
+  &__header,
+  &__subheader {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
