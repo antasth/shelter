@@ -11,7 +11,7 @@ class Menu {
 
   public drawMenu(): HTMLElement {
     const menu = createElement('section', ['menu'], '', null);
-    menu.append(this.drawInputBlock('CREATE'), this.drawInputBlock('UPDATE'));
+    menu.append(this.drawInputBlock('CREATE', 'input__create'), this.drawInputBlock('UPDATE', 'input__update'));
     const controls = createElement('div', ['menu__controls'], '', menu);
     controls.append(this.drawMenuButton('race'), this.drawMenuButton('reset'), this.drawMenuButton('generate'));
     return menu;
@@ -27,14 +27,14 @@ class Menu {
     return menuButton;
   }
 
-  private drawInputBlock(buttonText: string): HTMLElement {
+  private drawInputBlock(buttonText: string, className: string): HTMLElement {
     const menuBlock = createElement('div', ['menu__block'], '', null);
-    const menuInput = createElement('input', ['menu__block__input'], '', menuBlock);
+    const menuInput = createElement('input', [`${className}`, 'input__text'], '', menuBlock);
     menuInput.setAttribute('type', 'text');
-    const menuColor = createElement('input', ['menu__block__color'], '', menuBlock);
+    const menuColor = createElement('input', [`${className}`, 'input__color'], '', menuBlock);
     menuColor.setAttribute('type', 'color');
     menuColor.setAttribute('value', '#ffffff');
-    createElement('button', ['button', 'menu__block__button'], buttonText, menuBlock);
+    createElement('button', ['button', 'button__create', 'menu__block__button'], buttonText, menuBlock);
     return menuBlock;
   }
 }

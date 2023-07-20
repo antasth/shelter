@@ -3,7 +3,7 @@ import * as garageRequest from '../../api/garage';
 import { BASE_CAR_SPEED, CARS_ON_PAGE, RANDOM_CARS_COUNT } from '../../data/constants';
 import raceData from '../../data/raceData';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
-import { createRandomCar, getCarsOnPageId } from '../../functions/functions';
+import { createRandomCar, getCarsOnPageId, getElement } from '../../functions/functions';
 import Garage from '../view/garage';
 
 class GarageController {
@@ -55,16 +55,26 @@ class GarageController {
     });
   }
 
-  public async showPrevPage() {
+  public async showPrevPage(): Promise<void> {
     if (raceData.currentPage > 1) raceData.currentPage -= 1;
     await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }
 
-  public async showNextPage() {
-    console.log(raceData.countOfPages);
-
+  public async showNextPage(): Promise<void> {
     if (raceData.currentPage < raceData.countOfPages) raceData.currentPage += 1;
+    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    this.garageView.drawGarage();
+  }
+
+  public async createCar(): Promise<void> {
+    const inputCarName: HTMLInputElement = getElement('.input__create.input__text');
+    const inputColor: HTMLInputElement = getElement('.input__create.input__color');
+    const newCar = {
+      name: inputCarName.value,
+      color: inputColor.value
+    };
+    await garageRequest.postCar(newCar);
     await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }

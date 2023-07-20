@@ -15,23 +15,21 @@ class Listeners {
     this.addResetButtonListener();
     this.addNavButtonPrevListener();
     this.addNavButtonNextListener();
+    this.addCreateCarButtonListener();
+    // this.addRemoveButtonListeners();
   }
 
   private addGarageListeners(): void {
     const garage = getElement('.garage');
-    garage.addEventListener('click', (event: Event) => {
+    garage.addEventListener('click', async (event: Event) => {
       if (event.target && event.target instanceof HTMLButtonElement) {
         const targetCarItem = event.target.closest('.garage__item');
         if (targetCarItem instanceof HTMLElement) {
           const carId = Number(targetCarItem.dataset.index);
 
           if (event.target.classList.contains('button__remove')) {
-            this.garageController.deleteCarFromGarage(carId, targetCarItem).then(() => {
-              this.addListeners();
-            });
-            // this.garageController.deleteCarFromGarage(carId, targetCarItem).then(() => {
-            //   this.addListeners();
-            // });
+            await this.garageController.deleteCarFromGarage(carId, targetCarItem);
+            this.addListeners();
           }
           if (event.target.classList.contains('button__start')) {
             this.garageController.startCar(carId);
@@ -41,6 +39,30 @@ class Listeners {
           }
         }
       }
+    });
+  }
+
+  // private addRemoveButtonListeners() {
+  //   const removeButtons = getElements('.button__remove');
+  //   removeButtons.forEach((button) => {
+  //     button.addEventListener('click', async () => {
+  //       if (button instanceof HTMLButtonElement) {
+  //         const targetCarItem = button.closest('.garage__item');
+  //         if (targetCarItem instanceof HTMLElement) {
+  //           await this.garageController
+  // .deleteCarFromGarage(Number(button.dataset.index), targetCarItem);
+  //           this.addListeners();
+  //         }
+  //       }
+  //     });
+  //   });
+  // }
+
+  private addCreateCarButtonListener(): void {
+    const createButton = getElement('.button__create');
+    createButton.addEventListener('click', async () => {
+      await this.garageController.createCar();
+      this.addListeners();
     });
   }
 

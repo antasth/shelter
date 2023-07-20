@@ -10,6 +10,14 @@ export const getElement = <T extends HTMLElement>(selector: string): T => {
   return element;
 };
 
+// export const getElements = (selector: string): NodeList => {
+//   const elements = document.querySelectorAll(selector);
+//   if (!elements) {
+//     throw new TypeError('Type Error');
+//   }
+//   return elements;
+// };
+
 export const createElement = (
   tagName: string,
   className: string[],
