@@ -29,6 +29,9 @@ class Listeners {
             this.garageController.deleteCarFromGarage(carId, targetCarItem).then(() => {
               this.addListeners();
             });
+            // this.garageController.deleteCarFromGarage(carId, targetCarItem).then(() => {
+            //   this.addListeners();
+            // });
           }
           if (event.target.classList.contains('button__start')) {
             this.garageController.startCar(carId);
@@ -41,42 +44,40 @@ class Listeners {
     });
   }
 
-  private addGenerateButtonListener() {
+  private addGenerateButtonListener(): void {
     const generateButton = getElement('.button__generate');
     generateButton.addEventListener('click', () => {
       this.garageController.generateCars();
     });
   }
 
-  private addRaceButtonListener() {
+  private addRaceButtonListener(): void {
     const raceButton = getElement('.button__race');
     raceButton.addEventListener('click', () => {
       this.garageController.startRace();
     });
   }
 
-  private addResetButtonListener() {
+  private addResetButtonListener(): void {
     const resetButton = getElement('.button__reset');
     resetButton.addEventListener('click', () => {
       this.garageController.resetRace();
     });
   }
 
-  private addNavButtonPrevListener() {
+  private addNavButtonPrevListener(): void {
     const prevButton = getElement('.garage__nav__button-prev');
-    prevButton.addEventListener('click', () => {
-      this.garageController.showPrevPage().then(() => {
-        this.addListeners();
-      });
+    prevButton.addEventListener('click', async () => {
+      await this.garageController.showPrevPage();
+      this.addListeners();
     });
   }
 
-  private addNavButtonNextListener() {
+  private addNavButtonNextListener(): void {
     const prevButton = getElement('.garage__nav__button-next');
-    prevButton.addEventListener('click', () => {
-      this.garageController.showNextPage().then(() => {
-        this.addListeners();
-      });
+    prevButton.addEventListener('click', async () => {
+      await this.garageController.showNextPage();
+      this.addListeners();
     });
   }
 }
