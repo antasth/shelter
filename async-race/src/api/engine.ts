@@ -20,7 +20,7 @@ export const switchToDriveMode = async (id: number): Promise<Object> => {
     method: 'PATCH'
   });
   const result = await response.json();
-  console.log(result, id);
+  result.id = id;
 
   return result;
 };

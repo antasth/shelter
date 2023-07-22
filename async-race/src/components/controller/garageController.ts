@@ -57,15 +57,21 @@ class GarageController {
   public async startRace(): Promise<void> {
     const carsOnPageId = getCarsOnPageId();
     const engineResponses = await this.startEngines(carsOnPageId);
-    carsOnPageId.forEach(async (carId, i) => {
+    const requests = carsOnPageId.map(async (carId, i) => {
       const animationTime = engineResponses[i].distance / engineResponses[i].velocity;
       startCarAnimation(carId, animationTime);
       try {
-        await engineRequest.switchToDriveMode(carId);
+        const res = await engineRequest.switchToDriveMode(carId);
+        console.log(res);
+
+        return res;
       } catch (error) {
         stopCarAnimation(carId, true);
+        throw new Error();
       }
     });
+    const result = await Promise.any(requests);
+    console.log('result', result);
   }
 
   public resetRace(): void {
