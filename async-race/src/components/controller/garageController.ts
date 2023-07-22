@@ -78,6 +78,23 @@ class GarageController {
     await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }
+
+  public selectCar(carId: number): void {
+    const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
+    const inputColor: HTMLInputElement = getElement('.input__update.input__color');
+    const [{ name, color }] = raceData.carsData.filter((car) => {
+      return car.id === carId;
+    });
+    inputCarName.value = name;
+    inputColor.value = color;
+    raceData.updateCarId = carId;
+  }
+
+  public updateCar() {
+    const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
+    const inputColor: HTMLInputElement = getElement('.input__update.input__color');
+    //! Достать carID из raceData и добавить в api update запрос
+  }
 }
 
 export default GarageController;

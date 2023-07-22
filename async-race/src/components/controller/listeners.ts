@@ -9,59 +9,57 @@ class Listeners {
   }
 
   public addListeners(): void {
-    this.addGarageListeners();
+    this.addCarBlockListeners();
     this.addGenerateButtonListener();
     this.addRaceButtonListener();
     this.addResetButtonListener();
     this.addNavButtonPrevListener();
     this.addNavButtonNextListener();
     this.addCreateCarButtonListener();
+    this.addUpdateCarButtonListener();
     // this.addRemoveButtonListeners();
   }
 
-  private addGarageListeners(): void {
-    const garage = getElement('.garage');
-    garage.addEventListener('click', async (event: Event) => {
-      if (event.target && event.target instanceof HTMLButtonElement) {
-        const targetCarItem = event.target.closest('.garage__item');
-        if (targetCarItem instanceof HTMLElement) {
-          const carId = Number(targetCarItem.dataset.index);
-
-          if (event.target.classList.contains('button__remove')) {
-            await this.garageController.deleteCarFromGarage(carId, targetCarItem);
-            this.addListeners();
+  private addCarBlockListeners() {
+    const carBlocks = document.querySelectorAll('.garage__item');
+    if (carBlocks.length) {
+      carBlocks.forEach((carBlock) => {
+        carBlock.addEventListener('click', async (event: Event) => {
+          if (event.target && event.target instanceof HTMLButtonElement) {
+            if (carBlock instanceof HTMLElement) {
+              const carId = Number(carBlock.dataset.index);
+              if (event.target.classList.contains('button__remove')) {
+                await this.garageController.deleteCarFromGarage(carId, carBlock);
+                this.addListeners();
+              }
+              if (event.target.classList.contains('button__start')) {
+                this.garageController.startCar(carId);
+              }
+              if (event.target.classList.contains('button__stop')) {
+                this.garageController.stopCar(carId);
+              }
+              if (event.target.classList.contains('button__select')) {
+                this.garageController.selectCar(carId);
+              }
+            }
           }
-          if (event.target.classList.contains('button__start')) {
-            this.garageController.startCar(carId);
-          }
-          if (event.target.classList.contains('button__stop')) {
-            this.garageController.stopCar(carId);
-          }
-        }
-      }
-    });
+        });
+      });
+    }
   }
-
-  // private addRemoveButtonListeners() {
-  //   const removeButtons = getElements('.button__remove');
-  //   removeButtons.forEach((button) => {
-  //     button.addEventListener('click', async () => {
-  //       if (button instanceof HTMLButtonElement) {
-  //         const targetCarItem = button.closest('.garage__item');
-  //         if (targetCarItem instanceof HTMLElement) {
-  //           await this.garageController
-  // .deleteCarFromGarage(Number(button.dataset.index), targetCarItem);
-  //           this.addListeners();
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
 
   private addCreateCarButtonListener(): void {
     const createButton = getElement('.button__create');
     createButton.addEventListener('click', async () => {
       await this.garageController.createCar();
+      this.addListeners();
+    });
+  }
+
+  private addUpdateCarButtonListener(): void {
+    const updateButton = getElement('.button__update');
+    updateButton.addEventListener('click', async () => {
+      await this.garageController.updateCar();
       this.addListeners();
     });
   }
