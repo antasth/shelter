@@ -26,7 +26,6 @@ class Garage {
     createElement('span', ['garage__page'], raceData.currentPage, pageCount);
     createElement('button', ['button', 'garage__nav__button-next'], '>', pageCount);
     const garageContent = createElement('div', ['garage__content'], '', garage);
-    console.log('raceData', raceData.carsData);
 
     raceData.carsData.forEach((car) => {
       this.drawCarBlock(garageContent, car);

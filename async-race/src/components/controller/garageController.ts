@@ -76,12 +76,14 @@ class GarageController {
   public async createCar(): Promise<void> {
     const inputCarName: HTMLInputElement = getElement('.input__create.input__text');
     const inputColor: HTMLInputElement = getElement('.input__create.input__color');
-    const newCar = {
-      name: inputCarName.value,
-      color: inputColor.value
-    };
-    await garageRequest.postCar(newCar);
-    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    if (inputCarName.value) {
+      const newCar = {
+        name: inputCarName.value,
+        color: inputColor.value
+      };
+      await garageRequest.postCar(newCar);
+      await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    }
     this.garageView.drawGarage();
   }
 
