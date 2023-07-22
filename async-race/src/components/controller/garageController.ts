@@ -43,7 +43,7 @@ class GarageController {
 
   public async addMoreCars(): Promise<void> {
     await this.generateCars();
-    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    raceData.carsInGarageCount += RANDOM_CARS_COUNT;
     this.garageView.drawGarage();
   }
 
