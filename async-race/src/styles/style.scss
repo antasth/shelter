@@ -15,11 +15,15 @@ body {
 
   color: aliceblue;
 }
+h1 {
+  margin: 0;
+}
 .button {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 5px;
+  height: 25px;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -40,15 +44,13 @@ body {
   display: flex;
   flex-direction: column;
   max-width: 350px;
-  row-gap: 10px;
+  row-gap: 5px;
   &__block {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     column-gap: 0.3rem;
     height: 2rem;
-    &__color {
-      height: 100%;
-    }
   }
   &__controls {
     display: flex;
@@ -59,7 +61,7 @@ body {
 }
 
 .garage {
-  padding-top: 2rem;
+  padding-top: 1rem;
   &__header,
   &__subheader {
     display: flex;
@@ -68,10 +70,10 @@ body {
     font-size: 22px;
   }
   &__content {
-    padding: 20px 0;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 0.5rem;
   }
 
   &__item {
@@ -100,8 +102,9 @@ body {
       height: 25px;
     }
     &__car {
-      width: 200px;
-      height: 85px;
+      align-self: flex-end;
+      width: 150px;
+      height: 60px;
       -webkit-mask: url(../assets/img/car.svg);
       mask: url(../assets/img/car.svg);
       -webkit-mask-size: cover;
@@ -109,9 +112,9 @@ body {
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
     &__flag {
-      margin-right: 225px;
-      width: 80px;
-      height: 80px;
+      margin-right: 160px;
+      width: 70px;
+      height: 70px;
       background-image: url('../assets/img/flag.png');
       background-size: cover;
     }
