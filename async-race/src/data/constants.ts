@@ -7,7 +7,7 @@ export const CARS_ON_PAGE = 7;
 export const BASE_CAR_SPEED = 100;
 export const CAR_WIDTH = 200;
 export const CAR_OFFSET = 60;
-export const RANDOM_CARS_COUNT = 100;
+export const RANDOM_CARS_COUNT = 10;
 export const CAR_BRANDS = [
   'Tesla',
   'Ford',

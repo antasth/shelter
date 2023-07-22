@@ -35,10 +35,16 @@ class GarageController {
     stopCarAnimation(id);
   }
 
-  public async generateCars() {
+  public async generateCars(): Promise<void> {
     for (let i = 0; i < RANDOM_CARS_COUNT; i += 1) {
       garageRequest.postCar(createRandomCar());
     }
+  }
+
+  public async addMoreCars(): Promise<void> {
+    await this.generateCars();
+    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    this.garageView.drawGarage();
   }
 
   public startRace(): void {

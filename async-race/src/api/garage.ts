@@ -19,7 +19,7 @@ export const postCar = async (data: CarObject): Promise<void> => {
     body: JSON.stringify(data)
   });
   const result = await response.json();
-  console.log(result);
+  return result;
 };
 
 export const deleteCar = async (id: number): Promise<void> => {
