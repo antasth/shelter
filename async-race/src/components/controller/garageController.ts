@@ -4,6 +4,7 @@ import { BASE_CAR_SPEED, CARS_ON_PAGE } from '../../data/constants';
 import raceData from '../../data/raceData';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
 import { generateRandomCars, getCarsOnPageId, getElement } from '../../functions/functions';
+import { Engine } from '../../interfaces/interfaces';
 import Garage from '../view/garage';
 
 class GarageController {
@@ -30,6 +31,14 @@ class GarageController {
     }
   }
 
+  private async startEngines(carsOnPageId: number[]): Promise<Engine[]> {
+    const requests = carsOnPageId.map((id) => {
+      return engineRequest.startEngine(id);
+    });
+    const responses = await Promise.all(requests);
+    return responses;
+  }
+
   public async stopCar(id: number): Promise<void> {
     await engineRequest.stopEngine(id);
     stopCarAnimation(id);
@@ -46,10 +55,17 @@ class GarageController {
     this.garageView.drawGarage();
   }
 
-  public startRace(): void {
+  public async startRace(): Promise<void> {
     const carsOnPageId = getCarsOnPageId();
-    carsOnPageId.forEach((id) => {
-      this.startCar(id);
+    const engineResponses = await this.startEngines(carsOnPageId);
+    carsOnPageId.forEach(async (carId, i) => {
+      const animationTime = engineResponses[i].distance / engineResponses[i].velocity;
+      startCarAnimation(carId, animationTime);
+      try {
+        await engineRequest.switchToDriveMode(carId);
+      } catch (error) {
+        stopCarAnimation(carId, true);
+      }
     });
   }
 

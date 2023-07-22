@@ -6,6 +6,7 @@ export const startEngine = async (id: number): Promise<Engine> => {
   const response = await fetch(`${ENGINE_PATH}?id=${id}&status=${EngineStatus.start}`, {
     method: 'PATCH'
   });
+
   return response.json();
 };
 export const stopEngine = async (id: number): Promise<Engine> => {
