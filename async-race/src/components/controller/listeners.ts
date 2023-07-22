@@ -66,7 +66,7 @@ class Listeners {
   private addGenerateButtonListener(): void {
     const generateButton = getElement('.button__generate');
     generateButton.addEventListener('click', async () => {
-      await this.garageController.addMoreCars();
+      await this.garageController.generateCars();
       this.addListeners();
     });
   }

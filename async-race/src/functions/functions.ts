@@ -1,4 +1,4 @@
-import { CARS_ON_PAGE, CAR_BRANDS, CAR_MODELS } from '../data/constants';
+import { CARS_ON_PAGE, CAR_BRANDS, CAR_MODELS, RANDOM_CARS_COUNT } from '../data/constants';
 import raceData from '../data/raceData';
 import { CarObject, ResponseCarObject } from '../interfaces/interfaces';
 
@@ -39,11 +39,20 @@ export const createRandomCarName = (): string => {
   const carModelIndex = getRandomNumber(CAR_MODELS.length);
   return `${CAR_BRANDS[carNameIndex]} ${CAR_MODELS[carModelIndex]}`;
 };
+
 export const createRandomCar = (): CarObject => {
   return {
     name: createRandomCarName(),
     color: getRandomColor()
   };
+};
+
+export const generateRandomCars = (numberOfCars = RANDOM_CARS_COUNT): CarObject[] => {
+  const randomCars = [];
+  for (let i = 0; i < numberOfCars; i += 1) {
+    randomCars.push(createRandomCar());
+  }
+  return randomCars;
 };
 
 export const getRaceData = (carsCount: number, data: Array<ResponseCarObject>) => {

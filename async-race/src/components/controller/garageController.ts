@@ -1,9 +1,9 @@
 import * as engineRequest from '../../api/engine';
 import * as garageRequest from '../../api/garage';
-import { BASE_CAR_SPEED, CARS_ON_PAGE, RANDOM_CARS_COUNT } from '../../data/constants';
+import { BASE_CAR_SPEED, CARS_ON_PAGE } from '../../data/constants';
 import raceData from '../../data/raceData';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
-import { createRandomCar, getCarsOnPageId, getElement } from '../../functions/functions';
+import { generateRandomCars, getCarsOnPageId, getElement } from '../../functions/functions';
 import Garage from '../view/garage';
 
 class GarageController {
@@ -36,14 +36,13 @@ class GarageController {
   }
 
   public async generateCars(): Promise<void> {
-    for (let i = 0; i < RANDOM_CARS_COUNT; i += 1) {
-      garageRequest.postCar(createRandomCar());
-    }
-  }
-
-  public async addMoreCars(): Promise<void> {
-    await this.generateCars();
-    raceData.carsInGarageCount += RANDOM_CARS_COUNT;
+    const cars = generateRandomCars();
+    await Promise.all(
+      cars.map(async (car) => {
+        await garageRequest.postCar(car);
+      })
+    );
+    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }
 

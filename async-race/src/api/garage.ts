@@ -11,15 +11,13 @@ export const getCars = async (page: number, limit: number): Promise<void> => {
 };
 
 export const postCar = async (data: CarObject): Promise<void> => {
-  const response = await fetch(GARAGE_PATH, {
+  await fetch(GARAGE_PATH, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
   });
-  const result = await response.json();
-  return result;
 };
 
 export const deleteCar = async (id: number): Promise<void> => {
