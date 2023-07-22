@@ -90,10 +90,19 @@ class GarageController {
     raceData.updateCarId = carId;
   }
 
-  public updateCar() {
+  public async updateSelectedCar(): Promise<void> {
     const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
     const inputColor: HTMLInputElement = getElement('.input__update.input__color');
-    //! Достать carID из raceData и добавить в api update запрос
+    const carData = {
+      name: inputCarName.value,
+      color: inputColor.value
+    };
+    const updatedCar = await garageRequest.updateCar(raceData.updateCarId, carData);
+    const carIndex = raceData.carsData.findIndex((car) => {
+      return car.id === raceData.updateCarId;
+    });
+    raceData.carsData.splice(carIndex, 1, updatedCar);
+    this.garageView.drawGarage();
   }
 }
 

@@ -27,3 +27,16 @@ export const deleteCar = async (id: number): Promise<void> => {
     method: 'DELETE'
   });
 };
+
+export const updateCar = async (id: number, data: CarObject): Promise<ResponseCarObject> => {
+  const response = await fetch(`${GARAGE_PATH}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  const result = await response.json();
+
+  return result;
+};

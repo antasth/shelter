@@ -5,18 +5,12 @@ import { CarObject, ResponseCarObject } from '../interfaces/interfaces';
 export const getElement = <T extends HTMLElement>(selector: string): T => {
   const element = document.querySelector<T>(selector);
   if (!element) {
+    console.log(selector);
+
     throw new TypeError('Type Error');
   }
   return element;
 };
-
-// export const getElements = (selector: string): NodeList => {
-//   const elements = document.querySelectorAll(selector);
-//   if (!elements) {
-//     throw new TypeError('Type Error');
-//   }
-//   return elements;
-// };
 
 export const createElement = (
   tagName: string,

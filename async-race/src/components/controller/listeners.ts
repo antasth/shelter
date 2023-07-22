@@ -17,7 +17,6 @@ class Listeners {
     this.addNavButtonNextListener();
     this.addCreateCarButtonListener();
     this.addUpdateCarButtonListener();
-    // this.addRemoveButtonListeners();
   }
 
   private addCarBlockListeners() {
@@ -59,7 +58,7 @@ class Listeners {
   private addUpdateCarButtonListener(): void {
     const updateButton = getElement('.button__update');
     updateButton.addEventListener('click', async () => {
-      await this.garageController.updateCar();
+      await this.garageController.updateSelectedCar();
       this.addListeners();
     });
   }
