@@ -97,17 +97,22 @@ class GarageController {
   }
 
   public async updateSelectedCar(): Promise<void> {
-    const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
-    const inputColor: HTMLInputElement = getElement('.input__update.input__color');
-    const carData = {
-      name: inputCarName.value,
-      color: inputColor.value
-    };
-    const updatedCar = await garageRequest.updateCar(raceData.updateCarId, carData);
-    const carIndex = raceData.carsData.findIndex((car) => {
-      return car.id === raceData.updateCarId;
-    });
-    raceData.carsData.splice(carIndex, 1, updatedCar);
+    if (raceData.updateCarId) {
+      console.log(raceData.updateCarId);
+      const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
+      const inputColor: HTMLInputElement = getElement('.input__update.input__color');
+      const carData = {
+        name: inputCarName.value,
+        color: inputColor.value
+      };
+
+      const updatedCar = await garageRequest.updateCar(raceData.updateCarId, carData);
+      const carIndex = raceData.carsData.findIndex((car) => {
+        return car.id === raceData.updateCarId;
+      });
+      raceData.carsData.splice(carIndex, 1, updatedCar);
+      raceData.updateCarId = 0;
+    }
     this.garageView.drawGarage();
   }
 }
