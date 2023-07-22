@@ -16,13 +16,11 @@ export const stopEngine = async (id: number): Promise<Engine> => {
   return response.json();
 };
 export const switchToDriveMode = async (id: number): Promise<Object> => {
-  console.log('drive');
-
   const response = await fetch(`${ENGINE_PATH}?id=${id}&status=${EngineStatus.drive}`, {
     method: 'PATCH'
   });
   const result = await response.json();
-  console.log(result);
+  console.log(result, id);
 
   return result;
 };

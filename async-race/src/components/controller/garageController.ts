@@ -46,11 +46,10 @@ class GarageController {
 
   public async generateCars(): Promise<void> {
     const cars = generateRandomCars();
-    await Promise.all(
-      cars.map(async (car) => {
-        await garageRequest.postCar(car);
-      })
-    );
+    const requests = cars.map(async (car) => {
+      await garageRequest.postCar(car);
+    });
+    await Promise.all(requests);
     await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }
