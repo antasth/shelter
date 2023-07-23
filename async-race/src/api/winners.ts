@@ -2,7 +2,7 @@ import appData from '../data/appData';
 import { WINNERS_ON_PAGE, WINNERS_PATH } from '../data/constants';
 import { getWinnersData } from '../functions/functions';
 import { SortOrder, WinnersSort } from '../interfaces/enum';
-import { ResponseWinnersObject } from '../interfaces/interfaces';
+import { ResponseWinnersObject, UpdateWinnersObject } from '../interfaces/interfaces';
 
 export const getWinners = async (
   page: number = appData.winnersPage,
@@ -39,5 +39,17 @@ export const deleteWinner = async (id: number): Promise<Object> => {
     method: 'DELETE'
   });
   const result = response.json();
+  return result;
+};
+
+export const updateWinner = async (id: number, data: UpdateWinnersObject): Promise<ResponseWinnersObject> => {
+  const response = await fetch(`${WINNERS_PATH}/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  const result = await response.json();
   return result;
 };

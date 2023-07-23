@@ -14,6 +14,12 @@ export interface ResponseWinnersObject {
   wins: number;
   time: number;
 }
+
+export interface UpdateWinnersObject {
+  wins: number;
+  time: number;
+}
+
 export interface Cars {
   items: Array<CarObject>;
 }
