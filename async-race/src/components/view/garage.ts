@@ -14,26 +14,38 @@ class Garage {
     this.modal = new Modal();
   }
 
-  public drawGarage(): void {
+  public drawGarageView(): void {
     const body = getElement('body');
     body.replaceChildren();
     const main = createElement('main', ['main'], '', null);
     body.append(this.menu.drawHeader(), main);
     main.append(this.menu.drawMenu());
     const garage = createElement('section', ['garage'], '', main);
-    const garageCount = createElement('div', ['garage__header'], '', garage);
+    garage.append(this.drawGarage());
+  }
+
+  public redrawGarage(): void {
+    const garage = getElement('.garage');
+    garage.replaceChildren();
+    garage.append(this.drawGarage());
+  }
+
+  private drawGarage(): HTMLElement {
+    const garageWrapper = createElement('div', ['garage__wrapper'], '', null);
+    const garageCount = createElement('div', ['garage__header'], '', garageWrapper);
     createElement('h2', ['garage__header__text'], 'Garage', garageCount);
     createElement('span', ['garage__header__count'], appData.carsCount, garageCount);
-    const pageCount = createElement('div', ['garage__subheader'], '', garage);
+    const pageCount = createElement('div', ['garage__subheader'], '', garageWrapper);
     createElement('h3', ['garage__page'], 'Page', pageCount);
     createElement('button', ['button', 'garage__nav__button-prev'], '<', pageCount);
     createElement('span', ['garage__page'], appData.garagePage, pageCount);
     createElement('button', ['button', 'garage__nav__button-next'], '>', pageCount);
-    const garageContent = createElement('div', ['garage__content'], '', garage);
+    const garageContent = createElement('div', ['garage__content'], '', garageWrapper);
     this.modal.drawModal();
     appData.carsData.forEach((car) => {
       this.drawCarBlock(garageContent, car);
     });
+    return garageWrapper;
   }
 
   private drawCarBlock(parentElement: HTMLElement, car: ResponseCarObject): void {

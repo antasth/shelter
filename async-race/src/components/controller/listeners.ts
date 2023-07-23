@@ -24,6 +24,13 @@ class Listeners {
     this.addModalCloseListeners();
   }
 
+  private addGarageListeners(): void {
+    this.addCarBlockListeners();
+    this.addNavButtonPrevListener();
+    this.addNavButtonNextListener();
+    this.addModalCloseListeners();
+  }
+
   private addCarBlockListeners() {
     const carBlocks = document.querySelectorAll('.garage__item');
     if (carBlocks.length) {
@@ -34,7 +41,7 @@ class Listeners {
               const carId = Number(carBlock.dataset.index);
               if (event.target.classList.contains('button__remove')) {
                 await this.garageController.deleteCarFromGarage(carId, carBlock);
-                this.addListeners();
+                this.addGarageListeners();
               }
               if (event.target.classList.contains('button__start')) {
                 this.garageController.startCar(carId);
@@ -56,7 +63,7 @@ class Listeners {
     const createButton = getElement('.button__create');
     createButton.addEventListener('click', async () => {
       await this.garageController.createCar();
-      this.addListeners();
+      this.addGarageListeners();
     });
   }
 
@@ -64,7 +71,7 @@ class Listeners {
     const updateButton = getElement('.button__update');
     updateButton.addEventListener('click', async () => {
       await this.garageController.updateSelectedCar();
-      this.addListeners();
+      this.addGarageListeners();
     });
   }
 
@@ -72,7 +79,7 @@ class Listeners {
     const generateButton = getElement('.button__generate');
     generateButton.addEventListener('click', async () => {
       await this.garageController.generateCars();
-      this.addListeners();
+      this.addGarageListeners();
     });
   }
 
@@ -96,7 +103,7 @@ class Listeners {
     const prevButton = getElement('.garage__nav__button-prev');
     prevButton.addEventListener('click', async () => {
       await this.garageController.showPrevPage();
-      this.addListeners();
+      this.addGarageListeners();
     });
   }
 
@@ -104,7 +111,7 @@ class Listeners {
     const prevButton = getElement('.garage__nav__button-next');
     prevButton.addEventListener('click', async () => {
       await this.garageController.showNextPage();
-      this.addListeners();
+      this.addGarageListeners();
     });
   }
 

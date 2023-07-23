@@ -18,7 +18,7 @@ class GarageController {
     await garageRequest.deleteCar(carId);
     await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     targetCarItem.remove();
-    this.garageView.drawGarage();
+    this.garageView.redrawGarage();
   }
 
   public async startCar(id: number): Promise<void> {
@@ -51,7 +51,7 @@ class GarageController {
     });
     await Promise.all(requests);
     await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
-    this.garageView.drawGarage();
+    this.garageView.redrawGarage();
   }
 
   public async startRace(): Promise<EngineDriveResponse> {
@@ -85,13 +85,13 @@ class GarageController {
   public async showPrevPage(): Promise<void> {
     if (appData.garagePage > 1) appData.garagePage -= 1;
     await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
-    this.garageView.drawGarage();
+    this.garageView.redrawGarage();
   }
 
   public async showNextPage(): Promise<void> {
     if (appData.garagePage < appData.garagePagesCount) appData.garagePage += 1;
     await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
-    this.garageView.drawGarage();
+    this.garageView.redrawGarage();
   }
 
   public async createCar(): Promise<void> {
@@ -105,12 +105,14 @@ class GarageController {
       await garageRequest.postCar(newCar);
       await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     }
-    this.garageView.drawGarage();
+    this.garageView.redrawGarage();
   }
 
   public selectCar(carId: number): void {
     const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
     const inputColor: HTMLInputElement = getElement('.input__update.input__color');
+    console.log(carId);
+
     const [{ name, color }] = appData.carsData.filter((car) => {
       return car.id === carId;
     });
@@ -121,7 +123,7 @@ class GarageController {
 
   public async updateSelectedCar(): Promise<void> {
     if (appData.updateCarId) {
-      console.log(appData.updateCarId);
+      console.log('appData.updateCarId', appData.updateCarId);
       const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
       const inputColor: HTMLInputElement = getElement('.input__update.input__color');
       const carData = {
@@ -136,7 +138,7 @@ class GarageController {
       appData.carsData.splice(carIndex, 1, updatedCar);
       appData.updateCarId = 0;
     }
-    this.garageView.drawGarage();
+    this.garageView.redrawGarage();
   }
 }
 
