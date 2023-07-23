@@ -1,8 +1,9 @@
-import { GARAGE_PATH } from '../data/constants';
+import appData from '../data/appData';
+import { CARS_ON_PAGE, GARAGE_PATH } from '../data/constants';
 import { getCarsData } from '../functions/functions';
 import { CarObject, ResponseCarObject } from '../interfaces/interfaces';
 
-export const getCars = async (page: number, limit: number): Promise<void> => {
+export const getCars = async (page: number = appData.garagePage, limit: number = CARS_ON_PAGE): Promise<void> => {
   console.log(page);
   const response = await fetch(`${GARAGE_PATH}?_page=${page}&_limit=${limit}`);
   const data: Array<ResponseCarObject> = await response.json();

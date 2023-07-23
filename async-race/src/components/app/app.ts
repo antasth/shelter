@@ -1,14 +1,12 @@
 import * as garage from '../../api/garage';
 import * as winners from '../../api/winners';
 import appData from '../../data/appData';
-import { CARS_ON_PAGE, WINNERS_ON_PAGE } from '../../data/constants';
-import { SortOrder, WinnersSort } from '../../interfaces/enum';
 import Listeners from '../controller/listeners';
 import Garage from '../view/garage';
 import Winners from '../view/winners';
 
-await garage.getCars(appData.garagePage, CARS_ON_PAGE);
-await winners.getWinners(appData.winnersPage, WINNERS_ON_PAGE, WinnersSort.id, SortOrder.asc);
+await garage.getCars();
+await winners.getWinners();
 
 class App {
   private garage: Garage;
