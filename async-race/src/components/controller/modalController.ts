@@ -1,4 +1,5 @@
-import { getElement } from '../../functions/functions';
+import raceData from '../../data/raceData';
+import { createElement, getElement } from '../../functions/functions';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
 
 class ModalController {
@@ -23,8 +24,18 @@ class ModalController {
   }
 
   public addModalContent(winner: EngineDriveResponse): void {
-    const modalContainer = getElement('.modal__content');
-    modalContainer.innerText = String(winner.id);
+    const modalContent = getElement('.modal__content');
+    const [winnerCar] = raceData.carsData.filter((car) => {
+      return car.id === winner.id;
+    });
+    // console.log(winnerCar);
+    const winMessage = `Победил гонщик №${winnerCar.id} на ${winnerCar.name}`;
+    const header = createElement('div', ['modal__content__header'], '', modalContent);
+    createElement('h3', ['modal__content__message'], winMessage, header);
+    const winImage = createElement('div', ['modal__content__image'], '', modalContent);
+    createElement('img', ['modal__content__img'], '', winImage);
+    // modalImage.setAttribute('src', '../../assets/gif/gif1.gif');
+    // modalContent.innerText = `Победил гонщик №${winnerCar.id} на ${winnerCar.name}`;
   }
 }
 export default ModalController;
