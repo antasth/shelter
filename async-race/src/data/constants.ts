@@ -4,6 +4,7 @@ export const WINNERS_PATH = `${SERVER_URL}/winners`;
 export const ENGINE_PATH = `${SERVER_URL}/engine`;
 export const DEFAULT_PAGE = 1;
 export const CARS_ON_PAGE = 7;
+export const WINNERS_ON_PAGE = 10;
 export const BASE_CAR_SPEED = 100;
 export const CAR_WIDTH = 150;
 export const CAR_OFFSET = 60;

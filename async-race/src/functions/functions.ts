@@ -1,6 +1,6 @@
-import { CARS_ON_PAGE, CAR_BRANDS, CAR_MODELS, RANDOM_CARS_COUNT } from '../data/constants';
+import { CARS_ON_PAGE, CAR_BRANDS, CAR_MODELS, RANDOM_CARS_COUNT, WINNERS_ON_PAGE } from '../data/constants';
 import raceData from '../data/raceData';
-import { CarObject, ResponseCarObject } from '../interfaces/interfaces';
+import { CarObject, ResponseCarObject, ResponseWinnersObject } from '../interfaces/interfaces';
 
 export const getElement = <T extends HTMLElement>(selector: string): T => {
   const element = document.querySelector<T>(selector);
@@ -55,12 +55,19 @@ export const generateRandomCars = (numberOfCars = RANDOM_CARS_COUNT): CarObject[
   return randomCars;
 };
 
-export const getRaceData = (carsCount: number, data: Array<ResponseCarObject>) => {
+export const getCarsData = (carsCount: number, data: Array<ResponseCarObject>) => {
   if (carsCount) {
-    raceData.carsInGarageCount = carsCount;
-    raceData.countOfPages = Math.ceil(carsCount / CARS_ON_PAGE);
+    raceData.carsCount = carsCount;
+    raceData.garagePagesCount = Math.ceil(carsCount / CARS_ON_PAGE);
   }
   raceData.carsData = data;
+};
+export const getWinnersData = (winnersCount: number, data: Array<ResponseWinnersObject>) => {
+  if (winnersCount) {
+    raceData.winnersCount = winnersCount;
+    raceData.winnersPagesCount = Math.ceil(winnersCount / WINNERS_ON_PAGE);
+  }
+  raceData.winnersData = data;
 };
 
 export const getCarsOnPageId = () => {

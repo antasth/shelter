@@ -89,7 +89,7 @@ class GarageController {
   }
 
   public async showNextPage(): Promise<void> {
-    if (raceData.currentPage < raceData.countOfPages) raceData.currentPage += 1;
+    if (raceData.currentPage < raceData.garagePagesCount) raceData.currentPage += 1;
     await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }

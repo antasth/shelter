@@ -23,7 +23,7 @@ class Garage {
     const garage = createElement('section', ['garage'], '', main);
     const garageCount = createElement('div', ['garage__header'], '', garage);
     createElement('h2', ['garage__header__text'], 'Garage', garageCount);
-    createElement('span', ['garage__header__count'], raceData.carsInGarageCount, garageCount);
+    createElement('span', ['garage__header__count'], raceData.carsCount, garageCount);
     const pageCount = createElement('div', ['garage__subheader'], '', garage);
     createElement('h3', ['garage__page'], 'Page', pageCount);
     createElement('button', ['button', 'garage__nav__button-prev'], '<', pageCount);

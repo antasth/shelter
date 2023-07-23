@@ -2,10 +2,13 @@ import { RaceData } from '../interfaces/interfaces';
 import { DEFAULT_PAGE } from './constants';
 
 const raceData: RaceData = {
-  carsInGarageCount: 0,
+  carsCount: 0,
   currentPage: DEFAULT_PAGE,
-  countOfPages: 1,
+  garagePagesCount: 1,
   updateCarId: 0,
-  carsData: []
+  carsData: [],
+  winnersData: [],
+  winnersCount: 0,
+  winnersPagesCount: 1
 };
 export default raceData;

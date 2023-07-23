@@ -1,11 +1,13 @@
-import * as request from '../../api/garage';
-import { CARS_ON_PAGE } from '../../data/constants';
+import * as garage from '../../api/garage';
+import * as winners from '../../api/winners';
+import { CARS_ON_PAGE, WINNERS_ON_PAGE } from '../../data/constants';
 import raceData from '../../data/raceData';
 import Listeners from '../controller/listeners';
 import Garage from '../view/garage';
 import Winners from '../view/winners';
 
-await request.getCars(raceData.currentPage, CARS_ON_PAGE);
+await garage.getCars(raceData.currentPage, CARS_ON_PAGE);
+await winners.getWinners(raceData.currentPage, WINNERS_ON_PAGE, 'id', 'ASC');
 
 class App {
   private garage: Garage;
@@ -24,6 +26,7 @@ class App {
     this.garage.drawGarage();
     this.winners.drawWinners();
     this.listeners.addListeners();
+    console.log(raceData);
   }
 }
 

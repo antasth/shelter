@@ -9,6 +9,11 @@ export interface ResponseCarObject {
   color: string;
 }
 
+export interface ResponseWinnersObject {
+  id: number;
+  wins: number;
+  time: number;
+}
 export interface Cars {
   items: Array<CarObject>;
 }
@@ -24,9 +29,12 @@ export interface EngineDriveResponse {
 }
 
 export interface RaceData {
-  carsInGarageCount: number;
+  carsCount: number;
   currentPage: number;
-  countOfPages: number;
+  garagePagesCount: number;
   updateCarId: number;
   carsData: Array<ResponseCarObject>;
+  winnersCount: number;
+  winnersPagesCount: number;
+  winnersData: Array<ResponseWinnersObject>;
 }
