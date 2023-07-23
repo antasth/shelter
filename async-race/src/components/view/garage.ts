@@ -14,10 +14,6 @@ class Garage {
     this.modal = new Modal();
   }
 
-  public drawModalWindow() {
-    this.modal.drawModal();
-  }
-
   public drawGarage(): void {
     const body = getElement('body');
     body.replaceChildren();

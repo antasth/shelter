@@ -14,12 +14,12 @@ export const getElement = <T extends HTMLElement>(selector: string): T => {
 
 export const createElement = (
   tagName: string,
-  className: string[],
+  className: string[] | null,
   innerText: string | number,
   parentNode: HTMLElement | null
 ): HTMLElement => {
   const element: HTMLElement = document.createElement(tagName);
-  element.classList.add(...className);
+  if (className) element.classList.add(...className);
   element.innerText = String(innerText);
   if (parentNode) {
     parentNode.append(element);

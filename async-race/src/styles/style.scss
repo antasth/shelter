@@ -212,3 +212,28 @@ h1 {
   border-color: #eae208;
   color: #000000;
 }
+
+// winners
+.winners {
+  padding: 1rem;
+}
+.winners__table {
+	width: 50%;
+	margin-bottom: 20px;
+	border-collapse: collapse; 
+}
+.winners__table th {
+	font-weight: bold;
+	padding: 5px;
+	border: 1px solid #dddddd;
+}
+.winners__table td {
+	border: 1px solid #dddddd;
+	padding: 5px;
+}
+.winners__table tr td:first-child, .winners__table tr th:first-child {
+	border-left: none;
+}
+.winners__table tr td:last-child, .winners__table tr th:last-child {
+	border-right: none;
+}
