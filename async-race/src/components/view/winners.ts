@@ -4,10 +4,11 @@ class Winners {
   public drawWinners() {
     const body = getElement('body');
     const winners = createElement('div', ['winners'], '', body);
-    const title = createElement('h1', ['winners__title'], 'Winners(1)', winners);
-    const subTitle = createElement('h3', ['winners__subtitle'], 'Page(1)', winners);
+    const winnersWrapper = createElement('div', ['winners__wrapper'], '', winners);
+    const title = createElement('h1', ['winners__title'], 'Winners(1)', winnersWrapper);
+    const subTitle = createElement('h3', ['winners__subtitle'], 'Page(1)', winnersWrapper);
     console.log(title, subTitle);
-    const winnersTable = createElement('table', ['winners__table'], '', winners);
+    const winnersTable = createElement('table', ['winners__table'], '', winnersWrapper);
     const tableHead = createElement('thead', ['table__head'], '', winnersTable);
     const tableHeadRow = createElement('tr', ['table__row'], '', tableHead);
     createElement('th', null, '№', tableHeadRow);

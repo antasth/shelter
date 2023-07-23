@@ -217,6 +217,13 @@ h1 {
 .winners {
   padding: 1rem;
   display: none;
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 1rem;
+    align-items: center;
+  }
 }
 .winners__table {
 	width: 50%;

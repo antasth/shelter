@@ -18,7 +18,7 @@ class Garage {
     const body = getElement('body');
     body.replaceChildren();
     const main = createElement('main', ['main'], '', null);
-    body.append(this.menu.drawHeader(), main);
+    body.append(this.menu.drawHeader(), main, this.modal.drawModal());
     main.append(this.menu.drawMenu());
     const garage = createElement('section', ['garage'], '', main);
     garage.append(this.drawGarage());
@@ -41,7 +41,6 @@ class Garage {
     createElement('span', ['garage__page'], appData.garagePage, pageCount);
     createElement('button', ['button', 'garage__nav__button-next'], '>', pageCount);
     const garageContent = createElement('div', ['garage__content'], '', garageWrapper);
-    this.modal.drawModal();
     appData.carsData.forEach((car) => {
       this.drawCarBlock(garageContent, car);
     });
