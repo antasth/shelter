@@ -28,13 +28,14 @@ export interface EngineDriveResponse {
   id: number;
 }
 
-export interface RaceData {
+export interface AppData {
   carsCount: number;
-  currentPage: number;
+  garagePage: number;
   garagePagesCount: number;
   updateCarId: number;
   carsData: Array<ResponseCarObject>;
   winnersCount: number;
   winnersPagesCount: number;
   winnersData: Array<ResponseWinnersObject>;
+  winnersPage: number;
 }

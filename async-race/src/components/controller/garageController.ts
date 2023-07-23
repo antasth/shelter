@@ -1,7 +1,7 @@
 import * as engineRequest from '../../api/engine';
 import * as garageRequest from '../../api/garage';
+import appData from '../../data/appData';
 import { BASE_CAR_SPEED, CARS_ON_PAGE } from '../../data/constants';
-import raceData from '../../data/raceData';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
 import { generateRandomCars, getCarsOnPageId, getElement } from '../../functions/functions';
 import { Engine, EngineDriveResponse } from '../../interfaces/interfaces';
@@ -16,7 +16,7 @@ class GarageController {
 
   public async deleteCarFromGarage(carId: number, targetCarItem: Element): Promise<void> {
     await garageRequest.deleteCar(carId);
-    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     targetCarItem.remove();
     this.garageView.drawGarage();
   }
@@ -50,7 +50,7 @@ class GarageController {
       await garageRequest.postCar(car);
     });
     await Promise.all(requests);
-    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }
 
@@ -83,14 +83,14 @@ class GarageController {
   }
 
   public async showPrevPage(): Promise<void> {
-    if (raceData.currentPage > 1) raceData.currentPage -= 1;
-    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    if (appData.garagePage > 1) appData.garagePage -= 1;
+    await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }
 
   public async showNextPage(): Promise<void> {
-    if (raceData.currentPage < raceData.garagePagesCount) raceData.currentPage += 1;
-    await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+    if (appData.garagePage < appData.garagePagesCount) appData.garagePage += 1;
+    await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     this.garageView.drawGarage();
   }
 
@@ -103,7 +103,7 @@ class GarageController {
         color: inputColor.value
       };
       await garageRequest.postCar(newCar);
-      await garageRequest.getCars(raceData.currentPage, CARS_ON_PAGE);
+      await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     }
     this.garageView.drawGarage();
   }
@@ -111,17 +111,17 @@ class GarageController {
   public selectCar(carId: number): void {
     const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
     const inputColor: HTMLInputElement = getElement('.input__update.input__color');
-    const [{ name, color }] = raceData.carsData.filter((car) => {
+    const [{ name, color }] = appData.carsData.filter((car) => {
       return car.id === carId;
     });
     inputCarName.value = name;
     inputColor.value = color;
-    raceData.updateCarId = carId;
+    appData.updateCarId = carId;
   }
 
   public async updateSelectedCar(): Promise<void> {
-    if (raceData.updateCarId) {
-      console.log(raceData.updateCarId);
+    if (appData.updateCarId) {
+      console.log(appData.updateCarId);
       const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
       const inputColor: HTMLInputElement = getElement('.input__update.input__color');
       const carData = {
@@ -129,12 +129,12 @@ class GarageController {
         color: inputColor.value
       };
 
-      const updatedCar = await garageRequest.updateCar(raceData.updateCarId, carData);
-      const carIndex = raceData.carsData.findIndex((car) => {
-        return car.id === raceData.updateCarId;
+      const updatedCar = await garageRequest.updateCar(appData.updateCarId, carData);
+      const carIndex = appData.carsData.findIndex((car) => {
+        return car.id === appData.updateCarId;
       });
-      raceData.carsData.splice(carIndex, 1, updatedCar);
-      raceData.updateCarId = 0;
+      appData.carsData.splice(carIndex, 1, updatedCar);
+      appData.updateCarId = 0;
     }
     this.garageView.drawGarage();
   }

@@ -1,4 +1,4 @@
-import raceData from '../../data/raceData';
+import appData from '../../data/appData';
 import { createElement, getElement } from '../../functions/functions';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
 
@@ -26,7 +26,7 @@ class ModalController {
   public addModalContent(winner: EngineDriveResponse): void {
     const modalContent = getElement('.modal__content');
     modalContent.replaceChildren();
-    const [winnerCar] = raceData.carsData.filter((car) => {
+    const [winnerCar] = appData.carsData.filter((car) => {
       return car.id === winner.id;
     });
     const winMessage = `Победил гонщик №${winnerCar.id} на ${winnerCar.name}`;

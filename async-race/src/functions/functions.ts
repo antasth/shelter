@@ -1,5 +1,5 @@
+import appData from '../data/appData';
 import { CARS_ON_PAGE, CAR_BRANDS, CAR_MODELS, RANDOM_CARS_COUNT, WINNERS_ON_PAGE } from '../data/constants';
-import raceData from '../data/raceData';
 import { CarObject, ResponseCarObject, ResponseWinnersObject } from '../interfaces/interfaces';
 
 export const getElement = <T extends HTMLElement>(selector: string): T => {
@@ -57,21 +57,21 @@ export const generateRandomCars = (numberOfCars = RANDOM_CARS_COUNT): CarObject[
 
 export const getCarsData = (carsCount: number, data: Array<ResponseCarObject>) => {
   if (carsCount) {
-    raceData.carsCount = carsCount;
-    raceData.garagePagesCount = Math.ceil(carsCount / CARS_ON_PAGE);
+    appData.carsCount = carsCount;
+    appData.garagePagesCount = Math.ceil(carsCount / CARS_ON_PAGE);
   }
-  raceData.carsData = data;
+  appData.carsData = data;
 };
 export const getWinnersData = (winnersCount: number, data: Array<ResponseWinnersObject>) => {
   if (winnersCount) {
-    raceData.winnersCount = winnersCount;
-    raceData.winnersPagesCount = Math.ceil(winnersCount / WINNERS_ON_PAGE);
+    appData.winnersCount = winnersCount;
+    appData.winnersPagesCount = Math.ceil(winnersCount / WINNERS_ON_PAGE);
   }
-  raceData.winnersData = data;
+  appData.winnersData = data;
 };
 
 export const getCarsOnPageId = () => {
-  const carsOnPageId = raceData.carsData.map((car) => {
+  const carsOnPageId = appData.carsData.map((car) => {
     return car.id;
   });
   return carsOnPageId;

@@ -3,3 +3,14 @@ export enum EngineStatus {
   stop = 'stopped',
   drive = 'drive'
 }
+
+export enum WinnersSort {
+  id = 'id',
+  wins = 'wins',
+  time = 'time'
+}
+
+export enum SortOrder {
+  asc = 'ASC',
+  desc = 'DESC'
+}

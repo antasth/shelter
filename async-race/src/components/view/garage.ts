@@ -1,4 +1,4 @@
-import raceData from '../../data/raceData';
+import appData from '../../data/appData';
 import { createElement, getElement } from '../../functions/functions';
 import { ResponseCarObject } from '../../interfaces/interfaces';
 import Menu from './modules/menu';
@@ -23,15 +23,15 @@ class Garage {
     const garage = createElement('section', ['garage'], '', main);
     const garageCount = createElement('div', ['garage__header'], '', garage);
     createElement('h2', ['garage__header__text'], 'Garage', garageCount);
-    createElement('span', ['garage__header__count'], raceData.carsCount, garageCount);
+    createElement('span', ['garage__header__count'], appData.carsCount, garageCount);
     const pageCount = createElement('div', ['garage__subheader'], '', garage);
     createElement('h3', ['garage__page'], 'Page', pageCount);
     createElement('button', ['button', 'garage__nav__button-prev'], '<', pageCount);
-    createElement('span', ['garage__page'], raceData.currentPage, pageCount);
+    createElement('span', ['garage__page'], appData.garagePage, pageCount);
     createElement('button', ['button', 'garage__nav__button-next'], '>', pageCount);
     const garageContent = createElement('div', ['garage__content'], '', garage);
     this.modal.drawModal();
-    raceData.carsData.forEach((car) => {
+    appData.carsData.forEach((car) => {
       this.drawCarBlock(garageContent, car);
     });
   }
