@@ -33,3 +33,11 @@ export const createWinner = async (data: ResponseWinnersObject): Promise<Respons
   const result = await response.json();
   return result;
 };
+
+export const deleteWinner = async (id: number): Promise<Object> => {
+  const response = await fetch(`${WINNERS_PATH}/${id}`, {
+    method: 'DELETE'
+  });
+  const result = response.json();
+  return result;
+};
