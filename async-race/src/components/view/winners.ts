@@ -1,3 +1,4 @@
+import appData from '../../data/appData';
 import { createElement, getElement } from '../../functions/functions';
 
 class Winners {
@@ -16,7 +17,31 @@ class Winners {
     createElement('th', null, 'Name', tableHeadRow);
     createElement('th', null, 'Wins', tableHeadRow);
     createElement('th', null, 'Best Time', tableHeadRow);
+    const tableBody = createElement('tbody', null, '', winnersTable);
+    console.log(appData.winnersData);
 
+    appData.winnersData.forEach((winner, i) => {
+      const tableBodyRow = createElement('tr', ['table__row'], '', tableBody);
+      tableBodyRow.innerHTML = `
+      <td>${i + 1}
+      <td>${'CAR'}</td>
+      <td>${'NAME'}</td>
+      <td>${winner.wins}</td>
+      <td>${winner.time}</td>
+      `;
+    });
+    // data.forEach((element) => {
+    //   const tableRow = document.createElement('tr')
+    //   tableRow.classList.add('results__table-row')
+    //   tableRow.innerHTML = `
+    //   <td>${i++}</td>
+    //   <td>${element.board}</td>
+    //   <td>${element.bombs}</td>
+    // <td>${element.time}</td>
+    //   <td>${element.moves}</td>
+    //   `
+    //   resultsTableBody.appendChild(tableRow)
+    // })
     //   <table class="table">
     //   <thead>
     //     <tr>
