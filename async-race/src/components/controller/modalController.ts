@@ -25,17 +25,15 @@ class ModalController {
 
   public addModalContent(winner: EngineDriveResponse): void {
     const modalContent = getElement('.modal__content');
+    modalContent.replaceChildren();
     const [winnerCar] = raceData.carsData.filter((car) => {
       return car.id === winner.id;
     });
-    // console.log(winnerCar);
     const winMessage = `Победил гонщик №${winnerCar.id} на ${winnerCar.name}`;
     const header = createElement('div', ['modal__content__header'], '', modalContent);
     createElement('h3', ['modal__content__message'], winMessage, header);
-    const winImage = createElement('div', ['modal__content__image'], '', modalContent);
-    createElement('img', ['modal__content__img'], '', winImage);
-    // modalImage.setAttribute('src', '../../assets/gif/gif1.gif');
-    // modalContent.innerText = `Победил гонщик №${winnerCar.id} на ${winnerCar.name}`;
+    const winImageContainer = createElement('div', ['modal__content__image'], '', modalContent);
+    createElement('img', ['modal__content__img'], '', winImageContainer);
   }
 }
 export default ModalController;
