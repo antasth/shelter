@@ -32,6 +32,7 @@ export interface Engine {
 export interface EngineDriveResponse {
   success: boolean;
   id: number;
+  time: number;
 }
 
 export interface AppData {

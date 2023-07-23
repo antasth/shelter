@@ -121,10 +121,12 @@ class Listeners {
     const winnersButton = getElement('.button__winners');
     const garageViewContent = getElement('.main');
     const winnersViewContent = getElement('.winners');
+
     garageButton.addEventListener('click', () => {
       garageViewContent.style.display = 'block';
       winnersViewContent.style.display = 'none';
     });
+
     winnersButton.addEventListener('click', () => {
       garageViewContent.style.display = 'none';
       winnersViewContent.style.display = 'block';

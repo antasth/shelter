@@ -1,9 +1,16 @@
 import * as engineRequest from '../../api/engine';
 import * as garageRequest from '../../api/garage';
+import * as winnersRequest from '../../api/winners';
 import appData from '../../data/appData';
 import { BASE_CAR_SPEED, CARS_ON_PAGE } from '../../data/constants';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
-import { generateRandomCars, getCarsOnPageId, getElement } from '../../functions/functions';
+import {
+  createWinnerObject,
+  generateRandomCars,
+  getCarsOnPageId,
+  getElement,
+  getTimeInSeconds
+} from '../../functions/functions';
 import { Engine, EngineDriveResponse } from '../../interfaces/interfaces';
 import Garage from '../view/garage';
 
@@ -62,17 +69,29 @@ class GarageController {
       startCarAnimation(carId, animationTime);
       try {
         const res = await engineRequest.switchToDriveMode(carId);
-        console.log(res);
-
+        res.time = animationTime;
         return res;
       } catch {
         stopCarAnimation(carId, true);
         throw new Error();
       }
     });
-    const result = await Promise.any(requests);
-    console.log('result', result);
-    return result;
+    const winner = await Promise.any(requests);
+    console.log('winner', winner);
+    const winnerResponse = await winnersRequest.getWinner(winner.id);
+    if (winnerResponse.id) {
+      const winnerObject = createWinnerObject(winnerResponse, winner.id, winner.time);
+      winnersRequest.updateWinner(winnerResponse.id, winnerObject);
+    } else {
+      const winnerObject = {
+        id: winner.id,
+        wins: 1,
+        time: getTimeInSeconds(winner.time)
+      };
+      console.log('winnerObject', winnerObject);
+      winnersRequest.createWinner(winnerObject);
+    }
+    return winner;
   }
 
   public resetRace(): void {

@@ -76,3 +76,16 @@ export const getCarsOnPageId = () => {
   });
   return carsOnPageId;
 };
+
+export const getTimeInSeconds = (time: number): number => {
+  return Math.ceil(time / 1000);
+};
+
+export const createWinnerObject = (winnerOnServer: ResponseWinnersObject, id: number, time: number) => {
+  const winnerTime = getTimeInSeconds(time);
+  const winner = {
+    wins: winnerOnServer.wins + 1,
+    time: winnerOnServer.time < winnerTime ? winnerOnServer.time : winnerTime
+  };
+  return winner;
+};
