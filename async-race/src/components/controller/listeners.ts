@@ -22,6 +22,7 @@ class Listeners {
     this.addCreateCarButtonListener();
     this.addUpdateCarButtonListener();
     this.addModalCloseListeners();
+    this.addGarageButtonListeners();
   }
 
   private addGarageListeners(): void {
@@ -112,6 +113,21 @@ class Listeners {
     prevButton.addEventListener('click', async () => {
       await this.garageController.showNextPage();
       this.addGarageListeners();
+    });
+  }
+
+  private addGarageButtonListeners(): void {
+    const garageButton = getElement('.button__garage');
+    const winnersButton = getElement('.button__winners');
+    const garageViewContent = getElement('.main');
+    const winnersViewContent = getElement('.winners');
+    garageButton.addEventListener('click', () => {
+      garageViewContent.style.display = 'block';
+      winnersViewContent.style.display = 'none';
+    });
+    winnersButton.addEventListener('click', () => {
+      garageViewContent.style.display = 'none';
+      winnersViewContent.style.display = 'block';
     });
   }
 

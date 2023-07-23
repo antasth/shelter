@@ -3,8 +3,8 @@ import { createElement } from '../../../functions/functions';
 class Menu {
   public drawHeader(): HTMLElement {
     const header = createElement('header', ['header'], '', null);
-    createElement('button', ['button', 'header__button'], 'Garage', header);
-    createElement('button', ['button', 'header__button'], 'Winners', header);
+    createElement('button', ['button', 'header__button', 'button__garage'], 'Garage', header);
+    createElement('button', ['button', 'header__button', 'button__winners'], 'Winners', header);
     createElement('h1', ['header__text'], 'ASYNC RACE', header);
     return header;
   }
