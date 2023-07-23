@@ -15,3 +15,9 @@ export const getWinners = async (
   const winnersCount = Number(response.headers.get('x-total-count'));
   getWinnersData(winnersCount, data);
 };
+
+export const getWinner = async (id: number): Promise<ResponseWinnersObject> => {
+  const response = await fetch(`${WINNERS_PATH}/${id}`);
+  const result = await response.json();
+  return result;
+};
