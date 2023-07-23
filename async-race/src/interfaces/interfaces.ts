@@ -18,6 +18,11 @@ export interface Engine {
   distance: number;
 }
 
+export interface EngineDriveResponse {
+  success: boolean;
+  id: number;
+}
+
 export interface RaceData {
   carsInGarageCount: number;
   currentPage: number;

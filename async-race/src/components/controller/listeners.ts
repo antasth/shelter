@@ -1,11 +1,15 @@
 import { getElement } from '../../functions/functions';
 import GarageController from './garageController';
+import ModalController from './modalController';
 
 class Listeners {
   private garageController: GarageController;
 
+  private modalController: ModalController;
+
   constructor() {
     this.garageController = new GarageController();
+    this.modalController = new ModalController();
   }
 
   public addListeners(): void {
@@ -17,6 +21,7 @@ class Listeners {
     this.addNavButtonNextListener();
     this.addCreateCarButtonListener();
     this.addUpdateCarButtonListener();
+    this.addModalCloseListeners();
   }
 
   private addCarBlockListeners() {
@@ -73,8 +78,10 @@ class Listeners {
 
   private addRaceButtonListener(): void {
     const raceButton = getElement('.button__race');
-    raceButton.addEventListener('click', () => {
-      this.garageController.startRace();
+    raceButton.addEventListener('click', async () => {
+      const winner = await this.garageController.startRace();
+      this.modalController.showModal();
+      this.modalController.addModalContent(winner);
     });
   }
 
@@ -98,6 +105,19 @@ class Listeners {
     prevButton.addEventListener('click', async () => {
       await this.garageController.showNextPage();
       this.addListeners();
+    });
+  }
+
+  private addModalCloseListeners(): void {
+    const modal = getElement('.modal__overlay');
+    const close = getElement('.modal__close');
+    close.addEventListener('click', () => {
+      this.modalController.hideModal();
+    });
+    modal.addEventListener('click', (e: Event) => {
+      if (e.target === modal) {
+        this.modalController.hideModal();
+      }
     });
   }
 }

@@ -1,6 +1,6 @@
 import { ENGINE_PATH } from '../data/constants';
 import { EngineStatus } from '../interfaces/enum';
-import { Engine } from '../interfaces/interfaces';
+import { Engine, EngineDriveResponse } from '../interfaces/interfaces';
 
 export const startEngine = async (id: number): Promise<Engine> => {
   const response = await fetch(`${ENGINE_PATH}?id=${id}&status=${EngineStatus.start}`, {
@@ -15,7 +15,7 @@ export const stopEngine = async (id: number): Promise<Engine> => {
   });
   return response.json();
 };
-export const switchToDriveMode = async (id: number): Promise<Object> => {
+export const switchToDriveMode = async (id: number): Promise<EngineDriveResponse> => {
   const response = await fetch(`${ENGINE_PATH}?id=${id}&status=${EngineStatus.drive}`, {
     method: 'PATCH'
   });

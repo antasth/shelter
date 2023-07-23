@@ -2,12 +2,20 @@ import raceData from '../../data/raceData';
 import { createElement, getElement } from '../../functions/functions';
 import { ResponseCarObject } from '../../interfaces/interfaces';
 import Menu from './modules/menu';
+import Modal from './modules/modal';
 
 class Garage {
   private menu: Menu;
 
+  private modal: Modal;
+
   constructor() {
     this.menu = new Menu();
+    this.modal = new Modal();
+  }
+
+  public drawModalWindow() {
+    this.modal.drawModal();
   }
 
   public drawGarage(): void {
@@ -26,7 +34,7 @@ class Garage {
     createElement('span', ['garage__page'], raceData.currentPage, pageCount);
     createElement('button', ['button', 'garage__nav__button-next'], '>', pageCount);
     const garageContent = createElement('div', ['garage__content'], '', garage);
-
+    this.modal.drawModal();
     raceData.carsData.forEach((car) => {
       this.drawCarBlock(garageContent, car);
     });

@@ -4,7 +4,7 @@ import { BASE_CAR_SPEED, CARS_ON_PAGE } from '../../data/constants';
 import raceData from '../../data/raceData';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
 import { generateRandomCars, getCarsOnPageId, getElement } from '../../functions/functions';
-import { Engine } from '../../interfaces/interfaces';
+import { Engine, EngineDriveResponse } from '../../interfaces/interfaces';
 import Garage from '../view/garage';
 
 class GarageController {
@@ -54,7 +54,7 @@ class GarageController {
     this.garageView.drawGarage();
   }
 
-  public async startRace(): Promise<void> {
+  public async startRace(): Promise<EngineDriveResponse> {
     const carsOnPageId = getCarsOnPageId();
     const engineResponses = await this.startEngines(carsOnPageId);
     const requests = carsOnPageId.map(async (carId, i) => {
@@ -65,13 +65,14 @@ class GarageController {
         console.log(res);
 
         return res;
-      } catch (error) {
+      } catch {
         stopCarAnimation(carId, true);
         throw new Error();
       }
     });
     const result = await Promise.any(requests);
     console.log('result', result);
+    return result;
   }
 
   public resetRace(): void {
