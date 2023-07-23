@@ -21,3 +21,15 @@ export const getWinner = async (id: number): Promise<ResponseWinnersObject> => {
   const result = await response.json();
   return result;
 };
+
+export const createWinner = async (data: ResponseWinnersObject): Promise<ResponseWinnersObject> => {
+  const response = await fetch(`${WINNERS_PATH}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  const result = await response.json();
+  return result;
+};
