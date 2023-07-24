@@ -40,6 +40,13 @@ class Listeners {
   private addWinnersListeners() {
     this.addWinColumnSortListener();
     this.addTimeColumnSortListener();
+    this.addPrevWinnersButtonListener();
+    this.addNextWinnersButtonListener();
+  }
+
+  private addWinnersTableListeners() {
+    this.addWinColumnSortListener();
+    this.addTimeColumnSortListener();
   }
 
   private addCarBlockListeners() {
@@ -126,6 +133,24 @@ class Listeners {
     });
   }
 
+  private addPrevWinnersButtonListener(): void {
+    const prevButton = getElement('.winners__button__prev');
+    prevButton.addEventListener('click', async () => {
+      await this.winnersController.showPrevPage();
+      console.log('prev');
+      this.addWinnersTableListeners();
+    });
+  }
+
+  private addNextWinnersButtonListener(): void {
+    const nextButton = getElement('.winners__button__next');
+    nextButton.addEventListener('click', async () => {
+      await this.winnersController.showNextPage();
+      console.log('next');
+      this.addWinnersTableListeners();
+    });
+  }
+
   private addGarageButtonListeners(): void {
     const garageButton = getElement('.button__garage');
     const winnersButton = getElement('.button__winners');
@@ -150,8 +175,7 @@ class Listeners {
     winColumnHeader.addEventListener('click', async () => {
       await this.winnersController.sortWinnersByWins(appData.winnersPage);
       console.log(appData.winnersData);
-
-      this.addWinnersListeners();
+      this.addWinnersTableListeners();
     });
   }
 
@@ -159,7 +183,7 @@ class Listeners {
     const timeColumnHeader = getElement('.table__time');
     timeColumnHeader.addEventListener('click', async () => {
       await this.winnersController.sortWinnersByTime(appData.winnersPage);
-      this.addWinnersListeners();
+      this.addWinnersTableListeners();
     });
   }
 
