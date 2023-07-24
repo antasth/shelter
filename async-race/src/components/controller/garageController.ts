@@ -74,7 +74,6 @@ class GarageController {
       }
     });
     const winner = await Promise.any(requests);
-    // console.log('winner', winner);
     this.winnersController.sendWinnerToServer(winner);
     return winner;
   }
@@ -115,8 +114,6 @@ class GarageController {
   public selectCar(carId: number): void {
     const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
     const inputColor: HTMLInputElement = getElement('.input__update.input__color');
-    console.log(carId);
-
     const [{ name, color }] = appData.carsData.filter((car) => {
       return car.id === carId;
     });
@@ -127,7 +124,6 @@ class GarageController {
 
   public async updateSelectedCar(): Promise<void> {
     if (appData.updateCarId) {
-      console.log('appData.updateCarId', appData.updateCarId);
       const inputCarName: HTMLInputElement = getElement('.input__update.input__text');
       const inputColor: HTMLInputElement = getElement('.input__update.input__color');
       const carData = {

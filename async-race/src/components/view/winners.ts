@@ -36,7 +36,6 @@ class Winners {
       createElement('td', null, i + 1, tableBodyRow);
       const imgContainer = createElement('td', null, '', tableBodyRow);
       const carImg = createElement('div', ['winners__car__img'], '', imgContainer);
-      console.log('winnerCar', winnerCar);
       carImg.style.backgroundColor = winnerCar.color;
       createElement('td', null, winnerCar.name, tableBodyRow);
       createElement('td', null, winner.wins, tableBodyRow);

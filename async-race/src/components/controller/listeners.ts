@@ -39,6 +39,7 @@ class Listeners {
 
   private addWinnersListeners() {
     this.addWinColumnSortListener();
+    this.addTimeColumnSortListener();
   }
 
   private addCarBlockListeners() {
@@ -148,6 +149,14 @@ class Listeners {
     const winColumnHeader = getElement('.table__wins');
     winColumnHeader.addEventListener('click', async () => {
       await this.winnersController.sortWinnersByWins(appData.winnersPage);
+      this.addWinnersListeners();
+    });
+  }
+
+  private addTimeColumnSortListener(): void {
+    const timeColumnHeader = getElement('.table__time');
+    timeColumnHeader.addEventListener('click', async () => {
+      await this.winnersController.sortWinnersByTime(appData.winnersPage);
       this.addWinnersListeners();
     });
   }

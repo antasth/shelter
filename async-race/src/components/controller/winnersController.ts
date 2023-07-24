@@ -36,6 +36,12 @@ class WinnersController {
     await winnersRequest.getWinners(page, 'wins', appData.sortOrder);
     this.winnersView.redrawWinnersTable();
   }
+
+  public async sortWinnersByTime(page: number) {
+    appData.sortOrder = appData.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    await winnersRequest.getWinners(page, 'time', appData.sortOrder);
+    this.winnersView.redrawWinnersTable();
+  }
 }
 
 export default WinnersController;

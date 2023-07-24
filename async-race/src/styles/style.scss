@@ -237,7 +237,6 @@ h1 {
   }
 }
 .winners__table {
-	width: 100%;
   max-width: 900px;
 	margin-bottom: 20px;
 	border-collapse: collapse; 
@@ -247,8 +246,12 @@ h1 {
 	padding: 5px;
 	border: 1px solid #dddddd;
   cursor: pointer;
+  &:hover {
+    color: #e95500;
+  }
 }
 .winners__table td {
+  width: 200px;
 	border: 1px solid #dddddd;
   text-align: center;
 	padding: 5px;
