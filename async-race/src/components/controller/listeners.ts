@@ -149,6 +149,8 @@ class Listeners {
     const winColumnHeader = getElement('.table__wins');
     winColumnHeader.addEventListener('click', async () => {
       await this.winnersController.sortWinnersByWins(appData.winnersPage);
+      console.log(appData.winnersData);
+
       this.addWinnersListeners();
     });
   }
