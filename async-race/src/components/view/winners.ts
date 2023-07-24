@@ -25,7 +25,7 @@ class Winners {
     const tableHeadRow = createElement('tr', ['table__row'], '', tableHead);
     createElement('th', null, '№', tableHeadRow);
     createElement('th', null, 'Car', tableHeadRow);
-    createElement('th', null, 'Name', tableHeadRow);
+    createElement('th', null, 'Car Name', tableHeadRow);
     createElement('th', null, 'Wins', tableHeadRow);
     createElement('th', null, 'Best Time(s)', tableHeadRow);
     const tableBody = createElement('tbody', null, '', winnersTable);

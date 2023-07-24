@@ -14,7 +14,6 @@ body {
   background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
   background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
   color: aliceblue;
-  // position: relative;
 }
 h1 {
   margin: 0;
@@ -24,7 +23,7 @@ h1 {
   align-items: center;
   justify-content: center;
   padding: 5px;
-  height: 25px;
+  height: 20px;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -63,19 +62,19 @@ h1 {
 }
 
 .garage {
-  padding-top: 1rem;
+  padding-top: 0.2rem;
   &__header,
   &__subheader {
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
-    font-size: 22px;
+    font-size: 18px;
   }
   &__content {
     padding: 10px 0;
     display: flex;
     flex-direction: column;
-    row-gap: 0.5rem;
+    row-gap: 0.3rem;
   }
 
   &__item {
@@ -100,13 +99,13 @@ h1 {
       }
     }
     &__button {
-      width: 25px;
-      height: 25px;
+      width: 20px;
+      height: 20px;
     }
     &__car {
       align-self: flex-end;
-      width: 150px;
-      height: 60px;
+      width: 100px;
+      height: 40px;
       -webkit-mask: url(../assets/img/car.svg);
       mask: url(../assets/img/car.svg);
       -webkit-mask-size: cover;
@@ -114,9 +113,9 @@ h1 {
       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
     &__flag {
-      margin-right: 160px;
-      width: 70px;
-      height: 70px;
+      margin-right: 110px;
+      width: 50px;
+      height: 50px;
       background-image: url('../assets/img/flag.png');
       background-size: cover;
     }
@@ -223,13 +222,13 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 1rem;
+    row-gap: 0.3rem;
     align-items: center;
   }
   &__car__img {
     margin: 0 auto;
-    width: 120px;
-    height: 60px;
+    width: 80px;
+    height: 40px;
     -webkit-mask: url(../assets/img/car.svg);
     mask: url(../assets/img/car.svg);
     -webkit-mask-size: cover;
@@ -238,7 +237,8 @@ h1 {
   }
 }
 .winners__table {
-	width: 50%;
+	width: 100%;
+  max-width: 900px;
 	margin-bottom: 20px;
 	border-collapse: collapse; 
 }
@@ -258,3 +258,12 @@ h1 {
 .winners__table tr td:last-child, .winners__table tr th:last-child {
 	border-right: none;
 }
+
+@media (max-width: 767.98px) { 
+  .winners {
+    font-size: 16px;
+    &__table {
+      width: 95%;
+    }
+  }
+ }
