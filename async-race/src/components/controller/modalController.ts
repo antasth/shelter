@@ -1,6 +1,7 @@
 import gif1 from '../../assets/gif/gif1.gif';
 import gif2 from '../../assets/gif/gif2.gif';
 import gif3 from '../../assets/gif/gif3.gif';
+import gif4 from '../../assets/gif/gif4.gif';
 import appData from '../../data/appData';
 import { createElement, getElement, getRandomNumber } from '../../functions/functions';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
@@ -32,7 +33,9 @@ class ModalController {
     const [winnerCar] = appData.carsData.filter((car) => {
       return car.id === winner.id;
     });
-    const winMessage = `Победил гонщик №${winnerCar.id} на ${winnerCar.name}`;
+    const winMessage = winner.success
+      ? `Победил гонщик №${winnerCar.id} на ${winnerCar.name}`
+      : 'К сожалению, все машины сломались';
     const header = createElement('div', ['modal__content__header'], '', modalContent);
     createElement('h3', ['modal__content__message'], winMessage, header);
     const winImageContainer = createElement('div', ['modal__content__image'], '', modalContent);
@@ -56,6 +59,7 @@ class ModalController {
           winImage.src = gif1;
         }
       }
+      if (!winner.success) winImage.src = gif4;
     }
   }
 }

@@ -74,8 +74,18 @@ class GarageController {
         throw new Error();
       }
     });
-    const winner = await Promise.any(requests);
-    this.winnersController.sendWinnerToServer(winner);
+    let winner = {
+      success: false,
+      id: 0,
+      time: 0
+    };
+    try {
+      winner = await Promise.any(requests);
+      console.log(winner);
+      this.winnersController.sendWinnerToServer(winner);
+    } catch (error) {
+      if (error instanceof Error) console.log(error.message);
+    }
     return winner;
   }
 
