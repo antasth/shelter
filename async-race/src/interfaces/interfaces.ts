@@ -45,4 +45,5 @@ export interface AppData {
   winnersPagesCount: number;
   winnersData: Array<ResponseWinnersObject>;
   winnersPage: number;
+  sortOrder: string;
 }

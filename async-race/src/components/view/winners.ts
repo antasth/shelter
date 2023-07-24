@@ -26,8 +26,8 @@ class Winners {
     createElement('th', null, '№', tableHeadRow);
     createElement('th', null, 'Car', tableHeadRow);
     createElement('th', null, 'Car Name', tableHeadRow);
-    createElement('th', null, 'Wins', tableHeadRow);
-    createElement('th', null, 'Best Time(s)', tableHeadRow);
+    createElement('th', ['table__wins'], 'Wins', tableHeadRow);
+    createElement('th', ['table__time'], 'Best Time(s)', tableHeadRow);
     const tableBody = createElement('tbody', null, '', winnersTable);
 
     appData.winnersData.forEach(async (winner, i) => {

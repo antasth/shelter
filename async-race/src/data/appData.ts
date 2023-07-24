@@ -10,6 +10,7 @@ const appData: AppData = {
   winnersData: [],
   winnersCount: 0,
   winnersPagesCount: 1,
+  sortOrder: 'ASC',
   winnersPage: DEFAULT_PAGE
 };
 export default appData;

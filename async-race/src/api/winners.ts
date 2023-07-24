@@ -6,9 +6,9 @@ import { ResponseWinnersObject, UpdateWinnersObject } from '../interfaces/interf
 
 export const getWinners = async (
   page: number = appData.winnersPage,
-  limit: number = WINNERS_ON_PAGE,
   sort: string = WinnersSort.id,
-  order: string = SortOrder.asc
+  order: string = SortOrder.asc,
+  limit: number = WINNERS_ON_PAGE
 ): Promise<void> => {
   const response = await fetch(`${WINNERS_PATH}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
   const data: Array<ResponseWinnersObject> = await response.json();

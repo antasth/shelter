@@ -22,17 +22,18 @@ class WinnersController {
         wins: 1,
         time: getTimeInSeconds(winner.time)
       };
-      console.log('winnerObject', winnerObject);
       winnersRequest.createWinner(winnerObject);
     }
   }
 
   public async getWinnersFromServer() {
-    console.log('getwinners');
-
     await winnersRequest.getWinners();
-    console.log('appData.winnersData', appData.winnersData);
+    this.winnersView.redrawWinnersTable();
+  }
 
+  public async sortWinnersByWins(page: number) {
+    appData.sortOrder = appData.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    await winnersRequest.getWinners(page, 'wins', appData.sortOrder);
     this.winnersView.redrawWinnersTable();
   }
 }

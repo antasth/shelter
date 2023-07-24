@@ -246,17 +246,12 @@ h1 {
 	font-weight: bold;
 	padding: 5px;
 	border: 1px solid #dddddd;
+  cursor: pointer;
 }
 .winners__table td {
 	border: 1px solid #dddddd;
   text-align: center;
 	padding: 5px;
-}
-.winners__table tr td:first-child, .winners__table tr th:first-child {
-	border-left: none;
-}
-.winners__table tr td:last-child, .winners__table tr th:last-child {
-	border-right: none;
 }
 
 @media (max-width: 767.98px) { 

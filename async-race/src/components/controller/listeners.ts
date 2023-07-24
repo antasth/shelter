@@ -1,3 +1,4 @@
+import appData from '../../data/appData';
 import { getElement } from '../../functions/functions';
 import GarageController from './garageController';
 import ModalController from './modalController';
@@ -34,6 +35,10 @@ class Listeners {
     this.addNavButtonPrevListener();
     this.addNavButtonNextListener();
     this.addModalCloseListeners();
+  }
+
+  private addWinnersListeners() {
+    this.addWinColumnSortListener();
   }
 
   private addCarBlockListeners() {
@@ -135,6 +140,15 @@ class Listeners {
       garageViewContent.style.display = 'none';
       winnersViewContent.style.display = 'block';
       await this.winnersController.getWinnersFromServer();
+      this.addWinnersListeners();
+    });
+  }
+
+  private addWinColumnSortListener(): void {
+    const winColumnHeader = getElement('.table__wins');
+    winColumnHeader.addEventListener('click', async () => {
+      await this.winnersController.sortWinnersByWins(appData.winnersPage);
+      this.addWinnersListeners();
     });
   }
 
