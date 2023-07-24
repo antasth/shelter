@@ -235,6 +235,14 @@ h1 {
     mask-size: cover;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
+  &__subtitle {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+  }
+  &__button {
+    padding: 0 15px;
+  }
 }
 .winners__table {
   max-width: 900px;
