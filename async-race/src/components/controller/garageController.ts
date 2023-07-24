@@ -1,24 +1,21 @@
 import * as engineRequest from '../../api/engine';
 import * as garageRequest from '../../api/garage';
-import * as winnersRequest from '../../api/winners';
 import appData from '../../data/appData';
 import { BASE_CAR_SPEED, CARS_ON_PAGE } from '../../data/constants';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
-import {
-  createWinnerObject,
-  generateRandomCars,
-  getCarsOnPageId,
-  getElement,
-  getTimeInSeconds
-} from '../../functions/functions';
+import { generateRandomCars, getCarsOnPageId, getElement } from '../../functions/functions';
 import { Engine, EngineDriveResponse } from '../../interfaces/interfaces';
 import Garage from '../view/garage';
+import WinnersController from './winnersController';
 
 class GarageController {
   private garageView: Garage;
 
+  private winnersController: WinnersController;
+
   constructor() {
     this.garageView = new Garage();
+    this.winnersController = new WinnersController();
   }
 
   public async deleteCarFromGarage(carId: number, targetCarItem: Element): Promise<void> {
@@ -78,19 +75,7 @@ class GarageController {
     });
     const winner = await Promise.any(requests);
     console.log('winner', winner);
-    const winnerResponse = await winnersRequest.getWinner(winner.id);
-    if (winnerResponse.id) {
-      const winnerObject = createWinnerObject(winnerResponse, winner.id, winner.time);
-      winnersRequest.updateWinner(winnerResponse.id, winnerObject);
-    } else {
-      const winnerObject = {
-        id: winner.id,
-        wins: 1,
-        time: getTimeInSeconds(winner.time)
-      };
-      console.log('winnerObject', winnerObject);
-      winnersRequest.createWinner(winnerObject);
-    }
+    this.winnersController.sendWinnerToServer(winner);
     return winner;
   }
 

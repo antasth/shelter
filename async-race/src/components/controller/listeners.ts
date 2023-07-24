@@ -1,15 +1,19 @@
 import { getElement } from '../../functions/functions';
 import GarageController from './garageController';
 import ModalController from './modalController';
+import WinnersController from './winnersController';
 
 class Listeners {
   private garageController: GarageController;
 
   private modalController: ModalController;
 
+  private winnersController: WinnersController;
+
   constructor() {
     this.garageController = new GarageController();
     this.modalController = new ModalController();
+    this.winnersController = new WinnersController();
   }
 
   public addListeners(): void {
@@ -127,9 +131,10 @@ class Listeners {
       winnersViewContent.style.display = 'none';
     });
 
-    winnersButton.addEventListener('click', () => {
+    winnersButton.addEventListener('click', async () => {
       garageViewContent.style.display = 'none';
       winnersViewContent.style.display = 'block';
+      await this.winnersController.getWinnersFromServer();
     });
   }
 

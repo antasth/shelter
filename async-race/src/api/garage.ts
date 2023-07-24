@@ -11,6 +11,12 @@ export const getCars = async (page: number = appData.garagePage, limit: number =
   getCarsData(carsCount, data);
 };
 
+export const getCar = async (id: number): Promise<ResponseCarObject> => {
+  const response = await fetch(`${GARAGE_PATH}/${id}`);
+  const car = await response.json();
+  return car;
+};
+
 export const postCar = async (data: CarObject): Promise<void> => {
   await fetch(GARAGE_PATH, {
     method: 'POST',

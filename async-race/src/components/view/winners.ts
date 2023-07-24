@@ -1,3 +1,4 @@
+import * as garageRequest from '../../api/garage';
 import appData from '../../data/appData';
 import { createElement, getElement } from '../../functions/functions';
 
@@ -20,14 +21,13 @@ class Winners {
     const tableBody = createElement('tbody', null, '', winnersTable);
     console.log(appData.winnersData);
 
-    appData.winnersData.forEach((winner, i) => {
+    appData.winnersData.forEach(async (winner, i) => {
+      const winnerCar = await garageRequest.getCar(winner.id);
       const tableBodyRow = createElement('tr', ['table__row'], '', tableBody);
-      const [winnerCar] = appData.carsData.filter((car) => {
-        return car.id === winner.id;
-      });
       createElement('td', null, i + 1, tableBodyRow);
       const imgContainer = createElement('td', null, '', tableBodyRow);
       const carImg = createElement('div', ['winners__car__img'], '', imgContainer);
+      console.log('winnerCar', winnerCar);
       carImg.style.backgroundColor = winnerCar.color;
       createElement('td', null, winnerCar.name, tableBodyRow);
       createElement('td', null, winner.wins, tableBodyRow);
