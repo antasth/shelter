@@ -138,7 +138,10 @@ class GarageController {
       });
       appData.carsData.splice(carIndex, 1, updatedCar);
       appData.updateCarId = 0;
+      inputCarName.value = '';
+      inputColor.value = '#ffffff';
     }
+
     this.garageView.redrawGarage();
   }
 
