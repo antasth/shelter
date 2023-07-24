@@ -113,12 +113,14 @@ class GarageController {
     if (appData.garagePage > 1) appData.garagePage -= 1;
     await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     this.garageView.redrawGarage();
+    this.clearInputs();
   }
 
   public async showNextPage(): Promise<void> {
     if (appData.garagePage < appData.garagePagesCount) appData.garagePage += 1;
     await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
     this.garageView.redrawGarage();
+    this.clearInputs();
   }
 
   public async createCar(): Promise<void> {
