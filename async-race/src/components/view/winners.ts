@@ -16,52 +16,23 @@ class Winners {
     createElement('th', null, 'Car', tableHeadRow);
     createElement('th', null, 'Name', tableHeadRow);
     createElement('th', null, 'Wins', tableHeadRow);
-    createElement('th', null, 'Best Time', tableHeadRow);
+    createElement('th', null, 'Best Time(s)', tableHeadRow);
     const tableBody = createElement('tbody', null, '', winnersTable);
     console.log(appData.winnersData);
 
     appData.winnersData.forEach((winner, i) => {
       const tableBodyRow = createElement('tr', ['table__row'], '', tableBody);
-      tableBodyRow.innerHTML = `
-      <td>${i + 1}
-      <td>${'CAR'}</td>
-      <td>${'NAME'}</td>
-      <td>${winner.wins}</td>
-      <td>${winner.time}</td>
-      `;
+      const [winnerCar] = appData.carsData.filter((car) => {
+        return car.id === winner.id;
+      });
+      createElement('td', null, i + 1, tableBodyRow);
+      const imgContainer = createElement('td', null, '', tableBodyRow);
+      const carImg = createElement('div', ['winners__car__img'], '', imgContainer);
+      carImg.style.backgroundColor = winnerCar.color;
+      createElement('td', null, winnerCar.name, tableBodyRow);
+      createElement('td', null, winner.wins, tableBodyRow);
+      createElement('td', null, winner.time, tableBodyRow);
     });
-    // data.forEach((element) => {
-    //   const tableRow = document.createElement('tr')
-    //   tableRow.classList.add('results__table-row')
-    //   tableRow.innerHTML = `
-    //   <td>${i++}</td>
-    //   <td>${element.board}</td>
-    //   <td>${element.bombs}</td>
-    // <td>${element.time}</td>
-    //   <td>${element.moves}</td>
-    //   `
-    //   resultsTableBody.appendChild(tableRow)
-    // })
-    //   <table class="table">
-    //   <thead>
-    //     <tr>
-    //       <th>№</th>
-    //       <th>Car</th>
-    //       <th>Name</th>
-    //       <th>Wins</th>
-    //       <th>Best Time</th>
-    //     </tr>
-    //   </thead>
-    //   <tbody>
-    //     <tr>
-    //       <td>1</td>
-    //       <td>Reeves</td>
-    //       <td>dsfsdf</td>
-    //       <td>10</td>
-    //       <td>32</td>
-    //     </tr>
-    //   </tbody>
-    // </table>
   }
 }
 
