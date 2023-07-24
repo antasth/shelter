@@ -21,6 +21,7 @@ class GarageController {
   public async deleteCarFromGarage(carId: number, targetCarItem: Element): Promise<void> {
     await garageRequest.deleteCar(carId);
     await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
+    await this.winnersController.deleteWinnerFromServer(carId);
     targetCarItem.remove();
     this.garageView.redrawGarage();
   }

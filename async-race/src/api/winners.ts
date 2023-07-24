@@ -17,8 +17,14 @@ export const getWinners = async (
 };
 
 export const getWinner = async (id: number): Promise<ResponseWinnersObject> => {
-  const response = await fetch(`${WINNERS_PATH}/${id}`);
-  const result = await response.json();
+  let result;
+  try {
+    const response = await fetch(`${WINNERS_PATH}/${id}`);
+    result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
   return result;
 };
 
@@ -34,12 +40,15 @@ export const createWinner = async (data: ResponseWinnersObject): Promise<Respons
   return result;
 };
 
-export const deleteWinner = async (id: number): Promise<Object> => {
-  const response = await fetch(`${WINNERS_PATH}/${id}`, {
-    method: 'DELETE'
-  });
-  const result = response.json();
-  return result;
+export const deleteWinner = async (id: number): Promise<void> => {
+  try {
+    const response = await fetch(`${WINNERS_PATH}/${id}`, {
+      method: 'DELETE'
+    });
+    if (response.status === 404) throw new Error('Winner not found');
+  } catch (error) {
+    if (error instanceof Error) console.log(error.message);
+  }
 };
 
 export const updateWinner = async (id: number, data: UpdateWinnersObject): Promise<ResponseWinnersObject> => {

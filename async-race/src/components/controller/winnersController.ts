@@ -42,6 +42,10 @@ class WinnersController {
     await winnersRequest.getWinners(page, 'time', appData.sortOrder);
     this.winnersView.redrawWinnersTable();
   }
+
+  public async deleteWinnerFromServer(winnerId: number) {
+    await winnersRequest.deleteWinner(winnerId);
+  }
 }
 
 export default WinnersController;
