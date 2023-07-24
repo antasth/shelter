@@ -24,6 +24,7 @@ class GarageController {
     await this.winnersController.deleteWinnerFromServer(carId);
     targetCarItem.remove();
     this.garageView.redrawGarage();
+    this.clearInputs();
   }
 
   public async startCar(id: number): Promise<void> {
@@ -97,6 +98,17 @@ class GarageController {
     this.garageView.redrawGarage();
   }
 
+  public clearInputs(): void {
+    const inputCreateName: HTMLInputElement = getElement('.input__create.input__text');
+    const inputCreateColor: HTMLInputElement = getElement('.input__create.input__color');
+    const inputUpdateName: HTMLInputElement = getElement('.input__update.input__text');
+    const inputUpdateColor: HTMLInputElement = getElement('.input__update.input__color');
+    inputCreateName.value = '';
+    inputCreateColor.value = '#ffffff';
+    inputUpdateName.value = '';
+    inputUpdateColor.value = '#ffffff';
+  }
+
   public async showPrevPage(): Promise<void> {
     if (appData.garagePage > 1) appData.garagePage -= 1;
     await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
@@ -119,8 +131,7 @@ class GarageController {
       };
       await garageRequest.postCar(newCar);
       await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
-      inputCarName.value = '';
-      inputColor.value = '#ffffff';
+      this.clearInputs();
     }
     this.garageView.redrawGarage();
   }
@@ -151,8 +162,7 @@ class GarageController {
       });
       appData.carsData.splice(carIndex, 1, updatedCar);
       appData.updateCarId = 0;
-      inputCarName.value = '';
-      inputColor.value = '#ffffff';
+      this.clearInputs();
     }
 
     this.garageView.redrawGarage();
