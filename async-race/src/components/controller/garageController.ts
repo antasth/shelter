@@ -142,7 +142,7 @@ class GarageController {
     this.garageView.redrawGarage();
   }
 
-  public blockButtons(): void {
+  public blockAllButtons(): void {
     const buttons = document.querySelectorAll('.button');
     buttons.forEach((button) => {
       // eslint-disable-next-line no-param-reassign
@@ -150,12 +150,26 @@ class GarageController {
     });
   }
 
-  public unBlockButtons(): void {
+  public unBlockAllButtons(): void {
     const buttons = document.querySelectorAll('.button');
     buttons.forEach((button) => {
-      // eslint-disable-next-line no-param-reassign
-      if (button instanceof HTMLButtonElement) button.disabled = false;
+      if (button instanceof HTMLButtonElement) {
+        if (!button.classList.contains('button__stop')) {
+          // eslint-disable-next-line no-param-reassign
+          button.disabled = false;
+        }
+      }
     });
+  }
+
+  public blockOneButton(buttonClass: string): void {
+    const button = getElement(buttonClass);
+    if (button instanceof HTMLButtonElement) button.disabled = true;
+  }
+
+  public unblockOneButton(buttonClass: string): void {
+    const button = getElement(buttonClass);
+    if (button instanceof HTMLButtonElement) button.disabled = false;
   }
 }
 

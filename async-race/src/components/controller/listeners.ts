@@ -63,9 +63,13 @@ class Listeners {
               }
               if (event.target.classList.contains('button__start')) {
                 this.garageController.startCar(carId);
+                this.garageController.blockOneButton(`.button__start[data-index="${carId}"]`);
+                this.garageController.unblockOneButton(`.button__stop[data-index="${carId}"]`);
               }
               if (event.target.classList.contains('button__stop')) {
                 this.garageController.stopCar(carId);
+                this.garageController.blockOneButton(`.button__stop[data-index="${carId}"]`);
+                this.garageController.unblockOneButton(`.button__start[data-index="${carId}"]`);
               }
               if (event.target.classList.contains('button__select')) {
                 this.garageController.selectCar(carId);
@@ -104,10 +108,10 @@ class Listeners {
   private addRaceButtonListener(): void {
     const raceButton = getElement('.button__race');
     raceButton.addEventListener('click', async () => {
-      this.garageController.blockButtons();
+      this.garageController.blockAllButtons();
       const winner = await this.garageController.startRace();
       this.modalController.showModal();
-      this.garageController.unBlockButtons();
+      this.garageController.unBlockAllButtons();
       this.modalController.addModalContent(winner);
     });
   }

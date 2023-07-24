@@ -56,8 +56,11 @@ class Garage {
     createElement('p', ['garage__header__carname'], car.name, carItemHeader);
     const carContent = createElement('div', ['garage__item__content'], '', carItem);
     const carControls = createElement('div', ['garage__item__content__controls'], '', carContent);
-    createElement('button', ['button', 'button__start', 'garage__item__button'], 'A', carControls);
-    createElement('button', ['button', 'button__stop', 'garage__item__button'], 'B', carControls);
+    const startButton = createElement('button', ['button', 'button__start', 'garage__item__button'], 'A', carControls);
+    const stopButton = createElement('button', ['button', 'button__stop', 'garage__item__button'], 'B', carControls);
+    startButton.setAttribute('data-index', String(car.id));
+    stopButton.setAttribute('data-index', String(car.id));
+    stopButton.setAttribute('disabled', 'true');
     const carTrack = createElement('div', ['garage__item__content__track'], '', carContent);
     const carImg = createElement('div', ['garage__item__car'], '', carTrack);
     carImg.setAttribute('data-index', String(car.id));
