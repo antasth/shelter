@@ -1,7 +1,7 @@
 import * as engineRequest from '../../api/engine';
 import * as garageRequest from '../../api/garage';
 import appData from '../../data/appData';
-import { BASE_CAR_SPEED, CARS_ON_PAGE } from '../../data/constants';
+import { CARS_ON_PAGE } from '../../data/constants';
 import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
 import { generateRandomCars, getCarsOnPageId, getElement } from '../../functions/functions';
 import { Engine, EngineDriveResponse } from '../../interfaces/interfaces';
@@ -28,8 +28,8 @@ class GarageController {
   }
 
   public async startCar(id: number): Promise<void> {
-    const { velocity } = await engineRequest.startEngine(id);
-    startCarAnimation(id, velocity * BASE_CAR_SPEED);
+    const { distance, velocity } = await engineRequest.startEngine(id);
+    startCarAnimation(id, distance / velocity);
     try {
       await engineRequest.switchToDriveMode(id);
     } catch (error) {
