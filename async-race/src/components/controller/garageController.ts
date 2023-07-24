@@ -141,6 +141,22 @@ class GarageController {
     }
     this.garageView.redrawGarage();
   }
+
+  public blockButtons(): void {
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach((button) => {
+      // eslint-disable-next-line no-param-reassign
+      if (button instanceof HTMLButtonElement) button.disabled = true;
+    });
+  }
+
+  public unBlockButtons(): void {
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach((button) => {
+      // eslint-disable-next-line no-param-reassign
+      if (button instanceof HTMLButtonElement) button.disabled = false;
+    });
+  }
 }
 
 export default GarageController;

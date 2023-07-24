@@ -104,8 +104,10 @@ class Listeners {
   private addRaceButtonListener(): void {
     const raceButton = getElement('.button__race');
     raceButton.addEventListener('click', async () => {
+      this.garageController.blockButtons();
       const winner = await this.garageController.startRace();
       this.modalController.showModal();
+      this.garageController.unBlockButtons();
       this.modalController.addModalContent(winner);
     });
   }
