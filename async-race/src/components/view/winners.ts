@@ -3,14 +3,24 @@ import appData from '../../data/appData';
 import { createElement, getElement } from '../../functions/functions';
 
 class Winners {
-  public drawWinners() {
+  public drawWinnersView(): void {
     const body = getElement('body');
     const winners = createElement('div', ['winners'], '', body);
     const winnersWrapper = createElement('div', ['winners__wrapper'], '', winners);
     const title = createElement('h1', ['winners__title'], 'Winners(1)', winnersWrapper);
     const subTitle = createElement('h3', ['winners__subtitle'], 'Page(1)', winnersWrapper);
     console.log(title, subTitle);
-    const winnersTable = createElement('table', ['winners__table'], '', winnersWrapper);
+    winnersWrapper.append(this.drawWinnersTable());
+  }
+
+  public redrawWinnersTable(): void {
+    const winnersWrapper = getElement('.winners__wrapper');
+    const winnersTable = getElement('.winners__table');
+    winnersWrapper.replaceChild(this.drawWinnersTable(), winnersTable);
+  }
+
+  private drawWinnersTable(): HTMLElement {
+    const winnersTable = createElement('table', ['winners__table'], '', null);
     const tableHead = createElement('thead', ['table__head'], '', winnersTable);
     const tableHeadRow = createElement('tr', ['table__row'], '', tableHead);
     createElement('th', null, '№', tableHeadRow);
@@ -19,7 +29,6 @@ class Winners {
     createElement('th', null, 'Wins', tableHeadRow);
     createElement('th', null, 'Best Time(s)', tableHeadRow);
     const tableBody = createElement('tbody', null, '', winnersTable);
-    console.log(appData.winnersData);
 
     appData.winnersData.forEach(async (winner, i) => {
       const winnerCar = await garageRequest.getCar(winner.id);
@@ -33,6 +42,7 @@ class Winners {
       createElement('td', null, winner.wins, tableBodyRow);
       createElement('td', null, winner.time, tableBodyRow);
     });
+    return winnersTable;
   }
 }
 

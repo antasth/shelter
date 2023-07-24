@@ -74,7 +74,7 @@ class GarageController {
       }
     });
     const winner = await Promise.any(requests);
-    console.log('winner', winner);
+    // console.log('winner', winner);
     this.winnersController.sendWinnerToServer(winner);
     return winner;
   }

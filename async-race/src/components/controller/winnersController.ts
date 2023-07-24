@@ -1,4 +1,5 @@
 import * as winnersRequest from '../../api/winners';
+import appData from '../../data/appData';
 import { createWinnerObject, getTimeInSeconds } from '../../functions/functions';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
 import Winners from '../view/winners';
@@ -27,8 +28,12 @@ class WinnersController {
   }
 
   public async getWinnersFromServer() {
+    console.log('getwinners');
+
     await winnersRequest.getWinners();
-    this.winnersView.drawWinners();
+    console.log('appData.winnersData', appData.winnersData);
+
+    this.winnersView.redrawWinnersTable();
   }
 }
 

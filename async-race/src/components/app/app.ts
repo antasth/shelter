@@ -24,7 +24,7 @@ class App {
   public start(): void {
     console.log('appData', appData);
     this.garage.drawGarageView();
-    this.winners.drawWinners();
+    this.winners.drawWinnersView();
     this.listeners.addListeners();
   }
 }
