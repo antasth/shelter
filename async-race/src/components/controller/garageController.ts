@@ -94,6 +94,7 @@ class GarageController {
     carsOnPageId.forEach((id) => {
       this.stopCar(id);
     });
+    this.garageView.redrawGarage();
   }
 
   public async showPrevPage(): Promise<void> {

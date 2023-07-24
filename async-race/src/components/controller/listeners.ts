@@ -60,15 +60,18 @@ class Listeners {
               if (event.target.classList.contains('button__remove')) {
                 await this.garageController.deleteCarFromGarage(carId, carBlock);
                 this.addGarageListeners();
+                this.garageController.unblockOneButton('.button__race');
               }
               if (event.target.classList.contains('button__start')) {
                 this.garageController.startCar(carId);
                 this.garageController.blockOneButton(`.button__start[data-index="${carId}"]`);
+                this.garageController.blockOneButton('.button__race');
                 this.garageController.unblockOneButton(`.button__stop[data-index="${carId}"]`);
               }
               if (event.target.classList.contains('button__stop')) {
                 this.garageController.stopCar(carId);
                 this.garageController.blockOneButton(`.button__stop[data-index="${carId}"]`);
+                this.garageController.unblockOneButton('.button__race');
                 this.garageController.unblockOneButton(`.button__start[data-index="${carId}"]`);
               }
               if (event.target.classList.contains('button__select')) {
@@ -101,6 +104,7 @@ class Listeners {
     const generateButton = getElement('.button__generate');
     generateButton.addEventListener('click', async () => {
       await this.garageController.generateCars();
+      this.garageController.unblockOneButton('.button__race');
       this.addGarageListeners();
     });
   }
@@ -111,8 +115,8 @@ class Listeners {
       this.garageController.blockAllButtons();
       const winner = await this.garageController.startRace();
       this.modalController.showModal();
-      this.garageController.unBlockAllButtons();
       this.modalController.addModalContent(winner);
+      this.garageController.unBlockAllButtons();
     });
   }
 
@@ -120,6 +124,8 @@ class Listeners {
     const resetButton = getElement('.button__reset');
     resetButton.addEventListener('click', () => {
       this.garageController.resetRace();
+      this.garageController.unBlockAllButtons();
+      this.addGarageListeners();
     });
   }
 
@@ -127,6 +133,7 @@ class Listeners {
     const prevButton = getElement('.garage__nav__button-prev');
     prevButton.addEventListener('click', async () => {
       await this.garageController.showPrevPage();
+      this.garageController.unblockOneButton('.button__race');
       this.addGarageListeners();
     });
   }
@@ -135,6 +142,7 @@ class Listeners {
     const prevButton = getElement('.garage__nav__button-next');
     prevButton.addEventListener('click', async () => {
       await this.garageController.showNextPage();
+      this.garageController.unblockOneButton('.button__race');
       this.addGarageListeners();
     });
   }
