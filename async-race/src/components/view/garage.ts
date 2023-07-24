@@ -33,7 +33,7 @@ class Garage {
   private drawGarage(): HTMLElement {
     const garageWrapper = createElement('div', ['garage__wrapper'], '', null);
     const garageCount = createElement('div', ['garage__header'], '', garageWrapper);
-    createElement('h2', ['garage__header__text'], 'Garage', garageCount);
+    createElement('h3', ['garage__header__text'], 'Garage', garageCount);
     createElement('span', ['garage__header__count'], appData.carsCount, garageCount);
     const pageCount = createElement('div', ['garage__subheader'], '', garageWrapper);
     createElement('h3', ['garage__page'], 'Page', pageCount);

@@ -173,7 +173,11 @@ class GarageController {
   public blockAllButtons(): void {
     const buttons = document.querySelectorAll('.button');
     buttons.forEach((button) => {
-      if (button instanceof HTMLButtonElement) {
+      if (
+        button instanceof HTMLButtonElement &&
+        !button.classList.contains('button__garage') &&
+        !button.classList.contains('button__winners')
+      ) {
         // eslint-disable-next-line no-param-reassign
         button.disabled = true;
       }

@@ -168,17 +168,15 @@ class Listeners {
   private addGarageButtonListeners(): void {
     const garageButton = getElement('.button__garage');
     const winnersButton = getElement('.button__winners');
-    const garageViewContent = getElement('.main');
     const winnersViewContent = getElement('.winners');
 
     garageButton.addEventListener('click', () => {
-      garageViewContent.style.display = 'block';
       winnersViewContent.style.display = 'none';
     });
 
     winnersButton.addEventListener('click', async () => {
-      garageViewContent.style.display = 'none';
       winnersViewContent.style.display = 'block';
+      winnersViewContent.style.zIndex = '5';
       await this.winnersController.getWinnersFromServer();
       this.addWinnersListeners();
     });
