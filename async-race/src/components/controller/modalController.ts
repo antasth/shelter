@@ -1,5 +1,8 @@
+import gif1 from '../../assets/gif/gif1.gif';
+import gif2 from '../../assets/gif/gif2.gif';
+import gif3 from '../../assets/gif/gif3.gif';
 import appData from '../../data/appData';
-import { createElement, getElement } from '../../functions/functions';
+import { createElement, getElement, getRandomNumber } from '../../functions/functions';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
 
 class ModalController {
@@ -33,7 +36,27 @@ class ModalController {
     const header = createElement('div', ['modal__content__header'], '', modalContent);
     createElement('h3', ['modal__content__message'], winMessage, header);
     const winImageContainer = createElement('div', ['modal__content__image'], '', modalContent);
-    createElement('img', ['modal__content__img'], '', winImageContainer);
+    const winImage = createElement('img', ['modal__content__img'], '', winImageContainer);
+    if (winImage instanceof HTMLImageElement) {
+      const randomGif = getRandomNumber(3) + 1;
+      switch (randomGif) {
+        case 1: {
+          winImage.src = gif1;
+          break;
+        }
+        case 2: {
+          winImage.src = gif2;
+          break;
+        }
+        case 3: {
+          winImage.src = gif3;
+          break;
+        }
+        default: {
+          winImage.src = gif1;
+        }
+      }
+    }
   }
 }
 export default ModalController;

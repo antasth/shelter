@@ -179,12 +179,13 @@ h1 {
   align-items: center;
   background-color: #f2f2f2;
   &__image {
+    width: 480px;
    height: 270px;
   }
   &__img {
     width: 480px;
     min-height: 270px;
-    background-image: url('../assets/gif/gif2.gif');
+    // background-image: url('../assets/gif/gif2.gif');
     background-size: cover;
     background-repeat: no-repeat;
   }
