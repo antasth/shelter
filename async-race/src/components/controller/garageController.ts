@@ -108,6 +108,8 @@ class GarageController {
       };
       await garageRequest.postCar(newCar);
       await garageRequest.getCars(appData.garagePage, CARS_ON_PAGE);
+      inputCarName.value = '';
+      inputColor.value = '#ffffff';
     }
     this.garageView.redrawGarage();
   }
