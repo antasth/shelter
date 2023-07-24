@@ -10,10 +10,14 @@ export const getWinners = async (
   order: string = SortOrder.asc,
   limit: number = WINNERS_ON_PAGE
 ): Promise<void> => {
-  const response = await fetch(`${WINNERS_PATH}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
-  const data: Array<ResponseWinnersObject> = await response.json();
-  const winnersCount = Number(response.headers.get('x-total-count'));
-  getWinnersData(winnersCount, data);
+  try {
+    const response = await fetch(`${WINNERS_PATH}?_page=${page}&_limit=${limit}&_sort=${sort}&_order=${order}`);
+    const data: Array<ResponseWinnersObject> = await response.json();
+    const winnersCount = Number(response.headers.get('x-total-count'));
+    getWinnersData(winnersCount, data);
+  } catch (error) {
+    if (error instanceof Error) console.log(error.message);
+  }
 };
 
 export const getWinner = async (id: number): Promise<ResponseWinnersObject> => {
@@ -23,20 +27,25 @@ export const getWinner = async (id: number): Promise<ResponseWinnersObject> => {
     result = await response.json();
     return result;
   } catch (error) {
-    console.log(error);
+    if (error instanceof Error) console.log(error.message);
   }
   return result;
 };
 
 export const createWinner = async (data: ResponseWinnersObject): Promise<ResponseWinnersObject> => {
-  const response = await fetch(`${WINNERS_PATH}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-  const result = await response.json();
+  let result;
+  try {
+    const response = await fetch(`${WINNERS_PATH}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    result = await response.json();
+  } catch (error) {
+    if (error instanceof Error) console.log(error.message);
+  }
   return result;
 };
 
@@ -52,13 +61,18 @@ export const deleteWinner = async (id: number): Promise<void> => {
 };
 
 export const updateWinner = async (id: number, data: UpdateWinnersObject): Promise<ResponseWinnersObject> => {
-  const response = await fetch(`${WINNERS_PATH}/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
-  const result = await response.json();
+  let result;
+  try {
+    const response = await fetch(`${WINNERS_PATH}/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    result = await response.json();
+  } catch (error) {
+    if (error instanceof Error) console.log(error.message);
+  }
   return result;
 };
