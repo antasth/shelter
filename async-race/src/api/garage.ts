@@ -10,7 +10,7 @@ export const getCars = async (page: number = appData.garagePage, limit: number =
     const carsCount = Number(response.headers.get('x-total-count'));
     getCarsData(carsCount, data);
   } catch (error) {
-    if (error instanceof Error) console.log(error.message);
+    console.log('Сервер недоступен, попробуйте позже');
   }
 };
 

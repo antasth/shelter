@@ -56,6 +56,16 @@
         "ExportDeclaration": { "multiline": true, "minProperties": 3 }
       }
     ],
+    "operator-linebreak": [
+      "error",
+      "after",
+      {
+        "overrides": {
+          "?": "before",
+          ":": "before"
+        }
+      }
+    ],
     "prettier/prettier": [
       "error",
       {

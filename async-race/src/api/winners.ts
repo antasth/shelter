@@ -16,7 +16,7 @@ export const getWinners = async (
     const winnersCount = Number(response.headers.get('x-total-count'));
     getWinnersData(winnersCount, data);
   } catch (error) {
-    if (error instanceof Error) console.log(error.message);
+    if (error instanceof Error) console.log('Сервер недоступен, попробуйте позже');
   }
 };
 

@@ -26,7 +26,6 @@ export const stopCarAnimation = (carId: number, isEngineBroken = false): void =>
     const car = getElement(`.garage__item__car[data-index="${carId}"]`);
 
     const position = isEngineBroken ? car.getBoundingClientRect().x - CAR_OFFSET : 0;
-    // car.style.animationPlayState = 'paused';
     car.animate(
       [
         {

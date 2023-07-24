@@ -1,6 +1,5 @@
 import * as garage from '../../api/garage';
 import * as winners from '../../api/winners';
-import appData from '../../data/appData';
 import Listeners from '../controller/listeners';
 import Garage from '../view/garage';
 import Winners from '../view/winners';
@@ -22,7 +21,6 @@ class App {
   }
 
   public start(): void {
-    console.log('appData', appData);
     this.garage.drawGarageView();
     this.winners.drawWinnersView();
     this.listeners.addListeners();
