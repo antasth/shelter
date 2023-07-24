@@ -7,8 +7,8 @@ class Winners {
     const body = getElement('body');
     const winners = createElement('div', ['winners'], '', body);
     const winnersWrapper = createElement('div', ['winners__wrapper'], '', winners);
-    const title = createElement('h1', ['winners__title'], 'Winners(1)', winnersWrapper);
-    const subTitle = createElement('h3', ['winners__subtitle'], 'Page(1)', winnersWrapper);
+    const title = createElement('h2', ['winners__title'], `Winners(${appData.winnersCount})`, winnersWrapper);
+    const subTitle = createElement('h3', ['winners__subtitle'], `Page(${appData.winnersPage})`, winnersWrapper);
     console.log(title, subTitle);
     winnersWrapper.append(this.drawWinnersTable());
   }
