@@ -76,7 +76,7 @@ export const getCarsOnPageId = () => {
 };
 
 export const getTimeInSeconds = (time: number): number => {
-  return Math.ceil(time / 1000);
+  return +(time / 1000).toFixed(2);
 };
 
 export const createWinnerObject = (winnerOnServer: ResponseWinnersObject, time: number) => {
