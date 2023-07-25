@@ -18,6 +18,10 @@ class Winners {
   public redrawWinnersTable(): void {
     const winnersWrapper = getElement('.winners__wrapper');
     const winnersTable = getElement('.winners__table');
+    // const winnersTitle = getElement('.winners__title');
+    // const winnersSubTitle = getElement('.winners__subtitle');
+    // winnersTitle.innerText = String(appData.winnersCount);
+    // winnersSubTitle.innerText = String(appData.winnersPage);
     winnersWrapper.replaceChild(this.drawWinnersTable(), winnersTable);
   }
 

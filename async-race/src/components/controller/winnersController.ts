@@ -1,3 +1,4 @@
+import * as garageRequest from '../../api/garage';
 import * as winnersRequest from '../../api/winners';
 import appData from '../../data/appData';
 import { WINNERS_ON_PAGE } from '../../data/constants';
@@ -35,30 +36,38 @@ class WinnersController {
     limit: number = WINNERS_ON_PAGE
   ) {
     await winnersRequest.getWinners(page, sort, order, limit);
-    this.winnersView.redrawWinnersTable();
+    // this.winnersView.redrawWinnersTable();
   }
 
   public async showPrevPage(): Promise<void> {
     if (appData.winnersPage > 1) appData.winnersPage -= 1;
     await winnersRequest.getWinners(appData.winnersPage);
+    await garageRequest.getWinnersCarsList();
     this.winnersView.redrawWinnersTable();
   }
 
   public async showNextPage(): Promise<void> {
     if (appData.winnersPage < appData.winnersPagesCount) appData.winnersPage += 1;
     await winnersRequest.getWinners(appData.winnersPage);
+    await garageRequest.getWinnersCarsList();
+    this.winnersView.redrawWinnersTable();
+  }
+
+  public redrawWinnersTable(): void {
     this.winnersView.redrawWinnersTable();
   }
 
   public async sortWinnersByWins(page: number) {
     appData.sortOrder = appData.sortOrder === 'ASC' ? 'DESC' : 'ASC';
     await winnersRequest.getWinners(page, 'wins', appData.sortOrder);
+    await garageRequest.getWinnersCarsList();
     this.winnersView.redrawWinnersTable();
   }
 
   public async sortWinnersByTime(page: number) {
     appData.sortOrder = appData.sortOrder === 'ASC' ? 'DESC' : 'ASC';
     await winnersRequest.getWinners(page, 'time', appData.sortOrder);
+    await garageRequest.getWinnersCarsList();
     this.winnersView.redrawWinnersTable();
   }
 

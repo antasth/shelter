@@ -195,6 +195,11 @@ class GarageController {
     });
   }
 
+  public async getWinnersCarsList(): Promise<void> {
+    await garageRequest.getWinnersCarsList();
+    this.winnersController.redrawWinnersTable();
+  }
+
   public blockOneButton(buttonClass: string): void {
     const button = getElement(buttonClass);
     if (button instanceof HTMLButtonElement) button.disabled = true;
