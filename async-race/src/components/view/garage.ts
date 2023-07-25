@@ -22,6 +22,7 @@ class Garage {
     main.append(this.menu.drawMenu());
     const garage = createElement('section', ['garage'], '', main);
     garage.append(this.drawGarage());
+    createElement('div', ['body__image'], '', body);
   }
 
   public redrawGarage(): void {
