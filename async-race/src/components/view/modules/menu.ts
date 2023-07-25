@@ -21,7 +21,7 @@ class Menu {
     const menuButton = createElement(
       'button',
       ['button', `button__${buttonName}`, 'menu__controls__button'],
-      buttonName,
+      buttonName.toUpperCase(),
       null
     );
     return menuButton;
