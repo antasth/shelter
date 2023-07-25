@@ -9,6 +9,15 @@ $overlay: rgba(0, 0, 0, 0.5);
 $bluegradient: linear-gradient(to right, #24243e, #302b63, #0f0c29);
 $shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
+@font-face {
+  font-family: 'Zekton Rg';
+  src: url('../assets/fonts/ZektonRg-Regular.woff2') format('woff2'),
+      url('../assets/fonts/ZektonRg-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -24,6 +33,7 @@ body {
   background: $backdark;
   background: $bluegradient;
   color: $textlight;
+  font-family: 'Zekton Rg';
   overflow: hidden;
 }
 h1 {
