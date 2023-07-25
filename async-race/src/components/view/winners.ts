@@ -1,4 +1,3 @@
-import * as garageRequest from '../../api/garage';
 import appData from '../../data/appData';
 import { createElement, getElement } from '../../functions/functions';
 
@@ -34,8 +33,14 @@ class Winners {
     createElement('th', ['table__time'], 'Best Time(s)', tableHeadRow);
     const tableBody = createElement('tbody', null, '', winnersTable);
 
-    appData.winnersData.forEach(async (winner, i) => {
-      const winnerCar = await garageRequest.getCar(winner.id);
+    appData.winnersData.forEach((winner, i) => {
+      console.log(appData.winnerCarsList);
+
+      const [winnerCar] = appData.winnerCarsList.filter((car) => {
+        return car.id === winner.id;
+      });
+      console.log(winnerCar);
+
       const tableBodyRow = createElement('tr', ['table__row'], '', tableBody);
       createElement('td', null, i + 1, tableBodyRow);
       const imgContainer = createElement('td', null, '', tableBodyRow);

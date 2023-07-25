@@ -44,6 +44,7 @@ export interface AppData {
   winnersCount: number;
   winnersPagesCount: number;
   winnersData: Array<ResponseWinnersObject>;
+  winnerCarsList: Array<ResponseCarObject>;
   winnersPage: number;
   sortOrder: string;
 }

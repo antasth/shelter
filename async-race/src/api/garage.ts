@@ -65,3 +65,16 @@ export const updateCar = async (id: number, data: CarObject): Promise<ResponseCa
   }
   return result;
 };
+
+export const getWinnersCars = async () => {
+  const requests = appData.winnersData.map((winner) => {
+    return getCar(winner.id);
+  });
+  const winnerCars = Promise.all(requests);
+  return winnerCars;
+};
+
+export const getWinnersCarsList = async () => {
+  const winnerCarsList = await getWinnersCars();
+  appData.winnerCarsList = winnerCarsList;
+};

@@ -6,6 +6,7 @@ import Winners from '../view/winners';
 
 await garage.getCars();
 await winners.getWinners();
+await garage.getWinnersCarsList();
 
 class App {
   private garage: Garage;

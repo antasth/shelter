@@ -8,6 +8,7 @@ const appData: AppData = {
   updateCarId: 0,
   carsData: [],
   winnersData: [],
+  winnerCarsList: [],
   winnersCount: 0,
   winnersPagesCount: 1,
   sortOrder: 'ASC',
