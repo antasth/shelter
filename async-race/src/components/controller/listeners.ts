@@ -47,6 +47,8 @@ class Listeners {
   private addWinnersTableListeners() {
     this.addWinColumnSortListener();
     this.addTimeColumnSortListener();
+    this.addNextWinnersButtonListener();
+    this.addPrevWinnersButtonListener();
   }
 
   private addCarBlockListeners() {
@@ -175,9 +177,6 @@ class Listeners {
     winnersButton.addEventListener('click', async () => {
       winnersViewContent.style.display = 'block';
       winnersViewContent.style.zIndex = '5';
-      console.log(appData.winnerCarsList);
-      console.log(appData.winnersData);
-
       await this.winnersController.getWinnersFromServer();
       await this.garageController.getWinnersCarsList();
       this.addWinnersListeners();

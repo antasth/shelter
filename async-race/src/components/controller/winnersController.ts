@@ -36,7 +36,6 @@ class WinnersController {
     limit: number = WINNERS_ON_PAGE
   ) {
     await winnersRequest.getWinners(page, sort, order, limit);
-    // this.winnersView.redrawWinnersTable();
   }
 
   public async showPrevPage(): Promise<void> {
