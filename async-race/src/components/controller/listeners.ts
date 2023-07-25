@@ -118,7 +118,7 @@ class Listeners {
       const winner = await this.garageController.startRace();
       this.modalController.showModal();
       this.modalController.addModalContent(winner);
-      this.garageController.unBlockAllButtons();
+      this.garageController.unblockOneButton('.button__reset');
     });
   }
 
