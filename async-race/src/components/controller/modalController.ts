@@ -3,7 +3,7 @@ import gif2 from '../../assets/gif/gif2.gif';
 import gif3 from '../../assets/gif/gif3.gif';
 import gif4 from '../../assets/gif/gif4.gif';
 import appData from '../../data/appData';
-import { createElement, getElement, getRandomNumber } from '../../functions/functions';
+import { createElement, getElement, getRandomNumber, getTimeInSeconds } from '../../functions/functions';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
 
 class ModalController {
@@ -33,8 +33,9 @@ class ModalController {
     const [winnerCar] = appData.carsData.filter((car) => {
       return car.id === winner.id;
     });
+    const winTime = getTimeInSeconds(winner.time);
     const winMessage = winner.success
-      ? `Победил гонщик №${winnerCar.id} на ${winnerCar.name}`
+      ? `Победил гонщик №${winnerCar.id} на ${winnerCar.name} время (${winTime})`
       : 'К сожалению, все машины сломались';
     const header = createElement('div', ['modal__content__header'], '', modalContent);
     createElement('h3', ['modal__content__message'], winMessage, header);
