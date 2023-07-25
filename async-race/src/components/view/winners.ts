@@ -6,25 +6,13 @@ class Winners {
     const body = getElement('body');
     const winners = createElement('div', ['winners'], '', body);
     const winnersWrapper = createElement('div', ['winners__wrapper'], '', winners);
-    // createElement('h2', ['winners__title'], `Winners(${appData.winnersCount})`, winnersWrapper);
-    // const subTitle = createElement('div', ['winners__subtitle'], '', winnersWrapper);
-    // createElement('h3', ['winners__page'], 'Page', subTitle);
-    // createElement('button', ['button', 'winners__button', 'winners__button__prev'], '<', subTitle);
-    // createElement('h3', ['winners__subtitle'], `${appData.winnersPage}`, subTitle);
-    // createElement('button', ['button', 'winners__button', 'winners__button__next'], '>', subTitle);
     winnersWrapper.append(this.drawWinnersHeader(), this.drawWinnersTable());
   }
 
   public redrawWinnersTable(): void {
     const winnersWrapper = getElement('.winners__wrapper');
-    // const winnersTable = getElement('.winners__table');
-    // const winnersTitle = getElement('.winners__title');
-    // const winnersSubTitle = getElement('.winners__subtitle');
-    // winnersTitle.innerText = String(appData.winnersCount);
-    // winnersSubTitle.innerText = String(appData.winnersPage);
     winnersWrapper.replaceChildren();
     winnersWrapper.append(this.drawWinnersHeader(), this.drawWinnersTable());
-    // winnersWrapper.replaceChild(this.drawWinnersTable(), winnersTable);
   }
 
   private drawWinnersHeader(): HTMLElement {
