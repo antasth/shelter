@@ -5,8 +5,6 @@ import { CarObject, ResponseCarObject, ResponseWinnersObject } from '../interfac
 export const getElement = <T extends HTMLElement>(selector: string): T => {
   const element = document.querySelector<T>(selector);
   if (!element) {
-    console.log(selector);
-
     throw new TypeError('Type Error');
   }
   return element;

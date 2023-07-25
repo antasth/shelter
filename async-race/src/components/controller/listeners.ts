@@ -151,7 +151,6 @@ class Listeners {
     const prevButton = getElement('.winners__button__prev');
     prevButton.addEventListener('click', async () => {
       await this.winnersController.showPrevPage();
-      console.log('prev');
       this.addWinnersTableListeners();
     });
   }
@@ -160,7 +159,6 @@ class Listeners {
     const nextButton = getElement('.winners__button__next');
     nextButton.addEventListener('click', async () => {
       await this.winnersController.showNextPage();
-      console.log('next');
       this.addWinnersTableListeners();
     });
   }
@@ -186,7 +184,6 @@ class Listeners {
     const winColumnHeader = getElement('.table__wins');
     winColumnHeader.addEventListener('click', async () => {
       await this.winnersController.sortWinnersByWins(appData.winnersPage);
-      console.log(appData.winnersData);
       this.addWinnersTableListeners();
     });
   }

@@ -82,7 +82,6 @@ class GarageController {
     };
     try {
       winner = await Promise.any(requests);
-      console.log(winner);
       this.winnersController.sendWinnerToServer(winner);
     } catch (error) {
       if (error instanceof Error) console.log(error.message);
