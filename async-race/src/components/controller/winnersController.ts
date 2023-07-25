@@ -3,7 +3,6 @@ import * as winnersRequest from '../../api/winners';
 import appData from '../../data/appData';
 import { WINNERS_ON_PAGE } from '../../data/constants';
 import { createWinnerObject, getTimeInSeconds } from '../../functions/functions';
-import { SortOrder, WinnersSort } from '../../interfaces/enum';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
 import Winners from '../view/winners';
 
@@ -31,8 +30,8 @@ class WinnersController {
 
   public async getWinnersFromServer(
     page: number = appData.winnersPage,
-    sort: string = WinnersSort.id,
-    order: string = SortOrder.asc,
+    sort: string = appData.lastSort.sort,
+    order: string = appData.lastSort.sortOrder,
     limit: number = WINNERS_ON_PAGE
   ) {
     await winnersRequest.getWinners(page, sort, order, limit);
@@ -58,6 +57,10 @@ class WinnersController {
 
   public async sortWinnersByWins(page: number) {
     appData.sortOrder = appData.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    appData.lastSort = {
+      sortOrder: appData.sortOrder,
+      sort: 'wins'
+    };
     await winnersRequest.getWinners(page, 'wins', appData.sortOrder);
     await garageRequest.getWinnersCarsList();
     this.winnersView.redrawWinnersTable();
@@ -65,6 +68,10 @@ class WinnersController {
 
   public async sortWinnersByTime(page: number) {
     appData.sortOrder = appData.sortOrder === 'ASC' ? 'DESC' : 'ASC';
+    appData.lastSort = {
+      sortOrder: appData.sortOrder,
+      sort: 'time'
+    };
     await winnersRequest.getWinners(page, 'time', appData.sortOrder);
     await garageRequest.getWinnersCarsList();
     this.winnersView.redrawWinnersTable();

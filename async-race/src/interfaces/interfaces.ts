@@ -35,6 +35,10 @@ export interface EngineDriveResponse {
   time: number;
 }
 
+export interface LastSortObject {
+  sortOrder: string;
+  sort: string;
+}
 export interface AppData {
   carsCount: number;
   garagePage: number;
@@ -47,4 +51,5 @@ export interface AppData {
   winnerCarsList: Array<ResponseCarObject>;
   winnersPage: number;
   sortOrder: string;
+  lastSort: LastSortObject;
 }

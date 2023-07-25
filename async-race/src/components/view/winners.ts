@@ -37,19 +37,24 @@ class Winners {
     createElement('th', ['table__time'], 'Best Time(s)', tableHeadRow);
     const tableBody = createElement('tbody', null, '', winnersTable);
 
-    appData.winnersData.forEach((winner, i) => {
-      const [winnerCar] = appData.winnerCarsList.filter((car) => {
-        return car.id === winner.id;
+    try {
+      appData.winnersData.forEach((winner, i) => {
+        const [winnerCar] = appData.winnerCarsList.filter((car) => {
+          return car.id === winner.id;
+        });
+        const tableBodyRow = createElement('tr', ['table__row'], '', tableBody);
+        createElement('td', null, i + 1, tableBodyRow);
+        const imgContainer = createElement('td', null, '', tableBodyRow);
+        const carImg = createElement('div', ['winners__car__img'], '', imgContainer);
+        carImg.style.backgroundColor = winnerCar.color;
+        createElement('td', null, winnerCar.name, tableBodyRow);
+        createElement('td', null, winner.wins, tableBodyRow);
+        createElement('td', null, winner.time, tableBodyRow);
       });
-      const tableBodyRow = createElement('tr', ['table__row'], '', tableBody);
-      createElement('td', null, i + 1, tableBodyRow);
-      const imgContainer = createElement('td', null, '', tableBodyRow);
-      const carImg = createElement('div', ['winners__car__img'], '', imgContainer);
-      carImg.style.backgroundColor = winnerCar.color;
-      createElement('td', null, winnerCar.name, tableBodyRow);
-      createElement('td', null, winner.wins, tableBodyRow);
-      createElement('td', null, winner.time, tableBodyRow);
-    });
+    } catch (error) {
+      if (error instanceof Error) console.log('draw error');
+    }
+
     return winnersTable;
   }
 }

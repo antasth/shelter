@@ -1,3 +1,4 @@
+import { SortOrder, WinnersSort } from '../interfaces/enum';
 import { AppData } from '../interfaces/interfaces';
 import { DEFAULT_PAGE } from './constants';
 
@@ -12,6 +13,10 @@ const appData: AppData = {
   winnersCount: 0,
   winnersPagesCount: 1,
   sortOrder: 'ASC',
-  winnersPage: DEFAULT_PAGE
+  winnersPage: DEFAULT_PAGE,
+  lastSort: {
+    sortOrder: SortOrder.asc,
+    sort: WinnersSort.id
+  }
 };
 export default appData;
