@@ -73,7 +73,6 @@ class Listeners {
               if (event.target.classList.contains('button__stop')) {
                 this.garageController.stopCar(carId);
                 this.garageController.blockOneButton(`.button__stop[data-index="${carId}"]`);
-                this.garageController.unblockOneButton('.button__race');
                 this.garageController.unblockOneButton(`.button__start[data-index="${carId}"]`);
               }
               if (event.target.classList.contains('button__select')) {
@@ -90,6 +89,7 @@ class Listeners {
     const createButton = getElement('.button__create');
     createButton.addEventListener('click', async () => {
       await this.garageController.createCar();
+      this.garageController.unBlockAllButtons();
       this.addGarageListeners();
     });
   }
@@ -98,6 +98,7 @@ class Listeners {
     const updateButton = getElement('.button__update');
     updateButton.addEventListener('click', async () => {
       await this.garageController.updateSelectedCar();
+      this.garageController.unBlockAllButtons();
       this.addGarageListeners();
     });
   }
@@ -118,7 +119,10 @@ class Listeners {
       const winner = await this.garageController.startRace();
       this.modalController.showModal();
       this.modalController.addModalContent(winner);
-      this.garageController.unblockOneButton('.button__reset');
+      this.garageController.unBlockAllButtons();
+      this.garageController.blockSelectedButtons('.button__start', 'block');
+      this.garageController.blockSelectedButtons('.button__stop', 'unblock');
+      this.garageController.blockOneButton('.button__race');
     });
   }
 

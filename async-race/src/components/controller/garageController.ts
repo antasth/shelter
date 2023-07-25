@@ -200,6 +200,21 @@ class GarageController {
     this.winnersController.redrawWinnersTable();
   }
 
+  public blockSelectedButtons(selector: string, action: string): void {
+    const buttons = document.querySelectorAll(selector);
+    buttons.forEach((button) => {
+      if (button instanceof HTMLButtonElement) {
+        if (action === 'block') {
+          // eslint-disable-next-line no-param-reassign
+          button.disabled = true;
+        } else {
+          // eslint-disable-next-line no-param-reassign
+          button.disabled = false;
+        }
+      }
+    });
+  }
+
   public blockOneButton(buttonClass: string): void {
     const button = getElement(buttonClass);
     if (button instanceof HTMLButtonElement) button.disabled = true;
