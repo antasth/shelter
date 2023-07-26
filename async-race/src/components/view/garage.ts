@@ -21,17 +21,17 @@ class Garage {
     body.append(this.menu.drawHeader(), main, this.modal.drawModal());
     main.append(this.menu.drawMenu());
     const garage = createElement('section', ['garage'], '', main);
-    garage.append(this.drawGarage());
+    garage.append(this.createGarageWrapper());
     createElement('div', ['body__image'], '', body);
   }
 
   public redrawGarage(): void {
     const garage = getElement('.garage');
     garage.replaceChildren();
-    garage.append(this.drawGarage());
+    garage.append(this.createGarageWrapper());
   }
 
-  private drawGarage(): HTMLElement {
+  private createGarageWrapper(): HTMLElement {
     const garageWrapper = createElement('div', ['garage__wrapper'], '', null);
     const garageCount = createElement('div', ['garage__header'], '', garageWrapper);
     createElement('h3', ['garage__header__text'], 'Garage', garageCount);
