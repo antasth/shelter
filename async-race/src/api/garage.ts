@@ -66,7 +66,7 @@ export const updateCar = async (id: number, data: CarObject): Promise<ResponseCa
   return result;
 };
 
-export const getWinnersCars = async () => {
+export const getWinnersCars = async (): Promise<ResponseCarObject[]> => {
   const requests = appData.winnersData.map((winner) => {
     return getCar(winner.id);
   });
@@ -74,7 +74,7 @@ export const getWinnersCars = async () => {
   return winnerCars;
 };
 
-export const getWinnersCarsList = async () => {
+export const getWinnersCarsList = async (): Promise<void> => {
   const winnerCarsList = await getWinnersCars();
   appData.winnerCarsList = winnerCarsList;
 };
