@@ -1,7 +1,7 @@
 import { createElement } from '../../../utils/utils';
 
 class Modal {
-  public drawModal() {
+  public createModalWindow(): HTMLElement {
     const modalOverlay = createElement('div', ['modal__overlay', 'modal__overlay__modal', 'hide'], '', null);
     const modal = createElement('div', ['modal'], '', modalOverlay);
     const modalContainer = createElement('div', ['modal__container'], '', modal);
