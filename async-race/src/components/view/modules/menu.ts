@@ -1,7 +1,7 @@
 import { createElement } from '../../../utils/utils';
 
 class Menu {
-  public drawHeader(): HTMLElement {
+  public createHeader(): HTMLElement {
     const header = createElement('header', ['header'], '', null);
     createElement('button', ['button', 'header__button', 'button__garage'], 'Garage', header);
     createElement('button', ['button', 'header__button', 'button__winners'], 'Winners', header);
@@ -9,15 +9,15 @@ class Menu {
     return header;
   }
 
-  public drawMenu(): HTMLElement {
+  public createMenu(): HTMLElement {
     const menu = createElement('section', ['menu'], '', null);
-    menu.append(this.drawInputBlock('create'), this.drawInputBlock('update'));
+    menu.append(this.createInputBlock('create'), this.createInputBlock('update'));
     const controls = createElement('div', ['menu__controls'], '', menu);
-    controls.append(this.drawMenuButton('race'), this.drawMenuButton('reset'), this.drawMenuButton('generate'));
+    controls.append(this.createMenuButton('race'), this.createMenuButton('reset'), this.createMenuButton('generate'));
     return menu;
   }
 
-  private drawMenuButton(buttonName: string): HTMLElement {
+  private createMenuButton(buttonName: string): HTMLElement {
     const menuButton = createElement(
       'button',
       ['button', `button__${buttonName}`, 'menu__controls__button'],
@@ -27,7 +27,7 @@ class Menu {
     return menuButton;
   }
 
-  private drawInputBlock(buttonName: string): HTMLElement {
+  private createInputBlock(buttonName: string): HTMLElement {
     const menuBlock = createElement('div', ['menu__block'], '', null);
     const menuInput = createElement('input', [`input__${buttonName}`, 'input__text'], '', menuBlock);
     menuInput.setAttribute('type', 'text');

@@ -18,8 +18,8 @@ class Garage {
     const body = getElement('body');
     body.replaceChildren();
     const main = createElement('main', ['main'], '', null);
-    body.append(this.menu.drawHeader(), main, this.modal.drawModal());
-    main.append(this.menu.drawMenu());
+    body.append(this.menu.createHeader(), main, this.modal.drawModal());
+    main.append(this.menu.createMenu());
     const garage = createElement('section', ['garage'], '', main);
     garage.append(this.createGarageWrapper());
     createElement('div', ['body__image'], '', body);
