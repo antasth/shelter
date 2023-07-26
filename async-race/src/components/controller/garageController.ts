@@ -171,26 +171,30 @@ class GarageController {
 
   public blockAllButtons(): void {
     const buttons = document.querySelectorAll('.button');
-    buttons.forEach((button) => {
-      if (
-        button instanceof HTMLButtonElement &&
-        !button.classList.contains('button__garage') &&
-        !button.classList.contains('button__winners')
-      ) {
-        button.setAttribute('disabled', 'true');
-      }
-    });
+    if (buttons.length) {
+      buttons.forEach((button) => {
+        if (
+          button instanceof HTMLButtonElement &&
+          !button.classList.contains('button__garage') &&
+          !button.classList.contains('button__winners')
+        ) {
+          button.setAttribute('disabled', 'true');
+        }
+      });
+    }
   }
 
   public unBlockAllButtons(): void {
     const buttons = document.querySelectorAll('.button');
-    buttons.forEach((button) => {
-      if (button instanceof HTMLButtonElement) {
-        if (!button.classList.contains('button__stop')) {
-          button.removeAttribute('disabled');
+    if (buttons.length) {
+      buttons.forEach((button) => {
+        if (button instanceof HTMLButtonElement) {
+          if (!button.classList.contains('button__stop')) {
+            button.removeAttribute('disabled');
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   public async getWinnersCarsList(): Promise<void> {
@@ -200,15 +204,17 @@ class GarageController {
 
   public blockSelectedButtons(selector: string, action: string): void {
     const buttons = document.querySelectorAll(selector);
-    buttons.forEach((button) => {
-      if (button instanceof HTMLButtonElement) {
-        if (action === 'block') {
-          button.setAttribute('disabled', 'true');
-        } else {
-          button.removeAttribute('disabled');
+    if (buttons.length) {
+      buttons.forEach((button) => {
+        if (button instanceof HTMLButtonElement) {
+          if (action === 'block') {
+            button.setAttribute('disabled', 'true');
+          } else {
+            button.removeAttribute('disabled');
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   public blockOneButton(buttonClass: string): void {
