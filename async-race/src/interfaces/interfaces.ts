@@ -3,10 +3,8 @@ export interface CarObject {
   color: string;
 }
 
-export interface ResponseCarObject {
+export interface ResponseCarObject extends CarObject {
   id: number;
-  name: string;
-  color: string;
 }
 
 export interface ResponseWinnersObject {
