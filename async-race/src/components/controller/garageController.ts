@@ -177,8 +177,7 @@ class GarageController {
         !button.classList.contains('button__garage') &&
         !button.classList.contains('button__winners')
       ) {
-        // eslint-disable-next-line no-param-reassign
-        button.disabled = true;
+        button.setAttribute('disabled', 'true');
       }
     });
   }
@@ -188,8 +187,7 @@ class GarageController {
     buttons.forEach((button) => {
       if (button instanceof HTMLButtonElement) {
         if (!button.classList.contains('button__stop')) {
-          // eslint-disable-next-line no-param-reassign
-          button.disabled = false;
+          button.removeAttribute('disabled');
         }
       }
     });
@@ -205,11 +203,9 @@ class GarageController {
     buttons.forEach((button) => {
       if (button instanceof HTMLButtonElement) {
         if (action === 'block') {
-          // eslint-disable-next-line no-param-reassign
-          button.disabled = true;
+          button.setAttribute('disabled', 'true');
         } else {
-          // eslint-disable-next-line no-param-reassign
-          button.disabled = false;
+          button.removeAttribute('disabled');
         }
       }
     });
