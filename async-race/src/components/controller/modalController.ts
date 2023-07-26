@@ -35,8 +35,8 @@ class ModalController {
     });
     const winTime = getTimeInSeconds(winner.time);
     const winMessage = winner.success
-      ? `Победил гонщик №${winnerCar.id} на ${winnerCar.name} время (${winTime})`
-      : 'К сожалению, все машины сломались';
+      ? `${winnerCar.name} racer №${winnerCar.id} win with time(${winTime})`
+      : 'Unfortunately, all cars broke down';
     const header = createElement('div', ['modal__content__header'], '', modalContent);
     createElement('h5', ['modal__content__message'], winMessage, header);
     const winImageContainer = createElement('div', ['modal__content__image'], '', modalContent);
