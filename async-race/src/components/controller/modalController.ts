@@ -3,8 +3,8 @@ import gif2 from '../../assets/gif/gif2.gif';
 import gif3 from '../../assets/gif/gif3.gif';
 import gif4 from '../../assets/gif/gif4.gif';
 import appData from '../../data/appData';
-import { createElement, getElement, getRandomNumber, getTimeInSeconds } from '../../functions/functions';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
+import { createElement, getElement, getRandomNumber, getTimeInSeconds } from '../../utils/utils';
 
 class ModalController {
   public showModal(): void {

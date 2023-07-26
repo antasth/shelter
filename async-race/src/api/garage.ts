@@ -1,7 +1,7 @@
 import appData from '../data/appData';
 import { CARS_ON_PAGE, GARAGE_PATH } from '../data/constants';
-import { getCarsData } from '../functions/functions';
 import { CarObject, ResponseCarObject } from '../interfaces/interfaces';
+import { getCarsData } from '../utils/utils';
 
 export const getCars = async (page: number = appData.garagePage, limit: number = CARS_ON_PAGE): Promise<void> => {
   try {

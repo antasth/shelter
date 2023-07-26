@@ -1,6 +1,6 @@
 import appData from '../../data/appData';
-import { createElement, getElement } from '../../functions/functions';
 import { ResponseCarObject } from '../../interfaces/interfaces';
+import { createElement, getElement } from '../../utils/utils';
 import Menu from './modules/menu';
 import Modal from './modules/modal';
 

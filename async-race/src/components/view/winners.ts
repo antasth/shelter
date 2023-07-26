@@ -1,5 +1,5 @@
 import appData from '../../data/appData';
-import { createElement, getElement } from '../../functions/functions';
+import { createElement, getElement } from '../../utils/utils';
 
 class Winners {
   public drawWinnersView(): void {

@@ -1,5 +1,5 @@
 import appData from '../../data/appData';
-import { getElement } from '../../functions/functions';
+import { getElement } from '../../utils/utils';
 import GarageController from './garageController';
 import ModalController from './modalController';
 import WinnersController from './winnersController';

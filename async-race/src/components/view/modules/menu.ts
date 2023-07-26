@@ -1,4 +1,4 @@
-import { createElement } from '../../../functions/functions';
+import { createElement } from '../../../utils/utils';
 
 class Menu {
   public drawHeader(): HTMLElement {

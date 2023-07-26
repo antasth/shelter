@@ -1,5 +1,5 @@
 import { CAR_OFFSET, CAR_WIDTH } from '../data/constants';
-import { getElement } from './functions';
+import { getElement } from './utils';
 
 export const startCarAnimation = (carId: number, duration: number): void => {
   try {

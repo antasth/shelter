@@ -1,8 +1,8 @@
 import appData from '../data/appData';
 import { WINNERS_ON_PAGE, WINNERS_PATH } from '../data/constants';
-import { getWinnersData } from '../functions/functions';
 import { SortOrder, WinnersSort } from '../interfaces/enum';
 import { ResponseWinnersObject, UpdateWinnersObject } from '../interfaces/interfaces';
+import { getWinnersData } from '../utils/utils';
 
 export const getWinners = async (
   page: number = appData.winnersPage,

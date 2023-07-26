@@ -2,9 +2,9 @@ import * as engineRequest from '../../api/engine';
 import * as garageRequest from '../../api/garage';
 import appData from '../../data/appData';
 import { CARS_ON_PAGE } from '../../data/constants';
-import { startCarAnimation, stopCarAnimation } from '../../functions/carAnimations';
-import { generateRandomCars, getCarsOnPageId, getElement } from '../../functions/functions';
 import { Engine, EngineDriveResponse } from '../../interfaces/interfaces';
+import { startCarAnimation, stopCarAnimation } from '../../utils/carAnimations';
+import { generateRandomCars, getCarsOnPageId, getElement } from '../../utils/utils';
 import Garage from '../view/garage';
 import WinnersController from './winnersController';
 

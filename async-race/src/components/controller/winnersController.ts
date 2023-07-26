@@ -2,8 +2,8 @@ import * as garageRequest from '../../api/garage';
 import * as winnersRequest from '../../api/winners';
 import appData from '../../data/appData';
 import { WINNERS_ON_PAGE } from '../../data/constants';
-import { createWinnerObject, getTimeInSeconds } from '../../functions/functions';
 import { EngineDriveResponse } from '../../interfaces/interfaces';
+import { createWinnerObject, getTimeInSeconds } from '../../utils/utils';
 import Winners from '../view/winners';
 
 class WinnersController {
