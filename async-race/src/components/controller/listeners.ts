@@ -37,21 +37,21 @@ class Listeners {
     this.addModalCloseListeners();
   }
 
-  private addWinnersListeners() {
+  private addWinnersListeners(): void {
     this.addWinColumnSortListener();
     this.addTimeColumnSortListener();
     this.addPrevWinnersButtonListener();
     this.addNextWinnersButtonListener();
   }
 
-  private addWinnersTableListeners() {
+  private addWinnersTableListeners(): void {
     this.addWinColumnSortListener();
     this.addTimeColumnSortListener();
     this.addNextWinnersButtonListener();
     this.addPrevWinnersButtonListener();
   }
 
-  private addCarBlockListeners() {
+  private addCarBlockListeners(): void {
     const carBlocks = document.querySelectorAll('.garage__item');
     if (carBlocks.length) {
       carBlocks.forEach((carBlock) => {

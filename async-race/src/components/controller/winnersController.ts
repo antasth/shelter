@@ -33,7 +33,7 @@ class WinnersController {
     sort: string = appData.lastSort.sort,
     order: string = appData.lastSort.sortOrder,
     limit: number = WINNERS_ON_PAGE
-  ) {
+  ): Promise<void> {
     await winnersRequest.getWinners(page, sort, order, limit);
   }
 
@@ -55,7 +55,7 @@ class WinnersController {
     this.winnersView.redrawWinnersTable();
   }
 
-  public async sortWinnersByWins(page: number) {
+  public async sortWinnersByWins(page: number): Promise<void> {
     appData.sortOrder = appData.sortOrder === 'ASC' ? 'DESC' : 'ASC';
     appData.lastSort = {
       sortOrder: appData.sortOrder,
@@ -66,7 +66,7 @@ class WinnersController {
     this.winnersView.redrawWinnersTable();
   }
 
-  public async sortWinnersByTime(page: number) {
+  public async sortWinnersByTime(page: number): Promise<void> {
     appData.sortOrder = appData.sortOrder === 'ASC' ? 'DESC' : 'ASC';
     appData.lastSort = {
       sortOrder: appData.sortOrder,
@@ -77,7 +77,7 @@ class WinnersController {
     this.winnersView.redrawWinnersTable();
   }
 
-  public async deleteWinnerFromServer(winnerId: number) {
+  public async deleteWinnerFromServer(winnerId: number): Promise<void> {
     await winnersRequest.deleteWinner(winnerId);
   }
 }
