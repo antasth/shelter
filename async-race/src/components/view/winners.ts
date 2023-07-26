@@ -6,16 +6,16 @@ class Winners {
     const body = getElement('body');
     const winners = createElement('div', ['winners'], '', body);
     const winnersWrapper = createElement('div', ['winners__wrapper'], '', winners);
-    winnersWrapper.append(this.drawWinnersHeader(), this.drawWinnersTable());
+    winnersWrapper.append(this.createWinnersHeader(), this.createWinnersTable());
   }
 
   public redrawWinnersTable(): void {
     const winnersWrapper = getElement('.winners__wrapper');
     winnersWrapper.replaceChildren();
-    winnersWrapper.append(this.drawWinnersHeader(), this.drawWinnersTable());
+    winnersWrapper.append(this.createWinnersHeader(), this.createWinnersTable());
   }
 
-  private drawWinnersHeader(): HTMLElement {
+  private createWinnersHeader(): HTMLElement {
     const winnersHeader = createElement('div', ['winners__header'], '', null);
     createElement('h2', ['winners__title'], `Winners(${appData.winnersCount})`, winnersHeader);
     const subTitle = createElement('div', ['winners__subtitle'], '', winnersHeader);
@@ -26,7 +26,7 @@ class Winners {
     return winnersHeader;
   }
 
-  private drawWinnersTable(): HTMLElement {
+  private createWinnersTable(): HTMLElement {
     const winnersTable = createElement('table', ['winners__table'], '', null);
     const tableHead = createElement('thead', ['table__head'], '', winnersTable);
     const tableHeadRow = createElement('tr', ['table__row'], '', tableHead);
