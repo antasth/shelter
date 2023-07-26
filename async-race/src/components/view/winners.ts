@@ -17,11 +17,12 @@ class Winners {
 
   private createWinnersHeader(): HTMLElement {
     const winnersHeader = createElement('div', ['winners__header'], '', null);
-    createElement('h2', ['winners__title'], `Winners(${appData.winnersCount})`, winnersHeader);
+    const winnersCount = `Winners(${appData.winnersCount})`;
+    createElement('h2', ['winners__title'], winnersCount, winnersHeader);
     const subTitle = createElement('div', ['winners__subtitle'], '', winnersHeader);
     createElement('h3', ['winners__page'], 'Page', subTitle);
     createElement('button', ['button', 'winners__button', 'winners__button__prev'], '<', subTitle);
-    createElement('h3', ['winners__subtitle'], `${appData.winnersPage}`, subTitle);
+    createElement('h3', ['winners__subtitle'], appData.winnersPage, subTitle);
     createElement('button', ['button', 'winners__button', 'winners__button__next'], '>', subTitle);
     return winnersHeader;
   }
