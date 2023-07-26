@@ -15,10 +15,7 @@ export interface ResponseWinnersObject {
   time: number;
 }
 
-export interface UpdateWinnersObject {
-  wins: number;
-  time: number;
-}
+export type UpdateWinnersObject = Omit<ResponseWinnersObject, 'id'>;
 
 export interface Cars {
   items: Array<CarObject>;
