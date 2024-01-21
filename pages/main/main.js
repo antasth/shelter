@@ -95,7 +95,7 @@ mediaQueries.forEach((item) => {
 })
 
 // create card
-const createCard = ({id, img, name }) => {
+const createCard = ({ id, img, name }) => {
   let card = document.createElement('div')
   card.classList.add('pets__card')
   card.id = id
@@ -180,7 +180,7 @@ sliderCards.addEventListener('animationend', (animationEvent) => {
   if (
     animationEvent.animationName === 'move-left-three' ||
     animationEvent.animationName === 'move-left-two' ||
-    animationEvent.animationName === 'move-left-one' 
+    animationEvent.animationName === 'move-left-one'
   ) {
     sliderCards.classList.remove('transition-left-three')
     sliderCards.classList.remove('transition-left-two')
